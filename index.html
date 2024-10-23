@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>발자취 - 대학생연합여행동아리</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@300;400;700&family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@300;400;700&family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
@@ -64,6 +64,7 @@
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
+            position: relative;
         }
 
         .title-group {
@@ -83,22 +84,40 @@
             letter-spacing: 0.05em;
         }
 
-        .main-title-group {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin: 20px 0;
-            position: relative;
-        }
-
         h1 {
             font-family: 'Nanum Brush Script', cursive;
             font-size: clamp(4.5em, 13vw, 9em);
             color: var(--primary-color);
-            margin: 0;
+            margin: 10px 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            line-height: 1;
+            line-height: 1.2;
             font-weight: 400;
+        }
+
+        .slogan-container {
+            position: relative;
+            margin-top: 10px;
+            padding: 0;
+            text-align: center;
+        }
+
+        .quote-marks {
+            position: absolute;
+            font-size: 8em;
+            color: rgba(47, 82, 41, 0.1);
+            font-family: serif;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .quote-left {
+            left: -10px;
+            top: -30px;
+        }
+
+        .quote-right {
+            right: -10px;
+            bottom: -50px;
         }
 
         .slogan {
@@ -106,20 +125,9 @@
             font-size: clamp(1.8em, 5vw, 2.8em);
             color: rgba(47, 82, 41, 0.6);
             margin: 0;
-            padding: 0;
-            display: inline-block;
+            padding: 0 30px;
             position: relative;
-            font-weight: 400;
-        }
-
-        .slogan::after {
-            content: '"';
-            position: absolute;
-            right: -0.5em;
-            top: -0.2em;
-            font-size: 1.5em;
-            color: var(--primary-color);
-            opacity: 0.8;
+            z-index: 2;
         }
 
         .stats {
@@ -146,13 +154,8 @@
             min-height: auto;
         }
 
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-color: var(--primary-color);
-        }
-
         .stat-value {
+            font-family: 'Gowun Batang', serif;
             font-size: clamp(1.8em, 5vw, 2.5em);
             font-weight: 300;
             margin-bottom: 10px;
@@ -160,12 +163,13 @@
         }
 
         .stat-label {
+            font-family: 'Gowun Batang', serif;
             font-size: clamp(0.9em, 3vw, 1.1em);
             color: var(--light-text);
             font-weight: 300;
         }
 
-   .features {
+        .features {
             background-color: white;
             border-radius: 15px;
             padding: 30px;
@@ -240,6 +244,14 @@
             margin-bottom: 15px;
             color: var(--primary-color);
             font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .cta p {
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 1.5em;
+            color: rgba(47, 82, 41, 0.8);
+            margin-bottom: 20px;
         }
 
         .cta-button {
@@ -249,7 +261,8 @@
             border: none;
             border-radius: 50px;
             font-size: clamp(1em, 3vw, 1.2em);
-            font-weight: 300;
+            font-family: 'Noto Serif KR', serif;
+            font-weight: 400;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -322,20 +335,27 @@
                 height: 100px;
             }
 
-            .main-title-group {
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-            }
-
             h1 {
                 font-size: 3.5em;
             }
 
             .slogan {
                 font-size: 1.4em;
-                white-space: nowrap;
+                padding: 0 20px;
+            }
+
+            .quote-marks {
+                font-size: 5em;
+            }
+
+            .quote-left {
+                left: -5px;
+                top: -20px;
+            }
+
+            .quote-right {
+                right: -5px;
+                bottom: -30px;
             }
 
             .features li {
@@ -377,10 +397,12 @@
                 </div>
                 <div class="title-group">
                     <p class="subtitle">대학연합여행동아리</p>
-                    <div class="main-title-group">
-                        <h1>발자취</h1>
-                        <p class="slogan">당신의 대학생활에 특별한 여정을 더하다</p>
-                    </div>
+                    <h1>발자취</h1>
+                </div>
+                <div class="slogan-container">
+                    <span class="quote-marks quote-left">"</span>
+                    <p class="slogan">당신의 대학생활에 특별한 여정을 더하다</p>
+                    <span class="quote-marks quote-right">"</span>
                 </div>
             </header>
             
@@ -434,8 +456,8 @@
             </div>
 
             <div class="cta">
-                <h2>2024년 신입 부원 모집</h2>
-                <p>1월 1일 - 1월 15일</p>
+                <h2>2024년 1학기 신입 부원 모집</h2>
+                <p>01.01 ~ 01.15</p>
                 <button class="cta-button">지금 지원하기</button>
             </div>
 
@@ -452,4 +474,4 @@
         </div>
     </div>
 </body>
-</html>     
+</html>
