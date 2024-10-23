@@ -25,7 +25,7 @@
             background-image: url('https://source.unsplash.com/1600x900/?travel');
             background-size: cover;
             background-attachment: fixed;
-            overflow-x: hidden; /* 가로 스크롤 방지 */
+            overflow-x: hidden;
         }
 
         .overlay {
@@ -83,16 +83,23 @@
             padding: 20px 0;
             height: auto;
             min-height: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .slogan {
             font-family: 'Nanum Brush Script', cursive;
-            font-size: clamp(1.8em, 5vw, 2.5em);
+            font-size: clamp(1.5em, 4vw, 2.5em);
             color: #16a085;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             animation: fadeInUp 1s ease-out 0.5s both, float 3s ease-in-out infinite;
             margin: 0;
             padding: 0 10px;
+            max-width: 90%;
+            word-break: keep-all;
+            white-space: nowrap;
         }
 
         .slogan-bg {
@@ -259,11 +266,16 @@
             }
         }
 
-        /* 모바일 최적화를 위한 미디어 쿼리 */
         @media (max-width: 480px) {
             .container {
                 padding: 20px 10px;
                 width: 98%;
+            }
+
+            .slogan {
+                font-size: 1.4em;
+                white-space: nowrap;
+                padding: 0 5px;
             }
 
             .features h2 {
@@ -285,7 +297,6 @@
             }
         }
 
-        /* 가로 모드 대응 */
         @media (max-height: 600px) and (orientation: landscape) {
             .overlay {
                 padding: 10px;
