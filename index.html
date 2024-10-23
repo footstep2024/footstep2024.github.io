@@ -50,7 +50,6 @@
             margin: 0 auto 20px;
             display: block;
             padding: 10px;
-            background: transparent;
         }
 
         .logo img {
@@ -73,6 +72,7 @@
         }
 
         .subtitle {
+            font-family: 'Gowun Batang', serif;
             font-weight: 400;
             font-size: clamp(1.5em, 4vw, 2em);
             color: var(--light-text);
@@ -92,7 +92,7 @@
 
         .slogan-container {
             position: relative;
-            margin-top: 10px;
+            margin: 30px 0;
             padding: 0;
             text-align: center;
         }
@@ -134,32 +134,29 @@
 
         .stat-item {
             background: white;
+            color: var(--text-color);
             border: 1px solid rgba(47, 82, 41, 0.2);
             border-radius: 15px;
             padding: 20px 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             max-width: 250px;
         }
 
         .stat-value {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Gowun Batang', serif;
             font-size: clamp(1.8em, 5vw, 2.5em);
-            font-weight: 500;
+            font-weight: 300;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
 
         .stat-label {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Gowun Batang', serif;
             font-size: clamp(0.9em, 3vw, 1.1em);
             color: var(--light-text);
+            font-weight: 300;
         }
 
         .features {
@@ -198,7 +195,7 @@
             display: flex;
             align-items: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Gowun Batang', serif;
         }
 
         .features li:hover {
@@ -222,7 +219,6 @@
             padding: 40px 20px;
             background: linear-gradient(135deg, rgba(47, 82, 41, 0.05) 0%, rgba(47, 82, 41, 0.1) 100%);
             border-radius: 15px;
-            color: var(--text-color);
             position: relative;
             overflow: hidden;
         }
@@ -239,11 +235,13 @@
 
         .cta h2 {
             font-family: 'Nanum Brush Script', cursive;
-            font-size: clamp(2.5em, 7vw, 4em);
+            font-size: clamp(2em, 6vw, 3.5em);
             margin-bottom: 20px;
             color: var(--primary-color);
             font-weight: 400;
             position: relative;
+            white-space: nowrap;
+            line-height: 1.3;
         }
 
         .new-member-highlight {
@@ -367,8 +365,8 @@
             }
 
             .cta h2 {
-                font-size: clamp(2em, 6vw, 3em);
-                padding: 0 10px;
+                font-size: 2.2em;
+                padding: 0;
             }
         }
     </style>
@@ -390,7 +388,7 @@
                     <span class="quote-marks quote-right">"</span>
                 </div>
             </header>
-            
+
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-value">3개월</div>
@@ -409,7 +407,7 @@
                     <div class="stat-label">월간 모임 횟수</div>
                 </div>
             </div>
-            
+
             <div class="features">
                 <h2>발자취만의 특별함</h2>
                 <ul>
@@ -441,7 +439,7 @@
             </div>
 
             <div class="cta">
-                <h2>2025년 1학기 <span class="new-member-highlight">신입 부원</span> 모집</h2>
+                <h2>2025년 1학기 신입 부원 모집</h2>
                 <p>01.01 ~ 01.15</p>
                 <button class="cta-button">지금 지원하기</button>
             </div>
