@@ -46,8 +46,8 @@
         .feature-card {
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 20px 20px 0;
-            height: 70px;
+            padding: 20px 20px 30px;
+            height: 85px;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -61,7 +61,7 @@
             font-weight: 900;
             position: absolute;
             right: 15px;
-            bottom: 8px;
+            bottom: 12px;
             color: var(--primary-color);
             opacity: 0.5;
             transition: all 0.3s ease;
@@ -79,7 +79,7 @@
             gap: 12px;
             position: relative;
             padding-bottom: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             border-bottom: 1px solid rgba(47, 82, 41, 0.1);
         }
 
@@ -106,12 +106,12 @@
         .feature-content p {
             font-family: 'Gowun Batang', serif;
             color: var(--primary-color);
-            font-size: 0.95em;  /* 크기 감소 */
+            font-size: 0.95em;
             line-height: 1.8;
             margin: 8px 0;
             position: relative;
             padding-left: 12px;
-            letter-spacing: -0.02em;  /* 자간 조정 */
+            letter-spacing: -0.02em;
             font-weight: 400;
         }
 
@@ -128,7 +128,7 @@
 
         @media (min-width: 769px) {
             .feature-card:hover {
-                height: 220px;
+                height: 235px;
                 background: var(--hover-gradient);
                 transform: translateY(-5px);
                 box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
@@ -169,7 +169,8 @@
             }
 
             .feature-card {
-                padding: 15px 15px 0;
+                padding: 15px 15px 30px;
+                height: 85px;
                 background: rgba(248, 249, 250, 0.8);
             }
 
@@ -183,11 +184,11 @@
                 font-family: 'Noto Serif KR', serif;
                 font-size: 0.8em;
                 right: 12px;
-                bottom: 8px;
+                bottom: 12px;
             }
 
             .feature-card.active {
-                height: 220px;
+                height: 235px;
                 background: var(--hover-gradient);
             }
 
@@ -218,7 +219,7 @@
             }
 
             .feature-content p {
-                font-size: 0.9em;  /* 모바일에서 더 작게 */
+                font-size: 0.9em;
             }
         }
     </style>
