@@ -1,234 +1,179 @@
-<style>
-:root {
-    --primary-color: #2F5229;
-    --hover-gradient: linear-gradient(145deg, #2F5229 0%, #3a6333 100%);
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2F5229;
+        }
 
-.section-title {
-    font-family: 'Nanum Brush Script', cursive;
-    color: var(--primary-color);
-    font-size: clamp(2.5em, 7vw, 4em);
-    text-align: center;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.features-container {
-    max-width: 1200px;
-    margin: 0 auto 50px;
-    padding: 20px;
-}
+        body {
+            font-family: 'Gowun Batang', serif;
+            background-color: #ecf0f1;
+        }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
+        .section-title {
+            font-family: 'Nanum Brush Script', cursive;
+            color: var(--primary-color);
+            font-size: clamp(2.5em, 7vw, 4em);
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 400;
+        }
 
-/* 공통 카드 스타일 */
-.feature-card {
-    background: #F8F9FA;
-    border-radius: 12px;
-    padding: 15px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.feature-title {
-    display: flex;
-    align-items: center;
-    font-family: 'Gowun Batang', serif;
-    color: var(--primary-color);
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-}
+        .feature-card {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-.feature-icon {
-    color: var(--primary-color);
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-}
+        .feature-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
 
-/* 버전 1: 열거형 */
-.feature-card-v1 {
-    height: auto;
-}
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
 
-.feature-card-v1:hover {
-    background: var(--hover-gradient);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
+        .feature-content {
+            margin-left: 34px;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
 
-.feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 34px;
-}
+        .feature-content p {
+            margin: 5px 0;
+        }
 
-.feature-list li {
-    font-family: 'Gowun Batang', serif;
-    color: #666666;
-    font-size: 0.95em;
-    padding: 5px 0;
-    transition: all 0.3s ease;
-}
+        /* 호버 효과 */
+        @media (min-width: 769px) {
+            .feature-card:hover {
+                background: linear-gradient(145deg, #2F5229 0%, #3a6333 100%);
+                transform: translateY(-5px);
+            }
 
-.feature-card-v1:hover .feature-icon,
-.feature-card-v1:hover .feature-title,
-.feature-card-v1:hover .feature-list li {
-    color: white;
-}
+            .feature-card:hover .feature-title,
+            .feature-card:hover .feature-icon,
+            .feature-card:hover .feature-content {
+                color: white;
+            }
+        }
 
-/* 버전 2: 호버 확장형 */
-.feature-card-v2 {
-    height: 60px;
-    overflow: hidden;
-}
+        /* 모바일 스타일 */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 10px;
+            }
 
-.feature-card-v2:hover {
-    background: var(--hover-gradient);
-    height: 200px;
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
+            .feature-card {
+                padding: 12px;
+            }
 
-.feature-content {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    margin: 10px 0 0 34px;
-}
+            .feature-title {
+                font-size: 1em;
+            }
 
-.feature-card-v2:hover .feature-content {
-    opacity: 1;
-    transform: translateY(0);
-}
+            .feature-content {
+                margin-left: 30px;
+                font-size: 0.9em;
+            }
 
-.feature-content p {
-    font-family: 'Gowun Batang', serif;
-    color: #666666;
-    font-size: 0.95em;
-    padding: 5px 0;
-    transition: all 0.3s ease;
-}
+            .feature-card.active {
+                background: linear-gradient(145deg, #2F5229 0%, #3a6333 100%);
+            }
 
-.feature-card-v2:hover .feature-icon,
-.feature-card-v2:hover .feature-title,
-.feature-card-v2:hover .feature-content p {
-    color: white;
-}
+            .feature-card.active .feature-title,
+            .feature-card.active .feature-icon,
+            .feature-card.active .feature-content {
+                color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 버전 1: 항상 내용 표시 -->
+    <section>
+        <h2 class="section-title">발자취만의 특별함</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-route feature-icon"></i>
+                    확실한 여행 문화
+                </div>
+                <div class="feature-content">
+                    <p>매월 한 번, 특별한 여행의 약속</p>
+                    <p>거리는 가깝게, 추억은 깊게</p>
+                    <p>단체여행이어서 더욱 특별한 MT급 케미</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-users feature-icon"></i>
+                    끈끈함의 정석
+                </div>
+                <div class="feature-content">
+                    <p>소수정예의 강력한 팀워크</p>
+                    <p>평균 80%의 놀라운 단합력</p>
+                    <p>웃음이 끊이지 않는 모임 문화</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-lightbulb feature-icon"></i>
+                    아이디어가 현실이 되는 곳
+                </div>
+                <div class="feature-content">
+                    <p>함께 계획하고 떠나는 주도적 활동</p>
+                    <p>빠른 기획과 즉각적인 실행력</p>
+                    <p>매번 새롭게 써내려가는 우리의 이야기</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* 모바일 반응형 스타일 */
-@media (max-width: 768px) {
-    .features-container {
-        padding: 10px;
-        margin-bottom: 30px;
-    }
-
-    .section-title {
-        font-size: 2.8em;
-        margin-bottom: 20px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .feature-card {
-        padding: 12px;
-    }
-
-    .feature-title {
-        font-size: 1em;
-    }
-
-    .feature-icon {
-        width: 20px;
-        height: 20px;
-    }
-
-    /* 모바일 버전 1: 열거형 */
-    .feature-card-v1 {
-        margin-bottom: 10px;
-    }
-
-    .feature-list li {
-        font-size: 0.9em;
-        padding: 4px 0;
-    }
-
-    /* 모바일 버전 2: 터치 확장형 */
-    .feature-card-v2 {
-        height: 50px;
-    }
-
-    .feature-card-v2.active {
-        background: var(--hover-gradient);
-        height: auto;
-        min-height: 180px;
-    }
-
-    .feature-card-v2.active .feature-icon,
-    .feature-card-v2.active .feature-title,
-    .feature-card-v2.active .feature-content p {
-        color: white;
-    }
-
-    .feature-content {
-        margin: 10px 0 0 30px;
-    }
-
-    .feature-content p {
-        font-size: 0.9em;
-        padding: 4px 0;
-    }
-}
-
-/* 작은 모바일 화면 최적화 */
-@media (max-width: 480px) {
-    .features-container {
-        padding: 8px;
-    }
-
-    .section-title {
-        font-size: 2.5em;
-        margin-bottom: 15px;
-    }
-
-    .feature-card {
-        padding: 10px;
-    }
-}
-</style>
-
-<!-- 자바스크립트 추가 - 모바일에서 터치 동작 처리 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 모바일 디바이스 체크
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-        const cards = document.querySelectorAll('.feature-card-v2');
-        
-        cards.forEach(card => {
-            card.addEventListener('click', function() {
-                // 다른 모든 카드의 active 클래스 제거
-                cards.forEach(c => {
-                    if (c !== card) c.classList.remove('active');
+    <script>
+        // 모바일에서 터치 이벤트 처리
+        if ('ontouchstart' in window) {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const wasActive = this.classList.contains('active');
+                    cards.forEach(c => c.classList.remove('active'));
+                    if (!wasActive) {
+                        this.classList.add('active');
+                    }
                 });
-                
-                // 현재 카드의 active 토글
-                this.classList.toggle('active');
             });
-        });
-    }
-});
-</script>
-
-<!-- 버전 1: 열거형 HTML 구조는 동일 -->
-<!-- 버전 2: 터치 확장형 HTML 구조는 동일 -->
+        }
+    </script>
+</body>
+</html>
