@@ -6,7 +6,7 @@
     <meta name="description" content="발자취는 매월 특별한 여행을 함께하는 대학생연합여행동아리입니다. 매월 한 번, 특별한 여행의 약속, 함께하는 여정.">
     <meta name="keywords" content="대학생여행동아리, 발자취, 대학생모임, 여행동아리">
     <meta property="og:title" content="발자취 - 대학생연합여행동아리">
-    <meta property="og:description" content="매달 특별한 여행을 함께하는 서울 소재 대학생연합여행동아리">
+    <meta property="og:description" content="매달 특별한 여행을 함께하는 서울소재 대학생연합여행동아리">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://footstep2024.github.io">
     <meta property="og:image" content="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/logo.png">
@@ -22,12 +22,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="logo.png">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
-    <!-- 가장 중요한 폰트들만 먼저 로드 (타이틀과 기본 폰트) -->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="preload" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
-    
-    <!-- 나머지 폰트들은 defer로 늦게 로드 -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
@@ -81,6 +80,7 @@
         body, html {
             font-family: 'Noto Sans KR', sans-serif;
             line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
             color: var(--text-color);
             margin: 0;
             padding: 0;
