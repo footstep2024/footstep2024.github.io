@@ -229,7 +229,7 @@
         }
 
         .feature-content {
-            margin-left: 34px;
+            margin-left: 28px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.3s ease;
@@ -238,9 +238,9 @@
         .feature-content p {
             font-family: 'Gowun Batang', serif;
             color: var(--primary-color);
-            font-size: 0.95em;
+            font-size: 0.9em;
             line-height: 1.8;
-            margin: 8px 0;
+            margin: 6px 0;
             position: relative;
             padding-left: 12px;
             letter-spacing: -0.02em;
@@ -264,12 +264,12 @@
             }
 
             .feature-card {
-                padding: 15px 15px 60px;
-                height: 85px;
+                padding: 15px 12px 35px;
+                height: 65px;
             }
 
             .feature-card:hover {
-                height: 200px;
+                height: 170px;
                 background: var(--hover-gradient);
                 transform: translateY(-5px);
                 box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
@@ -280,7 +280,7 @@
             }
 
             .feature-title-text {
-                font-size: 1em;
+                font-size: 0.95em;
             }
 
             .feature-card:hover .feature-title-text {
@@ -387,7 +387,8 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px 10px;
+                padding: 12px 12px 25px;
+                height: 65px;
                 width: 98%;
             }
 
@@ -427,6 +428,7 @@
                 right: 12px;
                 bottom: 8px;
                 opacity: 0.7;
+                transition: opacity 0.3s ease;
             }
 
             .feature-title-text {
@@ -598,15 +600,27 @@
             e.preventDefault();
         });
         
-        // 모바일 터치 이벤트
+        // 모바일 터치 이벤트 개선
         if ('ontouchstart' in window) {
             const cards = document.querySelectorAll('.feature-card');
+            
             cards.forEach(card => {
                 card.addEventListener('click', function() {
+                    // 현재 카드의 active 상태 확인
                     const wasActive = this.classList.contains('active');
-                    cards.forEach(c => c.classList.remove('active'));
+                    
+                    // 모든 카드의 active 상태 제거
+                    cards.forEach(c => {
+                        c.classList.remove('active');
+                        // after 가상요소 opacity 복구
+                        c.style.setProperty('--after-opacity', '0.7');
+                    });
+    
+                    // 클릭한 카드가 active가 아니었다면 active 추가
                     if (!wasActive) {
                         this.classList.add('active');
+                        // active 카드의 after 가상요소만 숨기기
+                        this.style.setProperty('--after-opacity', '0');
                     }
                 });
             });
