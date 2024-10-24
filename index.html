@@ -638,11 +638,23 @@
             const appUrl = `instagram://user?username=${username}`;
             const webUrl = `https://www.instagram.com/${username}`;
             
-            window.location.href = appUrl;
-            
-            setTimeout(() => {
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                const startTime = Date.now();
+                
+                window.location.href = appUrl;
+                
+                window.onblur = function() {
+                    window.onblur = null;
+                };
+                
+                setTimeout(function() {
+                    if (!document.hidden && (Date.now() - startTime < 2000)) {
+                        window.location.href = webUrl;
+                    }
+                }, 1000);
+            } else {
                 window.location.href = webUrl;
-            }, 500);
+            }
         });
     </script>
 </body>
