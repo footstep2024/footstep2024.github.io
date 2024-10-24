@@ -598,14 +598,14 @@
 
             <div class="contact">
                 <div class="social-links">
-                    <a href="http://open.kakao.com/o/sWwpb6Ng" class="social-link kakao" title="오픈카톡 문의하기">
+                    <a href="http://open.kakao.com/o/sWwpb6Ng" class="social-link kakao" title="오픈카톡 문의하기" target="_blank">
                         <i class="fas fa-comment"></i>
                     </a>
-                    <a href="http://instagram.com/footstep2024_official" class="social-link instagram" title="인스타그램 DM문의">
+                    <a href="http://instagram.com/footstep2024_official" class="social-link instagram" title="인스타그램 DM문의" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.campuspick.com/club/view?id=xxx" class="social-link campuspick" title="캠퍼스픽 질문 남기기">
-                        <img src="cam-logo.svg" alt="캠퍼스픽" class="campuspick-icon">
+                    <a href="https://www.campuspick.com/club/view?id=23773&menu=comment" class="social-link campuspick" title="캠퍼스픽 질문 남기기" target="_blank">
+                        <img src="./cam-logo.svg" alt="캠퍼스픽" class="campuspick-icon">
                     </a>
                     <a href="mailto:footstep1024@gmail.com" class="social-link email" title="이메일 문의하기">
                         <i class="fas fa-envelope"></i>
@@ -631,6 +631,19 @@
                 });
             });
         }
+ 
+        document.querySelector('.instagram').addEventListener('click', function(e) {
+            e.preventDefault();
+            const username = 'footstep2024_official';
+            const appUrl = `instagram://user?username=${username}`;
+            const webUrl = `https://www.instagram.com/${username}`;
+            
+            window.location.href = appUrl;
+            
+            setTimeout(() => {
+                window.location.href = webUrl;
+            }, 500);
+        });
     </script>
 </body>
 </html>
