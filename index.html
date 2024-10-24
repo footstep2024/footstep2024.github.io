@@ -157,13 +157,12 @@
             transition: all 0.3s ease;
         }
 
-        /* 새로운 features 스타일 */
         .section-title {
             font-family: 'Nanum Brush Script', cursive;
             color: var(--primary-color);
             font-size: clamp(2.5em, 7vw, 4em);
             text-align: center;
-            margin: 30px 0;
+            margin: 60px 0 30px;
             font-weight: 400;
         }
 
@@ -259,6 +258,54 @@
             border-radius: 50%;
         }
 
+        @media (min-width: 769px) {
+            .features-grid {
+                gap: 15px;
+            }
+
+            .feature-card {
+                padding: 15px 15px 60px;
+                height: 85px;
+            }
+
+            .feature-card:hover {
+                height: 200px;
+                background: var(--hover-gradient);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
+            }
+
+            .feature-card::after {
+                bottom: 15px;
+            }
+
+            .feature-title-text {
+                font-size: 1em;
+            }
+
+            .feature-card:hover .feature-title-text {
+                font-weight: 700;
+                color: white;
+            }
+
+            .feature-card:hover .feature-icon {
+                color: white;
+            }
+
+            .feature-card:hover .feature-title {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .feature-card:hover .feature-content {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .feature-card:hover .feature-content p {
+                color: white;
+            }
+        }
+
         .cta {
             text-align: center;
             margin-top: 30px;
@@ -338,41 +385,6 @@
             transform: translateY(-3px);
         }
 
-        @media (min-width: 769px) {
-            .feature-card::after {
-                bottom: 20px;
-            }
-
-            .feature-card:hover {
-                height: 235px;
-                background: var(--hover-gradient);
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
-            }
-
-            .feature-card:hover .feature-title-text {
-                font-weight: 700;
-                color: white;
-            }
-
-            .feature-card:hover .feature-icon {
-                color: white;
-            }
-
-            .feature-card:hover .feature-title {
-                border-bottom-color: rgba(255, 255, 255, 0.2);
-            }
-
-            .feature-card:hover .feature-content {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .feature-card:hover .feature-content p {
-                color: white;
-            }
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 20px 10px;
@@ -403,26 +415,26 @@
             }
 
             .feature-card {
-                padding: 15px 15px 30px;
-                height: 85px;
+                padding: 12px 12px 25px;
+                height: 70px;
                 background: rgba(248, 249, 250, 0.8);
             }
 
             .feature-card::after {
                 content: '터치하여 더보기';
                 font-family: 'Noto Serif KR', serif;
-                font-size: 0.8em;
+                font-size: 0.7em;
                 right: 12px;
-                bottom: 12px;
+                bottom: 8px;
+                opacity: 0.7;
             }
 
             .feature-title-text {
-                font-weight: 400;
-                font-size: 1.1em;
+                font-size: 0.95em;
             }
 
             .feature-card.active {
-                height: 235px;
+                height: 180px;
                 background: var(--hover-gradient);
             }
 
@@ -450,10 +462,20 @@
 
             .feature-card.active::after {
                 opacity: 0;
+                content: '터치하여 더보기';
+                display: block;
+            }
+
+            .features-grid:has(.feature-card.active) .feature-card:not(.active)::after {
+                opacity: 0.7;
+            }
+
+            .feature-content {
+                margin-left: 30px;
             }
 
             .feature-content p {
-                font-size: 0.9em;
+                font-size: 0.85em;
             }
 
             .stat-item {
