@@ -178,8 +178,8 @@
         .feature-card {
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 20px 20px 80px;
-            height: 95px;
+            padding: 15px 15px 35px;
+            height: 65px;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -187,38 +187,20 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
-        .feature-card::after {
-            content: '\f107';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 15px;
-            bottom: 12px;
-            color: var(--primary-color);
-            opacity: 0.5;
-            transition: all 0.3s ease;
-            font-size: 1.2em;
-        }
-
-        .feature-card:hover::after {
-            transform: translateY(5px);
-            opacity: 0;
-        }
-
         .feature-title {
             display: flex;
             align-items: center;
             gap: 12px;
             position: relative;
-            padding-bottom: 6px;
-            margin-bottom: 4px;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
             border-bottom: 1px solid rgba(47, 82, 41, 0.1);
         }
 
         .feature-title-text {
             font-family: 'Noto Serif KR', serif;
             color: var(--primary-color);
-            font-size: 1.1em;
+            font-size: 0.95em;
             font-weight: 400;
         }
 
@@ -259,13 +241,17 @@
         }
 
         @media (min-width: 769px) {
-            .features-grid {
-                gap: 15px;
-            }
-
-            .feature-card {
-                padding: 15px 12px 35px;
-                height: 65px;
+            .feature-card::after {
+                content: '\f107';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 15px;
+                bottom: 15px;
+                color: var(--primary-color);
+                opacity: 0.5;
+                transition: all 0.3s ease;
+                font-size: 1.2em;
             }
 
             .feature-card:hover {
@@ -275,12 +261,9 @@
                 box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
             }
 
-            .feature-card::after {
-                bottom: 15px;
-            }
-
-            .feature-title-text {
-                font-size: 0.95em;
+            .feature-card:hover::after {
+                transform: translateY(5px);
+                opacity: 0;
             }
 
             .feature-card:hover .feature-title-text {
@@ -387,8 +370,7 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 12px 12px 20px;
-                height: 55px;
+                padding: 20px 10px;
                 width: 98%;
             }
 
@@ -422,22 +404,25 @@
                 position: relative;
             }
 
-            .feature-card::after {
-                content: '터치하여 더보기';
-                position: absolute;
-                font-family: 'Noto Serif KR', serif;
-                font-size: 0.7em;
-                right: 12px;
-                bottom: 6px;
-                color: var(--primary-color);
-                opacity: 0.7;
-                transition: opacity 0.3s ease;
-                display: block;
-                pointer-events: none;
+            .feature-title {
+                padding-bottom: 6px;
+                margin-bottom: 4px;
             }
 
             .feature-title-text {
                 font-size: 0.95em;
+            }
+
+            .feature-card::after {
+                content: '터치하여 더보기';
+                position: absolute;
+                right: 12px;
+                bottom: 6px;
+                font-family: 'Noto Serif KR', serif;
+                font-size: 0.7em;
+                color: var(--primary-color);
+                opacity: 0.7;
+                pointer-events: none;
             }
 
             .feature-card.active {
@@ -458,25 +443,15 @@
                 color: white;
             }
 
-            .feature-card.active .feature-content {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .feature-card.active .feature-content p {
-                color: white;
-            }
-
             .feature-card.active::after {
-                opacity: 0;
-                content: '터치하여 더보기';
                 display: block;
+                opacity: 0;
                 color: white;
             }
 
             .features-grid:has(.feature-card.active) .feature-card:not(.active)::after {
-                opacity: 0.7;
                 display: block;
+                opacity: 0.7;
             }
 
             .feature-content {
@@ -484,6 +459,11 @@
                 opacity: 0;
                 transform: translateY(20px);
                 transition: all 0.3s ease;
+            }
+
+            .feature-card.active .feature-content {
+                opacity: 1;
+                transform: translateY(0);
             }
 
             .feature-content p {
@@ -606,32 +586,18 @@
     </div>
 
     <script>
-        // 우클릭 방지
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
         
-        // 모바일 터치 이벤트 개선
         if ('ontouchstart' in window) {
             const cards = document.querySelectorAll('.feature-card');
-            
             cards.forEach(card => {
                 card.addEventListener('click', function() {
-                    // 현재 카드의 active 상태 확인
                     const wasActive = this.classList.contains('active');
-                    
-                    // 모든 카드의 active 상태 제거
-                    cards.forEach(c => {
-                        c.classList.remove('active');
-                        // after 가상요소 opacity 복구
-                        c.style.setProperty('--after-opacity', '0.7');
-                    });
-    
-                    // 클릭한 카드가 active가 아니었다면 active 추가
+                    cards.forEach(c => c.classList.remove('active'));
                     if (!wasActive) {
                         this.classList.add('active');
-                        // active 카드의 after 가상요소만 숨기기
-                        this.style.setProperty('--after-opacity', '0');
                     }
                 });
             });
