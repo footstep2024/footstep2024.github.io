@@ -216,6 +216,60 @@
     </style>
 </head>
 <body>
-<!-- HTML 부분은 이전과 동일 -->
+    <section>
+        <h2 class="section-title">발자취만의 특별함</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-route feature-icon"></i>
+                    <span class="feature-title-text">확실한 여행 문화</span>
+                </div>
+                <div class="feature-content">
+                    <p>매월 한 번, 특별한 여행의 약속</p>
+                    <p>거리는 가깝게, 추억은 깊게</p>
+                    <p>단체여행이어서 더욱 특별한 MT급 케미</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-users feature-icon"></i>
+                    <span class="feature-title-text">끈끈함의 정석</span>
+                </div>
+                <div class="feature-content">
+                    <p>소수정예의 강력한 팀워크</p>
+                    <p>평균 80%의 놀라운 단합력</p>
+                    <p>웃음이 끊이지 않는 모임 문화</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-title">
+                    <i class="fas fa-lightbulb feature-icon"></i>
+                    <span class="feature-title-text">아이디어가 현실이 되는 곳</span>
+                </div>
+                <div class="feature-content">
+                    <p>함께 계획하고 떠나는 주도적 활동</p>
+                    <p>빠른 기획과 즉각적인 실행력</p>
+                    <p>매번 새롭게 써내려가는 우리의 이야기</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        if ('ontouchstart' in window) {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const wasActive = this.classList.contains('active');
+                    cards.forEach(c => c.classList.remove('active'));
+                    if (!wasActive) {
+                        this.classList.add('active');
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 </html>
