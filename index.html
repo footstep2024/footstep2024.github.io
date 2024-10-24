@@ -46,8 +46,8 @@
         .feature-card {
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 20px 20px 35px;
-            height: 85px;
+            padding: 20px 20px 45px;
+            height: 95px;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -127,8 +127,12 @@
         }
 
         @media (min-width: 769px) {
+            .feature-card::after {
+                bottom: 25px;
+            }
+
             .feature-card:hover {
-                height: 235px;
+                height: 245px;
                 background: var(--hover-gradient);
                 transform: translateY(-5px);
                 box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
@@ -158,8 +162,9 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .feature-card {
+                padding: 15px 15px 40px;
+                height: 95px;
             }
 
             .features-grid {
@@ -188,7 +193,7 @@
             }
 
             .feature-card.active {
-                height: 235px;
+                height: 245px;
                 background: var(--hover-gradient);
             }
 
