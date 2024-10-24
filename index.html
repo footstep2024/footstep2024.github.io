@@ -357,6 +357,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             width: 80%;
             max-width: 300px;
+            display: inline-block;
+            text-decoration: none; 
         }
 
         .cta-button:hover {
@@ -621,7 +623,7 @@
             <div class="cta">
                 <h2>2025년 1학기 신입 부원 모집</h2>
                 <p>01.15 ~ 01.31</p>
-                <button class="cta-button">지금 지원하기</button>
+                <a href="https://forms.gle/3oshm28AWjQVmKRE8" class="cta-button" target="_blank">지금 지원하기</a>
             </div>
 
             <div class="contact">
@@ -681,7 +683,7 @@
                     }
                 }, 1000);
             } else {
-                window.location.href = webUrl;
+                window.open(webUrl, '_blank');
             }
         });
     </script>
