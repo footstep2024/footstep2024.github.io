@@ -47,7 +47,7 @@
         .feature-card {
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 20px;
+            padding: 20px 20px 35px;
             height: 70px;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -62,7 +62,7 @@
             font-weight: 900;
             position: absolute;
             right: 15px;
-            bottom: 10px;
+            bottom: 15px;
             color: var(--primary-color);
             opacity: 0.5;
             transition: all 0.3s ease;
@@ -127,10 +127,6 @@
         }
 
         @media (min-width: 769px) {
-            .feature-title-text {
-                font-weight: 700;
-            }
-
             .feature-card:hover {
                 height: 220px;
                 background: var(--hover-gradient);
@@ -138,13 +134,17 @@
                 box-shadow: 0 10px 20px rgba(47, 82, 41, 0.15);
             }
 
-            .feature-card:hover .feature-title {
-                border-bottom-color: rgba(255, 255, 255, 0.2);
+            .feature-card:hover .feature-title-text {
+                font-weight: 700;
+                color: white;
             }
 
-            .feature-card:hover .feature-title-text,
             .feature-card:hover .feature-icon {
                 color: white;
+            }
+
+            .feature-card:hover .feature-title {
+                border-bottom-color: rgba(255, 255, 255, 0.2);
             }
 
             .feature-card:hover .feature-content {
@@ -169,7 +169,7 @@
             }
 
             .feature-card {
-                padding: 15px;
+                padding: 15px 15px 35px;
                 background: rgba(248, 249, 250, 0.8);
             }
 
@@ -183,6 +183,7 @@
                 font-family: 'Noto Serif KR', serif;
                 font-size: 0.8em;
                 right: 12px;
+                bottom: 15px;
             }
 
             .feature-card.active {
@@ -190,19 +191,26 @@
                 background: var(--hover-gradient);
             }
 
+            .feature-card.active .feature-title-text {
+                font-weight: 700;
+                color: white;
+            }
+
             .feature-card.active .feature-title {
                 border-bottom-color: rgba(255, 255, 255, 0.2);
             }
 
-            .feature-card.active .feature-title-text,
-            .feature-card.active .feature-icon,
-            .feature-card.active .feature-content p {
+            .feature-card.active .feature-icon {
                 color: white;
             }
 
             .feature-card.active .feature-content {
                 opacity: 1;
                 transform: translateY(0);
+            }
+
+            .feature-card.active .feature-content p {
+                color: white;
             }
 
             .feature-card.active::after {
