@@ -25,6 +25,10 @@
     
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#2F5229">
+
+    <meta name="application-name" content="발자취">
+    <meta name="rating" content="general">
+    <link rel="canonical" href="https://footstep2024.github.io">
     
     <style>
         body {
@@ -50,11 +54,10 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="logo.png">
+    <link rel="preload" as="image" href="/logo.png">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="preload" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -813,7 +816,7 @@
             const appUrl = `instagram://user?username=${username}`;
             const webUrl = `https://www.instagram.com/${username}`;
             
-            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
                 const startTime = Date.now();
                 
                 window.location.href = appUrl;
