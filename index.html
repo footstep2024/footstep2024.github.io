@@ -1134,5 +1134,109 @@
             }
         });
     </script>
+    
+    <script>
+        function animateValue(element, start, end, duration, suffix = '') {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            const frameRate = isMobile ? 30 : 60;
+            const frameInterval = 1000 / frameRate;
+            
+            const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
+            
+            let current = start;
+            const range = end - start;
+            const increment = range / (duration / frameInterval);
+            const startTime = performance.now();
+            let lastFrameTime = startTime;
+            
+            let isPaused = false;
+            document.addEventListener('visibilitychange', () => {
+                isPaused = document.hidden;
+            });
+            
+            function updateNumber(currentTime) {
+                if (isPaused) {
+                    requestAnimationFrame(updateNumber);
+                    return;
+                }
+        
+                if (currentTime - lastFrameTime < frameInterval) {
+                    requestAnimationFrame(updateNumber);
+                    return;
+                }
+                
+                const elapsed = currentTime - startTime;
+                lastFrameTime = currentTime;
+                
+                if (elapsed < duration) {
+                    const progress = elapsed / duration;
+                    const easedProgress = 1 - Math.pow(1 - progress, 3); // 큐빅 이징
+                    current = start + (range * easedProgress);
+                    
+                    if (decimals > 0) {
+                        element.textContent = current.toFixed(decimals) + suffix;
+                    } else {
+                        element.textContent = Math.floor(current) + suffix;
+                    }
+                    
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    element.textContent = end + suffix;
+                }
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        requestAnimationFrame(updateNumber);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            observer.observe(element);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const durationModifier = isMobile ? 0.8 : 1;
+            
+            const stats = [
+                {
+                    element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
+                    start: 1,
+                    end: 3,
+                    duration: 2000 * durationModifier,
+                    suffix: '개월'
+                },
+                {
+                    element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
+                    start: 1,
+                    end: 100,
+                    duration: 1500 * durationModifier,
+                    suffix: '%'
+                },
+                {
+                    element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
+                    start: 1,
+                    end: 80,
+                    duration: 1700 * durationModifier,
+                    suffix: '%+'
+                },
+                {
+                    element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
+                    start: 1,
+                    end: 3,
+                    duration: 2000 * durationModifier,
+                    suffix: '+'
+                }
+            ];
+            
+            stats.forEach(stat => {
+                animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
+            });
+        });
+     </script>   
 </body>
 </html>
