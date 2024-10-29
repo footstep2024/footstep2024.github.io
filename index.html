@@ -56,13 +56,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="/logo.png">
+    <link rel="preload" href="/logo.png" as="image">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    <link rel="preload" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/icons/cam-logo.svg" as="image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -965,27 +965,26 @@
             </div>
 
             <div class="contact">
-                    <div class="social-links" aria-label="소셜 미디어 링크">
-                        <a href="http://open.kakao.com/o/sWwpb6Ng" class="social-link kakao" title="오픈카톡 문의하기" target="_blank">
-                            <i class="fas fa-comment"></i>
-                        </a>
-                        <a href="http://instagram.com/footstep2024_official" class="social-link instagram" title="인스타그램 DM문의" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.campuspick.com/club/view?id=23773&menu=comment" class="social-link campuspick" title="캠퍼스픽 질문글 남기기" target="_blank">
-                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/icons/cam-logo.svg" alt="캠퍼스픽" class="campuspick-icon">
-                        </a>
-                        <a href="mailto:footstep1024@gmail.com" class="social-link email" title="이메일 문의하기">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
+                <div class="social-links" aria-label="소셜 미디어 링크">
+                    <a href="http://open.kakao.com/o/sWwpb6Ng" class="social-link kakao" title="오픈카톡 문의하기" target="_blank">
+                        <i class="fas fa-comment"></i>
+                    </a>
+                    <a href="http://instagram.com/footstep2024_official" class="social-link instagram" title="인스타그램 DM문의" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.campuspick.com/club/view?id=23773&menu=comment" class="social-link campuspick" title="캠퍼스픽 질문글 남기기" target="_blank">
+                        <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/icons/cam-logo.svg" alt="캠퍼스픽" class="campuspick-icon">
+                    </a>
+                    <a href="mailto:footstep1024@gmail.com" class="social-link email" title="이메일 문의하기">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
+            </div>
             <div class="copyright">
                 <p>© 2024 footstep. All Rights Reserved.</p>
             </div>
         </div>
-    </div>
-
+        
         <script>
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -1030,6 +1029,9 @@
         function validateUrl(url) {
             try {
                 new URL(url);
+                if (url.startsWith('mailto:')) {
+                    return url.includes('footstep1024@gmail.com');
+                }
                 return (url.startsWith('https://') || url.startsWith('http://')) && (
                     url.includes('forms.gle') || 
                     url.includes('footstep2024.github.io') ||
