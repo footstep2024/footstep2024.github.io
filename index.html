@@ -136,6 +136,22 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 10px;
+            position: relative;
+        }
+        
+        .spinner::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.6;
         }
 
         .notification {
