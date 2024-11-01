@@ -1024,12 +1024,34 @@
 
         @media (max-width: 768px) {
             .modal-content {
-                width: 95%;
-                padding: 25px;
+                width: 80%;  /* 95%에서 80%로 수정 */
+                padding: 20px;  /* 25px에서 20px로 수정 */
+            }
+            
+            .modal-title {
+                font-size: 1.8em;  /* clamp(2em, 6vw, 2.5em)에서 수정 */
+                margin-bottom: 10px;  /* 15px에서 10px로 수정 */
+            }
+            
+            .modal-subtitle {
+                font-size: 0.9em;  /* clamp(0.9em, 3vw, 1em)에서 수정 */
+                margin-bottom: 20px;  /* 25px에서 20px로 수정 */
             }
             
             .phone-input {
-                font-size: 16px;
+                font-size: 14px;  /* 16px에서 14px로 수정 */
+                padding: 10px 12px;  /* 12px 15px에서 수정 */
+            }
+            
+            .submit-btn {
+                font-size: 0.9em;  /* 1.0em에서 0.9em으로 수정 */
+                padding: 10px;  /* 12px에서 10px로 수정 */
+            }
+            
+            .close-btn {
+                font-size: 20px;  /* 24px에서 20px로 수정 */
+                top: 12px;  /* 15px에서 12px로 수정 */
+                right: 12px;  /* 15px에서 12px로 수정 */
             }
         }
 
