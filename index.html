@@ -1565,28 +1565,32 @@
 
         
             form.addEventListener('submit', (e) => {
-               if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
-                   e.preventDefault();
-                   showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
-                   return;
-               }
+                e.preventDefault();
+                
+                if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
+                    showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
+                    return;
+                }
             
-               e.preventDefault();
-               showNotification('알림 신청을 처리 중입니다', 'success');
-               showLoading();
-               
-               const handleSubmitComplete = () => {
-                   hideLoading();
-                   modal.style.display = 'none';
-                   showCustomAlert('알림 신청이 완료되었습니다.');
-                   phoneInput.value = '';
-                   
-                   setTimeout(() => {
-                       form.submit();
-                   }, 100);
-               };
-            
-               setTimeout(handleSubmitComplete, 1000);
+                showNotification('알림 신청을 처리 중입니다', 'success');
+                showLoading();
+                
+                // 폼 제출 처리
+                const formData = new FormData(form);
+                const phoneNumber = phoneInput.value;
+                
+                // hidden iframe을 통한 폼 제출
+                setTimeout(() => {
+                    form.submit();
+                    
+                    // UI 업데이트
+                    setTimeout(() => {
+                        hideLoading();
+                        modal.style.display = 'none';
+                        showCustomAlert('알림 신청이 완료되었습니다.');
+                        phoneInput.value = '';
+                    }, 500);
+                }, 1000);
             });
         
         closeBtn.addEventListener('click', () => {
