@@ -1537,25 +1537,57 @@
         const form = document.querySelector('.phone-form');
         const phoneInput = document.querySelector('.phone-input');
         const modalBtn = document.querySelector('.modal-btn');
-        
-        form.addEventListener('submit', (e) => {
-            if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
-                e.preventDefault();
-                showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
-                return;
+
+        if (modalBtn) {
+               modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
+                   e.preventDefault();
+                   
+                   try {
+                       showNotification('알림 신청 준비 중입니다', 'success');
+                       showLoading();
+                       
+                       setTimeout(() => {
+                           hideLoading();
+                           modal.style.display = 'block';
+                           const modalContent = document.querySelector('.modal-content');
+                           modalContent.style.animation = 'none';
+                           modalContent.offsetHeight;
+                           modalContent.style.animation = null;
+                       }, 1000);
+                       
+                   } catch (error) {
+                       hideLoading();
+                       showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
+                       console.error('Error:', error);
+                   }
+               });
             }
+
         
-            showLoading();
+            form.addEventListener('submit', (e) => {
+               if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
+                   e.preventDefault();
+                   showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
+                   return;
+               }
             
-            const handleSubmitComplete = () => {
-                hideLoading();
-                modal.style.display = 'none';
-                showCustomAlert('알림 신청이 완료되었습니다.');
-                phoneInput.value = '';
-            };
-        
-            setTimeout(handleSubmitComplete, 1000);
-        });
+               e.preventDefault();
+               showNotification('알림 신청을 처리 중입니다', 'success');
+               showLoading();
+               
+               const handleSubmitComplete = () => {
+                   hideLoading();
+                   modal.style.display = 'none';
+                   showCustomAlert('알림 신청이 완료되었습니다.');
+                   phoneInput.value = '';
+                   
+                   setTimeout(() => {
+                       form.submit();
+                   }, 100);
+               };
+            
+               setTimeout(handleSubmitComplete, 1000);
+            });
         
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
@@ -1569,15 +1601,6 @@
             }
         });
         
-        modalBtn.addEventListener('click', () => {
-            modal.style.display = 'block';
-            phoneInput.value = '';
-            const modalContent = document.querySelector('.modal-content');
-            modalContent.style.animation = 'none';
-            modalContent.offsetHeight;
-            modalContent.style.animation = null;
-        });
-
         if (isMobile) {
             document.addEventListener('touchstart', function(event) {
                 if (event.touches.length > 1) {
