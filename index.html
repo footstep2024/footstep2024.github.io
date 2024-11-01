@@ -1024,63 +1024,59 @@
 
         @media (max-width: 768px) {
             .modal-content {
-                width: 70%;  /* 95%에서 80%로 수정 */
-                padding: 15px;  /* 25px에서 20px로 수정 */
+                width: 70%;
+                padding: 15px;
             }
             
             .modal-title {
-                font-size: 1.6em;  /* clamp(2em, 6vw, 2.5em)에서 수정 */
-                margin-bottom: 8px;  /* 15px에서 10px로 수정 */
+                font-size: 1.8em;
+                margin-bottom: 8px;
             }
             
             .modal-subtitle {
-                font-size: 0.9em;  /* clamp(0.9em, 3vw, 1em)에서 수정 */
-                margin-bottom: 20px;  /* 25px에서 20px로 수정 */
+                font-size: 0.9em;
+                margin-bottom: 20px;
             }
             
             .phone-input {
-                font-size: 14px;  /* 16px에서 14px로 수정 */
-                padding: 10px 12px;  /* 12px 15px에서 수정 */
+                font-size: 14px;
+                padding: 10px 12px;
             }
             
             .submit-btn {
-                font-size: 0.9em;  /* 1.0em에서 0.9em으로 수정 */
-                padding: 10px;  /* 12px에서 10px로 수정 */
+                font-size: 0.9em;
+                padding: 10px;
             }
             
             .close-btn {
-                font-size: 20px;  /* 24px에서 20px로 수정 */
-                top: 12px;  /* 15px에서 12px로 수정 */
-                right: 12px;  /* 15px에서 12px로 수정 */
-
+                font-size: 20px;
+                top: 12px;
+                right: 12px;
+            }
+        
+            /* 완료 알림창 스타일 */
             .custom-alert {
-                width: 70%;  /* 85%에서 70%로 수정 */
-                padding: 20px;  /* 25px에서 20px로 수정 */
+                width: 70%;
+                padding: 15px;
+                min-width: auto;
             }
             
             .custom-alert::before {
-                font-size: 2em;  /* 2.5em에서 2em으로 수정 */
-                margin-bottom: 10px;  /* 12px에서 10px로 수정 */
+                font-size: 2em;
+                margin-bottom: 10px;
             }
             
             .custom-alert p {
-                font-size: 1.5em;  /* 1.8em에서 1.5em으로 수정 */
-                margin-bottom: 15px;  /* 20px에서 15px로 수정 */
+                font-size: 1.5em;
+                margin-bottom: 15px;
             }
             
             .custom-alert button {
-                padding: 8px 25px;  /* 10px 30px에서 수정 */
-                font-size: 0.9em;  /* 1em에서 0.9em으로 수정 */
+                padding: 8px 25px;
+                font-size: 0.9em;
             }
         }
-
-        @media (hover: none) and (pointer: coarse) {
-            .submit-btn:active {
-                transform: scale(0.96);
-                background: #3a6333;
-            }
-        }
-
+        
         .custom-alert {
             position: fixed;
             top: 50%;
