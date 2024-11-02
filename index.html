@@ -1053,48 +1053,6 @@
                 top: 12px;
                 right: 12px;
             }
-        
-            /* 완료 알림창 스타일 */
-            .custom-alert {
-                width: 70%;
-                padding: 20px;
-                min-width: auto;
-                max-width: 280px;
-            }
-            
-            .custom-alert::before {
-                font-size: 2em;
-                margin-bottom: 10px;
-            }
-            
-            .custom-alert p {
-                font-size: 1.5em;
-                margin-bottom: 15px;
-            }
-            
-            .custom-alert button {
-                padding: 8px 25px;
-                font-size: 0.9em;
-            }
-        }
-        
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.98);
-            padding: 30px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(47, 82, 41, 0.15);
-            z-index: 2000;
-            text-align: center;
-            min-width: 280px;
-            max-width: 360px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(47, 82, 41, 0.1);
-            animation: customAlertIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
         @keyframes customAlertIn {
