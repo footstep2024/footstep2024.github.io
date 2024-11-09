@@ -675,22 +675,26 @@
             transform: translateY(-3px);
         }
         
-        .campuspick-icon {
+        .campuspick-icon-light {
             width: 1.6em;
             height: 1.6em;
             transition: all 0.3s ease;
+            display: block;
         }
         
         .campuspick-icon-dark {
+            width: 1.6em;
+            height: 1.6em;
+            transition: all 0.3s ease;
             display: none;
         }
         
         @media (prefers-color-scheme: dark) {
             .campuspick-icon-light {
-                display: none;
+                display: none !important;
             }
             .campuspick-icon-dark {
-                display: block;
+                display: block !important;
             }
         }
         
