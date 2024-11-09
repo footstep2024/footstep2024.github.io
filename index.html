@@ -677,9 +677,14 @@
             width: 1.6em;
             height: 1.6em;
             transition: all 0.3s ease;
-            background-color: white;
-            border-radius: 50%;
-            padding: 2px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .campuspick-icon {
+                background-color: white;
+                border-radius: 50%;
+                padding: 2px;
+            }
         }
         
         .social-link.campuspick:hover .campuspick-icon {
