@@ -265,6 +265,94 @@
                 gap: 0.75rem;
             }
         }
+            .privacy-section {
+                background-color: #f8f9fa;
+                border-radius: 10px;
+                padding: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .privacy-box {
+                background: white;
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .privacy-item {
+                margin-bottom: 1.2rem;
+            }
+            
+            .privacy-item:last-child {
+                margin-bottom: 0;
+            }
+            
+            .privacy-subtitle {
+                font-family: 'Noto Serif KR', var(--system-font);
+                font-size: 1.1rem;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            
+            .privacy-item p {
+                font-size: 0.95rem;
+                color: var(--text-color);
+                line-height: 1.6;
+                margin: 0.3rem 0;
+            }
+            
+            .privacy-notice {
+                color: var(--error-color);
+                font-size: 0.9rem;
+                margin: 1rem 0;
+                font-weight: 500;
+            }
+            
+            .privacy-footer {
+                color: var(--light-text);
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            
+            .privacy-agree {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .privacy-agree .checkbox-label {
+                font-size: 1.1rem;
+                color: var(--text-color);
+                font-weight: 500;
+            }
+            
+            @media (max-width: 768px) {
+                .privacy-section {
+                    padding: 1.5rem;
+                    margin-bottom: 2rem;
+                }
+            
+                .privacy-box {
+                    padding: 1rem;
+                }
+            
+                .privacy-subtitle {
+                    font-size: 1rem;
+                }
+            
+                .privacy-item p {
+                    font-size: 0.9rem;
+                }
+            
+                .privacy-notice,
+                .privacy-footer {
+                    font-size: 0.85rem;
+                }
+            }
     </style>
 </head>
 <body>
@@ -282,6 +370,52 @@
         </header>
 
         <form id="applicationForm" class="form-container">
+            <section class="section privacy-section">
+                <h2 class="section-title">개인정보 수집 및 활용 동의</h2>
+                
+                <div class="privacy-content">
+                    <div class="privacy-box">
+                        <div class="privacy-item">
+                            <h3 class="privacy-subtitle">1. 수집 근거</h3>
+                            <p>개인정보보호법 제15조</p>
+                        </div>
+                        
+                        <div class="privacy-item">
+                            <h3 class="privacy-subtitle">2. 수집 항목</h3>
+                            <p>성명・전화번호・생년월・직장・학교・거주지</p>
+                        </div>
+                        
+                        <div class="privacy-item">
+                            <h3 class="privacy-subtitle">3. 이용 목적</h3>
+                            <p>・합격자 연락</p>
+                            <p>・대학생 신분 확인</p>
+                        </div>
+                        
+                        <div class="privacy-item">
+                            <h3 class="privacy-subtitle">4. 보유 및 이용 기간</h3>
+                            <p>선발 절차 종료 시까지</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-notice">
+                        ※ 동의하지 않을 경우 지원이 불가능합니다.
+                    </div>
+                    
+                    <div class="privacy-footer">
+                        본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며,<br>
+                        동아리 활동 외 다른 목적으로 사용되지 않습니다.
+                    </div>
+                    
+                    <div class="privacy-agree">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="privacyAgree" required>
+                            <span>동의합니다</span>
+                        </label>
+                        <div class="error-message">개인정보 수집 및 활용에 동의해주세요.</div>
+                    </div>
+                </div>
+            </section>  
+            
             <!-- 기본 정보 섹션 -->
             <section class="section">
                 <h2 class="section-title">기본 정보</h2>
