@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>발자취 - 25-1학기 신입부원 모집 지원서</title>
+    
+    <!-- 기존 폰트 및 아이콘 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2F5229;
+            --text-color: #333333;
+            --light-text: #666666;
+            --background-color: #ecf0f1;
+            --hover-color: #3a6333;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+            --border-color: #dee2e6;
+            --section-bg: #ffffff;
+            --system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', var(--system-font);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .title {
+            font-family: 'Nanum Brush Script', var(--system-font);
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-family: 'Gowun Batang', var(--system-font);
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            margin: 2rem 0;
+            border-radius: 2px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .form-container {
+            background: var(--section-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Nanum Brush Script', var(--system-font);
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Noto Sans KR', var(--system-font);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .required::after {
+            content: '*';
+            color: var(--error-color);
+            margin-left: 0.25rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+            font-family: 'Noto Sans KR', var(--system-font);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-text {
+            font-size: 0.875rem;
+            color: var(--light-text);
+            margin-top: 0.25rem;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', var(--system-font);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #c8ccd0;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: var(--error-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem auto;
+            }
+
+            .header {
+                padding: 1rem 0;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+        .privacy-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .privacy-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .privacy-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .privacy-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(47, 82, 41, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .privacy-content-wrapper {
+            flex: 1;
+        }
+        
+        .privacy-subtitle {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .privacy-item p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        /* 호버 효과 */
+        .privacy-item:hover {
+            transform: translateX(5px);
+            box-shadow: -4px 4px 15px rgba(47, 82, 41, 0.08);
+        }
+        
+        .privacy-notice {
+            background: #fff3f3;
+            border-left: 4px solid var(--error-color);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Noto Sans KR', var(--system-font);
+            color: var(--error-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .privacy-footer {
+            background: #f1f8f1;
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Noto Sans KR', var(--system-font);
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(47, 82, 41, 0.1);
+        }
+        
+        .privacy-agree {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .privacy-agree .checkbox-label {
+            font-family: 'Noto Sans KR', var(--system-font);
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .privacy-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+        
+            .privacy-box {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        
+            .privacy-item {
+                padding: 1.2rem;
+            }
+        
+            .privacy-subtitle {
+                font-size: 1rem;
+            }
+        
+            .privacy-item p {
+                font-size: 0.9rem;
+            }
+        
+            .privacy-notice,
+            .privacy-footer {
+                font-size: 0.85rem;
+                padding: 1rem;
+            }
+        
+            .privacy-agree {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }    
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <div class="progress-bar">
+        <div class="progress" id="formProgress"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="logo.png" alt="발자취 로고" draggable="false">
+            </div>
+            <h1 class="title">25-1학기 신입부원 모집</h1>
+            <p class="subtitle">지원서 작성</p>
+        </header>
+
+        <form id="applicationForm" class="form-container">
+            <section class="section privacy-section">
+                <h2 class="section-title">개인정보 수집 및 활용 동의</h2>
+                
+                <div class="privacy-content">
+                    <div class="privacy-box">
+                        <div class="privacy-item">
+                            <div class="privacy-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="privacy-content-wrapper">
+                                <h3 class="privacy-subtitle">수집 근거</h3>
+                                <p>개인정보보호법 제15조</p>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-item">
+                            <div class="privacy-icon">
+                                <i class="fas fa-id-card"></i> <!-- 각각 다른 아이콘 사용 -->
+                            </div>
+                            <div class="privacy-content-wrapper">
+                                <h3 class="privacy-subtitle">수집 항목</h3>
+                                <p>성명・전화번호・생년월・직장・학교・거주지</p>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-item">
+                           <div class="privacy-icon">
+                               <i class="fas fa-bullseye"></i>
+                           </div>
+                           <div class="privacy-content-wrapper">
+                               <h3 class="privacy-subtitle">이용 목적</h3>
+                               <p>・합격자 연락</p>
+                               <p>・대학생 신분 확인</p>
+                           </div>
+                        </div>
+                        
+                        <div class="privacy-item">
+                           <div class="privacy-icon">
+                               <i class="fas fa-clock"></i>
+                           </div>
+                           <div class="privacy-content-wrapper">
+                               <h3 class="privacy-subtitle">보유 및 이용 기간</h3>
+                               <p>선발 절차 종료 시까지</p>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="privacy-notice">
+                        ※ 동의하지 않을 경우 지원이 불가능합니다.
+                    </div>
+                    
+                    <div class="privacy-footer">
+                        본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며,<br>
+                        동아리 활동 외 다른 목적으로 사용되지 않습니다.
+                    </div>
+                    
+                    <div class="privacy-agree">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="privacyAgree" required>
+                            <span>동의합니다</span>
+                        </label>
+                        <div class="error-message">개인정보 수집 및 활용에 동의해주세요.</div>
+                    </div>
+                </div>
+            </section>  
+            
+            <!-- 기본 정보 섹션 -->
+            <section class="section">
+                <h2 class="section-title">기본 정보</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required">이름</label>
+                    <input type="text" class="form-control" name="name" required>
+                    <div class="error-message">이름을 입력해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">나이</label>
+                    <input type="number" class="form-control" name="age" required min="19" max="99">
+                    <div class="error-message">나이를 입력해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">성별</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="남성" required>
+                            <span>남성</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="여성" required>
+                            <span>여성</span>
+                        </label>
+                    </div>
+                    <div class="error-message">성별을 선택해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">연락처</label>
+                    <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+                    <div class="error-message">올바른 연락처를 입력해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">소속 (학교/직장)</label>
+                    <input type="text" class="form-control" name="affiliation" required>
+                    <div class="error-message">소속을 입력해주세요.</div>
+                </div>
+            </section>
+
+            <!-- 자기소개 섹션 -->
+            <section class="section">
+                <h2 class="section-title">자기소개</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required">자기소개를 해주세요.</label>
+                    <textarea class="form-control" name="introduction" required></textarea>
+                    <div class="error-message">자기소개를 입력해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">여행 경험이나 관심사를 자유롭게 적어주세요.</label>
+                    <textarea class="form-control" name="travelExperience" required></textarea>
+                    <div class="error-message">여행 경험을 입력해주세요.</div>
+                </div>
+            </section>
+
+            <!-- 활동 계획 섹션 -->
+            <section class="section">
+                <h2 class="section-title">활동 계획</h2>
+                
+                <div class="form-group">
+                    <label class="form-label required">발자취에서 하고 싶은 활동을 선택해주세요. (복수 선택 가능)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="activities" value="국내여행">
+                            <span>국내여행</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="activities" value="번개모임">
+                            <span>번개모임</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="activities" value="문화활동">
+                            <span>문화활동</span>
+                        </label>
+                    </div>
+                    <div class="error-message">하나 이상의 활동을 선택해주세요.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label required">발자취에 지원하게 된 동기를 적어주세요.</label>
+                    <textarea class="form-control" name="motivation" required></textarea>
+                    <div class="error-message">지원 동기를 입력해주세요.</div>
+                </div>
+            </section>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="history.back()">이전으로</button>
+                <button type="submit" class="btn btn-primary">제출하기</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 텍스트 선택 방지
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // 드래그 방지
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        // 모바일 터치 이벤트 제어
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+        // 폼 진행률 업데이트
+        function updateProgress() {
+            const form = document.getElementById('applicationForm');
+            const inputs = form.querySelectorAll('input, textarea, select');
+            const requiredInputs = form.querySelectorAll('[required]');
+            let filledCount = 0;
+
+            requiredInputs.forEach(input => {
+                if (input.type === 'radio' || input.type === 'checkbox') {
+                    const name = input.name;
+                    const checked = form.querySelector(`[name="${name}"]:checked`);
+                    if (checked) filledCount++;
+                } else {
+                    if (input.value.trim() !== '') filledCount++;
+                }
+            });
+
+            const progress = (filledCount / requiredInputs.length) * 100;
+            document.getElementById('formProgress').style.width = `${progress}%`;
+        }
+
+        // 폼 유효성 검
