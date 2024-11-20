@@ -279,11 +279,11 @@
         }
         
         .privacy-item {
-            background: white;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
             padding: 1.8rem;
             border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -306,13 +306,17 @@
         
         .privacy-subtitle {
             font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            display: flex;
+            font-size: 1rem; /* 크기 축소 */
+            letter-spacing: -0.02em; /* 자간 추가 */
+            margin-bottom: 0.8rem;
+            display: inline-flex; /* inline-flex로 변경 */
             align-items: center;
             gap: 0.5rem;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem; /* 패딩 추가 */
+            background: rgba(47, 82, 41, 0.08); /* 배경색 추가 */
+            border-radius: 20px; /* 둥근 모서리 추가 */
+            font-weight: 500; /* 폰트 두께 조정 */
         }
         
         .privacy-subtitle::before {
@@ -340,10 +344,10 @@
         .privacy-item p {
             font-family: 'Noto Sans KR', var(--system-font);
             font-size: 0.95rem;
-            color: var(--text-color);
-            line-height: 1.8;
+            line-height: 1.7; /* 줄간격 조정 */
             margin: 0.4rem 0;
-            padding-left: 0.5rem;
+            color: var(--text-color);
+            padding-left: 0.3rem; /* 패딩 축소 */
         }
         
         .privacy-notice {
@@ -446,23 +450,23 @@
                 <div class="privacy-content">
                     <div class="privacy-box">
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">1. 수집 근거</h3>
+                            <h3 class="privacy-subtitle">수집 근거</h3>
                             <p>개인정보보호법 제15조</p>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">2. 수집 항목</h3>
+                            <h3 class="privacy-subtitle">수집 항목</h3>
                             <p>성명・전화번호・생년월・직장・학교・거주지</p>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">3. 이용 목적</h3>
+                            <h3 class="privacy-subtitle">이용 목적</h3>
                             <p>・합격자 연락</p>
                             <p>・대학생 신분 확인</p>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">4. 보유 및 이용 기간</h3>
+                            <h3 class="privacy-subtitle">보유 및 이용 기간</h3>
                             <p>선발 절차 종료 시까지</p>
                         </div>
                     </div>
