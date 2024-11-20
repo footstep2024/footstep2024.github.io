@@ -100,6 +100,9 @@
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .section {
@@ -225,7 +228,47 @@
         .form-control.error {
             border-color: var(--error-color);
         }
+        
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
 
+        .loading-spinner p {
+            margin-top: 10px;
+            font-family: 'Noto Sans KR', var(--system-font);
+            color: var(--text-color);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        body.loaded .form-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 1rem auto;
@@ -275,24 +318,23 @@
         .privacy-box {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            gap: 1rem;
         }
         
         .privacy-item {
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            padding: 1.8rem;
+            background: white;
+            padding: 1rem 1.2rem; /* 상하 패딩을 1rem으로 줄임 */
             border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            position: relative;  /* 왼쪽 보더를 위해 추가 */
+            overflow: hidden;   /* 왼쪽 보더를 위해 추가 */
         }
- 
-        .privacy-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        
+
+        /* 왼쪽 보더 추가 */
         .privacy-item::before {
             content: '';
             position: absolute;
@@ -304,50 +346,42 @@
             opacity: 0.5;
         }
         
-        .privacy-subtitle {
-            font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 1rem; /* 크기 축소 */
-            letter-spacing: -0.02em; /* 자간 추가 */
-            margin-bottom: 0.8rem;
-            display: inline-flex; /* inline-flex로 변경 */
+        .privacy-icon {
+            width: 32px;  /* 크기 줄임 */
+            height: 32px; /* 크기 줄임 */
+            background: rgba(47, 82, 41, 0.1);
+            border-radius: 8px;
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
             color: var(--primary-color);
-            padding: 0.3rem 0.8rem; /* 패딩 추가 */
-            background: rgba(47, 82, 41, 0.08); /* 배경색 추가 */
-            border-radius: 20px; /* 둥근 모서리 추가 */
-            font-weight: 500; /* 폰트 두께 조정 */
+            font-size: 1rem;  /* 아이콘 크기도 줄임 */
         }
         
-        .privacy-subtitle::before {
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 0.9em;
+        .privacy-content-wrapper {
+            flex: 1;
         }
         
-        .privacy-item:nth-child(1) .privacy-subtitle::before {
-            content: '\f544';  /* 법률 아이콘 */
-        }
-        
-        .privacy-item:nth-child(2) .privacy-subtitle::before {
-            content: '\f2bb';  /* 정보 아이콘 */
-        }
-        
-        .privacy-item:nth-child(3) .privacy-subtitle::before {
-            content: '\f0b1';  /* 목적 아이콘 */
-        }
-        
-        .privacy-item:nth-child(4) .privacy-subtitle::before {
-            content: '\f017';  /* 시간 아이콘 */
+        .privacy-subtitle {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
         }
         
         .privacy-item p {
-            font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 0.95rem;
-            line-height: 1.7; /* 줄간격 조정 */
-            margin: 0.4rem 0;
+            font-size: 0.75rem;
+            line-height: 1.4;
             color: var(--text-color);
-            padding-left: 0.3rem; /* 패딩 축소 */
+            margin: 0.15rem 0;
+        }
+        
+        /* 호버 효과 */
+        .privacy-item:hover {
+            transform: translateX(5px);
+            box-shadow: -4px 4px 15px rgba(47, 82, 41, 0.08);
         }
         
         .privacy-notice {
@@ -400,20 +434,25 @@
             }
         
             .privacy-box {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                grid-template-columns: 1fr;  /* flex-direction 대신 grid로 변경 */
+                gap: 0.8rem;
             }
         
             .privacy-item {
-                padding: 1.2rem;
+                padding: 1rem;
             }
         
             .privacy-subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
         
             .privacy-item p {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+            }
+        
+            .privacy-icon {
+                width: 28px;
+                height: 28px;
             }
         
             .privacy-notice,
@@ -426,10 +465,14 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
-        }    
+        }
     </style>
 </head>
 <body oncontextmenu="return false">
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>잠시만 기다려주세요...</p>
+    </div>
     <div class="progress-bar">
         <div class="progress" id="formProgress"></div>
     </div>
@@ -450,28 +493,47 @@
                 <div class="privacy-content">
                     <div class="privacy-box">
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">수집 근거</h3>
-                            <p>개인정보보호법 제15조</p>
+                            <div class="privacy-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="privacy-content-wrapper">
+                                <h3 class="privacy-subtitle">수집 근거</h3>
+                                <p>개인정보보호법 제15조</p>
+                            </div>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">수집 항목</h3>
-                            <p>・성명・전화번호・생년월</p>
-                            <p>・직장・학교・거주지</p>
+                            <div class="privacy-icon">
+                                <i class="fas fa-id-card"></i> <!-- 각각 다른 아이콘 사용 -->
+                            </div>
+                            <div class="privacy-content-wrapper">
+                                <h3 class="privacy-subtitle">수집 항목</h3>
+                                <p>・성명・전화번호・생년월</p>
+                                <p>・직장・학교・거주지</p>
+                            </div>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">이용 목적</h3>
-                            <p>・합격자 연락</p>
-                            <p>・대학생 신분 확인</p>
+                           <div class="privacy-icon">
+                               <i class="fas fa-bullseye"></i>
+                           </div>
+                           <div class="privacy-content-wrapper">
+                               <h3 class="privacy-subtitle">이용 목적</h3>
+                               <p>・합격자 연락</p>
+                               <p>・대학생 신분 확인</p>
+                           </div>
                         </div>
                         
                         <div class="privacy-item">
-                            <h3 class="privacy-subtitle">보유 및 이용 기간</h3>
-                            <p>선발 절차 종료 시까지</p>
+                           <div class="privacy-icon">
+                               <i class="fas fa-clock"></i>
+                           </div>
+                           <div class="privacy-content-wrapper">
+                               <h3 class="privacy-subtitle">보유 및 이용 기간</h3>
+                               <p>선발 절차 종료 시까지</p>
+                           </div>
                         </div>
                     </div>
-                    
                     <div class="privacy-notice">
                         ※ 동의하지 않을 경우 지원이 불가능합니다.
                     </div>
@@ -590,6 +652,20 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'block';
+            
+            // 폰트와 리소스가 모두 로드될 때까지 기다림
+            Promise.all([
+                document.fonts.ready,
+                new Promise(resolve => setTimeout(resolve, 800)) // 최소 로딩 시간 보장
+            ]).then(() => {
+                spinner.style.display = 'none';
+                document.body.classList.add('loaded');
+            });
+        });
+        
         // 텍스트 선택 방지
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
@@ -601,12 +677,14 @@
             e.preventDefault();
             return false;
         });
+        
         // 모바일 터치 이벤트 제어
         document.addEventListener('touchstart', function(event) {
             if (event.touches.length > 1) {
                 event.preventDefault();
             }
         }, { passive: false });
+        
         // 폼 진행률 업데이트
         function updateProgress() {
             const form = document.getElementById('applicationForm');
@@ -627,5 +705,9 @@
             const progress = (filledCount / requiredInputs.length) * 100;
             document.getElementById('formProgress').style.width = `${progress}%`;
         }
-
+        
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('change', updateProgress);
+        });
+        
         // 폼 유효성 검
