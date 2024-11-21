@@ -691,42 +691,53 @@
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label required">이름</label>
-                        <input type="text" class="form-control" name="name" required>
-                        <div class="error-message">이름을 입력해주세요.</div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label required">연락처</label>
-                        <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
-                        <div class="error-message">올바른 연락처를 입력해주세요.</div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <!-- 성별 선택 -->
-                    <div class="form-group">
-                        <label class="form-label required">성별</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="gender" value="남성" required>
-                                <span class="check-icon"></span>
-                                <span class="label-text">남성</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="gender" value="여성" required>
-                                <span class="check-icon"></span>
-                                <span class="label-text">여성</span>
-                            </label>
+                    <!-- 첫 번째 줄: 이름, 생년월일, 성별 -->
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label required">이름</label>
+                            <input type="text" class="form-control" name="name" required>
+                            <div class="error-message">이름을 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">생년월일</label>
+                            <input type="date" class="form-control" name="birthdate" required>
+                            <div class="error-message">생년월일을 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">성별</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="남성" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">남성</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="여성" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">여성</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label required">생년월일</label>
-                        <input type="date" class="form-control" name="birthdate" required>
-                        <div class="error-message">생년월일을 입력해주세요.</div>
+                    
+                    <!-- 두 번째 줄: 연락처, 본가, 현재 거주지 -->
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label required">연락처</label>
+                            <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+                            <div class="error-message">올바른 연락처를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">본가</label>
+                            <input type="text" class="form-control" name="home_address" required>
+                            <div class="error-message">본가 주소를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">현재 거주지</label>
+                            <input type="text" class="form-control" name="current_address" required>
+                            <div class="error-message">현재 거주지를 입력해주세요.</div>
+                        </div>
                     </div>
-                </div>   
                 
                     <div class="form-row three-columns">
                        <div class="form-group">
