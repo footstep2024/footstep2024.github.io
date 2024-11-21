@@ -200,7 +200,13 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-
+        
+        .form-control::placeholder,
+            select.form-control option:first-child {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
@@ -256,17 +262,28 @@
         input[type="radio"] {
             display: none;
         }
-        
-        .radio-group {
-            display: flex;
-            gap: 2rem;
-            margin-top: 0.5rem;
-        }
-        
-        /* 모바일 대응 */
-        @media (max-width: 768px) {
             .radio-group {
-                gap: 1.5rem;
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                margin-top: 0.5rem;
+                align-items: center; /* 추가 */
+                height: 120%; /* 추가 */
+            }
+        
+            .semester-toggle {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: center;
+                height: 100%; /* 추가 */
+                padding: 0.5rem 0;
+            }
+            
+            @media (max-width: 768px) {
+                .radio-group, .semester-toggle {
+                    gap: 1.5rem;
+                }
             }
             
             .check-icon {
@@ -425,35 +442,11 @@
                 background-size: 1.2rem;
             }
             
-            .semester-toggle {
-                display: flex;
-                gap: 2rem;
-                padding: 0.5rem 0;
-            }
-            
-            .semester-option {
+            .leave-check {
+                margin-top: 0;
                 display: flex;
                 align-items: center;
-                cursor: pointer;
-            }
-            
-            .semester-option input[type="radio"] {
-                display: none;
-            }
-            
-            .semester-option span {
-                font-size: 0.9rem;
-                color: #999;
-                transition: all 0.2s ease;
-            }
-            
-            .semester-option input[type="radio"]:checked + span {
-                color: var(--primary-color);
-                font-weight: 500;
-            }
-            
-            .leave-check {
-                margin-top: 0.5rem;
+                height: 100%; /* 추가 */
             }
             
             .leave-check .check-icon::before {
@@ -704,7 +697,6 @@
                             <div class="error-message">생년월일을 입력해주세요.</div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label required">성별</label>
                             <div class="radio-group">
                                 <label class="radio-label">
                                     <input type="radio" name="gender" value="남성" required>
@@ -729,12 +721,12 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label required">본가</label>
-                            <input type="text" class="form-control" name="home_address" required>
+                            <input type="text" class="form-control" name="home_address" placeholder="'시 구 동'까지만 입력" required>
                             <div class="error-message">본가 주소를 입력해주세요.</div>
                         </div>
                         <div class="form-group">
                             <label class="form-label required">현재 거주지</label>
-                            <input type="text" class="form-control" name="current_address" required>
+                            <input type="text" class="form-control" name="current_address" placeholder="가까운 역 기준으로 입력" required>
                             <div class="error-message">현재 거주지를 입력해주세요.</div>
                         </div>
                     </div>
