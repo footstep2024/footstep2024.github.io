@@ -446,7 +446,7 @@
                 margin-top: 0;
                 display: flex;
                 align-items: center;
-                height: 100%; /* 추가 */
+                height: 100%;
             }
             
             .leave-check .check-icon::before {
@@ -460,6 +460,11 @@
             .leave-check input[type="checkbox"]:checked + .check-icon::before {
                 content: '\f058';
                 color: var(--primary-color);
+            }
+
+            .leave-check input[type="checkbox"]:checked ~ span:last-child {
+                color: var(--primary-color);
+                font-weight: 500;
             }
                     
         .button-group {
