@@ -466,7 +466,23 @@
                 color: var(--primary-color);
                 font-weight: 500;
             }
-                    
+
+            /* 학적 상태 체크박스 그룹 스타일 */
+            .status-checks {
+                display: flex;
+                gap: 1rem;  /* 체크박스 사이 간격 */
+                align-items: center;
+            }
+            
+            /* 모바일 대응을 위한 미디어 쿼리 */
+            @media (max-width: 768px) {
+                .status-checks {
+                    flex-direction: column;  /* 모바일에서는 세로로 배치 */
+                    gap: 0.5rem;  /* 모바일에서는 간격 축소 */
+                    align-items: flex-start;  /* 왼쪽 정렬 */
+                }
+            }
+        
         .button-group {
             display: flex;
             justify-content: center;
@@ -755,39 +771,49 @@
                     </div>
                     
                     <div class="form-row three-columns">
-                       <div class="form-group">
-                           <div class="custom-select">
-                               <select class="form-control" name="grade" required>
-                                   <option value="" disabled selected>학년 선택</option>
-                                   <option value="1">1학년</option>
-                                   <option value="2">2학년</option>
-                                   <option value="3">3학년</option>
-                                   <option value="4">4학년</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="form-group">
-                           <div class="semester-toggle">
-                               <label class="radio-label">
-                                   <input type="radio" name="semester" value="1" required>
-                                   <span class="check-icon"></span>
-                                   <span class="label-text">1학기</span>
-                               </label>
-                               <label class="radio-label">
-                                   <input type="radio" name="semester" value="2" required>
-                                   <span class="check-icon"></span>
-                                   <span class="label-text">2학기</span>
-                               </label>
-                           </div>
-                       </div>
-                       <div class="form-group">
-                           <label class="consent-check leave-check">
-                               <input type="checkbox" name="is_leave" value="yes">
-                               <span class="check-icon"></span>
-                               <span>휴학 중</span>
-                           </label>
-                       </div>
-                    </div>                
+                        <div class="form-group">
+                            <div class="custom-select">
+                                <select class="form-control" name="grade" required>
+                                    <option value="" disabled selected>학년 선택</option>
+                                    <option value="1">1학년</option>
+                                    <option value="2">2학년</option>
+                                    <option value="3">3학년</option>
+                                    <option value="4">4학년</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- 학기 선택 라디오 버튼 -->
+                        <div class="form-group">
+                            <div class="semester-toggle">
+                                <label class="radio-label">
+                                    <input type="radio" name="semester" value="1" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">1학기</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="semester" value="2" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">2학기</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 학적 상태 체크박스 그룹 -->
+                        <div class="form-group status-checks">
+                            <!-- 휴학 중 체크박스 -->
+                            <label class="consent-check leave-check">
+                                <input type="checkbox" name="is_leave" value="yes">
+                                <span class="check-icon"></span>
+                                <span>휴학 중</span>
+                            </label>
+                            <!-- 졸업(예정) 체크박스 -->
+                            <label class="consent-check leave-check">
+                                <input type="checkbox" name="is_graduate" value="yes">
+                                <span class="check-icon"></span>
+                                <span>졸업 (예정)</span>
+                            </label>
+                        </div>
+                    </div>       
                     </section>
 
             <section class="form-section">
