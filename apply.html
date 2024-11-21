@@ -381,6 +381,22 @@
             transform: translateX(5px);
             box-shadow: -4px 4px 15px rgba(47, 82, 41, 0.08);
         }
+
+        .desktop-only {
+            display: block;
+        }
+        .mobile-only {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none;
+            }
+            .mobile-only {
+                display: block;
+            }
+        }
         
         .privacy-notice {
             background: #fff3f3;
@@ -420,48 +436,14 @@
         
         .privacy-agree .checkbox-label {
             font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 1.1rem;
+            font-size: 0.95rem;  /* 크기 줄임 */
             color: var(--primary-color);
-            font-weight: 500;
+            font-weight: 400;    /* 두께 줄임 */
         }
         
         @media (max-width: 768px) {
-            .privacy-section {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-        
-            .privacy-box {
-                grid-template-columns: 1fr;  /* flex-direction 대신 grid로 변경 */
-                gap: 0.8rem;
-            }
-        
-            .privacy-item {
-                padding: 1rem;
-            }
-        
-            .privacy-subtitle {
-                font-size: 0.9rem;
-            }
-        
-            .privacy-item p {
-                font-size: 0.8rem;
-            }
-        
-            .privacy-icon {
-                width: 28px;
-                height: 28px;
-            }
-        
-            .privacy-notice,
-            .privacy-footer {
-                font-size: 0.85rem;
-                padding: 1rem;
-            }
-        
-            .privacy-agree {
-                flex-direction: column;
-                gap: 0.5rem;
+            .privacy-agree .checkbox-label {
+                font-size: 0.9rem;  /* 모바일에서 더 작게 */
             }
         }
     </style>
@@ -529,7 +511,8 @@
                         </div>
                     </div>
                     <div class="privacy-notice">
-                        ※ 동의하지 않을 경우 지원이 불가능합니다.
+                        <span class="desktop-only">※ 동의하지 않을 경우 지원이 불가능합니다.</span>
+                        <span class="mobile-only">※ 동의하지 않을 경우 지원이 불가능합니다.</span>
                     </div>
                     
                     <div class="privacy-footer">
