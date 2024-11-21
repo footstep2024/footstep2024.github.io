@@ -104,26 +104,6 @@
             opacity: 0.9;
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: var(--section-gap);
-        }
-
-        .form-grid .info-box {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-grid .info-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
         .info-box-title {
             font-size: 1.1rem;
             font-weight: 700;
@@ -147,7 +127,8 @@
             margin-bottom: var(--section-gap);
             box-shadow: var(--box-shadow);
         }
-
+        
+        /* section-title 스타일도 수정이 필요합니다 */
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -155,6 +136,9 @@
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .form-row {
@@ -166,6 +150,48 @@
         
         .form-row.three-columns {
             grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
+        }
+        /* 정보 박스 그리드 레이아웃 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .alerts {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .alert-red, .alert-green {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .alert-red {
+            color: #dc3545;
+        }
+        
+        .alert-green {
+            color: #2F5229;
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .notice-wrapper {
+                margin-top: 1.5rem;
+            }
+            
+            .notice-warning,
+            .notice-info {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
         }
         
         .form-group {
@@ -222,10 +248,25 @@
             user-select: none;
             padding: 0.3rem 0;
         }
+
+        .section-title .checkbox-label {
+            margin-left: auto;
+            padding-top: 0.4rem;  /* 아래로 살짝 내리기 */
+        }
+
+        .section-title .checkbox-label .label-text {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            font-weight: normal;  /* 처음에는 얇게 */
+        }
         
+        .section-title .checkbox-label input[type="checkbox"]:checked ~ .label-text {
+            color: var(--primary-color);
+            font-weight: 500;  /* 체크되면 굵게 */
+        }
         .check-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             position: relative;
             display: inline-flex;
             align-items: center;
@@ -240,12 +281,12 @@
             color: #ccc;
             transition: all 0.2s ease;
         }
-        
-        input[type="checkbox"]:checked + .check-icon::before,
-        input[type="radio"]:checked + .check-icon::before {
-            font-weight: 900;
-            color: var(--primary-color);
-        }
+        /* 체크됐을 때의 스타일 */
+            input[type="checkbox"]:checked + .check-icon::before,
+            input[type="radio"]:checked + .check-icon::before {
+                content: '\f058';  /* 동그라미 안의 체크 아이콘 */
+                color: var(--primary-color);
+            }
         
         .label-text {
             font-size: 0.95rem;
@@ -286,15 +327,6 @@
                 }
             }
             
-            .check-icon {
-                width: 18px;
-                height: 18px;
-            }
-            
-            .check-icon::before {
-                font-size: 1.1em;
-            }
-            
             .label-text {
                 font-size: 0.9rem;
             }
@@ -308,6 +340,16 @@
         .info-box {
             position: relative;
             overflow: hidden;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .accent-line {
@@ -319,99 +361,7 @@
             background-color: var(--primary-color);
             opacity: 0.8;
         }
-
-        .consent-section {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: var(--section-gap);
-            box-shadow: var(--box-shadow);
-        }
-        
-        .consent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .consent-header span:first-child {
-            font-weight: 500;
-            color: var(--text-color);
-        }
-        
-        .consent-check {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .consent-check input[type="checkbox"] {
-            display: none;
-        }
-        
-        .check-icon {
-            width: 18px;
-            height: 18px;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .check-icon::before {
-            content: '\f00c'; /* 단순 체크 표시 '✓' */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 14px;
-            color: #ccc;
-            transition: all 0.2s ease;
-        }
-        
-        input[type="checkbox"]:checked + .check-icon::before,
-        input[type="radio"]:checked + .check-icon::before {
-            content: '\f058';
-            color: var(--primary-color);
-        }
-
-        .consent-check span:last-child {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            margin-left: 2px;
-        }
-        
-        .consent-notices {
-            font-size: 0.9rem;
-            color: var(--light-text);
-        }
-        
-        .notice-warning, .notice-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding-left: 0.5rem;
-        }
-        
-        .notice-warning {
-            color: var(--error-color);
-        }
-        
-        .notice-warning i {
-            color: var(--error-color);
-        }
-        
-        .notice-info {
-            color: var(--primary-color);
-        }
-        
-        .notice-info i {
-            color: var(--primary-color);
-        }
-        
+                
         @media (max-width: 768px) {
             .consent-section {
                 padding: 1.2rem;
@@ -447,19 +397,6 @@
                 display: flex;
                 align-items: center;
                 height: 100%;
-            }
-            
-            .leave-check .check-icon::before {
-                content: '\f00c';
-                font-family: 'Font Awesome 5 Free';
-                font-weight: 900;
-                font-size: 14px;
-                color: #ccc;
-            }
-            
-            .leave-check input[type="checkbox"]:checked + .check-icon::before {
-                content: '\f058';
-                color: var(--primary-color);
             }
 
             .leave-check input[type="checkbox"]:checked ~ span:last-child {
@@ -643,8 +580,18 @@
             </div>
             <h1 class="title">25-1학기 신입부원 지원서 작성</h1>
         </header>
-
-        <div class="form-grid">
+        
+        <section class="form-section"> 
+            <div class="section-title">
+                <span>개인정보 수집 및 이용 동의</span>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="privacy_agreement" required>
+                    <span class="check-icon"></span>
+                    <span class="label-text">동의함</span>
+                </label>
+            </div>
+        
+        <div class="info-grid">
             <div class="info-box">
                 <div class="accent-line"></div>
                 <h3 class="info-box-title">
@@ -678,29 +625,20 @@
                 <p class="info-box-content">선발 절차 종료 시까지</p>
             </div>
         </div>
-        
-        <div class="consent-section">
-            <div class="consent-header">
-                <span>개인정보 수집 및 이용 동의</span>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="privacy_agreement" required>
-                    <span class="check-icon"></span>
-                    <span class="label-text">동의함</span>
-                </label>
-            </div>
-            
-            <div class="consent-notices">
-                <p class="notice-warning">
-                    <i class="fas fa-exclamation-circle"></i>
-                    동의하지 않을 경우 지원이 불가능합니다.
-                </p>
-                <p class="notice-info">
-                    <i class="fas fa-info-circle"></i>
-                    본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며, 동아리 활동 외 다른 목적으로 사용되지 않습니다.
-                </p>
-            </div>
-        </div>
 
+            <div class="alerts">
+                <div class="alert-red">
+                    <i class="fas fa-exclamation-circle"></i> 
+                    동의하지 않을 경우 지원이 불가능합니다.
+                </div>
+                <div class="alert-green">
+                    <i class="fas fa-info-circle"></i> 
+                    본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며, 동아리 활동 외 다른 목적으로 사용되지 않습니다.
+                </div>
+            </div>
+    </section>
+    <!-- 새로운 개인정보 수집 섹션 끝 -->
+        
         <form id="applicationForm">
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
