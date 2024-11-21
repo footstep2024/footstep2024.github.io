@@ -599,6 +599,23 @@
     </style>
 </head>
 <body>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        }, false);
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    </script>
+    
     <div class="progress-container">
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
