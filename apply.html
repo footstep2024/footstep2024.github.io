@@ -74,9 +74,42 @@
         }
 
         .subtitle {
-            font-family: 'Gowun Batang', var(--system-font);
-            font-size: 1.2rem;
-            color: var(--light-text);
+            font-family: 'Nanum Brush Script', var(--system-font);
+            font-size: 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 2rem;
+            position: relative;
+            display: inline-block;
+            margin-top: 1.5rem;
+        }
+        .subtitle::before,
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            border: 10px solid transparent;
+        }
+        .subtitle::before {
+            left: 0;
+            border-top-color: #1f3619;
+            border-left-color: #1f3619;
+        }
+        .subtitle::after {
+            right: 0;
+            border-top-color: #1f3619;
+            border-right-color: #1f3619;
+        }
+        
+        @media (max-width: 768px) {
+            .subtitle {
+                font-size: 1.3rem;
+                padding: 0.2rem 1.5rem;
+            }
+            .subtitle::before,
+            .subtitle::after {
+                border-width: 8px;
+            }
         }
 
         .progress-bar {
