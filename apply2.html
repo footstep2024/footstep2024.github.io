@@ -157,8 +157,26 @@
             border-bottom: 2px solid var(--border-color);
         }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);  /* 기본 2칸 그리드 */
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row.three-columns {
+            grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row, .form-row.three-columns {
+                grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
+                gap: 0.8rem;
+            }
         }
 
         .form-label {
@@ -534,43 +552,57 @@
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                <div class="form-group">
-                    <label class="form-label required">이름</label>
-                    <input type="text" class="form-control" name="name" required>
-                    <div class="error-message">이름을 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">생년월일</label>
-                    <input type="date" class="form-control" name="birthdate" required>
-                    <div class="error-message">생년월일을 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">성별</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="gender" value="남성" required>
-                            <span>남성</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="gender" value="여성" required>
-                            <span>여성</span>
-                        </label>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label required">이름</label>
+                        <input type="text" class="form-control" name="name" required>
+                        <div class="error-message">이름을 입력해주세요.</div>
                     </div>
-                    <div class="error-message">성별을 선택해주세요.</div>
+                    <div class="form-group">
+                        <label class="form-label required">연락처</label>
+                        <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+                        <div class="error-message">올바른 연락처를 입력해주세요.</div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label required">연락처</label>
-                    <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
-                    <div class="error-message">올바른 연락처를 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">학교</label>
-                    <input type="text" class="form-control" name="school" required>
-                    <div class="error-message">소속 학교를 입력해주세요.</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label required">성별</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="남성" required>
+                                <span>남성</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="여성" required>
+                                <span>여성</span>
+                            </label>
+                        </div>
+                        <div class="error-message">성별을 선택해주세요.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">생년월일</label>
+                        <input type="date" class="form-control" name="birthdate" required>
+                        <div class="error-message">생년월일을 입력해주세요.</div>
+                    </div>
+                </div>   
+                
+                <div class="form-row three-columns">
+                    <div class="form-group">
+                        <label class="form-label required">학교</label>
+                        <input type="text" class="form-control" name="school" required>
+                        <div class="error-message">소속 학교를 입력해주세요.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">전공</label>
+                        <input type="text" class="form-control" name="major" required>
+                        <div class="error-message">전공을 입력해주세요.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">학번</label>
+                        <input type="text" class="form-control" name="student_id" required>
+                        <div class="error-message">학번을 입력해주세요.</div>
+                    </div>
                 </div>
             </section>
 
