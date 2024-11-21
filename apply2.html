@@ -266,20 +266,23 @@
         }
         
         .check-icon::before {
-            content: '\f00c';
+            content: '\f00c'; /* 단순 체크 표시 '✓' */
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             font-size: 14px;
             color: #ccc;
+            transition: all 0.2s ease;
         }
         
         .consent-check input[type="checkbox"]:checked + .check-icon::before {
+            content: '\f058'; /* 원형 체크 아이콘 */
             color: var(--primary-color);
         }
-        
+
         .consent-check span:last-child {
             font-size: 0.9rem;
             color: var(--text-color);
+            margin-left: 2px;
         }
         
         .consent-notices {
