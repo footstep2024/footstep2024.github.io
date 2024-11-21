@@ -207,18 +207,80 @@
             box-shadow: 0 0 0 3px rgba(47, 82, 41, 0.1);
         }
 
-        .radio-group {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .radio-label, .checkbox-label {
+        .checkbox-label,
+        .radio-label {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
             user-select: none;
+            padding: 0.3rem 0;
+        }
+        
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .check-icon::before {
+            content: '\f00c'; /* 단순 체크 표시 '✓' */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 14px;
+            color: #ccc;
+            transition: all 0.2s ease;
+        }
+        
+        input[type="checkbox"]:checked + .check-icon::before,
+        input[type="radio"]:checked + .check-icon::before {
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+        
+        .label-text {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            transition: all 0.2s ease;
+        }
+        
+        input:checked ~ .label-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: none;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .radio-group {
+                gap: 1.5rem;
+            }
+            
+            .check-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .check-icon::before {
+                font-size: 1.1em;
+            }
+            
+            .label-text {
+                font-size: 0.9rem;
+            }
         }
 
         textarea.form-control {
@@ -292,8 +354,9 @@
             transition: all 0.2s ease;
         }
         
-        .consent-check input[type="checkbox"]:checked + .check-icon::before {
-            content: '\f058'; /* 원형 체크 아이콘 */
+        input[type="checkbox"]:checked + .check-icon::before,
+        input[type="radio"]:checked + .check-icon::before {
+            content: '\f058';
             color: var(--primary-color);
         }
 
@@ -588,10 +651,10 @@
         <div class="consent-section">
             <div class="consent-header">
                 <span>개인정보 수집 및 이용 동의</span>
-                <label class="consent-check">
+                <label class="checkbox-label">
                     <input type="checkbox" name="privacy_agreement" required>
                     <span class="check-icon"></span>
-                    <span>동의함</span>
+                    <span class="label-text">동의함</span>
                 </label>
             </div>
             
@@ -625,19 +688,21 @@
                 </div>
                 
                 <div class="form-row">
+                    <!-- 성별 선택 -->
                     <div class="form-group">
                         <label class="form-label required">성별</label>
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="남성" required>
-                                <span>남성</span>
+                                <span class="check-icon"></span>
+                                <span class="label-text">남성</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="여성" required>
-                                <span>여성</span>
+                                <span class="check-icon"></span>
+                                <span class="label-text">여성</span>
                             </label>
                         </div>
-                        <div class="error-message">성별을 선택해주세요.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label required">생년월일</label>
@@ -646,57 +711,59 @@
                     </div>
                 </div>   
                 
-                <div class="form-row three-columns">
-                    <div class="form-group">
-                        <label class="form-label required">학교</label>
-                        <input type="text" class="form-control" name="school" required>
-                        <div class="error-message">소속 학교를 입력해주세요.</div>
+                    <div class="form-row three-columns">
+                       <div class="form-group">
+                           <label class="form-label required">학교</label>
+                           <input type="text" class="form-control" name="school" required>
+                           <div class="error-message">소속 학교를 입력해주세요.</div>
+                       </div>
+                       <div class="form-group">
+                           <label class="form-label required">전공</label>
+                           <input type="text" class="form-control" name="major" required>
+                           <div class="error-message">전공을 입력해주세요.</div>
+                       </div>
+                       <div class="form-group">
+                           <label class="form-label required">학번</label>
+                           <input type="text" class="form-control" name="student_id" required>
+                           <div class="error-message">학번을 입력해주세요.</div>
+                       </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label required">전공</label>
-                        <input type="text" class="form-control" name="major" required>
-                        <div class="error-message">전공을 입력해주세요.</div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label required">학번</label>
-                        <input type="text" class="form-control" name="student_id" required>
-                        <div class="error-message">학번을 입력해주세요.</div>
-                    </div>
-                </div>
-
-                <div class="form-row three-columns">
-                    <div class="form-group">
-                        <div class="custom-select">
-                            <select class="form-control" name="grade" required>
-                                <option value="" disabled selected>학년 선택</option>
-                                <option value="1">1학년</option>
-                                <option value="2">2학년</option>
-                                <option value="3">3학년</option>
-                                <option value="4">4학년</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="semester-toggle">
-                            <label class="semester-option">
-                                <input type="radio" name="semester" value="1" required>
-                                <span>1학기</span>
-                            </label>
-                            <label class="semester-option">
-                                <input type="radio" name="semester" value="2" required>
-                                <span>2학기</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="consent-check leave-check">
-                            <input type="checkbox" name="is_leave" value="yes">
-                            <span class="check-icon"></span>
-                            <span>휴학 중</span>
-                        </label>
-                    </div>
-                </div>                
-            </section>
+                    
+                    <div class="form-row three-columns">
+                       <div class="form-group">
+                           <div class="custom-select">
+                               <select class="form-control" name="grade" required>
+                                   <option value="" disabled selected>학년 선택</option>
+                                   <option value="1">1학년</option>
+                                   <option value="2">2학년</option>
+                                   <option value="3">3학년</option>
+                                   <option value="4">4학년</option>
+                               </select>
+                           </div>
+                       </div>
+                       <div class="form-group">
+                           <div class="semester-toggle">
+                               <label class="radio-label">
+                                   <input type="radio" name="semester" value="1" required>
+                                   <span class="check-icon"></span>
+                                   <span class="label-text">1학기</span>
+                               </label>
+                               <label class="radio-label">
+                                   <input type="radio" name="semester" value="2" required>
+                                   <span class="check-icon"></span>
+                                   <span class="label-text">2학기</span>
+                               </label>
+                           </div>
+                       </div>
+                       <div class="form-group">
+                           <label class="consent-check leave-check">
+                               <input type="checkbox" name="is_leave" value="yes">
+                               <span class="check-icon"></span>
+                               <span>휴학 중</span>
+                           </label>
+                       </div>
+                    </div>                
+                    </section>
 
             <section class="form-section">
                 <h2 class="section-title">자기소개</h2>
