@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>발자취 - 25-1학기 신입부원 모집 지원서</title>
-    
-    <!-- 기존 폰트 및 아이콘 -->
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#2F5229">
+    <title>발자취 - 25-1학기 신입부원 지원서 작</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
             --primary-color: #2F5229;
+            --primary-light: #3a6333;
             --text-color: #333333;
             --light-text: #666666;
-            --background-color: #ecf0f1;
-            --hover-color: #3a6333;
+            --background-color: #f5f6f7;
+            --border-color: #e1e2e3;
             --error-color: #dc3545;
             --success-color: #28a745;
-            --border-color: #dee2e6;
-            --section-bg: #ffffff;
-            --system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --white: #ffffff;
+            --section-gap: 2rem;
+            --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -31,7 +33,7 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', var(--system-font);
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
@@ -39,24 +41,45 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: var(--box-shadow);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
         .container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin: 0 auto;
+            padding: 1rem;
+            padding-top: calc(4px + 2rem);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 2rem;
             padding: 2rem 0;
+            margin-bottom: 2rem;
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 1rem;
         }
 
@@ -67,106 +90,100 @@
         }
 
         .title {
-            font-family: 'Nanum Brush Script', var(--system-font);
+            font-family: 'Nanum Brush Script', cursive;
             font-size: 3.5rem;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-weight: normal;
         }
 
         .subtitle {
-            font-family: 'Nanum Brush Script', var(--system-font);
-            font-size: 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.3rem 2rem;
-            position: relative;
-            display: inline-block;
-            margin-top: 1.5rem;
-        }
-        .subtitle::before,
-        .subtitle::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            border: 10px solid transparent;
-        }
-        .subtitle::before {
-            left: 0;
-            border-top-color: #1f3619;
-            border-left-color: #1f3619;
-        }
-        .subtitle::after {
-            right: 0;
-            border-top-color: #1f3619;
-            border-right-color: #1f3619;
-        }
-        
-        @media (max-width: 768px) {
-            .subtitle {
-                font-size: 1.3rem;
-                padding: 0.2rem 1.5rem;
-            }
-            .subtitle::before,
-            .subtitle::after {
-                border-width: 8px;
-            }
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            opacity: 0.9;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: var(--border-color);
-            margin: 2rem 0;
-            border-radius: 2px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: var(--section-gap);
         }
 
-        .progress {
-            height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        .form-grid .info-box {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .form-container {
-            background: var(--section-bg);
-            border-radius: 15px;
+        .form-grid .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box-content {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        .form-section {
+            background: var(--white);
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+            border-radius: 12px;
+            margin-bottom: var(--section-gap);
+            box-shadow: var(--box-shadow);
         }
 
         .section-title {
-            font-family: 'Nanum Brush Script', var(--system-font);
-            font-size: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
         }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);  /* 기본 2칸 그리드 */
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row.three-columns {
+            grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row, .form-row.three-columns {
+                grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
+                gap: 0.8rem;
+            }
         }
 
         .form-label {
             display: block;
-            font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
             margin-bottom: 0.5rem;
-            color: var(--text-color);
         }
 
         .required::after {
@@ -179,35 +196,108 @@
             width: 100%;
             padding: 0.75rem 1rem;
             font-size: 1rem;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            transition: border-color 0.3s ease;
-            font-family: 'Noto Sans KR', var(--system-font);
+            transition: all 0.3s ease;
         }
-
+        
+        .form-control::placeholder,
+            select.form-control option:first-child {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(47, 82, 41, 0.1);
         }
 
-        .form-text {
-            font-size: 0.875rem;
-            color: var(--light-text);
-            margin-top: 0.25rem;
-        }
-
-        .radio-group, .checkbox-group {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        .radio-label, .checkbox-label {
+        .checkbox-label,
+        .radio-label {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
+            user-select: none;
+            padding: 0.3rem 0;
+        }
+        
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .check-icon::before {
+            content: '\f00c'; /* 단순 체크 표시 '✓' */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 14px;
+            color: #ccc;
+            transition: all 0.2s ease;
+        }
+        
+        input[type="checkbox"]:checked + .check-icon::before,
+        input[type="radio"]:checked + .check-icon::before {
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+        
+        .label-text {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            transition: all 0.2s ease;
+        }
+        
+        input:checked ~ .label-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: none;
+        }
+            .radio-group {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                margin-top: 0.5rem;
+                align-items: center; /* 추가 */
+                height: 120%; /* 추가 */
+            }
+        
+            .semester-toggle {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: center;
+                height: 100%; /* 추가 */
+                padding: 0.5rem 0;
+            }
+            
+            @media (max-width: 768px) {
+                .radio-group, .semester-toggle {
+                    gap: 1.5rem;
+                }
+            }
+            
+            .check-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .check-icon::before {
+                font-size: 1.1em;
+            }
+            
+            .label-text {
+                font-size: 0.9rem;
+            }
         }
 
         textarea.form-control {
@@ -215,6 +305,184 @@
             resize: vertical;
         }
 
+        .info-box {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .accent-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        .consent-section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: var(--section-gap);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .consent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .consent-header span:first-child {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .consent-check {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .consent-check input[type="checkbox"] {
+            display: none;
+        }
+        
+        .check-icon {
+            width: 18px;
+            height: 18px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .check-icon::before {
+            content: '\f00c'; /* 단순 체크 표시 '✓' */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 14px;
+            color: #ccc;
+            transition: all 0.2s ease;
+        }
+        
+        input[type="checkbox"]:checked + .check-icon::before,
+        input[type="radio"]:checked + .check-icon::before {
+            content: '\f058';
+            color: var(--primary-color);
+        }
+
+        .consent-check span:last-child {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-left: 2px;
+        }
+        
+        .consent-notices {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+        
+        .notice-warning, .notice-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+        
+        .notice-warning {
+            color: var(--error-color);
+        }
+        
+        .notice-warning i {
+            color: var(--error-color);
+        }
+        
+        .notice-info {
+            color: var(--primary-color);
+        }
+        
+        .notice-info i {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .consent-section {
+                padding: 1.2rem;
+            }
+            
+            .consent-header {
+                padding-bottom: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .consent-notices {
+                font-size: 0.85rem;
+            }
+        }
+
+
+            .custom-select {
+                position: relative;
+            }
+            
+            .custom-select select {
+                appearance: none;
+                -webkit-appearance: none;
+                padding-right: 2.5rem;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 0.7rem center;
+                background-size: 1.2rem;
+            }
+            
+            .leave-check {
+                margin-top: 0;
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+            
+            .leave-check .check-icon::before {
+                content: '\f00c';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 14px;
+                color: #ccc;
+            }
+            
+            .leave-check input[type="checkbox"]:checked + .check-icon::before {
+                content: '\f058';
+                color: var(--primary-color);
+            }
+
+            .leave-check input[type="checkbox"]:checked ~ span:last-child {
+                color: var(--primary-color);
+                font-weight: 500;
+            }
+
+            /* 학적 상태 체크박스 그룹 스타일 */
+            .status-checks {
+                display: flex;
+                gap: 1rem;  /* 체크박스 사이 간격 */
+                align-items: center;
+            }
+            
+            /* 모바일 대응을 위한 미디어 쿼리 */
+            @media (max-width: 768px) {
+                .status-checks {
+                    flex-direction: column;  /* 모바일에서는 세로로 배치 */
+                    gap: 0.5rem;  /* 모바일에서는 간격 축소 */
+                    align-items: flex-start;  /* 왼쪽 정렬 */
+                }
+            }
+        
         .button-group {
             display: flex;
             justify-content: center;
@@ -223,22 +491,22 @@
         }
 
         .btn {
-            padding: 0.75rem 2rem;
+            padding: 1rem 2.5rem;
             font-size: 1rem;
+            font-weight: 500;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Noto Sans KR', var(--system-font);
         }
 
         .btn-primary {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            background-color: var(--hover-color);
+            background-color: var(--primary-light);
             transform: translateY(-2px);
         }
 
@@ -248,32 +516,24 @@
         }
 
         .btn-secondary:hover {
-            background-color: #c8ccd0;
+            background-color: #d0d3d4;
         }
 
         .error-message {
+            display: none;
             color: var(--error-color);
             font-size: 0.875rem;
             margin-top: 0.25rem;
-            display: none;
         }
 
-        .form-control.error {
-            border-color: var(--error-color);
-        }
-        
-        body.loaded .container {
-            opacity: 1;
-            transform: translateY(0);
-        }
-                
         @media (max-width: 768px) {
             .container {
-                margin: 1rem auto;
+                padding: 0.5rem;
+                padding-top: calc(4px + 1rem);
             }
 
             .header {
-                padding: 1rem 0;
+                padding: 1.5rem 0;
             }
 
             .logo {
@@ -285,474 +545,280 @@
                 font-size: 2.5rem;
             }
 
-            .form-container {
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-section {
                 padding: 1.5rem;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
 
             .button-group {
                 flex-direction: column;
+                padding: 0 1rem;
             }
 
             .btn {
                 width: 100%;
+                padding: 0.875rem;
             }
 
-            .radio-group, .checkbox-group {
+            .radio-group {
                 flex-direction: column;
                 gap: 0.75rem;
             }
         }
-        .privacy-section {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .privacy-box {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
 
-        @media (max-width: 768px) {
-        .privacy-box {
-            grid-template-columns: 1fr;
-            gap: 0.8rem;
-        }
-        
-        .privacy-item {
-            padding: 1rem;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .privacy-icon {
-            width: 28px;
-            height: 28px;
-        }
-        
-        .privacy-content-wrapper {
-            flex: 1;
-        }
-        
-        .privacy-subtitle {
-            font-size: 0.9rem;
-        }
-        
-        .privacy-item p {
-            font-size: 0.8rem;
-            margin: 0.15rem 0;
-        }
-    }
-        
-        .privacy-item {
-            background: white;
-            padding: 1rem 1.2rem; /* 상하 패딩을 1rem으로 줄임 */
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;  /* 왼쪽 보더를 위해 추가 */
-            overflow: hidden;   /* 왼쪽 보더를 위해 추가 */
-        }
-
-        /* 왼쪽 보더 추가 */
-        .privacy-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary-color);
-            opacity: 0.5;
-        }
-        
-        .privacy-icon {
-            width: 32px;  /* 크기 줄임 */
-            height: 32px; /* 크기 줄임 */
-            background: rgba(47, 82, 41, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            font-size: 1rem;  /* 아이콘 크기도 줄임 */
-        }
-        
-        .privacy-content-wrapper {
-            flex: 1;
-        }
-        
-        .privacy-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .privacy-item p {
-            font-size: 0.75rem;
-            line-height: 1.4;
-            color: var(--text-color);
-            margin: 0.15rem 0;
-        }
-        
-        /* 호버 효과 */
-        .privacy-item:hover {
-            transform: translateX(5px);
-            box-shadow: -4px 4px 15px rgba(47, 82, 41, 0.08);
-        }
-
-        .desktop-only {
-            display: block;
-        }
-        .mobile-only {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .desktop-only {
-                display: none;
+        /* 터치 디바이스에 대한 최적화 */
+        @media (hover: none) {
+            .form-grid .info-box:hover {
+                transform: none;
+                box-shadow: var(--box-shadow);
             }
-            .mobile-only {
-                display: block;
+
+            .btn:hover {
+                transform: none;
             }
         }
-        
-        .privacy-notice {
-            background: #fff3f3;
-            border-left: 4px solid var(--error-color);
-            padding: 1rem 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-family: 'Noto Sans KR', var(--system-font);
-            color: var(--error-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .privacy-footer {
-            background: #f1f8f1;
-            padding: 1.2rem 1.5rem;
-            border-radius: 8px;
-            font-family: 'Noto Sans KR', var(--system-font);
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(47, 82, 41, 0.1);
-        }
-        
-        .privacy-agree {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .privacy-agree .checkbox-label {
-            font-family: 'Noto Sans KR', var(--system-font);
-            font-size: 0.95rem;  /* 크기 줄임 */
-            color: var(--primary-color);
-            font-weight: 400;    /* 두께 줄임 */
-        }
-        
-        @media (max-width: 768px) {
-            .privacy-agree .checkbox-label {
-                font-size: 0.9rem;  /* 모바일에서 더 작게 */
+
+        /* 다크 모드 지원 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --text-color: #e1e1e1;
+                --light-text: #a0a0a0;
+                --border-color: #333333;
+                --white: #222222;
+            }
+
+            .form-control {
+                background-color: #2a2a2a;
+                color: var(--text-color);
+            }
+
+            .btn-secondary {
+                background-color: #404040;
+                color: var(--text-color);
             }
         }
     </style>
 </head>
-<body oncontextmenu="return false">
-    <div class="progress-bar">
-        <div class="progress" id="formProgress"></div>
+<body>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        }, false);
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    </script>
+    
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
     </div>
 
     <div class="container">
         <header class="header">
             <div class="logo">
-                <img src="logo.png" alt="발자취 로고" draggable="false">
+                <img src="logo.png" alt="발자취 로고">
             </div>
-            <h1 class="title">25-1학기 신입부원 모집</h1>
-            <p class="subtitle">지원서 작성</p>
+            <h1 class="title">25-1학기 신입부원 지원서 작성</h1>
         </header>
 
-        <form id="applicationForm" class="form-container">
-            <section class="section privacy-section">
-                <h2 class="section-title">개인정보 수집 및 활용 동의</h2>
-                
-                <div class="privacy-content">
-                    <div class="privacy-box">
-                        <div class="privacy-item">
-                            <div class="privacy-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="privacy-content-wrapper">
-                                <h3 class="privacy-subtitle">수집 근거</h3>
-                                <p>개인정보보호법 제15조</p>
-                            </div>
-                        </div>
-                        
-                        <div class="privacy-item">
-                            <div class="privacy-icon">
-                                <i class="fas fa-id-card"></i> <!-- 각각 다른 아이콘 사용 -->
-                            </div>
-                            <div class="privacy-content-wrapper">
-                                <h3 class="privacy-subtitle">수집 항목</h3>
-                                <p>・성명・전화번호・생년월</p>
-                                <p>・직장・학교・거주지</p>
-                            </div>
-                        </div>
-                        
-                        <div class="privacy-item">
-                           <div class="privacy-icon">
-                               <i class="fas fa-bullseye"></i>
-                           </div>
-                           <div class="privacy-content-wrapper">
-                               <h3 class="privacy-subtitle">이용 목적</h3>
-                               <p>・합격자 연락</p>
-                               <p>・대학생 신분 확인</p>
-                           </div>
-                        </div>
-                        
-                        <div class="privacy-item">
-                           <div class="privacy-icon">
-                               <i class="fas fa-clock"></i>
-                           </div>
-                           <div class="privacy-content-wrapper">
-                               <h3 class="privacy-subtitle">보유 및 이용 기간</h3>
-                               <p>선발 절차 종료 시까지</p>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="privacy-notice">
-                        <span class="desktop-only">※ 동의하지 않을 경우 지원이 불가능합니다.</span>
-                        <span class="mobile-only">※ 동의하지 않을 경우 지원이 불가능합니다.</span>
-                    </div>
-                    
-                    <div class="privacy-footer">
-                        본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며,<br>
-                        동아리 활동 외 다른 목적으로 사용되지 않습니다.
-                    </div>
-                    
-                    <div class="privacy-agree">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="privacyAgree" required>
-                            <span>동의합니다</span>
-                        </label>
-                        <div class="error-message">개인정보 수집 및 활용에 동의해주세요.</div>
-                    </div>
-                </div>
-            </section>  
+        <div class="form-grid">
+            <div class="info-box">
+                <div class="accent-line"></div>
+                <h3 class="info-box-title">
+                    <i class="fas fa-shield-alt"></i>
+                    수집 근거
+                </h3>
+                <p class="info-box-content">개인정보보호법 제15조</p>
+            </div>
+            <div class="info-box">
+                <div class="accent-line"></div>
+                <h3 class="info-box-title">
+                    <i class="fas fa-id-card"></i>
+                    수집 정보
+                </h3>
+                <p class="info-box-content">성명・연락처・생년월일<br>학교・전공・거주지</p>
+            </div>
+            <div class="info-box">
+                <div class="accent-line"></div>
+                <h3 class="info-box-title">
+                    <i class="fas fa-bullseye"></i>
+                    이용 목적
+                </h3>
+                <p class="info-box-content">합격자 연락<br>대학생 신분 확인</p>
+            </div>
+            <div class="info-box">
+                <div class="accent-line"></div>
+                <h3 class="info-box-title">
+                    <i class="fas fa-clock"></i>
+                    보유 기간
+                </h3>
+                <p class="info-box-content">선발 절차 종료 시까지</p>
+            </div>
+        </div>
+        
+        <div class="consent-section">
+            <div class="consent-header">
+                <span>개인정보 수집 및 이용 동의</span>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="privacy_agreement" required>
+                    <span class="check-icon"></span>
+                    <span class="label-text">동의함</span>
+                </label>
+            </div>
             
-            <!-- 기본 정보 섹션 -->
-            <section class="section">
+            <div class="consent-notices">
+                <p class="notice-warning">
+                    <i class="fas fa-exclamation-circle"></i>
+                    동의하지 않을 경우 지원이 불가능합니다.
+                </p>
+                <p class="notice-info">
+                    <i class="fas fa-info-circle"></i>
+                    본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며, 동아리 활동 외 다른 목적으로 사용되지 않습니다.
+                </p>
+            </div>
+        </div>
+
+        <form id="applicationForm">
+            <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                <div class="form-group">
-                    <label class="form-label required">이름</label>
-                    <input type="text" class="form-control" name="name" required>
-                    <div class="error-message">이름을 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">나이</label>
-                    <input type="number" class="form-control" name="age" required min="19" max="99">
-                    <div class="error-message">나이를 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">성별</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="gender" value="남성" required>
-                            <span>남성</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="gender" value="여성" required>
-                            <span>여성</span>
-                        </label>
+                    <!-- 첫 번째 줄: 이름, 생년월일, 성별 -->
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label required">이름</label>
+                            <input type="text" class="form-control" name="name" required>
+                            <div class="error-message">이름을 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">생년월일</label>
+                            <input type="date" class="form-control" name="birthdate" required>
+                            <div class="error-message">생년월일을 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="남성" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">남성</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="여성" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">여성</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="error-message">성별을 선택해주세요.</div>
-                </div>
+                    
+                    <!-- 두 번째 줄: 연락처, 본가, 현재 거주지 -->
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label required">연락처</label>
+                            <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+                            <div class="error-message">올바른 연락처를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">본가</label>
+                            <input type="text" class="form-control" name="home_address" placeholder="'시 구 동'까지만 입력" required>
+                            <div class="error-message">본가 주소를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">현재 거주지</label>
+                            <input type="text" class="form-control" name="current_address" placeholder="가까운 역 기준으로 입력" required>
+                            <div class="error-message">현재 거주지를 입력해주세요.</div>
+                        </div>
+                    </div>
+                
+                    <div class="form-row three-columns">
+                       <div class="form-group">
+                           <label class="form-label required">학교</label>
+                           <input type="text" class="form-control" name="school" required>
+                           <div class="error-message">소속 학교를 입력해주세요.</div>
+                       </div>
+                       <div class="form-group">
+                           <label class="form-label required">전공</label>
+                           <input type="text" class="form-control" name="major" required>
+                           <div class="error-message">전공을 입력해주세요.</div>
+                       </div>
+                       <div class="form-group">
+                           <label class="form-label required">학번</label>
+                           <input type="text" class="form-control" name="student_id" placeholder="입학년도만 입력(예:25학번)" required>
+                           <div class="error-message">학번을 입력해주세요.</div>
+                       </div>
+                    </div>
+                    
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <div class="custom-select">
+                                <select class="form-control" name="grade" required>
+                                    <option value="" disabled selected>학년 선택</option>
+                                    <option value="1">1학년</option>
+                                    <option value="2">2학년</option>
+                                    <option value="3">3학년</option>
+                                    <option value="4">4학년</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- 학기 선택 라디오 버튼 -->
+                        <div class="form-group">
+                            <div class="semester-toggle">
+                                <label class="radio-label">
+                                    <input type="radio" name="semester" value="1" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">1학기</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="semester" value="2" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">2학기</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 학적 상태 체크박스 그룹 -->
+                        <div class="form-group status-checks">
+                            <!-- 휴학 중 체크박스 -->
+                            <label class="consent-check leave-check">
+                                <input type="checkbox" name="is_leave" value="yes">
+                                <span class="check-icon"></span>
+                                <span>휴학 중</span>
+                            </label>
+                            <!-- 졸업(예정) 체크박스 -->
+                            <label class="consent-check leave-check">
+                                <input type="checkbox" name="is_graduate" value="yes">
+                                <span class="check-icon"></span>
+                                <span>졸업 (예정)</span>
+                            </label>
+                        </div>
+                    </div>       
+                    </section>
 
-                <div class="form-group">
-                    <label class="form-label required">연락처</label>
-                    <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
-                    <div class="error-message">올바른 연락처를 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">소속 (학교/직장)</label>
-                    <input type="text" class="form-control" name="affiliation" required>
-                    <div class="error-message">소속을 입력해주세요.</div>
-                </div>
-            </section>
-
-            <!-- 자기소개 섹션 -->
-            <section class="section">
+            <section class="form-section">
                 <h2 class="section-title">자기소개</h2>
                 
                 <div class="form-group">
-                    <label class="form-label required">자기소개를 해주세요.</label>
-                    <textarea class="form-control" name="introduction" required></textarea>
-                    <div class="error-message">자기소개를 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">여행 경험이나 관심사를 자유롭게 적어주세요.</label>
-                    <textarea class="form-control" name="travelExperience" required></textarea>
-                    <div class="error-message">여행 경험을 입력해주세요.</div>
-                </div>
-            </section>
-
-            <!-- 활동 계획 섹션 -->
-            <section class="section">
-                <h2 class="section-title">활동 계획</h2>
-                
-                <div class="form-group">
-                    <label class="form-label required">발자취에서 하고 싶은 활동을 선택해주세요. (복수 선택 가능)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="activities" value="국내여행">
-                            <span>국내여행</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="activities" value="번개모임">
-                            <span>번개모임</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="activities" value="문화활동">
-                            <span>문화활동</span>
-                        </label>
-                    </div>
-                    <div class="error-message">하나 이상의 활동을 선택해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label required">발자취에 지원하게 된 동기를 적어주세요.</label>
-                    <textarea class="form-control" name="motivation" required></textarea>
-                    <div class="error-message">지원 동기를 입력해주세요.</div>
-                </div>
-            </section>
-
-            <div class="button-group">
-                <button type="button" class="btn btn-secondary" onclick="history.back()">이전으로</button>
-                <button type="submit" class="btn btn-primary">제출하기</button>
-            </div>
-        </form>
-    </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 폰트와 이미지 로딩 대기
-        Promise.all([
-            document.fonts.ready,
-            new Promise(resolve => {
-                const img = new Image();
-                img.src = 'logo.png';
-                img.onload = resolve;
-                img.onerror = resolve;
-            }),
-            new Promise(resolve => setTimeout(resolve, 1000))
-        ]).then(() => {
-            document.body.classList.add('loaded');
-        }).catch(() => {
-            document.body.classList.add('loaded');
-        });
-        
-        // 폼 유효성 검사
-        const form = document.getElementById('applicationForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let isValid = true;
-            
-            // 필수 입력 필드 검사
-            form.querySelectorAll('[required]').forEach(field => {
-                if (field.type === 'checkbox' && field.name === 'activities') {
-                    const checkboxes = form.querySelectorAll('input[name="activities"]:checked');
-                    if (checkboxes.length === 0) {
-                        isValid = false;
-                        field.closest('.form-group').querySelector('.error-message').style.display = 'block';
-                    }
-                } else if (field.type === 'radio') {
-                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]:checked`);
-                    if (radioGroup.length === 0) {
-                        isValid = false;
-                        field.closest('.form-group').querySelector('.error-message').style.display = 'block';
-                    }
-                } else if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('error');
-                    field.closest('.form-group').querySelector('.error-message').style.display = 'block';
-                }
-            });
-            
-            if (isValid) {
-                // 폼 제출
-                form.submit();
-            }
-        });
-        
-        // 입력 필드 변경 시 에러 메시지 숨김
-        form.querySelectorAll('.form-control').forEach(field => {
-            field.addEventListener('input', function() {
-                this.classList.remove('error');
-                const errorMessage = this.closest('.form-group').querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.style.display = 'none';
-                }
-            });
-        });
-        
-        // 체크박스/라디오 변경 시 에러 메시지 숨김
-        form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
-            input.addEventListener('change', function() {
-                const errorMessage = this.closest('.form-group').querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.style.display = 'none';
-                }
-            });
-        });
-        
-        // 진행률 업데이트 기능
-        function updateProgress() {
-            const requiredInputs = form.querySelectorAll('[required]');
-            let filledCount = 0;
-
-            requiredInputs.forEach(input => {
-                if (input.type === 'radio' || input.type === 'checkbox') {
-                    const name = input.name;
-                    const checked = form.querySelector(`[name="${name}"]:checked`);
-                    if (checked) filledCount++;
-                } else {
-                    if (input.value.trim() !== '') filledCount++;
-                }
-            });
-
-            const progress = (filledCount / requiredInputs.length) * 100;
-            document.getElementById('formProgress').style.width = `${progress}%`;
-        }
-        
-        document.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('change', updateProgress);
-            input.addEventListener('input', updateProgress);
-        });
-    });
-</script>
+                    <label class="form-label required">간단한 자기소개를 해주세요.</label>
+                    <textarea class="form-control" name="introduction" rows="4" required></textarea>
