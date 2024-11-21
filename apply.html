@@ -318,6 +318,37 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
+
+        @media (max-width: 768px) {
+        .privacy-box {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+        
+        .privacy-item {
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .privacy-icon {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .privacy-content-wrapper {
+            flex: 1;
+        }
+        
+        .privacy-subtitle {
+            font-size: 0.9rem;
+        }
+        
+        .privacy-item p {
+            font-size: 0.8rem;
+            margin: 0.15rem 0;
+        }
+    }
         
         .privacy-item {
             background: white;
