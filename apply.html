@@ -43,6 +43,9 @@
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .header {
@@ -100,9 +103,6 @@
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .section {
@@ -229,46 +229,11 @@
             border-color: var(--error-color);
         }
         
-        .loading-spinner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .loading-spinner p {
-            margin-top: 10px;
-            font-family: 'Noto Sans KR', var(--system-font);
-            color: var(--text-color);
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        body.loaded .form-container {
+        body.loaded .container {
             opacity: 1;
             transform: translateY(0);
         }
-        
+                
         @media (max-width: 768px) {
             .container {
                 margin: 1rem auto;
@@ -469,10 +434,6 @@
     </style>
 </head>
 <body oncontextmenu="return false">
-    <div id="loading-spinner" class="loading-spinner">
-        <div class="spinner"></div>
-        <p>잠시만 기다려주세요...</p>
-    </div>
     <div class="progress-bar">
         <div class="progress" id="formProgress"></div>
     </div>
@@ -651,44 +612,80 @@
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const spinner = document.getElementById('loading-spinner');
-            spinner.style.display = 'block';
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 폰트와 이미지 로딩 대기
+        Promise.all([
+            document.fonts.ready,
+            new Promise(resolve => {
+                const img = new Image();
+                img.src = 'logo.png';
+                img.onload = resolve;
+                img.onerror = resolve;
+            }),
+            new Promise(resolve => setTimeout(resolve, 1000))
+        ]).then(() => {
+            document.body.classList.add('loaded');
+        }).catch(() => {
+            document.body.classList.add('loaded');
+        });
+        
+        // 폼 유효성 검사
+        const form = document.getElementById('applicationForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
             
-            // 폰트와 리소스가 모두 로드될 때까지 기다림
-            Promise.all([
-                document.fonts.ready,
-                new Promise(resolve => setTimeout(resolve, 800)) // 최소 로딩 시간 보장
-            ]).then(() => {
-                spinner.style.display = 'none';
-                document.body.classList.add('loaded');
+            // 필수 입력 필드 검사
+            form.querySelectorAll('[required]').forEach(field => {
+                if (field.type === 'checkbox' && field.name === 'activities') {
+                    const checkboxes = form.querySelectorAll('input[name="activities"]:checked');
+                    if (checkboxes.length === 0) {
+                        isValid = false;
+                        field.closest('.form-group').querySelector('.error-message').style.display = 'block';
+                    }
+                } else if (field.type === 'radio') {
+                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]:checked`);
+                    if (radioGroup.length === 0) {
+                        isValid = false;
+                        field.closest('.form-group').querySelector('.error-message').style.display = 'block';
+                    }
+                } else if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('error');
+                    field.closest('.form-group').querySelector('.error-message').style.display = 'block';
+                }
+            });
+            
+            if (isValid) {
+                // 폼 제출
+                form.submit();
+            }
+        });
+        
+        // 입력 필드 변경 시 에러 메시지 숨김
+        form.querySelectorAll('.form-control').forEach(field => {
+            field.addEventListener('input', function() {
+                this.classList.remove('error');
+                const errorMessage = this.closest('.form-group').querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
             });
         });
         
-        // 텍스트 선택 방지
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
+        // 체크박스/라디오 변경 시 에러 메시지 숨김
+        form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const errorMessage = this.closest('.form-group').querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+            });
         });
         
-        // 드래그 방지
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        
-        // 모바일 터치 이벤트 제어
-        document.addEventListener('touchstart', function(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-        
-        // 폼 진행률 업데이트
+        // 진행률 업데이트 기능
         function updateProgress() {
-            const form = document.getElementById('applicationForm');
-            const inputs = form.querySelectorAll('input, textarea, select');
             const requiredInputs = form.querySelectorAll('[required]');
             let filledCount = 0;
 
@@ -708,6 +705,7 @@
         
         document.querySelectorAll('input, textarea').forEach(input => {
             input.addEventListener('change', updateProgress);
+            input.addEventListener('input', updateProgress);
         });
-        
-        // 폼 유효성 검
+    });
+</script>
