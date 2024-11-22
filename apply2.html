@@ -151,12 +151,63 @@
         .form-row.three-columns {
             grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
         }
-        /* 정보 박스 그리드 레이아웃 */
+        
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);  /* 2x2에서 1x4로 변경 */
+            gap: 1rem;  /* 간격 약간 줄임 */
             margin-bottom: 2rem;
+        }
+        
+        /* 박스 내부 폰트 크기 조정 */
+        .info-box-title {
+            font-size: 0.9rem;  /* 기존 1.1rem에서 축소 */
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;  /* 기존 1rem에서 축소 */
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;  /* 기존 0.5rem에서 축소 */
+        }
+        
+        .info-box-content {
+            font-size: 0.8rem;  /* 기존 0.9rem에서 축소 */
+            color: var(--light-text);
+            margin: 0;
+            line-height: 1.4;  /* 줄간격 추가 */
+        }
+        
+        .info-box {
+            padding: 1.2rem;  /* 기존 1.5rem에서 축소 */
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;  /* 모바일에서는 한 줄에 하나씩 */
+                gap: 0.8rem;
+            }
+            
+            .info-box {
+                padding: 1rem;
+            }
+            
+            .info-box-title {
+                font-size: 0.85rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .info-box-content {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* 태블릿 대응 추가 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);  /* 태블릿에서는 2x2 유지 */
+                gap: 0.8rem;
+            }
         }
 
         .alerts {
