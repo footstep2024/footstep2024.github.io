@@ -660,6 +660,20 @@
                 z-index: 1000;
                 backdrop-filter: blur(5px);
             }
+
+            .date-modal-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 12px;
+                width: 90%;
+                max-width: 400px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+            }
                         
             .date-picker-header {
                 display: flex;
@@ -717,72 +731,6 @@
                     height: 24px;
                 }
             }
-
-                .date-picker-header {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 0.5rem;
-                    margin-bottom: 1rem;
-                }
-                
-                .year-controls {
-                    text-align: center;
-                }
-                
-                .date-controls {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    background: var(--white);
-                    padding: 0.5rem 1rem;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                }
-                
-                .year-month-display {
-                    font-size: 1.1rem;
-                    font-weight: 500;
-                    color: var(--primary-color);
-                    min-width: 120px;
-                    text-align: center;
-                }
-                
-                .control-btn {
-                    background: none;
-                    border: none;
-                    color: var(--primary-color);
-                    width: 28px;
-                    height: 28px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    transition: all 0.2s ease;
-                }
-                
-                .control-btn:hover {
-                    background: var(--primary-color);
-                    color: var(--white);
-                }
-                
-                /* 모바일 대응 */
-                @media (max-width: 768px) {
-                    .date-controls {
-                        padding: 0.4rem 0.8rem;
-                    }
-                    
-                    .year-month-display {
-                        font-size: 1rem;
-                        min-width: 100px;
-                    }
-                    
-                    .control-btn {
-                        width: 24px;
-                        height: 24px;
-                    }
-                }
         
             .calendar-grid {
                 display: grid;
@@ -958,18 +906,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 이전/다음 달 버튼 이벤트
-    document.querySelector('.prev-month').addEventListener('click', function(e) {
+    document.querySelector('.month-prev').addEventListener('click', function(e) {
         e.stopPropagation();
         currentDate.setMonth(currentDate.getMonth() - 1);
         renderCalendar();
     });
-
-    document.querySelector('.next-month').addEventListener('click', function(e) {
+    
+    document.querySelector('.month-next').addEventListener('click', function(e) {
         e.stopPropagation();
         currentDate.setMonth(currentDate.getMonth() + 1);
         renderCalendar();
     });
-
+    
     function openDateModal() {
         document.getElementById('dateModal').style.display = 'block';
         currentDate = new Date(2001, 0, 1);  // 2001년 1월로 초기화
