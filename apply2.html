@@ -351,6 +351,19 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
+
+        /* 여기에 date input 스타일 추가 */
+        input[type="date"].form-control {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-color);
+            padding: 0.6rem 0.8rem;
+        }
+        
+        /* date input의 placeholder 스타일 */
+        input[type="date"].form-control::-webkit-datetime-edit-fields-wrapper {
+            font-size: 0.75rem;
+        }
         
         .form-control::placeholder,
         select.form-control option:first-child {
