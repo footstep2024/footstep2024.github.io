@@ -392,33 +392,21 @@
                 background-size: 1.2rem;
             }
             
-            .leave-check {
-                margin-top: 0;
-                display: flex;
-                align-items: center;
-                height: 100%;
-            }
-
-            .leave-check input[type="checkbox"]:checked ~ span:last-child {
-                color: var(--primary-color);
-                font-weight: 500;
-            }
-
-            /* 학적 상태 체크박스 그룹 스타일 */
-            .status-checks {
-                display: flex;
-                gap: 1rem;  /* 체크박스 사이 간격 */
-                align-items: center;
-            }
-            
-            /* 모바일 대응을 위한 미디어 쿼리 */
-            @media (max-width: 768px) {
                 .status-checks {
-                    flex-direction: column;  /* 모바일에서는 세로로 배치 */
-                    gap: 0.5rem;  /* 모바일에서는 간격 축소 */
-                    align-items: flex-start;  /* 왼쪽 정렬 */
+                    display: flex;
+                    gap: 2rem;  /* 다른 radio-group과 동일한 간격 */
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0.5rem 0;
                 }
-            }
+                
+                /* 모바일 대응 */
+                @media (max-width: 768px) {
+                    .status-checks {
+                        gap: 1.5rem;
+                    }
+                }
         
         .button-group {
             display: flex;
@@ -736,22 +724,20 @@
                                 </label>
                             </div>
                         </div>
-                        <!-- 학적 상태 체크박스 그룹 -->
-                        <div class="form-group status-checks">
-                            <!-- 휴학 중 체크박스 -->
-                            <label class="consent-check leave-check">
+                    <div class="form-group">
+                        <div class="status-checks">
+                            <label class="radio-label">
                                 <input type="checkbox" name="is_leave" value="yes">
                                 <span class="check-icon"></span>
-                                <span>휴학 중</span>
+                                <span class="label-text">휴학 중</span>
                             </label>
-                            <!-- 졸업(예정) 체크박스 -->
-                            <label class="consent-check leave-check">
+                            <label class="radio-label">
                                 <input type="checkbox" name="is_graduate" value="yes">
                                 <span class="check-icon"></span>
-                                <span>졸업 (예정)</span>
+                                <span class="label-text">졸업 (예정)</span>
                             </label>
                         </div>
-                    </div>       
+                    </div>      
                     </section>
 
             <section class="form-section">
