@@ -104,26 +104,6 @@
             opacity: 0.9;
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: var(--section-gap);
-        }
-
-        .form-grid .info-box {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-grid .info-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
         .info-box-title {
             font-size: 1.1rem;
             font-weight: 700;
@@ -147,7 +127,8 @@
             margin-bottom: var(--section-gap);
             box-shadow: var(--box-shadow);
         }
-
+        
+        /* section-title 스타일도 수정이 필요합니다 */
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -155,17 +136,164 @@
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);  /* 기본 2칸 그리드 */
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0rem;
         }
         
         .form-row.three-columns {
             grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-box {
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            padding: 0.8rem 1.6rem; /* 상하 패딩 줄이고 좌우 패딩 늘림 */
+            min-height: 65px; /* 높이 줄임 */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+      .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-box-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.4rem; /* 상하 간격 줄임 */
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .info-box-title i {
+            font-size: 0.82rem;
+        }
+        
+        .info-box-content {
+            font-size: 0.78rem;
+            color: var(--light-text);
+            margin: 0;
+            line-height: 1.4;
+            word-break: keep-all;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .info-box:first-child .info-box-content {
+            white-space: nowrap;
+            text-overflow: clip;
+            overflow: visible; /* 텍스트 짤림 방지 */
+        }
+        
+        .info-box-content span {
+            white-space: nowrap;
+            display: block;
+        }
+        
+        /* 좁은 화면에서도 한줄 유지를 위한 미디어쿼리 */
+        @media (min-width: 1024px) {
+            .info-box-content {
+                font-size: 0.78rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-box-content {
+                font-size: 0.82rem;
+            }
+            .info-box {
+                padding: 1rem 0.8rem;
+            }    
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .info-box {
+                padding: 0.8rem 1rem;
+            }
+            
+            .info-box-title {
+                font-size: 0.9rem;
+            }
+            
+            .info-box-content {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* 특정 박스들의 텍스트를 한 줄로 만들기 위한 추가 스타일 */
+        .info-box:first-child .info-box-content,
+        .info-box:last-child .info-box-content {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 0.8rem;  /* 한줄 텍스트는 조금 더 크게 */
+        }
+        
+        .alerts {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .alert-red, .alert-green {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .alert-red {
+            color: #dc3545;
+        }
+        
+        .alert-green {
+            color: #2F5229;
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .notice-wrapper {
+                margin-top: 1.5rem;
+            }
+            
+            .notice-warning,
+            .notice-info {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
         }
         
         .form-group {
@@ -176,42 +304,85 @@
             .form-row, .form-row.three-columns {
                 grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
                 gap: 0.8rem;
+                margin-bottom: 0.8rem;
             }
         }
 
+        /* 폼 레이블의 크기 줄임 */
         .form-label {
             display: block;
-            font-size: 0.95rem;
+            font-size: 0.85rem;  /* 0.95rem에서 줄임 */
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;  /* 0.5rem에서 줄임 */
+            color: var(--text-color);
+        }
+    
+            /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .form-label {
+                font-size: 0.8rem;
+            }
+            
+            .form-control {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.7rem;
+            }
+            
+            .form-control::placeholder,
+            select.form-control option:first-child,
+            select.form-control {
+                font-size: 0.7rem;
+            }
         }
 
         .required::after {
             content: '*';
             color: var(--error-color);
             margin-left: 0.25rem;
+            display: none;  /* 별표를 숨김 */
         }
 
+        /* 입력 필드의 크기 더 줄임 */
         .form-control {
             width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 0.6rem 0.8rem;  /* 0.75rem 1rem에서 줄임 */
+            font-size: 0.75rem;  /* 1rem에서 줄임 */
             border: 1px solid var(--border-color);
             border-radius: 8px;
             transition: all 0.3s ease;
         }
+
+        /* 여기에 date input 스타일 추가 */
+        input[type="date"].form-control {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-color);
+            padding: 0.6rem 0.8rem;
+        }
+        
+        /* date input의 placeholder 스타일 */
+        input[type="date"].form-control::-webkit-datetime-edit-fields-wrapper {
+            font-size: 0.75rem;
+        }
         
         .form-control::placeholder,
-            select.form-control option:first-child {
-            font-size: 0.8rem;
+        select.form-control option:first-child {
+            font-size: 0.75rem;
             color: #999;
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(47, 82, 41, 0.1);
+        select.form-control {
+            font-size: 0.75rem;
         }
+
+            /* 모바일 대응 */
+    @media (max-width: 768px) {
+        .form-control::placeholder,
+        select.form-control option:first-child,
+        select.form-control {
+            font-size: 0.7rem;
+        }
+    }
 
         .checkbox-label,
         .radio-label {
@@ -222,137 +393,22 @@
             user-select: none;
             padding: 0.3rem 0;
         }
-        
-        .check-icon {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+
+        .section-title .checkbox-label {
+            margin-left: auto;
+            padding-top: 1.4rem;  /* 아래로 살짝 내리기 */
         }
-        
-        .check-icon::before {
-            content: '\f00c'; /* 단순 체크 표시 '✓' */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 14px;
-            color: #ccc;
-            transition: all 0.2s ease;
-        }
-        
-        input[type="checkbox"]:checked + .check-icon::before,
-        input[type="radio"]:checked + .check-icon::before {
-            font-weight: 900;
-            color: var(--primary-color);
-        }
-        
-        .label-text {
-            font-size: 0.95rem;
+
+        .section-title .checkbox-label .label-text {
+            font-size: 0.85rem;
             color: var(--light-text);
-            transition: all 0.2s ease;
+            font-weight: normal;  /* 처음에는 얇게 */
         }
         
-        input:checked ~ .label-text {
+        .section-title .checkbox-label input[type="checkbox"]:checked ~ .label-text {
             color: var(--primary-color);
-            font-weight: 500;
+            font-weight: 500;  /* 체크되면 굵게 */
         }
-        
-        input[type="checkbox"],
-        input[type="radio"] {
-            display: none;
-        }
-            .radio-group {
-                display: flex;
-                gap: 2rem;
-                justify-content: center;
-                margin-top: 0.5rem;
-                align-items: center; /* 추가 */
-                height: 120%; /* 추가 */
-            }
-        
-            .semester-toggle {
-                display: flex;
-                gap: 2rem;
-                justify-content: center;
-                align-items: center;
-                height: 100%; /* 추가 */
-                padding: 0.5rem 0;
-            }
-            
-            @media (max-width: 768px) {
-                .radio-group, .semester-toggle {
-                    gap: 1.5rem;
-                }
-            }
-            
-            .check-icon {
-                width: 18px;
-                height: 18px;
-            }
-            
-            .check-icon::before {
-                font-size: 1.1em;
-            }
-            
-            .label-text {
-                font-size: 0.9rem;
-            }
-        }
-
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .info-box {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .accent-line {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--primary-color);
-            opacity: 0.8;
-        }
-
-        .consent-section {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: var(--section-gap);
-            box-shadow: var(--box-shadow);
-        }
-        
-        .consent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .consent-header span:first-child {
-            font-weight: 500;
-            color: var(--text-color);
-        }
-        
-        .consent-check {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .consent-check input[type="checkbox"] {
-            display: none;
-        }
-        
         .check-icon {
             width: 18px;
             height: 18px;
@@ -370,48 +426,76 @@
             color: #ccc;
             transition: all 0.2s ease;
         }
+        /* 체크됐을 때의 스타일 */
+            input[type="checkbox"]:checked + .check-icon::before,
+            input[type="radio"]:checked + .check-icon::before {
+                content: '\f058';  /* 동그라미 안의 체크 아이콘 */
+                color: var(--primary-color);
+            }
         
-        input[type="checkbox"]:checked + .check-icon::before,
-        input[type="radio"]:checked + .check-icon::before {
-            content: '\f058';
+        .label-text {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            transition: all 0.2s ease;
+        }
+        
+        input:checked ~ .label-text {
             color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: none;
         }
 
-        .consent-check span:last-child {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            margin-left: 2px;
-        }
+            .radio-group {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                margin-top: 0.6rem;  /* margin-top 추가 */
+            }
         
-        .consent-notices {
-            font-size: 0.9rem;
-            color: var(--light-text);
+            .semester-toggle, .status-checks {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                padding: 0;
+                margin-top: -0.4rem;  /* 양수에서 음수로 변경 */
+            }
+            
+            /* 모바일 대응 */
+            @media (max-width: 768px) {
+                .radio-group, .semester-toggle {
+                    gap: 1.5rem;
+                    margin-top: -0.3rem;
+                }
+            }
+            
+            .label-text {
+                font-size: 0.85rem;
+            }
         }
-        
-        .notice-warning, .notice-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding-left: 0.5rem;
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
         }
-        
-        .notice-warning {
-            color: var(--error-color);
+ 
+        .accent-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.8;
         }
-        
-        .notice-warning i {
-            color: var(--error-color);
-        }
-        
-        .notice-info {
-            color: var(--primary-color);
-        }
-        
-        .notice-info i {
-            color: var(--primary-color);
-        }
-        
+                
         @media (max-width: 768px) {
             .consent-section {
                 padding: 1.2rem;
@@ -442,46 +526,21 @@
                 background-size: 1.2rem;
             }
             
-            .leave-check {
-                margin-top: 0;
-                display: flex;
-                align-items: center;
-                height: 100%;
-            }
-            
-            .leave-check .check-icon::before {
-                content: '\f00c';
-                font-family: 'Font Awesome 5 Free';
-                font-weight: 900;
-                font-size: 14px;
-                color: #ccc;
-            }
-            
-            .leave-check input[type="checkbox"]:checked + .check-icon::before {
-                content: '\f058';
-                color: var(--primary-color);
-            }
-
-            .leave-check input[type="checkbox"]:checked ~ span:last-child {
-                color: var(--primary-color);
-                font-weight: 500;
-            }
-
-            /* 학적 상태 체크박스 그룹 스타일 */
-            .status-checks {
-                display: flex;
-                gap: 1rem;  /* 체크박스 사이 간격 */
-                align-items: center;
-            }
-            
-            /* 모바일 대응을 위한 미디어 쿼리 */
-            @media (max-width: 768px) {
                 .status-checks {
-                    flex-direction: column;  /* 모바일에서는 세로로 배치 */
-                    gap: 0.5rem;  /* 모바일에서는 간격 축소 */
-                    align-items: flex-start;  /* 왼쪽 정렬 */
+                    display: flex;
+                    gap: 2rem;  /* 다른 radio-group과 동일한 간격 */
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0.5rem 0;
                 }
-            }
+                
+                /* 모바일 대응 */
+                @media (max-width: 768px) {
+                    .status-checks {
+                        gap: 1.5rem;
+                    }
+                }
         
         .button-group {
             display: flex;
@@ -589,7 +648,161 @@
                 transform: none;
             }
         }
+            /* 날짜 선택 모달 스타일 */
+            .date-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                backdrop-filter: blur(5px);
+            }
 
+            .date-modal-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 12px;
+                width: 90%;
+                max-width: 400px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+            }
+                        
+            .date-picker-header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 1rem;
+            }
+            
+            .date-controls {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .year-month-display {
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: var(--primary-color);
+                min-width: 120px;
+                text-align: center;
+            }
+            
+            .control-btn {
+                background: none;
+                border: none;
+                color: var(--primary-color);
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            
+            .control-btn:hover {
+                background: var(--primary-color);
+                color: var(--white);
+            }
+            
+            /* 모바일 대응 */
+            @media (max-width: 768px) {
+                .date-selector {
+                    padding: 0.4rem 0.8rem;
+                }
+                
+                .year-month-display {
+                    font-size: 1rem;
+                    min-width: 100px;
+                }
+                
+                .control-btn {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .calendar-day {
+                padding: 0.5rem;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+            
+            .calendar-day:hover {
+                background: var(--primary-color);
+                color: white;
+            }
+            
+            .calendar-day.selected {
+                background: var(--primary-color);
+                color: white;
+            }
+            
+            .date-modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.8rem;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .confirm-btn, .cancel-btn {
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.2s ease;
+            }
+            
+            .confirm-btn {
+                background: var(--primary-color);
+                color: white;
+            }
+            
+            .cancel-btn {
+                background: var(--border-color);
+                color: var(--text-color);
+            }
+            
+            .year-buttons {
+                text-align: center;
+            }
+            
+            .calendar-day.empty {
+                visibility: hidden;
+            }
+            
+            @media (max-width: 768px) {
+                .date-modal-content {
+                    width: 85%;
+                    padding: 1.2rem;
+                }
+                
+                .calendar-day {
+                    padding: 0.4rem;
+                    font-size: 0.9rem;
+                }
+            }
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -613,29 +826,174 @@
     </style>
 </head>
 <body>
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        }, false);
+<script>
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+}, false);
 
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
+document.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+    return false;
+});
 
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-    </script>
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    let currentDate = new Date(2001, 0, 1); // 2001년 1월 1일로 초기화
     
+    function renderCalendar() {
+        const calendarGrid = document.querySelector('.calendar-grid');
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        
+        // 현재 월의 첫날과 마지막날
+        const firstDay = new Date(currentYear, currentMonth, 1);
+        const lastDay = new Date(currentYear, currentMonth + 1, 0);
+        
+        // 달력 헤더 업데이트
+        document.querySelector('.year-month-display').textContent = 
+            `${currentYear}년 ${currentMonth + 1}월`;
+        
+        // 달력 그리드 초기화
+        calendarGrid.innerHTML = '';
+        
+        // 요일 헤더 추가
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+        days.forEach(day => {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'calendar-day day-header';
+            dayElement.textContent = day;
+            calendarGrid.appendChild(dayElement);
+        });
+        
+        // 해당 월의 1일이 시작하는 요일만큼 빈 칸 추가
+        const firstDayOfWeek = firstDay.getDay();
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            calendarGrid.appendChild(emptyDay);
+        }
+        
+        // 날짜 추가
+        for (let i = 1; i <= lastDay.getDate(); i++) {
+            const dateElement = document.createElement('div');
+            dateElement.className = 'calendar-day';
+            dateElement.textContent = i;
+            dateElement.onclick = () => {
+                const date = new Date(currentYear, currentMonth, i);
+                document.querySelector('input[name="birthdate"]').valueAsDate = date;
+                closeDateModal();
+            };
+            calendarGrid.appendChild(dateElement);
+        }
+    }
+
+    // 년도 위/아래 버튼 이벤트
+    document.querySelector('.year-up').addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setFullYear(currentDate.getFullYear() + 1);
+        renderCalendar();
+    });
+
+    document.querySelector('.year-down').addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setFullYear(currentDate.getFullYear() - 1);
+        renderCalendar();
+    });
+
+    // 이전/다음 달 버튼 이벤트
+    document.querySelector('.month-prev').addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+    
+    document.querySelector('.month-next').addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+    
+    function openDateModal() {
+        document.getElementById('dateModal').style.display = 'block';
+        currentDate = new Date(2001, 0, 1);  // 2001년 1월로 초기화
+        renderCalendar();
+    }
+
+    function closeDateModal() {
+        document.getElementById('dateModal').style.display = 'none';
+    }
+
+    // 날짜 입력 필드 클릭 이벤트
+    const dateInput = document.querySelector('input[name="birthdate"]');
+    if (dateInput) {
+        dateInput.addEventListener('click', function(e) {
+            e.preventDefault();
+            openDateModal();
+        });
+    }
+
+    // 모달 바깥 클릭시 닫기
+    window.onclick = function(event) {
+        const modal = document.getElementById('dateModal');
+        if (event.target == modal) {
+            closeDateModal();
+        }
+    }
+
+    // 선택/취소 버튼 클릭 이벤트
+    const confirmBtn = document.querySelector('.confirm-btn');
+    const cancelBtn = document.querySelector('.cancel-btn');
+    
+    if (confirmBtn) {
+        confirmBtn.onclick = closeDateModal;
+    }
+    if (cancelBtn) {
+        cancelBtn.onclick = closeDateModal;
+    }
+});
+</script>    
     <div class="progress-container">
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
         </div>
     </div>
 
+    <!-- 날짜 선택 모달 -->
+    <div class="date-modal" id="dateModal">
+        <div class="date-modal-content">
+            <div class="date-modal-header">
+                <h3>생년월일 선택</h3>
+            </div>
+            <div class="date-picker">
+                <div class="date-picker-header">
+                    <div class="year-controls">
+                        <button class="control-btn year-up">▲</button>
+                    </div>
+                    <div class="date-controls">
+                        <button class="control-btn month-prev">◀</button>
+                        <span class="year-month-display">2001년 1월</span>
+                        <button class="control-btn month-next">▶</button>
+                    </div>
+                    <div class="year-controls">
+                        <button class="control-btn year-down">▼</button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <!-- JavaScript로 동적 생성됨 -->
+                </div>
+            </div>
+            <div class="date-modal-footer">
+                <button class="confirm-btn">선택</button>
+                <button class="cancel-btn">취소</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <header class="header">
             <div class="logo">
@@ -643,64 +1001,72 @@
             </div>
             <h1 class="title">25-1학기 신입부원 지원서 작성</h1>
         </header>
-
-        <div class="form-grid">
-            <div class="info-box">
-                <div class="accent-line"></div>
-                <h3 class="info-box-title">
-                    <i class="fas fa-shield-alt"></i>
-                    수집 근거
-                </h3>
-                <p class="info-box-content">개인정보보호법 제15조</p>
-            </div>
-            <div class="info-box">
-                <div class="accent-line"></div>
-                <h3 class="info-box-title">
-                    <i class="fas fa-id-card"></i>
-                    수집 정보
-                </h3>
-                <p class="info-box-content">성명・연락처・생년월일<br>학교・전공・거주지</p>
-            </div>
-            <div class="info-box">
-                <div class="accent-line"></div>
-                <h3 class="info-box-title">
-                    <i class="fas fa-bullseye"></i>
-                    이용 목적
-                </h3>
-                <p class="info-box-content">합격자 연락<br>대학생 신분 확인</p>
-            </div>
-            <div class="info-box">
-                <div class="accent-line"></div>
-                <h3 class="info-box-title">
-                    <i class="fas fa-clock"></i>
-                    보유 기간
-                </h3>
-                <p class="info-box-content">선발 절차 종료 시까지</p>
-            </div>
-        </div>
         
-        <div class="consent-section">
-            <div class="consent-header">
-                <span>개인정보 수집 및 이용 동의</span>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="privacy_agreement" required>
-                    <span class="check-icon"></span>
-                    <span class="label-text">동의함</span>
-                </label>
-            </div>
+            <section class="form-section"> 
+                <div class="section-title">
+                    <span>개인정보 수집 및 이용 동의</span>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="privacy_agreement" required>
+                        <span class="check-icon"></span>
+                        <span class="label-text">동의함</span>
+                    </label>
+                </div>
             
-            <div class="consent-notices">
-                <p class="notice-warning">
-                    <i class="fas fa-exclamation-circle"></i>
-                    동의하지 않을 경우 지원이 불가능합니다.
-                </p>
-                <p class="notice-info">
-                    <i class="fas fa-info-circle"></i>
-                    본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며, 동아리 활동 외 다른 목적으로 사용되지 않습니다.
-                </p>
-            </div>
-        </div>
-
+                <div class="info-grid">
+                    <div class="info-box">
+                        <div class="accent-line"></div>
+                        <h3 class="info-box-title">
+                            <i class="fas fa-shield-alt"></i>
+                            수집 근거
+                        </h3>
+                        <p class="info-box-content">개인정보보호법 15조</p>
+                    </div>
+                    <div class="info-box">
+                        <div class="accent-line"></div>
+                        <h3 class="info-box-title">
+                            <i class="fas fa-id-card"></i>
+                            수집 정보
+                        </h3>
+                        <p class="info-box-content">
+                            <span>이름・생년월일</span>
+                            <span>연락처・거주지</span>
+                            <span>학교・전공</span>
+                        </p>
+                    </div>
+                    <div class="info-box">
+                        <div class="accent-line"></div>
+                        <h3 class="info-box-title">
+                            <i class="fas fa-bullseye"></i>
+                            이용 목적
+                        </h3>
+                        <p class="info-box-content">
+                            <span>합격자 연락</span>
+                            <span>대학생 신분 확인</span>
+                        </p>
+                    </div>
+                    <div class="info-box">
+                        <div class="accent-line"></div>
+                        <h3 class="info-box-title">
+                            <i class="fas fa-clock"></i>
+                            보유 기간
+                        </h3>
+                        <p class="info-box-content">선발 절차 종료 시까지</p>
+                    </div>
+                </div>
+                        
+                <div class="alerts">
+                    <div class="alert-red">
+                        <i class="fas fa-exclamation-circle"></i> 
+                        동의하지 않을 경우 지원이 불가능합니다.
+                    </div>
+                    <div class="alert-green">
+                        <i class="fas fa-info-circle"></i> 
+                        본 동의서는 지원자의 개인정보 보호를 위해 작성되었으며, 동아리 활동 외 다른 목적으로 사용되지 않습니다.
+                    </div>
+                </div>
+            </section>
+    <!-- 새로운 개인정보 수집 섹션 끝 -->
+        
         <form id="applicationForm">
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
@@ -752,68 +1118,61 @@
                         </div>
                     </div>
                 
-                    <div class="form-row three-columns">
-                       <div class="form-group">
+                    <!-- 학교/전공/학번,학년 줄 수정 -->
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: center">
+                       <div class="form-group" style="width: 35%">
                            <label class="form-label required">학교</label>
                            <input type="text" class="form-control" name="school" required>
-                           <div class="error-message">소속 학교를 입력해주세요.</div>
                        </div>
-                       <div class="form-group">
+                       <div class="form-group" style="width: 30%">
                            <label class="form-label required">전공</label>
                            <input type="text" class="form-control" name="major" required>
-                           <div class="error-message">전공을 입력해주세요.</div>
                        </div>
-                       <div class="form-group">
-                           <label class="form-label required">학번</label>
-                           <input type="text" class="form-control" name="student_id" placeholder="입학년도만 입력(예:25학번)" required>
-                           <div class="error-message">학번을 입력해주세요.</div>
+                       <div style="display: flex; gap: 8px; width: 35%; align-items: center">
+                           <div class="form-group" style="width: 100px">
+                               <label class="form-label required">학번</label>
+                               <input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
+                           </div>
+                           <div class="form-group" style="width: 120px">
+                               <select class="form-control" name="grade" required>
+                                   <option value="" disabled selected>학년 선택</option>
+                                   <option value="1">1학년</option>
+                                   <option value="2">2학년</option>
+                                   <option value="3">3학년</option>
+                                   <option value="4">4학년</option>
+                                   <option value="graduating">졸업예정</option>
+                                   <option value="graduated">졸업</option>
+                               </select>
+                           </div>
+                           <label class="checkbox-label">
+                               <input type="checkbox" name="is_leave">
+                               <span class="check-icon"></span>
+                               <span class="label-text">휴학</span>
+                           </label>
                        </div>
                     </div>
                     
-                    <div class="form-row three-columns">
-                        <div class="form-group">
-                            <div class="custom-select">
-                                <select class="form-control" name="grade" required>
-                                    <option value="" disabled selected>학년 선택</option>
-                                    <option value="1">1학년</option>
-                                    <option value="2">2학년</option>
-                                    <option value="3">3학년</option>
-                                    <option value="4">4학년</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- 학기 선택 라디오 버튼 -->
-                        <div class="form-group">
-                            <div class="semester-toggle">
-                                <label class="radio-label">
-                                    <input type="radio" name="semester" value="1" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">1학기</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="semester" value="2" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">2학기</span>
-                                </label>
-                            </div>
-                        </div>
-                        <!-- 학적 상태 체크박스 그룹 -->
-                        <div class="form-group status-checks">
-                            <!-- 휴학 중 체크박스 -->
-                            <label class="consent-check leave-check">
-                                <input type="checkbox" name="is_leave" value="yes">
-                                <span class="check-icon"></span>
-                                <span>휴학 중</span>
-                            </label>
-                            <!-- 졸업(예정) 체크박스 -->
-                            <label class="consent-check leave-check">
-                                <input type="checkbox" name="is_graduate" value="yes">
-                                <span class="check-icon"></span>
-                                <span>졸업 (예정)</span>
-                            </label>
-                        </div>
-                    </div>       
+                    <!-- 운전가능여부 섹션 -->
+                    <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+                       <div style="display: flex; gap: 24px; align-items: flex-start">
+                           <select class="form-control" name="driving_status" style="width: 180px" required>
+                               <option value="" disabled selected>운전 가능 여부 선택</option>
+                               <option value="car">자차 보유</option>
+                               <option value="license">면허만 보유</option>
+                               <option value="none">해당사항 없음</option>
+                           </select>
+                           <div style="font-size: 13px">
+                               <div style="display: flex; gap: 4px; margin-bottom: 4px">
+                                   <span class="rounded-full bg-red-500 text-white w-4 h-4 flex items-center justify-center text-xs">!</span>
+                                   실제 운전 가능한 경우에만 운전면허 보유에 체크해 주세요.
+                               </div>
+                               <div style="display: flex; gap: 4px">
+                                   <span class="rounded-full bg-green-600 text-white w-4 h-4 flex items-center justify-center text-xs">i</span>
+                                   장롱면허의 경우 해당사항 없음에 체크해 주세요.
+                               </div>
+                           </div>
+                       </div>
+                    </div>
                     </section>
 
             <section class="form-section">
