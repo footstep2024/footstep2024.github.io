@@ -660,45 +660,12 @@
                 z-index: 1000;
                 backdrop-filter: blur(5px);
             }
-            
-            .date-modal-content {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
-                padding: 1.5rem;
-                border-radius: 12px;
-                width: 90%;
-                max-width: 360px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
-            
-            .date-modal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1rem;
-                padding-bottom: 0.8rem;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
+                        
             .date-picker-header {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 padding-bottom: 1rem;
-            }
-            
-            .date-selector {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                background: var(--white);
-                padding: 0.5rem 1rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                margin-bottom: 1rem;
             }
             
             .date-controls {
@@ -750,7 +717,73 @@
                     height: 24px;
                 }
             }
-            
+
+                .date-picker-header {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .year-controls {
+                    text-align: center;
+                }
+                
+                .date-controls {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    background: var(--white);
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
+                .year-month-display {
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    color: var(--primary-color);
+                    min-width: 120px;
+                    text-align: center;
+                }
+                
+                .control-btn {
+                    background: none;
+                    border: none;
+                    color: var(--primary-color);
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+                
+                .control-btn:hover {
+                    background: var(--primary-color);
+                    color: var(--white);
+                }
+                
+                /* 모바일 대응 */
+                @media (max-width: 768px) {
+                    .date-controls {
+                        padding: 0.4rem 0.8rem;
+                    }
+                    
+                    .year-month-display {
+                        font-size: 1rem;
+                        min-width: 100px;
+                    }
+                    
+                    .control-btn {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+        
             .calendar-grid {
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
@@ -803,48 +836,8 @@
                 color: var(--text-color);
             }
             
-            .year-month-selector {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .date-display {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                font-size: 1.1rem;
-                font-weight: 500;
-            }
-            
             .year-buttons {
                 text-align: center;
-            }
-            
-            .year-up, .year-down {
-                background: none;
-                border: none;
-                color: var(--primary-color);
-                cursor: pointer;
-                padding: 0.2rem 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .prev-month, .next-month {
-                background: none;
-                border: none;
-                color: var(--primary-color);
-                cursor: pointer;
-                padding: 0.2rem;
-                font-size: 1.1rem;
-            }
-            
-            .current-month {
-                min-width: 120px;
-                text-align: center;
-                display: inline-block;
             }
             
             .calendar-day.empty {
@@ -1030,16 +1023,16 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="date-picker">
                 <div class="date-picker-header">
-                    <div class="date-selector">
-                        <div class="date-controls">
-                            <button class="control-btn month-prev">◀</button>
-                            <span class="year-month-display">2001년 1월</span>
-                            <button class="control-btn month-next">▶</button>
-                        </div>
-                        <div class="year-controls">
-                            <button class="control-btn year-up">▲</button>
-                            <button class="control-btn year-down">▼</button>
-                        </div>
+                    <div class="year-controls">
+                        <button class="control-btn year-up">▲</button>
+                    </div>
+                    <div class="date-controls">
+                        <button class="control-btn month-prev">◀</button>
+                        <span class="year-month-display">2001년 1월</span>
+                        <button class="control-btn month-next">▶</button>
+                    </div>
+                    <div class="year-controls">
+                        <button class="control-btn year-down">▼</button>
                     </div>
                 </div>
                 <div class="calendar-grid">
