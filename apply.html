@@ -1331,7 +1331,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </section>
 
                     <section class="form-section">
-                        <h2 class="section-title">활동 참여 여부</h2>
+                        <h2 class="section-title">활동 참여 및 동의 여부</h2>
                         
                         <!-- OT/MT 참석 여부 -->
                         <div class="form-group" style="margin-bottom: 2.5rem;">
@@ -1441,7 +1441,65 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             </div>
                         </div>
+
+                      <!-- 콘텐츠 활용 동의 섹션 -->
+                    <div class="form-group">
+                        <div class="schedule-card">
+                            <div class="card-header">
+                                <h3>콘텐츠 활용 동의</h3>
+                                <span class="required-badge">필수</span>
+                            </div>
+                    
+                            <div class="schedule-info">
+                                <div class="info-item">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span class="info-label">공유</span>
+                                    <span class="info-value">활동 사진 클라우드 업로드</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fab fa-instagram"></i>
+                                    <span class="info-label">홍보</span>
+                                    <span class="info-value">SNS 홍보물 활용</span>
+                                </div>
+                            </div>
+                    
+                            <div class="schedule-description">
+                                <p>발자취는 모든 활동마다 촬영된 사진과 영상을 동아리 클라우드에 공유하고 있으며, 본인의 얼굴이 포함된 자료를 포함해 엄선된 콘텐츠는 동아리 홍보를 위해 SNS에 게시됩니다. 이는 우리의 소중한 추억을 기록하고 동아리를 알리는 데 큰 도움이 됩니다.</p>
+                            </div>
+                    
+                            <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                                <div class="alert-green">
+                                    <i class="fas fa-info-circle"></i> 
+                                    공유된 촬영물은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.
+                                </div>
+                                <div class="alert-red">
+                                    <i class="fas fa-exclamation-circle"></i> 
+                                    SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
+                                </div>
+                            </div>
+                    
+                            <div class="radio-group-container">
+                                <label class="radio-label">
+                                    <input type="radio" name="content_agreement" value="전체_동의" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">모두 동의</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="content_agreement" value="클라우드만" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">클라우드 공유만 동의</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="content_agreement" value="동의_거부" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">동의하지 않음</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                        
                     </section>
+
 
             <section class="form-section">
                 <h2 class="section-title">자기소개</h2>
