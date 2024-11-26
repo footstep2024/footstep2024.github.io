@@ -807,6 +807,126 @@
                     font-size: 0.9rem;
                 }
             }
+
+        
+        /* 스케줄 카드 스타일 */
+            .schedule-card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+                padding: 1.5rem;
+                transition: all 0.3s ease;
+            }
+            
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.2rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+            }
+            
+            .card-header h3 {
+                font-size: 1.1rem;
+                color: var(--primary-color);
+                font-weight: 500;
+                margin: 0;
+            }
+            
+            .required-badge, .recommended-badge {
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+            
+            .required-badge {
+                background: rgba(220, 53, 69, 0.1);
+                color: #dc3545;
+            }
+            
+            .recommended-badge {
+                background: rgba(47, 82, 41, 0.1);
+                color: var(--primary-color);
+            }
+            
+            /* 스케줄 정보 스타일 */
+            .schedule-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                margin-bottom: 1.2rem;
+                padding: 1rem;
+                background: rgba(47, 82, 41, 0.03);
+                border-radius: 8px;
+            }
+            
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            
+            .info-item i {
+                color: var(--primary-color);
+                width: 16px;
+                text-align: center;
+            }
+            
+            .info-label {
+                font-weight: 500;
+                color: var(--primary-color);
+                min-width: 45px;
+            }
+            
+            .info-value {
+                color: var(--text-color);
+            }
+            
+            .info-sub {
+                color: var(--light-text);
+                font-size: 0.9em;
+                margin-left: 0.5rem;
+            }
+            
+            /* 설명 텍스트 스타일 */
+            .schedule-description {
+                margin: 1rem 0;
+                color: var(--text-color);
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            /* 라디오 그룹 컨테이너 스타일 */
+            .radio-group-container {
+                display: flex;
+                gap: 2rem;
+                margin-top: 1.2rem;
+                padding-top: 1.2rem;
+                border-top: 1px solid rgba(47, 82, 41, 0.1);
+            }
+            
+            /* 모바일 대응 */
+            @media (max-width: 768px) {
+                .schedule-card {
+                    padding: 1.2rem;
+                }
+            
+                .radio-group-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            
+                .info-item {
+                    flex-wrap: wrap;
+                }
+            
+                .info-sub {
+                    margin-left: 2.3rem;
+                    width: 100%;
+                }
+            }
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -1214,77 +1334,114 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h2 class="section-title">활동 참여 여부</h2>
                         
                         <!-- OT/MT 참석 여부 -->
-                        <div class="form-group" style="margin-bottom: 2rem;">
-                            <label class="form-label required">OT 및 MT 안내</label>
-                            <div style="background: rgba(47, 82, 41, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                <div style="margin-bottom: 0.5rem;">
-                                    <span style="color: var(--primary-color);">• 일시:</span> 미정<br>
-                                    <span style="color: var(--primary-color);">• 장소:</span> 미정<br>
-                                    <span style="color: var(--primary-color);">• 참석:</span> 필수
+                        <div class="form-group" style="margin-bottom: 2.5rem;">
+                            <div class="schedule-card">
+                                <div class="card-header">
+                                    <h3>OT 및 MT 안내</h3>
+                                    <span class="required-badge">필수</span>
                                 </div>
-                                <p style="font-size: 0.85rem; color: var(--light-text); margin: 0.5rem 0;">
-                                    본 행사는 신입 회원 오리엔테이션과 MT를 겸한 중요한 일정입니다. 모든 합격자의 참석이 필수이며, 불가피한 사정이더라도 불참 시 합격이 자동 취소됩니다. 함께 동아리의 첫 결음을 내딛는 소중한 시간이 될 것이니, 일정 조정을 부탁드립니다.
-                                </p>
-                                <p style="font-size: 0.85rem; color: var(--light-text); margin-top: 0.5rem;">
-                                    원활한 행사 진행을 위해 가능한 정시(주중 공지)에 참여해 주시기 바랍니다.
-                                </p>
-                                <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 0.5rem;">
-                                    ※ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니다.
-                                </p>
-                            </div>
-                            <div class="radio-group" style="justify-content: flex-start; gap: 3rem;">
-                                <label class="radio-label">
-                                    <input type="radio" name="ot_mt_attendance" value="참석_가능" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">참석 가능</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="ot_mt_attendance" value="녹화_참석" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">늦게 참석</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="ot_mt_attendance" value="참석_불가" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">참석 불가</span>
-                                </label>
+                                
+                                <div class="schedule-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span class="info-label">일시</span>
+                                        <span class="info-value">1월 25일(토) ~ 26일(일)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span class="info-label">장소</span>
+                                        <span class="info-value">대성리</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="schedule-description">
+                                    <p>본 행사는 신입 회원 오리엔테이션과 MT를 겸한 중요한 일정입니다. 모든 합격자의 참석이 필수이며, 불가피한 사정이더라도 불참 시 합격이 자동 취소됩니다. 함께 동아리의 첫 걸음을 내딛는 소중한 시간이 될 것이니, 일정 조정을 부탁드립니다.</p>
+                                </div>
+                    
+                               <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                                   <div class="alert-red">
+                                       <i class="fas fa-exclamation-circle"></i> 
+                                       원활한 행사 진행을 위해 가능한 정시 참여를 부탁드립니다.
+                                   </div>
+                                   <div class="alert-green">
+                                       <i class="fas fa-info-circle"></i> 
+                                       MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니다.
+                                   </div>
+                               </div>
+                    
+                                <div class="radio-group-container">
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="참석_가능" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참석 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="늦게_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">늦게 참석</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="참석_불가" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참석 불가</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     
                         <!-- 정기 활동 참석 여부 -->
                         <div class="form-group">
-                            <label class="form-label required">정기 활동 안내</label>
-                            <div style="background: rgba(47, 82, 41, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                <div style="margin-bottom: 0.5rem;">
-                                    <span style="color: var(--primary-color);">• 일정:</span> 매월 2, 4째 주 주말 (영화 시 일요일 포함)<br>
-                                    <span style="color: var(--primary-color);">• 참석:</span> 매월 최소 1회 참여 권장
+                            <div class="schedule-card">
+                                <div class="card-header">
+                                    <h3>정기 활동 안내</h3>
+                                    <span class="required-badge">필수</span>
                                 </div>
-                                <p style="font-size: 0.85rem; color: var(--light-text); margin: 0.5rem 0;">
-                                    본 동아리는 위 일정에 정기 활동을 진행합니다. 회원들의 적극적인 참여가 필요하며, 잦은 불참은 동아리 활동에 제한을 줄 수 있습니다.
-                                </p>
-                                <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 0.5rem;">
-                                    ※ 시험기간 등 동아리 전체 사정이 있을 경우, 해당 달의 일정은 유동적으로 조정될 수 있습니다.
-                                </p>
-                            </div>
-                            <div class="radio-group" style="justify-content: flex-start; gap: 3rem;">
-                                <label class="radio-label">
-                                    <input type="radio" name="regular_attendance" value="대부분_참석" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">대부분 참여 가능</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="regular_attendance" value="부분_참석" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">부분 참여 가능</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="regular_attendance" value="참여_어려움" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">참여 어려움</span>
-                                </label>
+                    
+                                <div class="schedule-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span class="info-label">일정</span>
+                                        <span class="info-value">매월 2, 4째 주 주말</span>
+                                        <span class="info-sub">(여행 시 일요일 포함)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-user-check"></i>
+                                        <span class="info-label">참석</span>
+                                        <span class="info-value">매월 최소 1회 참여 필수</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="schedule-description">
+                                    <p>본 동아리는 위 일정에 정기 활동을 진행합니다. 회원들의 적극적인 참여가 필요하며, 잦은 불참은 동아리 활동에 제한을 줄 수 있습니다.</p>
+                                </div>
+                    
+                             <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                               <div class="alert-red">
+                                   <i class="fas fa-exclamation-circle"></i> 
+                                   시험기간 등 동아리 전체 사정이 있을 경우, 해당 달의 일정은 유동적으로 조정될 수 있습니다.
+                               </div>
+                           </div>
+                    
+                                <div class="radio-group-container">
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="대부분_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">대부분 참여 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="부분_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">부분 참여 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="참여_어려움" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참여 어려움</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </section>            
+                    </section>
 
             <section class="form-section">
                 <h2 class="section-title">자기소개</h2>
