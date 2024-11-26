@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#2F5229">
-    <title>발자취 - 25-1학기 신입부원 지원서 작</title>
+    <title>발자취 - 25-1학기 신입부원 지원서 작성</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -264,7 +264,6 @@
         .alerts {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
         }
         
         .alert-red, .alert-green {
@@ -315,6 +314,11 @@
             font-weight: 500;
             margin-bottom: 0.4rem;  /* 0.5rem에서 줄임 */
             color: var(--text-color);
+        }
+
+        .form-control, 
+        select.form-control {
+            height: 38px;
         }
     
             /* 모바일 대응 */
@@ -803,6 +807,126 @@
                     font-size: 0.9rem;
                 }
             }
+
+        
+        /* 스케줄 카드 스타일 */
+            .schedule-card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+                padding: 1.5rem;
+                transition: all 0.3s ease;
+            }
+            
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.2rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+            }
+            
+            .card-header h3 {
+                font-size: 1.1rem;
+                color: var(--primary-color);
+                font-weight: 500;
+                margin: 0;
+            }
+            
+            .required-badge, .recommended-badge {
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+            
+            .required-badge {
+                background: rgba(220, 53, 69, 0.1);
+                color: #dc3545;
+            }
+            
+            .recommended-badge {
+                background: rgba(47, 82, 41, 0.1);
+                color: var(--primary-color);
+            }
+            
+            /* 스케줄 정보 스타일 */
+            .schedule-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                margin-bottom: 1.2rem;
+                padding: 1rem;
+                background: rgba(47, 82, 41, 0.03);
+                border-radius: 8px;
+            }
+            
+            .info-item {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            
+            .info-item i {
+                color: var(--primary-color);
+                width: 16px;
+                text-align: center;
+            }
+            
+            .info-label {
+                font-weight: 500;
+                color: var(--primary-color);
+                min-width: 45px;
+            }
+            
+            .info-value {
+                color: var(--text-color);
+            }
+            
+            .info-sub {
+                color: var(--light-text);
+                font-size: 0.9em;
+                margin-left: 0.5rem;
+            }
+            
+            /* 설명 텍스트 스타일 */
+            .schedule-description {
+                margin: 1rem 0;
+                color: var(--text-color);
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            /* 라디오 그룹 컨테이너 스타일 */
+            .radio-group-container {
+                display: flex;
+                gap: 2rem;
+                margin-top: 1.2rem;
+                padding-top: 1.2rem;
+                border-top: 1px solid rgba(47, 82, 41, 0.1);
+            }
+            
+            /* 모바일 대응 */
+            @media (max-width: 768px) {
+                .schedule-card {
+                    padding: 1.2rem;
+                }
+            
+                .radio-group-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            
+                .info-item {
+                    flex-wrap: wrap;
+                }
+            
+                .info-sub {
+                    margin-left: 2.3rem;
+                    width: 100%;
+                }
+            }
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -884,8 +1008,12 @@ document.addEventListener('DOMContentLoaded', function() {
             dateElement.className = 'calendar-day';
             dateElement.textContent = i;
             dateElement.onclick = () => {
-                const date = new Date(currentYear, currentMonth, i);
-                document.querySelector('input[name="birthdate"]').valueAsDate = date;
+                // 날짜 객체 생성 시 시간을 정오(12:00)로 설정
+                const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
+                // ISO 문자열로 변환 후 날짜 부분만 잘라서 설정
+                const isoString = date.toISOString();
+                const dateString = isoString.split('T')[0];
+                document.querySelector('input[name="birthdate"]').value = dateString;
                 closeDateModal();
             };
             calendarGrid.appendChild(dateElement);
@@ -1071,31 +1199,55 @@ document.addEventListener('DOMContentLoaded', function() {
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                    <!-- 첫 번째 줄: 이름, 생년월일, 성별 -->
-                    <div class="form-row three-columns">
-                        <div class="form-group">
+                     <!-- 첫 번째 줄: 이름, 생년월일, 성별, MBTI, SNS -->
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: center">
+                        <div class="form-group" style="width: 20%">
                             <label class="form-label required">이름</label>
                             <input type="text" class="form-control" name="name" required>
-                            <div class="error-message">이름을 입력해주세요.</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width: 27%">
                             <label class="form-label required">생년월일</label>
                             <input type="date" class="form-control" name="birthdate" required>
-                            <div class="error-message">생년월일을 입력해주세요.</div>
                         </div>
-                        <div class="form-group">
-                            <div class="radio-group">
-                                <label class="radio-label">
+                        <div class="form-group" style="width: 13%">
+                            <div class="radio-group" style="flex-direction: column; position: relative; top: 10px; left: -10px">
+                                <label class="radio-label" style="margin-bottom: -47px">
                                     <input type="radio" name="gender" value="남성" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">남성</span>
+                                    <span class="label-text">남</span>
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="gender" value="여성" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">여성</span>
+                                    <span class="label-text">여</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="form-group" style="width: 27%; margin-left: -18px">
+                            <label class="form-label" style="visibility: hidden">MBTI</label>  <!-- 보이지 않는 label 추가 -->
+                            <select class="form-control" name="mbti" required>
+                                <option value="" disabled selected>MBTI 선택</option>
+                                <option value="ISTJ">ISTJ</option>
+                                <option value="ISFJ">ISFJ</option>
+                                <option value="INFJ">INFJ</option>
+                                <option value="INTJ">INTJ</option>
+                                <option value="ISTP">ISTP</option>
+                                <option value="ISFP">ISFP</option>
+                                <option value="INFP">INFP</option>
+                                <option value="INTP">INTP</option>
+                                <option value="ESTP">ESTP</option>
+                                <option value="ESFP">ESFP</option>
+                                <option value="ENFP">ENFP</option>
+                                <option value="ENTP">ENTP</option>
+                                <option value="ESTJ">ESTJ</option>
+                                <option value="ESFJ">ESFJ</option>
+                                <option value="ENFJ">ENFJ</option>
+                                <option value="ENTJ">ENTJ</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="width: 80%">
+                            <label class="form-label">인스타/블로그 주소</label>
+                            <input type="text" class="form-control" name="sns" placeholder="일상 속 여행이 스며있는 SNS라면 꼭 적어주세요">
                         </div>
                     </div>
                     
@@ -1117,68 +1269,237 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="error-message">현재 거주지를 입력해주세요.</div>
                         </div>
                     </div>
-                
-                    <div class="form-row three-columns">
-                       <div class="form-group">
-                           <label class="form-label required">학교</label>
-                           <input type="text" class="form-control" name="school" required>
-                           <div class="error-message">소속 학교를 입력해주세요.</div>
-                       </div>
-                       <div class="form-group">
-                           <label class="form-label required">전공</label>
-                           <input type="text" class="form-control" name="major" required>
-                           <div class="error-message">전공을 입력해주세요.</div>
-                       </div>
-                       <div class="form-group">
-                           <label class="form-label required">학번</label>
-                           <input type="text" class="form-control" name="student_id" placeholder="입학년도만 입력(예:25학번)" required>
-                           <div class="error-message">학번을 입력해주세요.</div>
-                       </div>
-                    </div>
                     
-                    <div class="form-row three-columns">
-                        <div class="form-group">
-                            <div class="custom-select">
+                    <!-- 학교/전공/학번/학년 줄 -->
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
+                        <div class="form-group" style="width: 24%">
+                            <label class="form-label required">학교</label>
+                            <input type="text" class="form-control" name="school" required>
+                        </div>
+                        <div class="form-group" style="width: 30%">
+                            <label class="form-label required">전공</label>
+                            <input type="text" class="form-control" name="major" required>
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <label class="form-label required">학번</label>
+                            <input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <div style="position: relative">
+                                <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="is_leave">
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">휴학</span>
+                                    </label>
+                                </div>
+                                <label class="form-label" style="visibility: hidden">학년</label>
                                 <select class="form-control" name="grade" required>
                                     <option value="" disabled selected>학년 선택</option>
                                     <option value="1">1학년</option>
                                     <option value="2">2학년</option>
                                     <option value="3">3학년</option>
                                     <option value="4">4학년</option>
+                                    <option value="graduating">졸업예정</option>
+                                    <option value="graduated">졸업</option>
                                 </select>
                             </div>
                         </div>
+                    </div>
+                
+                    <!-- 운전가능여부 섹션 -->
+                    <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+                       <div style="display: flex; gap: 24px">
+                           <select class="form-control" name="driving_status" style="width: 180px" required>
+                               <option value="" disabled selected>운전 가능 여부 선택</option>
+                               <option value="car">자차 보유</option>
+                               <option value="license">면허만 보유</option>
+                               <option value="none">해당사항 없음</option>
+                           </select>
+                           <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                               <div class="alert-red">
+                                   <i class="fas fa-exclamation-circle"></i> 
+                                   실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
+                               </div>
+                               <div class="alert-green">
+                                   <i class="fas fa-info-circle"></i> 
+                                   장롱면허의 경우 해당사항 없음을 선택해 주세요.
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                    </section>
+
+                    <section class="form-section">
+                        <h2 class="section-title">활동 참여 및 동의 여부</h2>
                         
-                        <!-- 학기 선택 라디오 버튼 -->
+                        <!-- OT/MT 참석 여부 -->
+                        <div class="form-group" style="margin-bottom: 2.5rem;">
+                            <div class="schedule-card">
+                                <div class="card-header">
+                                    <h3>OT 및 MT 안내</h3>
+                                    <span class="required-badge">필수</span>
+                                </div>
+                                
+                                <div class="schedule-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span class="info-label">일시</span>
+                                        <span class="info-value">1월 25일(토) ~ 26일(일)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span class="info-label">장소</span>
+                                        <span class="info-value">대성리</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="schedule-description">
+                                    <p>본 행사는 신입 회원 오리엔테이션과 MT를 겸한 중요한 일정입니다. 모든 합격자의 참석이 필수이며, 불가피한 사정이더라도 불참 시 합격이 자동 취소됩니다. 함께 동아리의 첫 걸음을 내딛는 소중한 시간이 될 것이니, 일정 조정을 부탁드립니다.</p>
+                                </div>
+                    
+                               <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                                   <div class="alert-red">
+                                       <i class="fas fa-exclamation-circle"></i> 
+                                       원활한 행사 진행을 위해 가능한 정시 참여를 부탁드립니다.
+                                   </div>
+                                   <div class="alert-green">
+                                       <i class="fas fa-info-circle"></i> 
+                                       MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니다.
+                                   </div>
+                               </div>
+                    
+                                <div class="radio-group-container">
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="참석_가능" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참석 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="늦게_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">늦게 참석</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ot_mt_attendance" value="참석_불가" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참석 불가</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- 정기 활동 참석 여부 -->
                         <div class="form-group">
-                            <div class="semester-toggle">
+                            <div class="schedule-card">
+                                <div class="card-header">
+                                    <h3>정기 활동 안내</h3>
+                                    <span class="required-badge">필수</span>
+                                </div>
+                    
+                                <div class="schedule-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span class="info-label">일정</span>
+                                        <span class="info-value">매월 2, 4째 주 주말</span>
+                                        <span class="info-sub">(여행 시 일요일 포함)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-user-check"></i>
+                                        <span class="info-label">참석</span>
+                                        <span class="info-value">매월 최소 1회 참여 필수</span>
+                                    </div>
+                                </div>
+                    
+                                <div class="schedule-description">
+                                    <p>본 동아리는 위 일정에 정기 활동을 진행합니다. 회원들의 적극적인 참여가 필요하며, 잦은 불참은 동아리 활동에 제한을 줄 수 있습니다.</p>
+                                </div>
+                    
+                             <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                               <div class="alert-red">
+                                   <i class="fas fa-exclamation-circle"></i> 
+                                   시험기간 등 동아리 전체 사정이 있을 경우, 해당 달의 일정은 유동적으로 조정될 수 있습니다.
+                               </div>
+                           </div>
+                    
+                                <div class="radio-group-container">
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="대부분_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">대부분 참여 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="부분_참석" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">부분 참여 가능</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="regular_attendance" value="참여_어려움" required>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">참여 어려움</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                      <!-- 콘텐츠 활용 동의 섹션 -->
+                    <div class="form-group">
+                        <div class="schedule-card">
+                            <div class="card-header">
+                                <h3>콘텐츠 활용 동의</h3>
+                                <span class="recommended-badge">권장</span>
+                            </div>
+                    
+                            <div class="schedule-info">
+                                <div class="info-item">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span class="info-label">공유</span>
+                                    <span class="info-value">활동 사진 클라우드 업로드</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fab fa-instagram"></i>
+                                    <span class="info-label">홍보</span>
+                                    <span class="info-value">SNS 홍보물 활용</span>
+                                </div>
+                            </div>
+                    
+                            <div class="schedule-description">
+                                <p>발자취는 모든 활동마다 촬영된 사진과 영상을 동아리 클라우드에 공유하고 있으며, 본인의 얼굴이 포함된 자료를 포함해 엄선된 콘텐츠는 동아리 홍보를 위해 SNS에 게시됩니다. 이는 우리의 소중한 추억을 기록하고 동아리를 알리는 데 큰 도움이 됩니다.</p>
+                            </div>
+                    
+                            <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+                                <div class="alert-green">
+                                    <i class="fas fa-info-circle"></i> 
+                                    공유된 촬영물은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.
+                                </div>
+                                <div class="alert-red">
+                                    <i class="fas fa-exclamation-circle"></i> 
+                                    SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
+                                </div>
+                            </div>
+                    
+                            <div class="radio-group-container">
                                 <label class="radio-label">
-                                    <input type="radio" name="semester" value="1" required>
+                                    <input type="radio" name="content_agreement" value="전체_동의" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">1학기</span>
+                                    <span class="label-text">모두 동의</span>
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="semester" value="2" required>
+                                    <input type="radio" name="content_agreement" value="클라우드만" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">2학기</span>
+                                    <span class="label-text">클라우드 공유만 동의</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="content_agreement" value="동의_거부" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">동의하지 않음</span>
                                 </label>
                             </div>
                         </div>
-                    <div class="form-group">
-                        <div class="status-checks">
-                            <label class="radio-label">
-                                <input type="checkbox" name="is_leave" value="yes">
-                                <span class="check-icon"></span>
-                                <span class="label-text">휴학 중</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="checkbox" name="is_graduate" value="yes">
-                                <span class="check-icon"></span>
-                                <span class="label-text">졸업 (예정)</span>
-                            </label>
-                        </div>
-                    </div>      
+                    </div>
+                        
                     </section>
+
 
             <section class="form-section">
                 <h2 class="section-title">자기소개</h2>
