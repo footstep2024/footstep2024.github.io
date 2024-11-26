@@ -264,7 +264,6 @@
         .alerts {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
         }
         
         .alert-red, .alert-green {
@@ -1124,39 +1123,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     
                     <!-- 학교/전공/학번/학년 줄 -->
-                    <div class="form-row" style="display: flex; gap: 16px; align-items: center">
-                       <div class="form-group" style="width: 30%">
-                           <label class="form-label required">학교</label>
-                           <input type="text" class="form-control" name="school" required>
-                       </div>
-                       <div class="form-group" style="width: 35%">
-                           <label class="form-label required">전공</label>
-                           <input type="text" class="form-control" name="major" required>
-                       </div>
-                       <div class="form-group" style="width: 15%">
-                           <label class="form-label required">학번</label>
-                           <input type="text" class="form-control" name="student_id" placeholder="예: 25학번" style="height: 38px">
-                       </div>
-                        <div class="form-group" style="width: 20%">
-                            <div style="display: flex; justify-content: flex-end; margin-bottom: 4px">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="is_leave">
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">휴학</span>
-                                </label>
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
+                        <div class="form-group" style="width: 25%">
+                            <label class="form-label required">학교</label>
+                            <input type="text" class="form-control" name="school" required>
+                        </div>
+                        <div class="form-group" style="width: 30%">
+                            <label class="form-label required">전공</label>
+                            <input type="text" class="form-control" name="major" required>
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <label class="form-label required">학번</label>
+                            <input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <div style="position: relative">
+                                <div style="position: absolute; top: 32px; right: -57px; padding-bottom: 4px">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="is_leave">
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">휴학</span>
+                                    </label>
+                                </div>
+                                <label class="form-label" style="visibility: hidden">학년</label>
+                                <select class="form-control" name="grade" required>
+                                    <option value="" disabled selected>학년 선택</option>
+                                    <option value="1">1학년</option>
+                                    <option value="2">2학년</option>
+                                    <option value="3">3학년</option>
+                                    <option value="4">4학년</option>
+                                    <option value="graduating">졸업예정</option>
+                                    <option value="graduated">졸업</option>
+                                </select>
                             </div>
-                            <select class="form-control" name="grade" required>
-                                <option value="" disabled selected>학년 선택</option>
-                                <option value="1">1학년</option>
-                                <option value="2">2학년</option>
-                                <option value="3">3학년</option>
-                                <option value="4">4학년</option>
-                                <option value="graduating">졸업예정</option>
-                                <option value="graduated">졸업</option>
-                            </select>
                         </div>
                     </div>
-
+                
                     <!-- 운전가능여부 섹션 -->
                     <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
                        <div style="display: flex; gap: 24px">
