@@ -1075,31 +1075,55 @@ document.addEventListener('DOMContentLoaded', function() {
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                    <!-- 첫 번째 줄: 이름, 생년월일, 성별 -->
-                    <div class="form-row three-columns">
-                        <div class="form-group">
+                     <!-- 첫 번째 줄: 이름, 생년월일, 성별, MBTI, SNS -->
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: center">
+                        <div class="form-group" style="width: 20%">
                             <label class="form-label required">이름</label>
                             <input type="text" class="form-control" name="name" required>
-                            <div class="error-message">이름을 입력해주세요.</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="width: 27%">
                             <label class="form-label required">생년월일</label>
                             <input type="date" class="form-control" name="birthdate" required>
-                            <div class="error-message">생년월일을 입력해주세요.</div>
                         </div>
-                        <div class="form-group">
-                            <div class="radio-group">
-                                <label class="radio-label">
+                        <div class="form-group" style="width: 13%">
+                            <div class="radio-group" style="flex-direction: column; position: relative; top: 10px; left: -15px">
+                                <label class="radio-label" style="margin-bottom: -45px">
                                     <input type="radio" name="gender" value="남성" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">남성</span>
+                                    <span class="label-text">남</span>
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="gender" value="여성" required>
                                     <span class="check-icon"></span>
-                                    <span class="label-text">여성</span>
+                                    <span class="label-text">여</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="form-group" style="width: 27%; margin-left: -18px">
+                            <label class="form-label" style="visibility: hidden">MBTI</label>  <!-- 보이지 않는 label 추가 -->
+                            <select class="form-control" name="mbti" required>
+                                <option value="" disabled selected>MBTI 선택</option>
+                                <option value="ISTJ">ISTJ</option>
+                                <option value="ISFJ">ISFJ</option>
+                                <option value="INFJ">INFJ</option>
+                                <option value="INTJ">INTJ</option>
+                                <option value="ISTP">ISTP</option>
+                                <option value="ISFP">ISFP</option>
+                                <option value="INFP">INFP</option>
+                                <option value="INTP">INTP</option>
+                                <option value="ESTP">ESTP</option>
+                                <option value="ESFP">ESFP</option>
+                                <option value="ENFP">ENFP</option>
+                                <option value="ENTP">ENTP</option>
+                                <option value="ESTJ">ESTJ</option>
+                                <option value="ESFJ">ESFJ</option>
+                                <option value="ENFJ">ENFJ</option>
+                                <option value="ENTJ">ENTJ</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="width: 80%">
+                            <label class="form-label">인스타/블로그 주소</label>
+                            <input type="text" class="form-control" name="sns" placeholder="일상 속 여행이 스며있는 SNS라면 꼭 적어주세요">
                         </div>
                     </div>
                     
