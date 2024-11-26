@@ -888,8 +888,12 @@ document.addEventListener('DOMContentLoaded', function() {
             dateElement.className = 'calendar-day';
             dateElement.textContent = i;
             dateElement.onclick = () => {
-                const date = new Date(currentYear, currentMonth, i);
-                document.querySelector('input[name="birthdate"]').valueAsDate = date;
+                // 날짜 객체 생성 시 시간을 정오(12:00)로 설정
+                const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
+                // ISO 문자열로 변환 후 날짜 부분만 잘라서 설정
+                const isoString = date.toISOString();
+                const dateString = isoString.split('T')[0];
+                document.querySelector('input[name="birthdate"]').value = dateString;
                 closeDateModal();
             };
             calendarGrid.appendChild(dateElement);
