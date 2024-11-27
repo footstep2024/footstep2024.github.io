@@ -268,10 +268,15 @@
         
         .alert-red, .alert-green {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            align-items: flex-start;
+            gap: 0.2rem;
             margin-bottom: 0.5rem;
             font-size: 0.75rem;
+            line-height: 1;
+        }
+        
+        .driving-alert {
+            margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
         }
 
         @media (max-width: 768px) {
@@ -279,6 +284,10 @@
             font-size: 0.7rem;
         }
     }
+
+        .alert-red i, .alert-green i {
+            margin-top: 1.5px;
+        }
         
         .alert-red {
             color: #dc3545;
@@ -932,6 +941,8 @@
                 color: var(--primary-color);
                 width: 16px;
                 text-align: center;
+                line-height: 1;  /* 추가: 아이콘의 line-height 조정 */
+                vertical-align: middle;  /* 추가: 수직 정렬 조정 */
             }
             
             .info-label {
@@ -1371,24 +1382,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                     <!-- 운전가능여부 섹션 -->
                     <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-                       <div style="display: flex; gap: 24px">
-                           <select class="form-control" name="driving_status" style="width: 180px" required>
-                               <option value="" disabled selected>운전 가능 여부 선택</option>
-                               <option value="car">자차 보유</option>
-                               <option value="license">면허만 보유</option>
-                               <option value="none">해당사항 없음</option>
-                           </select>
-                           <div class="alerts" style="flex-grow: 1; margin-top: -30px">
-                               <div class="alert-red">
-                                   <i class="fas fa-exclamation-circle"></i> 
-                                   실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
-                               </div>
-                               <div class="alert-green">
-                                   <i class="fas fa-info-circle"></i> 
-                                   장롱면허의 경우 해당사항 없음을 선택해 주세요.
-                               </div>
-                           </div>
-                       </div>
+                        <div style="display: flex; gap: 24px">  <!-- 가로 배치를 위한 컨테이너 -->
+                            <select class="form-control" name="driving_status" style="width: 180px" required>
+                                <option value="" disabled selected>운전 가능 여부 선택</option>
+                                <option value="car">자차 보유</option>
+                                <option value="license">면허만 보유</option>
+                                <option value="none">해당사항 없음</option>
+                            </select>
+                            <div style="display: flex; flex-direction: column; margin-top: -4px">  <!-- alert들을 세로로 쌓기 위한 컨테이너 -->
+                                <div class="alert-red driving-alert" style="margin-bottom: -2px">
+                                    <i class="fas fa-exclamation-circle"></i> 
+                                    실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
+                                </div>
+                                <div class="alert-green driving-alert">
+                                    <i class="fas fa-info-circle"></i>
+                                    장롱면허의 경우 해당사항 없음을 선택해 주세요.
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- SNS -->
