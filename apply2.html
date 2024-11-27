@@ -271,8 +271,14 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 0.5rem;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
+
+        @media (max-width: 768px) {
+        .alert-red, .alert-green {
+            font-size: 0.7rem;
+        }
+    }
         
         .alert-red {
             color: #dc3545;
@@ -882,7 +888,7 @@
             }
             
             .card-header h3 {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 color: var(--primary-color);
                 font-weight: 500;
                 margin: 0;
@@ -936,6 +942,7 @@
             
             .info-value {
                 color: var(--text-color);
+                font-size: 0.9rem;
             }
             
             .info-sub {
@@ -948,7 +955,7 @@
             .schedule-description {
                 margin: 1rem 0;
                 color: var(--text-color);
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 line-height: 1.6;
             }
             
