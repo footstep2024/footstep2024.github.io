@@ -999,6 +999,92 @@
                     width: 100%;
                 }
             }
+
+                .example-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    margin: 1rem 0;
+                }
+                
+                .example-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 6px 16px;
+                    font-size: 0.8rem;
+                    color: var(--primary-color);
+                    background: rgba(47, 82, 41, 0.1);
+                    border: none;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+                
+                .example-btn:hover {
+                    background: rgba(47, 82, 41, 0.15);
+                    transform: translateY(-1px);
+                }
+                
+                /* 모바일 대응 */
+                @media (max-width: 768px) {
+                    .example-btn {
+                        padding: 5px 14px;
+                        font-size: 0.75rem;
+                    }
+                }
+
+                
+                /* 예시 보기 모달 스타일 */
+                .example-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 1000;
+                    backdrop-filter: blur(5px);
+                }
+                
+                .example-modal-content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 20px;
+                    border-radius: 12px;
+                    width: 90%;
+                    max-width: 500px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                
+                .example-modal img {
+                    width: 100%;
+                    border-radius: 8px;
+                    margin-top: 10px;
+                }
+                
+                .example-close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: none;
+                    border: none;
+                    font-size: 20px;
+                    cursor: pointer;
+                    color: #666;
+                }
+                
+                @media (max-width: 768px) {
+                    .example-modal-content {
+                        width: 85%;
+                        padding: 15px;
+                    }
+                }
+        
+        
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -1599,14 +1685,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
 
-                        <!-- 여행 운영 참여 동의 섹션 -->
+                    <!-- 여행 운영 참여 안내 섹션 -->
                     <div class="form-group">
                         <div class="schedule-card">
                             <div class="card-header">
                                 <h3>여행 운영 참여 안내</h3>
                                 <span class="recommended-badge">권장</span>
                             </div>
-                    
                             <div class="schedule-info">
                                 <div class="info-item">
                                     <i class="fas fa-vote-yea"></i>
@@ -1619,22 +1704,27 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <span class="info-value">여행 후기 및 개선점 공유</span>
                                 </div>
                             </div>
-                    
                             <div class="schedule-description">
                                 <p>발자취는 매달 전체 부원을 대상으로 희망 여행지와 피드백을 수집합니다. 모든 의견을 반영하여 다음 여행지를 선정하고, 동시에 이전 여행에서 좋았던 점을 계속해서 이어가는 한편, 아쉬웠던 점을 즉각 개선하여 더 나은 여행 문화를 만들고자 노력하고 있습니다. 이처럼 발자취는 단순한 여행 동아리가 아닌, 부원 모두의 적극적인 참여로 성장하는 동아리이며, 발자취만의 특별한 여행을 만드는 원동력입니다.</p>
                             </div>
-                    
-                            <div class="alerts" style="flex-grow: 1; margin-top: -25px">
-                                <div class="alert-green">
-                                    <i class="fas fa-info-circle"></i> 
-                                    매달 온라인 구글폼 설문조사를 통해 익명으로 의견을 받습니다. 
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <div class="alert-green">
+                                        <i class="fas fa-info-circle"></i> 
+                                        매달 온라인 구글폼 설문조사를 통해 익명으로 의견을 받습니다. 
+                                    </div>
+                                    <div class="alert-red">
+                                        <i class="fas fa-exclamation-circle"></i> 
+                                        적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
+                                    </div>
                                 </div>
-                                <div class="alert-red">
-                                    <i class="fas fa-exclamation-circle"></i> 
-                                    적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
-                                </div>
+                                <button class="example-btn" onclick="showExample('feedback')">
+                                    <i class="fas fa-image"></i>
+                                    예시
+                                </button>
                             </div>
-                    
+                            
                             <div class="radio-group-container">
                                 <label class="radio-label">
                                     <input type="radio" name="participation_agreement" value="적극_참여" required>
@@ -1664,3 +1754,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="form-group">
                     <label class="form-label required">간단한 자기소개를 해주세요.</label>
                     <textarea class="form-control" name="introduction" rows="4" required></textarea>
+
+                    <!-- 예시 보기 모달 -->
+                    <div class="example-modal" id="exampleModal">
+                        <div class="example-modal-content">
+                            <button class="example-close" onclick="closeExample()">&times;</button>
+                            <img id="exampleImage" src="" alt="예시 이미지">
+                        </div>
+                    </div>
+                    
+                    <script>
+                    function showExample(type) {
+                        const modal = document.getElementById('exampleModal');
+                        const image = document.getElementById('exampleImage');
+                        
+                        // 이미지 경로 설정
+                        if (type === 'feedback') {
+                            image.src = 'assets/images/examples/feedback-example.png';
+                        }
+                        
+                        modal.style.display = 'block';
+                    }
+                    
+                    function closeExample() {
+                        document.getElementById('exampleModal').style.display = 'none';
+                    }
+                    
+                    // 모달 바깥 클릭시 닫기
+                    window.onclick = function(event) {
+                        const modal = document.getElementById('exampleModal');
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    }
+                    </script>
+</body>
+</html>
