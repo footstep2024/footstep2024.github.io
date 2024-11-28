@@ -1052,56 +1052,77 @@
                    }
                 }
 
-                
-                /* 예시 보기 모달 스타일 */
-                .example-modal {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.5);
-                    z-index: 1000;
-                    backdrop-filter: blur(5px);
-                }
-                
-                .example-modal-content {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: white;
-                    padding: 20px;
-                    border-radius: 12px;
-                    width: 90%;
-                    max-width: 500px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                }
-                
-                .example-modal img {
-                    width: 100%;
-                    border-radius: 8px;
-                    margin-top: 10px;
-                }
-                
-                .example-close {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background: none;
-                    border: none;
-                    font-size: 20px;
-                    cursor: pointer;
-                    color: #666;
-                }
-                
-                @media (max-width: 768px) {
-                    .example-modal-content {
-                        width: 85%;
-                        padding: 15px;
+                    .example-modal {
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.7);
+                        z-index: 1000;
+                        backdrop-filter: blur(5px);
+                        /* 스크롤 가능하도록 overflow 설정 */
+                        overflow-y: auto;
                     }
-                }
+                    
+                    .example-modal-content {
+                        position: relative; /* absolute에서 relative로 변경 */
+                        background: white;
+                        padding: 20px;
+                        border-radius: 12px;
+                        width: 90%;
+                        max-width: 800px; /* 최대 너비 증가 */
+                        margin: 40px auto; /* 상하 여백 추가 및 중앙 정렬 */
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    /* 이미지 스타일 추가 */
+                    .example-modal-content img {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 8px;
+                        margin-top: 10px;
+                    }
+                    
+                    /* 닫기 버튼 스타일 개선 */
+                    .example-close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 30px;
+                        height: 30px;
+                        background: rgba(0, 0, 0, 0.1);
+                        border: none;
+                        border-radius: 50%;
+                        font-size: 20px;
+                        cursor: pointer;
+                        color: #666;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .example-close:hover {
+                        background: rgba(0, 0, 0, 0.2);
+                        color: #333;
+                    }
+                    
+                    /* 모바일 대응 */
+                    @media (max-width: 768px) {
+                        .example-modal-content {
+                            width: 95%;
+                            margin: 20px auto;
+                            padding: 15px;
+                        }
+                    
+                        .example-close {
+                            width: 25px;
+                            height: 25px;
+                            font-size: 18px;
+                        }
+                    }
         
         
         /* 다크 모드 지원 */
@@ -1793,17 +1814,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         modal.style.display = 'block';
+                        // 스크롤 방지
+                        document.body.style.overflow = 'hidden';
                     }
                     
                     function closeExample() {
-                        document.getElementById('exampleModal').style.display = 'none';
+                        const modal = document.getElementById('exampleModal');
+                        modal.style.display = 'none';
+                        // 스크롤 복원
+                        document.body.style.overflow = 'auto';
                     }
+                    
+                    // ESC 키로 모달 닫기 기능 추가
+                    document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+                            closeExample();
+                        }
+                    });
                     
                     // 모달 바깥 클릭시 닫기
                     window.onclick = function(event) {
                         const modal = document.getElementById('exampleModal');
                         if (event.target === modal) {
-                            modal.style.display = 'none';
+                            closeExample();
                         }
                     }
                     </script>
