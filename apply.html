@@ -268,10 +268,25 @@
         
         .alert-red, .alert-green {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            align-items: flex-start;
+            gap: 0.2rem;
             margin-bottom: 0.5rem;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            line-height: 1;
+        }
+        
+        .driving-alert {
+            margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
+        }
+
+        @media (max-width: 768px) {
+        .alert-red, .alert-green {
+            font-size: 0.7rem;
+        }
+    }
+
+        .alert-red i, .alert-green i {
+            margin-top: 1.5px;
         }
         
         .alert-red {
@@ -367,6 +382,60 @@
         /* date input의 placeholder 스타일 */
         input[type="date"].form-control::-webkit-datetime-edit-fields-wrapper {
             font-size: 0.75rem;
+        }
+
+        /* style 태그 안에 추가 */
+        .gender-select {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .gender-select input {
+            display: none;
+        }
+        
+        .gender-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .gender-button i {
+            font-size: 0.9rem;
+        }
+        
+        .gender-select:hover .gender-button {
+            background: #eef2ee;
+            color: var(--primary-color);
+        }
+        
+        .gender-select input:checked + .gender-button {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(47, 82, 41, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-wrap: wrap;
+            }
+            
+            .form-group {
+                width: 100% !important;
+            }
+            
+            .gender-button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
         }
         
         .form-control::placeholder,
@@ -828,7 +897,7 @@
             }
             
             .card-header h3 {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 color: var(--primary-color);
                 font-weight: 500;
                 margin: 0;
@@ -872,6 +941,8 @@
                 color: var(--primary-color);
                 width: 16px;
                 text-align: center;
+                line-height: 1;  /* 추가: 아이콘의 line-height 조정 */
+                vertical-align: middle;  /* 추가: 수직 정렬 조정 */
             }
             
             .info-label {
@@ -882,6 +953,7 @@
             
             .info-value {
                 color: var(--text-color);
+                font-size: 0.9rem;
             }
             
             .info-sub {
@@ -894,7 +966,7 @@
             .schedule-description {
                 margin: 1rem 0;
                 color: var(--text-color);
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 line-height: 1.6;
             }
             
@@ -927,6 +999,111 @@
                     width: 100%;
                 }
             }
+
+                .example-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    margin: 1rem 0;
+                }
+                
+                .example-btn {
+                   background: transparent;
+                   border: 1px solid var(--primary-color);
+                   color: var(--primary-color);
+                   padding: 4px 12px;
+                   font-size: 0.75rem;
+                   border-radius: 4px;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 4px;
+                   transition: all 0.2s ease;
+                   position: relative;
+                   overflow: hidden;
+                }
+                
+                .example-btn::before {
+                   content: '';
+                   position: absolute;
+                   top: 0;
+                   left: -100%;
+                   width: 100%;
+                   height: 100%;
+                   background: linear-gradient(120deg, transparent, rgba(47, 82, 41, 0.2), transparent);
+                }
+                
+                .example-btn:hover {
+                   background: rgba(47, 82, 41, 0.05);
+                   transform: translateY(-1px);
+                }
+                
+                .example-btn:hover::before {
+                   left: 100%;
+                   transition: 0.5s;
+                }
+                
+                @media (max-width: 768px) {
+                   .example-btn {
+                       padding: 3px 10px;
+                       font-size: 0.7rem;
+                   }
+                   
+                   .example-btn:hover {
+                       transform: none;
+                   }
+                }
+
+                
+                /* 예시 보기 모달 스타일 */
+                .example-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 1000;
+                    backdrop-filter: blur(5px);
+                }
+                
+                .example-modal-content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 20px;
+                    border-radius: 12px;
+                    width: 90%;
+                    max-width: 500px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                
+                .example-modal img {
+                    width: 100%;
+                    border-radius: 8px;
+                    margin-top: 10px;
+                }
+                
+                .example-close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: none;
+                    border: none;
+                    font-size: 20px;
+                    cursor: pointer;
+                    color: #666;
+                }
+                
+                @media (max-width: 768px) {
+                    .example-modal-content {
+                        width: 85%;
+                        padding: 15px;
+                    }
+                }
+        
+        
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -1199,32 +1376,37 @@ document.addEventListener('DOMContentLoaded', function() {
             <section class="form-section">
                 <h2 class="section-title">기본 정보</h2>
                 
-                     <!-- 첫 번째 줄: 이름, 생년월일, 성별, MBTI, SNS -->
-                    <div class="form-row" style="display: flex; gap: 16px; align-items: center">
+                    <!-- 이름, 생년월일, 성별 선택, MBTI를 감싸는 form-row -->
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
                         <div class="form-group" style="width: 20%">
                             <label class="form-label required">이름</label>
                             <input type="text" class="form-control" name="name" required>
                         </div>
-                        <div class="form-group" style="width: 27%">
+                        <div class="form-group" style="width: 25%">
                             <label class="form-label required">생년월일</label>
                             <input type="date" class="form-control" name="birthdate" required>
                         </div>
-                        <div class="form-group" style="width: 13%">
-                            <div class="radio-group" style="flex-direction: column; position: relative; top: 10px; left: -10px">
-                                <label class="radio-label" style="margin-bottom: -47px">
+                        <div class="form-group" style="width: 25%">
+                            <label class="form-label required" style="margin-bottom: 8px">성별</label>
+                            <div style="display: flex; gap: 10px">
+                                <label class="gender-select">
                                     <input type="radio" name="gender" value="남성" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">남</span>
+                                    <span class="gender-button">
+                                        <i class="fas fa-mars"></i>
+                                        남성
+                                    </span>
                                 </label>
-                                <label class="radio-label">
+                                <label class="gender-select">
                                     <input type="radio" name="gender" value="여성" required>
-                                    <span class="check-icon"></span>
-                                    <span class="label-text">여</span>
+                                    <span class="gender-button">
+                                        <i class="fas fa-venus"></i>
+                                        여성
+                                    </span>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group" style="width: 27%; margin-left: -18px">
-                            <label class="form-label" style="visibility: hidden">MBTI</label>  <!-- 보이지 않는 label 추가 -->
+                        <div class="form-group" style="width: 22%">
+                            <label class="form-label">&nbsp;</label>
                             <select class="form-control" name="mbti" required>
                                 <option value="" disabled selected>MBTI 선택</option>
                                 <option value="ISTJ">ISTJ</option>
@@ -1244,10 +1426,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="ENFJ">ENFJ</option>
                                 <option value="ENTJ">ENTJ</option>
                             </select>
-                        </div>
-                        <div class="form-group" style="width: 80%">
-                            <label class="form-label">인스타/블로그 주소</label>
-                            <input type="text" class="form-control" name="sns" placeholder="일상 속 여행이 스며있는 SNS라면 꼭 적어주세요">
                         </div>
                     </div>
                     
@@ -1309,25 +1487,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                     <!-- 운전가능여부 섹션 -->
                     <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-                       <div style="display: flex; gap: 24px">
-                           <select class="form-control" name="driving_status" style="width: 180px" required>
-                               <option value="" disabled selected>운전 가능 여부 선택</option>
-                               <option value="car">자차 보유</option>
-                               <option value="license">면허만 보유</option>
-                               <option value="none">해당사항 없음</option>
-                           </select>
-                           <div class="alerts" style="flex-grow: 1; margin-top: -25px">
-                               <div class="alert-red">
-                                   <i class="fas fa-exclamation-circle"></i> 
-                                   실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
-                               </div>
-                               <div class="alert-green">
-                                   <i class="fas fa-info-circle"></i> 
-                                   장롱면허의 경우 해당사항 없음을 선택해 주세요.
-                               </div>
-                           </div>
-                       </div>
+                        <div style="display: flex; gap: 24px">  <!-- 가로 배치를 위한 컨테이너 -->
+                            <select class="form-control" name="driving_status" style="width: 180px" required>
+                                <option value="" disabled selected>운전 가능 여부 선택</option>
+                                <option value="car">자차 보유</option>
+                                <option value="license">면허만 보유</option>
+                                <option value="none">해당사항 없음</option>
+                            </select>
+                            <div style="display: flex; flex-direction: column; margin-top: -4px">  <!-- alert들을 세로로 쌓기 위한 컨테이너 -->
+                                <div class="alert-red driving-alert" style="margin-bottom: -2px">
+                                    <i class="fas fa-exclamation-circle"></i> 
+                                    실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
+                                </div>
+                                <div class="alert-green driving-alert">
+                                    <i class="fas fa-info-circle"></i>
+                                    장롱면허의 경우 해당사항 없음을 선택해 주세요.
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- SNS -->
+                    <div style="margin-top: 16px">
+                        <div style="display: flex; gap: 24px; align-items: center">
+                            <input type="text" class="form-control" name="sns" placeholder="인스타/블로그 주소를 입력" style="width: 180px">
+                            <div class="alerts" style="flex-grow: 1; margin-top: -10px">
+                                <div class="alert-green">
+                                    <i class="fas fa-info-circle"></i> 
+                                    평소 일상 속에 여행이 스며있는 모습이 담긴 SNS계정이라면 꼭 적어주세요.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                   <!-- SNS -->
+                    <div style="margin-top: 16px">
+                        <div style="display: flex; gap: 24px; align-items: center">
+                            <input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
+                            <div class="alerts" style="flex-grow: 1; margin-top: -10px">
+                                <div class="alert-green">
+                                    <i class="fas fa-info-circle"></i> 
+                                    평소 한 번 여행을 떠날 때마다 생각할 수 있는 여행 경비를 솔직하게 적어주세요.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
                     </section>
 
                     <section class="form-section">
@@ -1497,6 +1703,66 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
                     </div>
+
+                    <!-- 여행 운영 참여 안내 섹션 -->
+                    <div class="form-group">
+                        <div class="schedule-card">
+                            <div class="card-header">
+                                <h3>여행 운영 참여 안내</h3>
+                                <span class="recommended-badge">권장</span>
+                            </div>
+                            <div class="schedule-info">
+                                <div class="info-item">
+                                    <i class="fas fa-vote-yea"></i>
+                                    <span class="info-label">설문</span>
+                                    <span class="info-value">다음달 여행지 조사</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-comments"></i>
+                                    <span class="info-label">피드백</span>
+                                    <span class="info-value">여행 후기 및 개선점 공유</span>
+                                </div>
+                            </div>
+                            <div class="schedule-description">
+                                <p>발자취는 매달 전체 부원을 대상으로 희망 여행지와 피드백을 수집합니다. 모든 의견을 반영하여 다음 여행지를 선정하고, 동시에 이전 여행에서 좋았던 점을 계속해서 이어가는 한편, 아쉬웠던 점을 즉각 개선하여 더 나은 여행 문화를 만들고자 노력하고 있습니다. 이처럼 발자취는 단순한 여행 동아리가 아닌, 부원 모두의 적극적인 참여로 성장하는 동아리이며, 발자취만의 특별한 여행을 만드는 원동력입니다.</p>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <div class="alert-green">
+                                        <i class="fas fa-info-circle"></i> 
+                                        매달 온라인 구글폼 설문조사를 통해 익명으로 의견을 받습니다. 
+                                    </div>
+                                    <div class="alert-red">
+                                        <i class="fas fa-exclamation-circle"></i> 
+                                        적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
+                                    </div>
+                                </div>
+                                <button class="example-btn" onclick="showExample('feedback')">
+                                    <i class="fas fa-image"></i>
+                                    예시
+                                </button>
+                            </div>
+                            
+                            <div class="radio-group-container">
+                                <label class="radio-label">
+                                    <input type="radio" name="participation_agreement" value="적극_참여" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">적극적 참여 가능</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="participation_agreement" value="일반_참여" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">최소한으로 참여 가능</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="participation_agreement" value="소극_참여" required>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">이런 참여에는 관심 없음</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                         
                     </section>
 
@@ -1507,3 +1773,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="form-group">
                     <label class="form-label required">간단한 자기소개를 해주세요.</label>
                     <textarea class="form-control" name="introduction" rows="4" required></textarea>
+
+                    <!-- 예시 보기 모달 -->
+                    <div class="example-modal" id="exampleModal">
+                        <div class="example-modal-content">
+                            <button class="example-close" onclick="closeExample()">&times;</button>
+                            <img id="exampleImage" src="" alt="예시 이미지">
+                        </div>
+                    </div>
+                    
+                    <script>
+                    function showExample(type) {
+                        const modal = document.getElementById('exampleModal');
+                        const image = document.getElementById('exampleImage');
+                        
+                        // 이미지 경로 설정
+                        if (type === 'feedback') {
+                            image.src = 'assets/images/examples/feedback-example.png';
+                        }
+                        
+                        modal.style.display = 'block';
+                    }
+                    
+                    function closeExample() {
+                        document.getElementById('exampleModal').style.display = 'none';
+                    }
+                    
+                    // 모달 바깥 클릭시 닫기
+                    window.onclick = function(event) {
+                        const modal = document.getElementById('exampleModal');
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    }
+                    </script>
+</body>
+</html>
