@@ -1059,54 +1059,124 @@
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: rgba(0, 0, 0, 0.7);
+                        background: rgba(0, 0, 0, 0.85); /* 배경 어둡게 조정 */
                         z-index: 1000;
                         backdrop-filter: blur(5px);
-                        /* 스크롤 가능하도록 overflow 설정 */
                         overflow-y: auto;
+                        /* 스크롤바 스타일링 */
+                        scrollbar-width: thin;
+                        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+                    }
+                    
+                    /* 커스텀 스크롤바 스타일 */
+                    .example-modal::-webkit-scrollbar {
+                        width: 8px;
+                    }
+                    
+                    .example-modal::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                    
+                    .example-modal::-webkit-scrollbar-thumb {
+                        background-color: rgba(255, 255, 255, 0.3);
+                        border-radius: 4px;
                     }
                     
                     .example-modal-content {
-                        position: relative; /* absolute에서 relative로 변경 */
+                        position: relative;
                         background: white;
-                        padding: 20px;
-                        border-radius: 12px;
+                        padding: 30px;
+                        border-radius: 16px;
                         width: 90%;
-                        max-width: 800px; /* 최대 너비 증가 */
-                        margin: 40px auto; /* 상하 여백 추가 및 중앙 정렬 */
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        max-width: 800px;
+                        margin: 40px auto;
+                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
                     }
                     
-                    /* 이미지 스타일 추가 */
+                    /* 이미지 컨테이너 추가 */
+                    .example-image-container {
+                        position: relative;
+                        margin-top: 20px;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                    }
+                    
                     .example-modal-content img {
                         width: 100%;
                         height: auto;
-                        border-radius: 8px;
-                        margin-top: 10px;
+                        display: block;
                     }
                     
-                    /* 닫기 버튼 스타일 개선 */
+                    /* 닫기 버튼들 스타일링 */
                     .example-close {
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        width: 30px;
-                        height: 30px;
-                        background: rgba(0, 0, 0, 0.1);
+                        position: fixed; /* fixed로 변경하여 항상 보이게 */
+                        top: 20px;
+                        right: 20px;
+                        width: 40px;
+                        height: 40px;
+                        background: rgba(255, 255, 255, 0.2);
                         border: none;
                         border-radius: 50%;
-                        font-size: 20px;
+                        font-size: 24px;
                         cursor: pointer;
-                        color: #666;
+                        color: white;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         transition: all 0.2s ease;
+                        z-index: 1001;
                     }
                     
                     .example-close:hover {
-                        background: rgba(0, 0, 0, 0.2);
-                        color: #333;
+                        background: rgba(255, 255, 255, 0.3);
+                        transform: rotate(90deg);
+                    }
+                    
+                    /* 하단 닫기 버튼 추가 */
+                    .modal-bottom-close {
+                        display: block;
+                        width: 100%;
+                        padding: 12px;
+                        margin-top: 20px;
+                        background: var(--primary-color);
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .modal-bottom-close:hover {
+                        background: var(--primary-light);
+                    }
+                    
+                    /* 스크롤 안내 표시 */
+                    .scroll-indicator {
+                        position: absolute;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 20px;
+                        background: rgba(0, 0, 0, 0.5);
+                        font-size: 0.9rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    
+                    .scroll-indicator i {
+                        animation: bounce 1s infinite;
+                    }
+                    
+                    @keyframes bounce {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-5px); }
                     }
                     
                     /* 모바일 대응 */
@@ -1114,13 +1184,18 @@
                         .example-modal-content {
                             width: 95%;
                             margin: 20px auto;
-                            padding: 15px;
+                            padding: 20px;
                         }
                     
                         .example-close {
-                            width: 25px;
-                            height: 25px;
-                            font-size: 18px;
+                            width: 35px;
+                            height: 35px;
+                            font-size: 20px;
+                        }
+                    
+                        .modal-bottom-close {
+                            padding: 10px;
+                            font-size: 0.9rem;
                         }
                     }
         
@@ -1799,7 +1874,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="example-modal" id="exampleModal">
                         <div class="example-modal-content">
                             <button class="example-close" onclick="closeExample()">&times;</button>
-                            <img id="exampleImage" src="" alt="예시 이미지">
+                            <h3 style="color: var(--primary-color); font-size: 1.4rem; margin-bottom: 10px;">피드백 예시</h3>
+                            <p style="color: var(--light-text); font-size: 0.9rem; margin-bottom: 20px;">
+                                실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.
+                            </p>
+                            <div class="example-image-container">
+                                <img id="exampleImage" src="" alt="예시 이미지">
+                            </div>
+                            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+                        </div>
+                        <div class="scroll-indicator">
+                            <i class="fas fa-mouse"></i>
+                            스크롤하여 더 보기
                         </div>
                     </div>
                     
@@ -1807,6 +1893,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     function showExample(type) {
                         const modal = document.getElementById('exampleModal');
                         const image = document.getElementById('exampleImage');
+                        const scrollIndicator = document.querySelector('.scroll-indicator');
                         
                         // 이미지 경로 설정
                         if (type === 'feedback') {
@@ -1814,25 +1901,30 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         modal.style.display = 'block';
-                        // 스크롤 방지
                         document.body.style.overflow = 'hidden';
+                        
+                        // 스크롤 표시 애니메이션
+                        setTimeout(() => {
+                            scrollIndicator.style.opacity = '1';
+                            setTimeout(() => {
+                                scrollIndicator.style.opacity = '0';
+                            }, 3000);
+                        }, 500);
                     }
                     
                     function closeExample() {
                         const modal = document.getElementById('exampleModal');
                         modal.style.display = 'none';
-                        // 스크롤 복원
                         document.body.style.overflow = 'auto';
                     }
                     
-                    // ESC 키로 모달 닫기 기능 추가
+                    // ESC 키나 모달 영역 클릭으로 닫기
                     document.addEventListener('keydown', function(event) {
                         if (event.key === 'Escape') {
                             closeExample();
                         }
                     });
                     
-                    // 모달 바깥 클릭시 닫기
                     window.onclick = function(event) {
                         const modal = document.getElementById('exampleModal');
                         if (event.target === modal) {
