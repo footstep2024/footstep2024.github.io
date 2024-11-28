@@ -1900,6 +1900,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     
                         <script>
+                        // 페이지 로드 시 이미지 미리 로드
+                        window.addEventListener('DOMContentLoaded', function() {
+                            const images = [
+                                'assets/images/examples/feedback-example.png',
+                                'assets/images/examples/content-share-example.png'
+                            ];
+                            
+                            images.forEach(src => {
+                                const img = new Image();
+                                img.src = src;
+                            });
+                        });
+
                         function showExample(type) {
                             const modal = document.getElementById('exampleModal');
                             const image = document.getElementById('exampleImage');
@@ -1921,24 +1934,22 @@ document.addEventListener('DOMContentLoaded', function() {
                             modal.style.display = 'block';
                             document.body.style.overflow = 'hidden';
                             
-                            // 이미지 로드 완료 후 스크롤 필요 여부 확인
-                            image.onload = function() {
+                            // 이미지 로드와 모달 표시 후 약간의 지연을 두고 스크롤 체크
+                            setTimeout(() => {
                                 const modalContent = document.querySelector('.example-modal-content');
-                                const needsScroll = modalContent.scrollHeight > modalContent.clientHeight;
+                                const needsScroll = modalContent.scrollHeight > (modalContent.clientHeight + 50); // 여유값 추가
                                 
                                 if (needsScroll) {
+                                    scrollIndicator.style.opacity = '1';
                                     setTimeout(() => {
-                                        scrollIndicator.style.opacity = '1';
-                                        setTimeout(() => {
-                                            scrollIndicator.style.opacity = '0';
-                                        }, 3000);
-                                    }, 500);
+                                        scrollIndicator.style.opacity = '0';
+                                    }, 3000);
                                 } else {
                                     scrollIndicator.style.opacity = '0';
                                 }
-                            }
-                        }
-                    
+                            }, 100); // 약간의 지연 추가
+                        } 
+                            
                     function closeExample() {
                         const modal = document.getElementById('exampleModal');
                         modal.style.display = 'none';
