@@ -1202,6 +1202,56 @@
                         }
                     }
         
+                    /* 입력 필드 오류 표시 스타일 */
+                        .form-control:invalid:focus + .validation-message,
+                        .form-control:invalid:not(:placeholder-shown) + .validation-message {
+                            display: block;
+                            animation: slideIn 0.3s ease;
+                        }
+                        
+                        .validation-message {
+                            display: none;
+                            color: var(--primary-color);
+                            font-size: 0.8rem;
+                            margin-top: 0.5rem;
+                            padding: 8px 12px;
+                            border-radius: 6px;
+                            background: rgba(47, 82, 41, 0.08);
+                            position: relative;
+                        }
+                        
+                        .validation-message::before {
+                            content: '!';
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            background: var(--primary-color);
+                            color: white;
+                            border-radius: 50%;
+                            text-align: center;
+                            line-height: 16px;
+                            font-size: 0.7rem;
+                            margin-right: 8px;
+                        }
+                        
+                        @keyframes slideIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-5px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        /* 모바일 대응 */
+                        @media (max-width: 768px) {
+                            .validation-message {
+                                font-size: 0.75rem;
+                                padding: 6px 10px;
+                            }
+                        }
         
         /* 다크 모드 지원 */
         @media (prefers-color-scheme: dark) {
@@ -1479,7 +1529,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
                         <div class="form-group" style="width: 20%">
                             <label class="form-label required">이름</label>
-                            <input type="text" class="form-control" name="name" required>
+                            <input type="text" class="form-control" name="name" required data-validation-message="이 입력란을 작성하세요.">
                         </div>
                         <div class="form-group" style="width: 25%">
                             <label class="form-label required">생년월일</label>
