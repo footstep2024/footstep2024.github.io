@@ -1082,71 +1082,6 @@ background-color: rgba(255, 255, 255, 0.3);
 border-radius: 4px;
 }
 
-function showExample(type) {
-    const modal = document.getElementById('exampleModal');
-    const image = document.getElementById('exampleImage');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const imageContainer = document.querySelector('.modal-image-container');
-
-    // 스크롤 위치 초기화
-    imageContainer.scrollTop = 0;
-    
-    // 스크롤 인디케이터 초기화
-    scrollIndicator.style.opacity = '0';
-
-    if (type === 'feedback') {
-        image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
-        modalTitle.textContent = '피드백 예시';
-        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-    } else {
-        image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
-        modalTitle.textContent = '콘텐츠 공유 예시';
-        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
-    }
-
-    // 이미지 로드 완료 후 실행
-    image.onload = function() {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // 스크롤 인디케이터 표시
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-        }, 500);
-
-        // 스크롤 이벤트 핸들러
-        function handleScroll() {
-            if (imageContainer.scrollTop > 50) {
-                scrollIndicator.style.opacity = '0';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        }
-
-        // 이전 스크롤 이벤트 제거 후 새로 추가
-        imageContainer.removeEventListener('scroll', handleScroll);
-        imageContainer.addEventListener('scroll', handleScroll);
-    };
-}
-
-function closeExample() {
-    const modal = document.getElementById('exampleModal');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    // 모달 닫기
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    
-    // 스크롤 위치 초기화
-    imageContainer.scrollTop = 0;
-    
-    // 스크롤 인디케이터 초기화
-    scrollIndicator.style.opacity = '0';
-}
-
-
 /* 닫기 버튼들 스타일링 */
 .example-close {
                         position: fixed; /* fixed로 변경하여 항상 보이게 */
@@ -1201,12 +1136,12 @@ transition: all 0.2s ease;
 background: var(--primary-light);
 }
 
-/* 스크롤 안내 표시 */
+/* 스크롤 인디케이터 */
 .scroll-indicator {
-    position: fixed;
+    position: absolute;
     left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -1246,16 +1181,11 @@ animation: bounce 1s infinite;
     border-radius: 16px;
     width: 90%;
     max-width: 800px;
-    margin: 40px auto;
+    margin: 30px auto;  /* 40px에서 30px로 줄여서 더 길게 보이게 */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    height: 85vh;
+    height: 90vh;      /* 85vh에서 90vh로 증가 */
     display: flex;
     flex-direction: column;
-}
-
-.modal-header {
-    flex-shrink: 0;
-    margin-bottom: 20px;
 }
 
 .modal-image-container {
@@ -1263,11 +1193,7 @@ animation: bounce 1s infinite;
     overflow-y: auto;
     margin: 0 -15px;
     padding: 0 15px;
-}
-
-.modal-footer {
-    flex-shrink: 0;
-    margin-top: 20px;
+    position: relative;  /* 추가 */
 }
     
 /* 모바일 대응 */
@@ -1984,8 +1910,10 @@ function showExample(type) {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     const imageContainer = document.querySelector('.modal-image-container');
 
-    // 스크롤 위치 초기화
-    imageContainer.scrollTop = 0;
+    // 스크롤 위치 항상 초기화
+    if (imageContainer) {
+        imageContainer.scrollTop = 0;
+    }
     
     // 스크롤 인디케이터 초기화
     scrollIndicator.style.opacity = '0';
@@ -2005,6 +1933,9 @@ function showExample(type) {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
+        // 스크롤 위치 한번 더 초기화
+        imageContainer.scrollTop = 0;
+        
         // 스크롤 인디케이터 표시
         setTimeout(() => {
             scrollIndicator.style.opacity = '1';
@@ -2012,34 +1943,17 @@ function showExample(type) {
 
         // 스크롤 이벤트 핸들러
         function handleScroll() {
-            if (imageContainer.scrollTop > 50) {
+            if (imageContainer.scrollTop > 100) {  /* 50에서 100으로 증가 - 더 길게 보이도록 */
                 scrollIndicator.style.opacity = '0';
                 imageContainer.removeEventListener('scroll', handleScroll);
             }
         }
 
-        // 이전 스크롤 이벤트 제거 후 새로 추가
+        // 이전 이벤트 리스너 제거 후 새로 추가
         imageContainer.removeEventListener('scroll', handleScroll);
         imageContainer.addEventListener('scroll', handleScroll);
     };
-}
-
-function closeExample() {
-    const modal = document.getElementById('exampleModal');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    // 모달 닫기
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    
-    // 스크롤 위치 초기화
-    imageContainer.scrollTop = 0;
-    
-    // 스크롤 인디케이터 초기화
-    scrollIndicator.style.opacity = '0';
-}
-</script>
+}</script>
 
 <!-- 예시 보기 모달 -->
 <div class="example-modal" id="exampleModal">
