@@ -1164,20 +1164,20 @@ background: var(--primary-light);
 
 /* 스크롤 안내 표시 */
 .scroll-indicator {
-position: absolute;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%);
-color: white;
-padding: 10px 20px;
-border-radius: 20px;
-background: rgba(0, 0, 0, 0.5);
-font-size: 0.9rem;
-display: flex;
-align-items: center;
-gap: 8px;
-opacity: 0;
-transition: opacity 0.3s ease;
+    position: fixed;  /* absolute에서 fixed로만 변경 */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .scroll-indicator i {
@@ -1913,57 +1913,63 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <script>
 function showExample(type) {
-const modal = document.getElementById('exampleModal');
-const image = document.getElementById('exampleImage');
-const modalTitle = document.querySelector('.example-modal-content h3');
-const modalDesc = document.querySelector('.example-modal-content p');
-const scrollIndicator = document.querySelector('.scroll-indicator');
+    const modal = document.getElementById('exampleModal');
+    const image = document.getElementById('exampleImage');
+    const modalTitle = document.querySelector('.example-modal-content h3');
+    const modalDesc = document.querySelector('.example-modal-content p');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
 
-// 이미지 경로와 텍스트 설정
-if (type === 'feedback') {
-image.src = 'assets/images/examples/feedback-example.png';
-modalTitle.textContent = '피드백 예시';
-modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-} else if (type === 'content') {
-image.src = 'assets/images/examples/content-share-example.png';
-modalTitle.textContent = '콘텐츠 공유 예시';
-modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
-}
+    // 이미지 경로와 텍스트 설정
+    if (type === 'feedback') {
+        image.src = 'assets/images/examples/feedback-example.png';
+        modalTitle.textContent = '피드백 예시';
+        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
+        scrollIndicator.style.opacity = '1';
+    } else if (type === 'content') {
+        image.src = 'assets/images/examples/content-share-example.png';
+        modalTitle.textContent = '콘텐츠 공유 예시';
+        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
+        scrollIndicator.style.opacity = '0';
+    }
 
-modal.style.display = 'block';
-document.body.style.overflow = 'hidden';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-// 스크롤 표시 애니메이션 (긴 이미지일 경우에만)
-if (type === 'feedback') {  // feedback 이미지만 스크롤 표시
-setTimeout(() => {
-scrollIndicator.style.opacity = '1';
-setTimeout(() => {
-scrollIndicator.style.opacity = '0';
-}, 3000);
-}, 500);
-} else {
-scrollIndicator.style.opacity = '0';
-}
+    // 이미지 로드 완료 후 스크롤 표시기 설정
+    image.onload = function() {
+        const modalContent = document.querySelector('.example-modal-content');
+        const isScrollable = modalContent.scrollHeight > modalContent.clientHeight;
+        
+        if (isScrollable && type === 'feedback') {
+            scrollIndicator.style.opacity = '1';
+            setTimeout(() => {
+                scrollIndicator.style.opacity = '0';
+            }, 3000);
+        } else {
+            scrollIndicator.style.opacity = '0';
+        }
+    };
 }
 
 function closeExample() {
-const modal = document.getElementById('exampleModal');
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
+    const modal = document.getElementById('exampleModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
-// ESC 키나 모달 영역 클릭으로 닫기
+// ESC 키로 닫기
 document.addEventListener('keydown', function(event) {
-if (event.key === 'Escape') {
-closeExample();
-}
+    if (event.key === 'Escape') {
+        closeExample();
+    }
 });
 
+// 모달 외부 클릭으로 닫기
 window.onclick = function(event) {
-const modal = document.getElementById('exampleModal');
-if (event.target === modal) {
-closeExample();
-}
+    const modal = document.getElementById('exampleModal');
+    if (event.target === modal) {
+        closeExample();
+    }
 }
 </script>
 </body>
