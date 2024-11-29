@@ -1083,14 +1083,16 @@ border-radius: 4px;
 }
 
 .example-modal-content {
-position: relative;
-background: white;
-padding: 30px;
-border-radius: 16px;
-width: 90%;
-max-width: 800px;
-margin: 40px auto;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative; /* relative로 변경 */
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-height: 80vh; /* 추가 */
+    overflow-y: auto; /* 추가 */
 }
 
 /* 이미지 컨테이너 추가 */
@@ -1165,8 +1167,8 @@ background: var(--primary-light);
 /* 스크롤 안내 표시 */
 .scroll-indicator {
     position: fixed;
-    bottom: 20px;
     left: 50%;
+    bottom: 20px;
     transform: translateX(-50%);
     color: white;
     padding: 10px 20px;
@@ -1178,8 +1180,17 @@ background: var(--primary-light);
     gap: 8px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none;  /* 추가 */
-    z-index: 9999;        /* 추가 */
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 모바일 대응을 위한 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+        bottom: 15px;
+    }
 }
 
 .scroll-indicator i {
@@ -1922,49 +1933,53 @@ function showExample(type) {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     const modalContent = document.querySelector('.example-modal-content');
 
-    // 스크롤 인디케이터 초기화
+    // 스크롤 인디케이터 초기 숨김
     scrollIndicator.style.opacity = '0';
 
     if (type === 'feedback') {
         image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
         modalTitle.textContent = '피드백 예시';
         modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-        
-        // 이미지 로드 후 설정
-        image.onload = function() {
-            // 초기 설정
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.position = 'fixed';
-            scrollIndicator.style.bottom = '20px';
-            scrollIndicator.style.zIndex = '2000';
-            
-            // 스크롤 이벤트 핸들러
-            function handleScroll() {
-                if (modalContent.scrollTop > 50) {
-                    scrollIndicator.style.opacity = '0';
-                    // 이벤트 리스너 제거
-                    modalContent.removeEventListener('scroll', handleScroll);
-                }
-            }
-            
-            // 이전 이벤트 리스너 제거 후 새로 추가
-            modalContent.removeEventListener('scroll', handleScroll);
-            modalContent.addEventListener('scroll', handleScroll);
-        };
     } else {
         image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
         modalTitle.textContent = '콘텐츠 공유 예시';
         modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
     }
 
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    // 이미지 로드 완료 후 실행
+    image.onload = function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // 스크롤 인디케이터 표시
+        setTimeout(() => {
+            scrollIndicator.style.opacity = '1';
+        }, 500);
+
+        // 스크롤 이벤트 핸들러
+        function handleScroll() {
+            if (modalContent.scrollTop > 50) {
+                scrollIndicator.style.opacity = '0';
+                modalContent.removeEventListener('scroll', handleScroll);
+            }
+        }
+
+        // 이전 이벤트 리스너 제거 후 새로 추가
+        modalContent.removeEventListener('scroll', handleScroll);
+        modalContent.addEventListener('scroll', handleScroll);
+    };
 }
-  
+
 function closeExample() {
     const modal = document.getElementById('exampleModal');
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+    
+    // 스크롤 인디케이터 초기화
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.style.opacity = '0';
+    }
 }
 
 // ESC 키로 닫기
@@ -1981,6 +1996,15 @@ window.onclick = function(event) {
         closeExample();
     }
 }
+
+// 닫기 버튼들에 대한 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeExample);
+    });
+});
+
 </script>
 </body>
 </html>
