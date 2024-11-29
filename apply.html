@@ -1483,7 +1483,7 @@ cancelBtn.onclick = closeDateModal;
 </section>
 <!-- 새로운 개인정보 수집 섹션 끝 -->
 
-<form id="applicationForm">
+<form id="applicationForm" novalidate>
 <section class="form-section">
 <h2 class="section-title">기본 정보</h2>
 
@@ -1971,6 +1971,49 @@ window.onclick = function(event) {
         closeExample();
     }
 }
+  // 폼 유효성 검사 및 커스텀 메시지
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let isValid = true;
+    
+    // 모든 필수 입력 필드 검사
+    this.querySelectorAll('[required]').forEach(field => {
+        const errorElement = field.parentElement.querySelector('.error-message');
+        
+        if (!field.value.trim()) {
+            isValid = false;
+            if (errorElement) {
+                errorElement.style.display = 'block';
+            }
+        } else {
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+    });
+
+    // 하나라도 필수 항목이 입력되지 않았다면 제출하지 않음
+    if (!isValid) {
+        return false;
+    }
+    
+    // 모든 필드가 유효하면 폼 제출
+    this.submit();
+});
+
+// 각 필수 입력 필드에 대한 실시간 검증
+document.querySelectorAll('[required]').forEach(field => {
+    field.addEventListener('input', function() {
+        const errorElement = this.parentElement.querySelector('.error-message');
+        if (errorElement) {
+            if (!this.value.trim()) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+    });
+});
 </script>
 </body>
 </html>
