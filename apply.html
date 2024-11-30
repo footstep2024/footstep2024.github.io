@@ -1245,141 +1245,7 @@ color: var(--text-color);
 </style>
 </head>
 <body>
-<script>
-document.addEventListener('contextmenu', function(e) {
-e.preventDefault();
-return false;
-}, false);
-
-document.addEventListener('dragstart', function(e) {
-e.preventDefault();
-return false;
-});
-
-document.addEventListener('selectstart', function(e) {
-e.preventDefault();
-return false;
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-let currentDate = new Date(2001, 0, 1); // 2001년 1월 1일로 초기화
-
-function renderCalendar() {
-const calendarGrid = document.querySelector('.calendar-grid');
-const currentMonth = currentDate.getMonth();
-const currentYear = currentDate.getFullYear();
-
-// 현재 월의 첫날과 마지막날
-const firstDay = new Date(currentYear, currentMonth, 1);
-const lastDay = new Date(currentYear, currentMonth + 1, 0);
-
-// 달력 헤더 업데이트
-document.querySelector('.year-month-display').textContent = 
-`${currentYear}년 ${currentMonth + 1}월`;
-
-// 달력 그리드 초기화
-calendarGrid.innerHTML = '';
-
-// 요일 헤더 추가
-const days = ['일', '월', '화', '수', '목', '금', '토'];
-days.forEach(day => {
-const dayElement = document.createElement('div');
-dayElement.className = 'calendar-day day-header';
-dayElement.textContent = day;
-calendarGrid.appendChild(dayElement);
-});
-
-// 해당 월의 1일이 시작하는 요일만큼 빈 칸 추가
-const firstDayOfWeek = firstDay.getDay();
-for (let i = 0; i < firstDayOfWeek; i++) {
-const emptyDay = document.createElement('div');
-emptyDay.className = 'calendar-day empty';
-calendarGrid.appendChild(emptyDay);
-}
-
-// 날짜 추가
-for (let i = 1; i <= lastDay.getDate(); i++) {
-const dateElement = document.createElement('div');
-dateElement.className = 'calendar-day';
-dateElement.textContent = i;
-dateElement.onclick = () => {
-// 날짜 객체 생성 시 시간을 정오(12:00)로 설정
-const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
-// ISO 문자열로 변환 후 날짜 부분만 잘라서 설정
-const isoString = date.toISOString();
-const dateString = isoString.split('T')[0];
-document.querySelector('input[name="birthdate"]').value = dateString;
-closeDateModal();
-};
-calendarGrid.appendChild(dateElement);
-}
-}
-
-// 년도 위/아래 버튼 이벤트
-document.querySelector('.year-up').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setFullYear(currentDate.getFullYear() + 1);
-renderCalendar();
-});
-
-document.querySelector('.year-down').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setFullYear(currentDate.getFullYear() - 1);
-renderCalendar();
-});
-
-// 이전/다음 달 버튼 이벤트
-document.querySelector('.month-prev').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setMonth(currentDate.getMonth() - 1);
-renderCalendar();
-});
-
-document.querySelector('.month-next').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setMonth(currentDate.getMonth() + 1);
-renderCalendar();
-});
-
-function openDateModal() {
-document.getElementById('dateModal').style.display = 'block';
-currentDate = new Date(2001, 0, 1);  // 2001년 1월로 초기화
-renderCalendar();
-}
-
-function closeDateModal() {
-document.getElementById('dateModal').style.display = 'none';
-}
-
-// 날짜 입력 필드 클릭 이벤트
-const dateInput = document.querySelector('input[name="birthdate"]');
-if (dateInput) {
-dateInput.addEventListener('click', function(e) {
-e.preventDefault();
-openDateModal();
-});
-}
-
-// 모달 바깥 클릭시 닫기
-window.onclick = function(event) {
-const modal = document.getElementById('dateModal');
-if (event.target == modal) {
-closeDateModal();
-}
-}
-
-// 선택/취소 버튼 클릭 이벤트
-const confirmBtn = document.querySelector('.confirm-btn');
-const cancelBtn = document.querySelector('.cancel-btn');
-
-if (confirmBtn) {
-confirmBtn.onclick = closeDateModal;
-}
-if (cancelBtn) {
-cancelBtn.onclick = closeDateModal;
-}
-});
-</script>    
+  
 <div class="progress-container">
 <div class="progress-bar">
 <div class="progress" id="progress"></div>
@@ -1803,9 +1669,10 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
 </div>
 </div>
-<button class="example-btn" onclick="showExample('content')">
-<i class="fas fa-image"></i>
-예시
+<!-- 콘텐츠 활용 동의 예시 버튼 -->
+<button class="example-btn" type="button" data-type="content">
+    <i class="fas fa-image"></i>
+    예시
 </button>
 </div>
 </div>                    
@@ -1863,9 +1730,10 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
 </div>
 </div>
-<button class="example-btn" onclick="showExample('feedback')">
-<i class="fas fa-image"></i>
-예시
+<!-- 여행 운영 참여 안내 예시 버튼 -->
+<button class="example-btn" type="button" data-type="feedback">
+    <i class="fas fa-image"></i>
+    예시
 </button>
 </div>
 
@@ -1891,255 +1759,15 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 </section>
 
-
 <section class="form-section">
 <h2 class="section-title">자기소개</h2>
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
 <textarea class="form-control" name="introduction" rows="4" required></textarea>
-
-
-
-<script>
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-}, false);
-
-document.addEventListener('dragstart', function(e) {
-    e.preventDefault();
-    return false;
-});
-
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-    return false;
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    let currentDate = new Date(2001, 0, 1); // 2001년 1월 1일로 초기화
-
-    function renderCalendar() {
-        const calendarGrid = document.querySelector('.calendar-grid');
-        const currentMonth = currentDate.getMonth();
-        const currentYear = currentDate.getFullYear();
-
-        // 현재 월의 첫날과 마지막날
-        const firstDay = new Date(currentYear, currentMonth, 1);
-        const lastDay = new Date(currentYear, currentMonth + 1, 0);
-
-        // 달력 헤더 업데이트
-        document.querySelector('.year-month-display').textContent = 
-            `${currentYear}년 ${currentMonth + 1}월`;
-
-        // 달력 그리드 초기화
-        calendarGrid.innerHTML = '';
-
-        // 요일 헤더 추가
-        const days = ['일', '월', '화', '수', '목', '금', '토'];
-        days.forEach(day => {
-            const dayElement = document.createElement('div');
-            dayElement.className = 'calendar-day day-header';
-            dayElement.textContent = day;
-            calendarGrid.appendChild(dayElement);
-        });
-
-        // 해당 월의 1일이 시작하는 요일만큼 빈 칸 추가
-        const firstDayOfWeek = firstDay.getDay();
-        for (let i = 0; i < firstDayOfWeek; i++) {
-            const emptyDay = document.createElement('div');
-            emptyDay.className = 'calendar-day empty';
-            calendarGrid.appendChild(emptyDay);
-        }
-
-        // 날짜 추가
-        for (let i = 1; i <= lastDay.getDate(); i++) {
-            const dateElement = document.createElement('div');
-            dateElement.className = 'calendar-day';
-            dateElement.textContent = i;
-            dateElement.onclick = () => {
-                const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
-                const isoString = date.toISOString();
-                const dateString = isoString.split('T')[0];
-                document.querySelector('input[name="birthdate"]').value = dateString;
-                closeDateModal();
-            };
-            calendarGrid.appendChild(dateElement);
-        }
-    }
-
-    // 달력 컨트롤 이벤트 리스너
-    document.querySelector('.year-up').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setFullYear(currentDate.getFullYear() + 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.year-down').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setFullYear(currentDate.getFullYear() - 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.month-prev').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.month-next').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
-
-    function openDateModal() {
-        document.getElementById('dateModal').style.display = 'block';
-        currentDate = new Date(2001, 0, 1);
-        renderCalendar();
-    }
-
-    function closeDateModal() {
-        document.getElementById('dateModal').style.display = 'none';
-    }
-
-    // 날짜 입력 필드 클릭 이벤트
-    const dateInput = document.querySelector('input[name="birthdate"]');
-    if (dateInput) {
-        dateInput.addEventListener('click', function(e) {
-            e.preventDefault();
-            openDateModal();
-        });
-    }
-
-    // 모달 관련 이벤트 리스너들
-    window.onclick = function(event) {
-        const modal = document.getElementById('dateModal');
-        if (event.target == modal) {
-            closeDateModal();
-        }
-    }
-
-    const confirmBtn = document.querySelector('.confirm-btn');
-    const cancelBtn = document.querySelector('.cancel-btn');
-
-    if (confirmBtn) confirmBtn.onclick = closeDateModal;
-    if (cancelBtn) cancelBtn.onclick = closeDateModal;
-});
-
-// 예시 모달 관련 함수들
-function showExample(type) {
-    // 폼 검증 임시 비활성화
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.setAttribute('data-original-validate', form.noValidate);
-        form.noValidate = true;
-    });
-
-    const modal = document.getElementById('exampleModal');
-    const image = document.getElementById('exampleImage');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const imageContainer = document.querySelector('.modal-image-container');
-
-    // 스크롤 위치 초기화
-    if (imageContainer) {
-        imageContainer.scrollTop = 0;
-    }
-    
-    // 스크롤 인디케이터 초기화
-    scrollIndicator.style.opacity = '0';
-
-    if (type === 'feedback') {
-        image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
-        modalTitle.textContent = '피드백 예시';
-        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-    } else {
-        image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
-        modalTitle.textContent = '콘텐츠 공유 예시';
-        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
-    }
-
-    // 이미지 로드 완료 후 실행
-    image.onload = function() {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // 스크롤 위치 한번 더 초기화
-        imageContainer.scrollTop = 0;
-        
-        // 스크롤 인디케이터 표시
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-        }, 500);
-
-        // 스크롤 이벤트 핸들러
-        function handleScroll() {
-            if (imageContainer.scrollTop > 500) {
-                scrollIndicator.style.opacity = '0';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        }
-
-        // 이전 이벤트 리스너 제거 후 새로 추가
-        imageContainer.removeEventListener('scroll', handleScroll);
-        imageContainer.addEventListener('scroll', handleScroll);
-    };
-}
-
-function closeExample() {
-    const modal = document.getElementById('exampleModal');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    // 모달 닫기
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    
-    // 스크롤 위치 초기화
-    if (imageContainer) {
-        imageContainer.scrollTop = 0;
-    }
-    
-    // 스크롤 인디케이터 초기화
-    if (scrollIndicator) {
-        scrollIndicator.style.opacity = '0';
-    }
-
-    // 폼 검증 상태 복구
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        const originalValue = form.getAttribute('data-original-validate');
-        form.noValidate = originalValue === 'true';
-        form.removeAttribute('data-original-validate');
-    });
-}
-
-// ESC 키로 닫기
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeExample();
-    }
-});
-
-// 모달 외부 클릭으로 닫기
-window.onclick = function(event) {
-    const modal = document.getElementById('exampleModal');
-    if (event.target === modal) {
-        closeExample();
-    }
-}
-
-// 닫기 버튼들에 대한 이벤트 리스너 추가
-document.addEventListener('DOMContentLoaded', function() {
-    const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeExample);
-    });
-});
-</script>
+</div>      
+</section>      
+</form>  
 
 <!-- 예시 보기 모달 -->
 <div class="example-modal" id="exampleModal">
@@ -2164,5 +1792,141 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+<script>
+// 기존의 다른 스크립트는 그대로 두고, showExample 함수와 closeExample 함수를 다음과 같이 수정합니다
+function showExample(type, event) {
+    if (event) {
+        event.preventDefault(); // 기본 이벤트 방지
+    }
+
+    // 모달 관련 요소들 가져오기
+    const modal = document.getElementById('exampleModal');
+    const image = document.getElementById('exampleImage');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalDesc = document.querySelector('.modal-desc');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const imageContainer = document.querySelector('.modal-image-container');
+
+    // 스크롤 위치 초기화
+    if (imageContainer) {
+        imageContainer.scrollTop = 0;
+    }
+    
+    // 스크롤 인디케이터 초기화
+    if (scrollIndicator) {
+        scrollIndicator.style.opacity = '0';
+    }
+
+    // 타입에 따른 모달 내용 설정
+    if (type === 'feedback') {
+        image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
+        modalTitle.textContent = '피드백 예시';
+        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
+    } else if (type === 'content') {
+        image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
+        modalTitle.textContent = '콘텐츠 공유 예시';
+        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
+    }
+
+    // 이미지 로드 완료 후 모달 표시
+    image.onload = function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = '1';
+            }
+        }, 500);
+
+        // 스크롤 이벤트 핸들러
+        function handleScroll() {
+            if (imageContainer && imageContainer.scrollTop > 50) {
+                scrollIndicator.style.opacity = '0';
+                imageContainer.removeEventListener('scroll', handleScroll);
+            }
+        }
+
+        if (imageContainer) {
+            imageContainer.removeEventListener('scroll', handleScroll);
+            imageContainer.addEventListener('scroll', handleScroll);
+        }
+    };
+}
+
+function closeExample() {
+    const modal = document.getElementById('exampleModal');
+    const imageContainer = document.querySelector('.modal-image-container');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const image = document.getElementById('exampleImage');
+    
+    // 모달 닫기
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    // 스크롤 위치 및 이미지 초기화
+    if (imageContainer) {
+        imageContainer.scrollTop = 0;
+    }
+    
+    // 이미지 src 초기화
+    if (image) {
+        image.src = '';
+    }
+    
+    // 스크롤 인디케이터 초기화
+    if (scrollIndicator) {
+        scrollIndicator.style.opacity = '0';
+    }
+
+    // 폼 검증 상태 복구
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        const originalValue = form.getAttribute('data-original-validate');
+        form.noValidate = originalValue === 'true';
+        form.removeAttribute('data-original-validate');
+    });
+}
+
+// HTML에서 예시 버튼 클릭 이벤트 수정
+document.addEventListener('DOMContentLoaded', function() {
+    // 예시 버튼들에 이벤트 리스너 추가
+    const exampleBtns = document.querySelectorAll('.example-btn');
+    exampleBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const type = this.getAttribute('data-type');  // onclick 대신 data-type 속성 사용
+            showExample(type);
+        });
+    });
+
+    // ESC 키 이벤트
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeExample();
+        }
+    });
+
+    // 모달 외부 클릭 이벤트
+    const exampleModal = document.getElementById('exampleModal');
+    if (exampleModal) {
+        exampleModal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeExample();
+            }
+        });
+    }
+
+    // 닫기 버튼들에 이벤트 리스너 추가
+    const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeExample();
+        });
+    });
+});
+</script>
+  
 </body>
 </html>
