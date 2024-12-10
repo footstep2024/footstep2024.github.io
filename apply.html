@@ -554,10 +554,6 @@ font-size: 0.85rem;
 }
 }
 
-textarea.form-control {
-min-height: 120px;
-resize: vertical;
-}
 
 .accent-line {
 position: absolute;
@@ -647,6 +643,79 @@ background-color: var(--border-color);
 color: var(--text-color);
 }
 
+.special-intro-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.special-intro-input {
+    flex: 1;
+}
+
+.special-intro-examples {
+    width: 200px;
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+    padding: 0.8rem;
+    height: 250px;  /* 고정 높이 설정 */
+}
+
+.special-intro-input textarea {
+    height: 250px !important;  /* 예시 박스와 동일한 높이 */
+    resize: none;
+}
+
+.examples-title {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.examples-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--light-text);
+}
+
+.examples-list li {
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.example-icon {
+    color: var(--primary-color);
+    opacity: 0.6;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .special-intro-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .special-intro-examples {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .examples-list {
+        font-size: 0.8rem;
+    }
+
+    .examples-title {
+        font-size: 0.85rem;
+    }
+}
+
+  
 .btn-secondary:hover {
 background-color: #d0d3d4;
 }
@@ -1791,6 +1860,32 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
 <textarea class="form-control" name="introduction" rows="4" required></textarea>
 </div>      
+
+<!-- 특별 자기소개 섹션 -->
+<div class="form-group" style="margin-top: 2rem;">
+<label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
+<div class="special-intro-container">
+    <div class="special-intro-input">
+<div class="special-intro-input">
+    <textarea class="form-control" name="special_introduction" rows="4" required placeholder="예: '허당' 주우재 유형입니다. 여행 갈 때마다 어김없이 중요한 걸 깜빡하지만, 그 덕분에 예상치 못한 재미있는 상황이 연출되곤 합니다."></textarea>
+</div>
+    </div>
+    <div class="special-intro-examples">
+        <div class="examples-title">유형 예시</div>
+        <ul class="examples-list">
+            <li><span class="example-icon">▲</span> '편안한 리더십' 유재석</li>
+            <li><span class="example-icon">▲</span> '긍정 에너지' 노홍철</li>
+            <li><span class="example-icon">▲</span> '아이돌 센터' 장원영</li>
+            <li><span class="example-icon">▲</span> '노빠꾸 예능감' 탁재훈</li>
+            <li><span class="example-icon">▲</span> '삼시세끼' 차승원</li>
+            <li><span class="example-icon">▲</span> '베스트 드라이버' 이수근</li>
+            <li><span class="example-icon">▲</span> '여행 플레너' 나영석</li>
+            <li><span class="example-icon">▲</span> '허당' 주우재</li>
+        </ul>
+    </div>
+</div>
+</div>
+  
 </section>      
 </form>  
 
