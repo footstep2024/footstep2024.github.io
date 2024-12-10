@@ -371,6 +371,13 @@ border-radius: 8px;
 transition: all 0.3s ease;
 }
 
+    /* 자기소개 textarea의 높이 설정 */
+textarea[name="introduction"] {
+    height: 100px !important;  /* 높이를 250px로 고정 */
+    min-height: 100px;  /* 최소 높이도 250px로 설정 */
+    resize: none;  /* 크기 조절 비활성화 */
+}
+
 /* 여기에 date input 스타일 추가 */
 input[type="date"].form-control {
 font-family: 'Noto Sans KR', sans-serif;
@@ -1858,9 +1865,9 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
-<textarea class="form-control" name="introduction" rows="4" required></textarea>
-</div>      
-
+<textarea class="form-control" name="introduction" rows="10" style="resize: none;" required></textarea>
+</div>
+    
 <!-- 특별 자기소개 섹션 -->
 <div class="form-group" style="margin-top: 2rem;">
 <label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
