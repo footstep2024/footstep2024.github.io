@@ -314,6 +314,34 @@ font-size: 0.85rem;
 margin-bottom: 1.5rem;
 }
 
+    /* 여행 경험 에세이 섹션 스타일 */
+textarea[name="travel_essay"] {
+    height: 200px !important;
+    min-height: 200px;
+    resize: none;
+}
+
+#episode_description,
+#planned_description {
+    background: rgba(47, 82, 41, 0.03);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    #episode_description,
+    #planned_description {
+        padding: 0.8rem;
+    }
+    
+    #episode_description p,
+    #planned_description p {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 768px) {
 .form-row, .form-row.three-columns {
 grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
@@ -1857,7 +1885,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
-
 </section>
 
 <section class="form-section">
@@ -1865,7 +1892,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
-<textarea class="form-control" name="introduction" rows="10" style="resize: none;" required></textarea>
+<textarea class="form-control" name="introduction" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
 </div>
     
 <!-- 특별 자기소개 섹션 -->
@@ -1890,8 +1917,32 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     </div>
 </div>
 </div>
-  
 </section>      
+
+<section class="form-section">
+<h2 class="section-title">여행 경험 에세이</h2>
+<p style="color: var(--light-text); font-size: 0.9rem; margin-bottom: 1.5rem;">두 주제 중 하나를 선택하여 작성해 주세요.</p>
+
+<!-- 선택 버튼 그룹 -->
+<div class="radio-group-container" style="margin-bottom: 1.5rem; border-top: none;">
+    <label class="checkbox-label">
+        <input type="radio" name="travel_essay_type" value="memorable_episode" required onclick="updatePlaceholder('episode')">
+        <span class="check-icon"></span>
+        <span class="label-text">기억에 남는 여행 에피소드</span>
+    </label>
+    <label class="checkbox-label">
+        <input type="radio" name="travel_essay_type" value="planned_travel" required onclick="updatePlaceholder('planned')">
+        <span class="check-icon"></span>
+        <span class="label-text">자체 기획 여행 경험</span>
+    </label>
+</div>
+
+<!-- 에세이 입력 영역 -->
+<div class="form-group">
+    <textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="위 주제 중 하나를 클릭해주세요."></textarea>
+</div>
+</section>
+    
 </form>  
 
 <!-- 예시 보기 모달 -->
@@ -2080,6 +2131,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 </script>
+
+<script>
+function updatePlaceholder(type) {
+    const textarea = document.getElementById('travelEssay');
+    if (type === 'episode') {
+        textarea.placeholder = "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다.";
+    } else if (type === 'planned') {
+        textarea.placeholder = "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 등고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요.";
+    }
+}
+</script>    
 
 </body>
 </html>
