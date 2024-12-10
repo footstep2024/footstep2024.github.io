@@ -1174,6 +1174,31 @@ animation: bounce 1s infinite;
 50% { transform: translateY(-5px); }
 }
 
+  .modal-desc {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin: 0.5rem 0 2rem 0;  /* 아래 여백을 2rem으로 설정 */
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.modal-desc::before {
+    content: '\f05a';  /* 정보 아이콘 */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .modal-desc {
+        font-size: 0.7rem;
+        margin: 0.4rem 0 1.5rem 0;  /* 모바일에서는 여백 살짝 줄임 */
+    }
+}
+
 .example-modal-content {
     position: relative;
     background: white;
@@ -1817,16 +1842,15 @@ function showExample(type, event) {
         scrollIndicator.style.opacity = '0';
     }
 
-    // 타입에 따른 모달 내용 설정
-    if (type === 'feedback') {
-        image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
-        modalTitle.textContent = '피드백 예시';
-        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-    } else if (type === 'content') {
-        image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
-        modalTitle.textContent = '콘텐츠 공유 예시';
-        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
-    }
+if (type === 'feedback') {
+    image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
+    modalTitle.textContent = '피드백 예시';
+    modalDesc.textContent = '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.';
+} else if (type === 'content') {
+    image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
+    modalTitle.textContent = '콘텐츠 공유 예시';
+    modalDesc.textContent = '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.';
+}
 
     // 이미지 로드 완료 후 모달 표시
     image.onload = function() {
@@ -1836,16 +1860,18 @@ function showExample(type, event) {
         setTimeout(() => {
             if (scrollIndicator) {
                 scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.transition = 'opacity 0.5s ease';  // 서서히 나타나도록 트랜지션 추가
             }
-        }, 500);
+        }, 1000);  // 1초로 시간 증가
 
-        // 스크롤 이벤트 핸들러
-        function handleScroll() {
-            if (imageContainer && imageContainer.scrollTop > 50) {
-                scrollIndicator.style.opacity = '0';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
+    // 스크롤 이벤트 핸들러
+    function handleScroll() {
+        if (imageContainer && imageContainer.scrollTop > 100) {  // 스크롤 감지 거리를 50에서 100으로 증가
+            scrollIndicator.style.opacity = '0';
+            scrollIndicator.style.transition = 'opacity 1s ease';  // 서서히 사라지도록 트랜지션 추가
+            imageContainer.removeEventListener('scroll', handleScroll);
         }
+    }
 
         if (imageContainer) {
             imageContainer.removeEventListener('scroll', handleScroll);
