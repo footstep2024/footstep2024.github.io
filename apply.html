@@ -2017,22 +2017,8 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     <div class="form-group">
         <div class="essay-header" style="margin: 0;">
             <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
-            <div class="essay-type-selector">
-                <div class="essay-type-options">
-                    <label class="checkbox-label">
-                        <input type="radio" name="final_words_type" value="commitment" required onclick="updateFinalWordsPlaceholder('commitment')">
-                        <span class="check-icon"></span>
-                        <span class="label-text">각오와 다짐</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="radio" name="final_words_type" value="free" required onclick="updateFinalWordsPlaceholder('free')">
-                        <span class="check-icon"></span>
-                        <span class="label-text">자유 주제</span>
-                    </label>
-                </div>
-            </div>
         </div>
-        <textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="위 주제 중 하나를 클릭해주세요."></textarea>
+        <textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
     </div>
 </section>
     
@@ -2233,15 +2219,6 @@ function updatePlaceholder(type) {
         textarea.placeholder = "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다.";
     } else if (type === 'planned') {
         textarea.placeholder = "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 등고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요.";
-    }
-}
-
-function updateFinalWordsPlaceholder(type) {
-    const textarea = document.getElementById('finalWords');
-    if (type === 'commitment') {
-        textarea.placeholder = "발자취 부원이 된다면 어떤 모습으로 임하고 싶은지 적어주세요.";
-    } else if (type === 'free') {
-        textarea.placeholder = "하고 싶은 이야기를 자유롭게 적어주세요.";
     }
 }
     
