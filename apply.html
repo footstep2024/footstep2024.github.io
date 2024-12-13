@@ -349,13 +349,6 @@ font-size: 0.85rem;
 margin-bottom: 1.5rem;
 }
 
-    /* 여행 경험 에세이 섹션 스타일 */
-textarea[name="travel_essay"] {
-    height: 200px !important;
-    min-height: 200px;
-    resize: none;
-}
-
 #episode_description,
 #planned_description {
     background: rgba(47, 82, 41, 0.03);
@@ -447,6 +440,25 @@ textarea[name="visited_places"] {
     min-height: 60px;  /* 최소 높이 설정 */
 }
 
+/* 여행 경험 에세이 섹션 스타일 */
+textarea[name="travel_essay"] {
+    height: 200px !important;
+    min-height: 200px;
+    resize: none;
+}
+
+textarea[name="motivation"] {
+    resize: none;  /* 크기 조절 비활성화 */
+    height: 100px !important;  /* 60px에서 100px로 증가 */
+    min-height: 100px;  /* 60px에서 100px로 증가 */
+}
+
+textarea[name="final_words"] {
+    resize: none;
+    height: 150px !important;  /* 기존보다 더 높게 설정 */
+    min-height: 150px;
+}
+    
 /* 여기에 date input 스타일 추가 */
 input[type="date"].form-control {
 font-family: 'Noto Sans KR', sans-serif;
@@ -1991,6 +2003,39 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         <textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="왼쪽 위의 주제 중 하나를 클릭해주세요."></textarea>
     </div>
 </section>
+
+    <section class="form-section">
+    <h2 class="section-title">지원자의 이야기</h2>
+
+    <!-- 지원 동기 입력 칸 -->
+    <div class="form-group" style="margin-bottom: 2rem;">
+        <label class="form-label required">지원 동기를 적어주세요.</label>
+        <textarea class="form-control" name="motivation" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
+    </div>
+    
+    <!-- 마지막 한마디 작성 부분 -->
+    <div class="form-group">
+        <div class="essay-header" style="margin: 0;">
+            <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
+            <div class="essay-type-selector">
+                <div class="essay-type-options">
+                    <label class="checkbox-label">
+                        <input type="radio" name="final_words_type" value="commitment" required onclick="updateFinalWordsPlaceholder('commitment')">
+                        <span class="check-icon"></span>
+                        <span class="label-text">각오와 다짐</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="final_words_type" value="free" required onclick="updateFinalWordsPlaceholder('free')">
+                        <span class="check-icon"></span>
+                        <span class="label-text">자유 주제</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="위 주제 중 하나를 클릭해주세요."></textarea>
+    </div>
+</section>
+    
     
 </form>  
 
@@ -2190,6 +2235,16 @@ function updatePlaceholder(type) {
         textarea.placeholder = "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 등고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요.";
     }
 }
+
+function updateFinalWordsPlaceholder(type) {
+    const textarea = document.getElementById('finalWords');
+    if (type === 'commitment') {
+        textarea.placeholder = "발자취 부원이 된다면 어떤 모습으로 임하고 싶은지 적어주세요.";
+    } else if (type === 'free') {
+        textarea.placeholder = "하고 싶은 이야기를 자유롭게 적어주세요.";
+    }
+}
+    
 </script>    
 
 </body>
