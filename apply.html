@@ -1403,6 +1403,168 @@ font-size: 0.9rem;
 }
 }
 
+/* 기본 섹션 스타일 */
+.notice-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.notice-header h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* 필수 배지 스타일 */
+.required-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* 공지사항 리스트 스타일 */
+.notice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notice-item {
+    position: relative;
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.notice-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    padding-right: 100px; /* 확인함 버튼 공간 */
+}
+
+.notice-content i {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0; /* 아이콘 크기 고정 */
+}
+
+.notice-content p {
+    flex: 1;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    word-break: keep-all;
+}
+
+/* 확인함 버튼 스타일 */
+.confirm-check {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(47, 82, 41, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--light-text);
+}
+
+.confirm-check:hover {
+    background: rgba(47, 82, 41, 0.05);
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.confirm-check input {
+    display: none;
+}
+
+.check-text {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    transition: all 0.2s ease;
+}
+
+/* 체크 상태 스타일 */
+.notice-item .confirm-check input:checked + .check-text {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.notice-item .confirm-check input:checked ~ .confirm-check {
+    background: rgba(47, 82, 41, 0.1);
+    border-color: var(--primary-color);
+}
+
+.notice-item input:checked ~ .notice-content {
+    background: rgba(47, 82, 41, 0.02);
+}
+
+.confirm-check input:checked + .check-text::before {
+    content: '✓';
+    margin-right: 4px;
+    color: var(--primary-color);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .notice-card {
+        padding: 1.2rem;
+    }
+
+    .notice-item {
+        padding: 0.8rem;
+    }
+
+    .notice-content {
+        flex-direction: column;
+        padding-right: 0;
+        padding-bottom: 2.5rem;
+    }
+
+    .notice-content p {
+        font-size: 0.8rem;
+    }
+
+    .confirm-check {
+        position: absolute;
+        right: 50%;
+        bottom: 0.5rem;
+        top: auto;
+        transform: translateX(50%);
+    }
+
+    .confirm-check:hover {
+        transform: translateX(50%) translateY(-2px);
+    }
+}
+
+
 
 /* 다크 모드 지원 */
 @media (prefers-color-scheme: dark) {
@@ -2021,7 +2183,64 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         <textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
     </div>
 </section>
+
+<!-- 활동 안내사항 섹션 -->
+<section class="form-section">
+    <h2 class="section-title">활동 안내사항 확인</h2>
     
+    <div class="notice-card">
+        <div class="notice-header">
+            <h3>아래 내용을 반드시 확인해주세요</h3>
+            <span class="required-badge">필수</span>
+        </div>
+
+        <div class="notice-list">
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_1" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_2" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>신입 기수는 가입비가 없으나, 활동 연장 및 OB 전환 시 동아리 발전기금(여행 보조금 등으로 활용)을 납부하게 됩니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_3" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_4" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     
 </form>  
 
