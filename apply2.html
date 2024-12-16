@@ -128,6 +128,41 @@ margin-bottom: var(--section-gap);
 box-shadow: var(--box-shadow);
 }
 
+.essay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.essay-type-selector {
+    min-width: 200px;
+}
+
+.essay-type-options {
+    display: flex;
+    gap: 0.8rem;  /* 체크박스 사이 간격 */
+    justify-content: flex-end;  /* 오른쪽 정렬 */
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .essay-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .essay-type-selector {
+        width: 100%;
+    }
+
+    .essay-type-options {
+        justify-content: flex-start;  /* 모바일에서는 왼쪽 정렬 */
+        gap: 1.5rem;  /* 모바일에서는 간격 줄임 */
+    }
+}
+
 /* section-title 스타일도 수정이 필요합니다 */
 .section-title {
 font-size: 1.5rem;
@@ -314,6 +349,27 @@ font-size: 0.85rem;
 margin-bottom: 1.5rem;
 }
 
+#episode_description,
+#planned_description {
+    background: rgba(47, 82, 41, 0.03);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    #episode_description,
+    #planned_description {
+        padding: 0.8rem;
+    }
+    
+    #episode_description p,
+    #planned_description p {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 768px) {
 .form-row, .form-row.three-columns {
 grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
@@ -325,9 +381,9 @@ margin-bottom: 0.8rem;
 /* 폼 레이블의 크기 줄임 */
 .form-label {
 display: block;
-font-size: 0.85rem;  /* 0.95rem에서 줄임 */
+font-size: 0.85rem; 
 font-weight: 500;
-margin-bottom: 0.4rem;  /* 0.5rem에서 줄임 */
+margin-bottom: 0.4rem; 
 color: var(--text-color);
 }
 
@@ -371,6 +427,51 @@ border-radius: 8px;
 transition: all 0.3s ease;
 }
 
+/* 자기소개 textarea의 높이 설정 */
+textarea[name="introduction"] {
+    height: 100px !important;
+    min-height: 100px;
+    resize: none;
+}
+
+textarea[name="visited_places"] {
+    resize: none;
+    height: 60px !important;
+    min-height: 60px;
+}
+
+/* 여행 경험 에세이 섹션 스타일 */
+textarea[name="travel_essay"] {
+    height: 200px !important;
+    min-height: 200px;
+    resize: none;
+}
+
+textarea[name="motivation"] {
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
+}
+
+textarea[name="final_words"] {
+    resize: none;
+    height: 150px !important;
+    min-height: 150px;
+}
+
+/* 여기에 새로 추가하는 부분 */
+textarea[name="extracurricular"] {
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
+}
+
+textarea[name="fixed_schedule"] {
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
+}
+    
 /* 여기에 date input 스타일 추가 */
 input[type="date"].form-control {
 font-family: 'Noto Sans KR', sans-serif;
@@ -554,10 +655,6 @@ font-size: 0.85rem;
 }
 }
 
-textarea.form-control {
-min-height: 120px;
-resize: vertical;
-}
 
 .accent-line {
 position: absolute;
@@ -647,6 +744,79 @@ background-color: var(--border-color);
 color: var(--text-color);
 }
 
+.special-intro-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.special-intro-input {
+    flex: 1;
+}
+
+.special-intro-examples {
+    width: 200px;
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+    padding: 0.8rem;
+    height: 250px;  /* 고정 높이 설정 */
+}
+
+.special-intro-input textarea {
+    height: 250px !important;  /* 예시 박스와 동일한 높이 */
+    resize: none;
+}
+
+.examples-title {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.examples-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--light-text);
+}
+
+.examples-list li {
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.example-icon {
+    color: var(--primary-color);
+    opacity: 0.6;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .special-intro-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .special-intro-examples {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .examples-list {
+        font-size: 0.8rem;
+    }
+
+    .examples-title {
+        font-size: 0.85rem;
+    }
+}
+
+  
 .btn-secondary:hover {
 background-color: #d0d3d4;
 }
@@ -1063,7 +1233,6 @@ background: rgba(0, 0, 0, 0.85); /* 배경 어둡게 조정 */
 z-index: 1000;
 backdrop-filter: blur(5px);
 overflow-y: auto;
-/* 스크롤바 스타일링 */
 scrollbar-width: thin;
 scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
@@ -1080,6 +1249,19 @@ background: transparent;
 .example-modal::-webkit-scrollbar-thumb {
 background-color: rgba(255, 255, 255, 0.3);
 border-radius: 4px;
+}
+
+.rules-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    overflow-y: auto;
 }
 
 /* 닫기 버튼들 스타일링 */
@@ -1174,6 +1356,31 @@ animation: bounce 1s infinite;
 50% { transform: translateY(-5px); }
 }
 
+  .modal-desc {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin: 0.5rem 0 2rem 0;  /* 아래 여백을 2rem으로 설정 */
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.modal-desc::before {
+    content: '\f05a';  /* 정보 아이콘 */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .modal-desc {
+        font-size: 0.7rem;
+        margin: 0.4rem 0 1.5rem 0;  /* 모바일에서는 여백 살짝 줄임 */
+    }
+}
+
 .example-modal-content {
     position: relative;
     background: white;
@@ -1181,9 +1388,12 @@ animation: bounce 1s infinite;
     border-radius: 16px;
     width: 90%;
     max-width: 800px;
-    margin: 30px auto;  /* 40px에서 30px로 줄여서 더 길게 보이게 */
+    margin: 50vh auto;  /* 상단 마진을 50vh로 설정 */
+    transform: translateY(-50%);  /* 자신의 높이의 절반만큼 위로 이동 */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    height: 90vh;      /* 85vh에서 90vh로 증가 */
+    height: auto;
+    min-height: auto;  /* 필요한 만큼만 높이 가지도록 */
+    max-height: 80vh;  /* 화면 높이의 80%를 넘지 않도록 */
     display: flex;
     flex-direction: column;
 }
@@ -1221,6 +1431,272 @@ font-size: 0.9rem;
 }
 }
 
+/* rules-content 스타일 수정 - 기존 스타일을 찾아 이것으로 교체해주세요 */
+.rules-content {
+    padding: 1.4rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 0;  /* 여백 제거 */
+}
+
+.rules-content .rules-title {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
+    padding-bottom: 1.2rem;
+    margin-bottom: 2.2rem; /* 여백 증가 */
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.rules-content ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: rule-counter;
+}
+
+.rules-content li {
+    margin-bottom: 0.8rem;
+    padding-left: 2.5rem;
+    position: relative;
+    line-height: 1.5;
+    color: var(--text-color);
+    font-size: 0.9rem;  /* 글자 크기 축소 */
+}
+
+.rules-content li::before {
+    counter-increment: rule-counter;
+    content: counter(rule-counter);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.rules-content .rules-source {
+    text-align: right;
+    color: var(--light-text);
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(47, 82, 41, 0.1);
+}
+    
+/* 모달 설명 스타일 수정 */
+.rules-modal-desc {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    margin: 1rem 0 2rem 0;
+    padding: 0.8rem 1rem;
+    background: rgba(47, 82, 41, 0.05);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rules-modal-desc i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .rules-content {
+        padding: 1.5rem;
+    }
+    
+    .rules-content .rules-title {
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .rules-content li {
+        font-size: 0.85rem;
+        padding-left: 2.2rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .rules-content li::before {
+        width: 1.3rem;
+        height: 1.3rem;
+        font-size: 0.65rem;
+    }
+}
+    
+/* 기본 섹션 스타일 */
+.notice-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.notice-header h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* 필수 배지 스타일 */
+.required-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* 공지사항 리스트 스타일 */
+.notice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notice-item {
+    position: relative;
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.notice-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    padding-right: 100px; /* 확인함 버튼 공간 */
+}
+
+.notice-content i {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0; /* 아이콘 크기 고정 */
+}
+
+.notice-content p {
+    flex: 1;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    word-break: keep-all;
+}
+
+/* 확인함 버튼 스타일 */
+.confirm-check {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(47, 82, 41, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--light-text);
+}
+
+.confirm-check:hover {
+    background: rgba(47, 82, 41, 0.05);
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.confirm-check input {
+    display: none;
+}
+
+.check-text {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    transition: all 0.2s ease;
+}
+
+/* 체크 상태 스타일 */
+.notice-item .confirm-check input:checked + .check-text {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.notice-item .confirm-check input:checked ~ .confirm-check {
+    background: rgba(47, 82, 41, 0.1);
+    border-color: var(--primary-color);
+}
+
+.notice-item input:checked ~ .notice-content {
+    background: rgba(47, 82, 41, 0.02);
+}
+
+.confirm-check input:checked + .check-text::before {
+    content: '✓';
+    margin-right: 4px;
+    color: var(--primary-color);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .notice-card {
+        padding: 1.2rem;
+    }
+
+    .notice-item {
+        padding: 0.8rem;
+    }
+
+    .notice-content {
+        flex-direction: column;
+        padding-right: 0;
+        padding-bottom: 2.5rem;
+    }
+
+    .notice-content p {
+        font-size: 0.8rem;
+    }
+
+    .confirm-check {
+        position: absolute;
+        right: 50%;
+        bottom: 0.5rem;
+        top: auto;
+        transform: translateX(50%);
+    }
+
+    .confirm-check:hover {
+        transform: translateX(50%) translateY(-2px);
+    }
+}
+
+
 
 /* 다크 모드 지원 */
 @media (prefers-color-scheme: dark) {
@@ -1244,142 +1720,8 @@ color: var(--text-color);
 }
 </style>
 </head>
-<body>
-<script>
-document.addEventListener('contextmenu', function(e) {
-e.preventDefault();
-return false;
-}, false);
-
-document.addEventListener('dragstart', function(e) {
-e.preventDefault();
-return false;
-});
-
-document.addEventListener('selectstart', function(e) {
-e.preventDefault();
-return false;
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-let currentDate = new Date(2001, 0, 1); // 2001년 1월 1일로 초기화
-
-function renderCalendar() {
-const calendarGrid = document.querySelector('.calendar-grid');
-const currentMonth = currentDate.getMonth();
-const currentYear = currentDate.getFullYear();
-
-// 현재 월의 첫날과 마지막날
-const firstDay = new Date(currentYear, currentMonth, 1);
-const lastDay = new Date(currentYear, currentMonth + 1, 0);
-
-// 달력 헤더 업데이트
-document.querySelector('.year-month-display').textContent = 
-`${currentYear}년 ${currentMonth + 1}월`;
-
-// 달력 그리드 초기화
-calendarGrid.innerHTML = '';
-
-// 요일 헤더 추가
-const days = ['일', '월', '화', '수', '목', '금', '토'];
-days.forEach(day => {
-const dayElement = document.createElement('div');
-dayElement.className = 'calendar-day day-header';
-dayElement.textContent = day;
-calendarGrid.appendChild(dayElement);
-});
-
-// 해당 월의 1일이 시작하는 요일만큼 빈 칸 추가
-const firstDayOfWeek = firstDay.getDay();
-for (let i = 0; i < firstDayOfWeek; i++) {
-const emptyDay = document.createElement('div');
-emptyDay.className = 'calendar-day empty';
-calendarGrid.appendChild(emptyDay);
-}
-
-// 날짜 추가
-for (let i = 1; i <= lastDay.getDate(); i++) {
-const dateElement = document.createElement('div');
-dateElement.className = 'calendar-day';
-dateElement.textContent = i;
-dateElement.onclick = () => {
-// 날짜 객체 생성 시 시간을 정오(12:00)로 설정
-const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
-// ISO 문자열로 변환 후 날짜 부분만 잘라서 설정
-const isoString = date.toISOString();
-const dateString = isoString.split('T')[0];
-document.querySelector('input[name="birthdate"]').value = dateString;
-closeDateModal();
-};
-calendarGrid.appendChild(dateElement);
-}
-}
-
-// 년도 위/아래 버튼 이벤트
-document.querySelector('.year-up').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setFullYear(currentDate.getFullYear() + 1);
-renderCalendar();
-});
-
-document.querySelector('.year-down').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setFullYear(currentDate.getFullYear() - 1);
-renderCalendar();
-});
-
-// 이전/다음 달 버튼 이벤트
-document.querySelector('.month-prev').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setMonth(currentDate.getMonth() - 1);
-renderCalendar();
-});
-
-document.querySelector('.month-next').addEventListener('click', function(e) {
-e.stopPropagation();
-currentDate.setMonth(currentDate.getMonth() + 1);
-renderCalendar();
-});
-
-function openDateModal() {
-document.getElementById('dateModal').style.display = 'block';
-currentDate = new Date(2001, 0, 1);  // 2001년 1월로 초기화
-renderCalendar();
-}
-
-function closeDateModal() {
-document.getElementById('dateModal').style.display = 'none';
-}
-
-// 날짜 입력 필드 클릭 이벤트
-const dateInput = document.querySelector('input[name="birthdate"]');
-if (dateInput) {
-dateInput.addEventListener('click', function(e) {
-e.preventDefault();
-openDateModal();
-});
-}
-
-// 모달 바깥 클릭시 닫기
-window.onclick = function(event) {
-const modal = document.getElementById('dateModal');
-if (event.target == modal) {
-closeDateModal();
-}
-}
-
-// 선택/취소 버튼 클릭 이벤트
-const confirmBtn = document.querySelector('.confirm-btn');
-const cancelBtn = document.querySelector('.cancel-btn');
-
-if (confirmBtn) {
-confirmBtn.onclick = closeDateModal;
-}
-if (cancelBtn) {
-cancelBtn.onclick = closeDateModal;
-}
-});
-</script>    
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+  
 <div class="progress-container">
 <div class="progress-bar">
 <div class="progress" id="progress"></div>
@@ -1651,7 +1993,22 @@ cancelBtn.onclick = closeDateModal;
 </div>
 </div>
 </div>
+    
+</section>
 
+<!-- 기본 정보 섹션 끝나고, 활동 참여 및 동의 여부 섹션 시작하기 전에 다음 코드를 추가 -->
+<section class="form-section">
+<h2 class="section-title">추가 정보</h2>
+
+<div class="form-group">
+<label class="form-label">대외활동 경력을 자유롭게 적어주세요.</label>
+<textarea class="form-control" name="extracurricular" required placeholder="현재 참여 중이거나 대학 생활 이후로 참여했던 의미있는 대외활동과 동아리 활동을 자유롭게 적어주세요."></textarea>
+</div>
+
+<div class="form-group" style="margin-top: 2rem;">
+<label class="form-label">주간 고정 일정을 적어주세요.</label>
+<textarea class="form-control" name="fixed_schedule" required placeholder="매주 고정적으로 참여해야 하는 일정을 적어주세요. (예: 월요일 저녁 7-10시 과외, 목요일 오후 3-6시 아르바이트) 편하시다면 반대로 말씀해주셔도 좋습니다. (예: 화/목/금요일은 오후 시간대가 자유로움)"></textarea>
+</div>
 </section>
 
 <section class="form-section">
@@ -1803,9 +2160,10 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
 </div>
 </div>
-<button class="example-btn" onclick="showExample('content')">
-<i class="fas fa-image"></i>
-예시
+<!-- 콘텐츠 활용 동의 예시 버튼 -->
+<button class="example-btn" type="button" data-type="content">
+    <i class="fas fa-image"></i>
+    예시
 </button>
 </div>
 </div>                    
@@ -1863,9 +2221,10 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
 </div>
 </div>
-<button class="example-btn" onclick="showExample('feedback')">
-<i class="fas fa-image"></i>
-예시
+<!-- 여행 운영 참여 안내 예시 버튼 -->
+<button class="example-btn" type="button" data-type="feedback">
+    <i class="fas fa-image"></i>
+    예시
 </button>
 </div>
 
@@ -1888,243 +2247,181 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
-
 </section>
-
 
 <section class="form-section">
 <h2 class="section-title">자기소개</h2>
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
-<textarea class="form-control" name="introduction" rows="4" required></textarea>
-
-
-
-<script>
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-}, false);
-
-document.addEventListener('dragstart', function(e) {
-    e.preventDefault();
-    return false;
-});
-
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-    return false;
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    let currentDate = new Date(2001, 0, 1); // 2001년 1월 1일로 초기화
-
-    function renderCalendar() {
-        const calendarGrid = document.querySelector('.calendar-grid');
-        const currentMonth = currentDate.getMonth();
-        const currentYear = currentDate.getFullYear();
-
-        // 현재 월의 첫날과 마지막날
-        const firstDay = new Date(currentYear, currentMonth, 1);
-        const lastDay = new Date(currentYear, currentMonth + 1, 0);
-
-        // 달력 헤더 업데이트
-        document.querySelector('.year-month-display').textContent = 
-            `${currentYear}년 ${currentMonth + 1}월`;
-
-        // 달력 그리드 초기화
-        calendarGrid.innerHTML = '';
-
-        // 요일 헤더 추가
-        const days = ['일', '월', '화', '수', '목', '금', '토'];
-        days.forEach(day => {
-            const dayElement = document.createElement('div');
-            dayElement.className = 'calendar-day day-header';
-            dayElement.textContent = day;
-            calendarGrid.appendChild(dayElement);
-        });
-
-        // 해당 월의 1일이 시작하는 요일만큼 빈 칸 추가
-        const firstDayOfWeek = firstDay.getDay();
-        for (let i = 0; i < firstDayOfWeek; i++) {
-            const emptyDay = document.createElement('div');
-            emptyDay.className = 'calendar-day empty';
-            calendarGrid.appendChild(emptyDay);
-        }
-
-        // 날짜 추가
-        for (let i = 1; i <= lastDay.getDate(); i++) {
-            const dateElement = document.createElement('div');
-            dateElement.className = 'calendar-day';
-            dateElement.textContent = i;
-            dateElement.onclick = () => {
-                const date = new Date(currentYear, currentMonth, i, 12, 0, 0);
-                const isoString = date.toISOString();
-                const dateString = isoString.split('T')[0];
-                document.querySelector('input[name="birthdate"]').value = dateString;
-                closeDateModal();
-            };
-            calendarGrid.appendChild(dateElement);
-        }
-    }
-
-    // 달력 컨트롤 이벤트 리스너
-    document.querySelector('.year-up').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setFullYear(currentDate.getFullYear() + 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.year-down').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setFullYear(currentDate.getFullYear() - 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.month-prev').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    });
-
-    document.querySelector('.month-next').addEventListener('click', function(e) {
-        e.stopPropagation();
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
-
-    function openDateModal() {
-        document.getElementById('dateModal').style.display = 'block';
-        currentDate = new Date(2001, 0, 1);
-        renderCalendar();
-    }
-
-    function closeDateModal() {
-        document.getElementById('dateModal').style.display = 'none';
-    }
-
-    // 날짜 입력 필드 클릭 이벤트
-    const dateInput = document.querySelector('input[name="birthdate"]');
-    if (dateInput) {
-        dateInput.addEventListener('click', function(e) {
-            e.preventDefault();
-            openDateModal();
-        });
-    }
-
-    // 모달 관련 이벤트 리스너들
-    window.onclick = function(event) {
-        const modal = document.getElementById('dateModal');
-        if (event.target == modal) {
-            closeDateModal();
-        }
-    }
-
-    const confirmBtn = document.querySelector('.confirm-btn');
-    const cancelBtn = document.querySelector('.cancel-btn');
-
-    if (confirmBtn) confirmBtn.onclick = closeDateModal;
-    if (cancelBtn) cancelBtn.onclick = closeDateModal;
-});
-
-// 예시 모달 관련 함수들
-function showExample(type) {
-    const modal = document.getElementById('exampleModal');
-    const image = document.getElementById('exampleImage');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const imageContainer = document.querySelector('.modal-image-container');
-
-    // 스크롤 위치 초기화
-    if (imageContainer) {
-        imageContainer.scrollTop = 0;
-    }
+<textarea class="form-control" name="introduction" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
+</div>
     
-    // 스크롤 인디케이터 초기화
-    scrollIndicator.style.opacity = '0';
+<!-- 특별 자기소개 섹션 -->
+<div class="form-group" style="margin-top: 2rem;">
+<label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
+<div class="special-intro-container">
+    <div class="special-intro-input">
+<textarea class="form-control" name="special_introduction" rows="4" required placeholder="예시 1) '허당' 주우재 유형입니다. 여행 갈 때마다 어김없이 중요한 걸 깜빡하지만, 그 덕분에 예상치 못한 재미있는 상황이 연출되곤 합니다.&#13;&#10;&#13;&#10;예시 2) '아이돌 센터' 장원영 유형입니다. 늘 밝고 화사한 표정으로 사진 찍는 걸 좋아해서, 동아리 SNS 홍보대사를 자처하고 싶습니다!&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>    </div>
+    <div class="special-intro-examples">
+        <div class="examples-title">유형 예시</div>
+        <ul class="examples-list">
+            <li><span class="example-icon">▲</span> '편안한 리더십' 유재석</li>
+            <li><span class="example-icon">▲</span> '긍정 에너지' 노홍철</li>
+            <li><span class="example-icon">▲</span> '아이돌 센터' 장원영</li>
+            <li><span class="example-icon">▲</span> '노빠꾸 예능감' 탁재훈</li>
+            <li><span class="example-icon">▲</span> '삼시세끼' 차승원</li>
+            <li><span class="example-icon">▲</span> '베스트 드라이버' 이수근</li>
+            <li><span class="example-icon">▲</span> '여행 플레너' 나영석</li>
+            <li><span class="example-icon">▲</span> '허당' 주우재</li>
+        </ul>
+    </div>
+</div>
+</div>
+</section>      
 
-    if (type === 'feedback') {
-        image.src = 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png';
-        modalTitle.textContent = '피드백 예시';
-        modalDesc.textContent = '실제 피드백 설문의 예시입니다. 스크롤하여 전체 내용을 확인하세요.';
-    } else {
-        image.src = 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png';
-        modalTitle.textContent = '콘텐츠 공유 예시';
-        modalDesc.textContent = '실제 공유되는 콘텐츠의 예시입니다.';
-    }
+<section class="form-section">
+    <h2 class="section-title">여행 경험 에세이</h2>
 
-    // 이미지 로드 완료 후 실행
-    image.onload = function() {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // 스크롤 위치 한번 더 초기화
-        imageContainer.scrollTop = 0;
-        
-        // 스크롤 인디케이터 표시
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-        }, 500);
-
-        // 스크롤 이벤트 핸들러
-        function handleScroll() {
-            if (imageContainer.scrollTop > 500) {
-                scrollIndicator.style.opacity = '0';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        }
-
-        // 이전 이벤트 리스너 제거 후 새로 추가
-        imageContainer.removeEventListener('scroll', handleScroll);
-        imageContainer.addEventListener('scroll', handleScroll);
-    };
-}
-
-function closeExample() {
-    const modal = document.getElementById('exampleModal');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
+    <!-- 가본 여행지 입력 칸 -->
+    <div class="form-group" style="margin-bottom: 2rem;">
+        <label class="form-label required">지금까지 가본 여행지를 적어주세요.</label>
+        <textarea class="form-control" name="visited_places" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
+    </div>
     
-    // 모달 닫기
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    <!-- 에세이 작성 부분 -->
+    <div class="form-group">
+        <div class="essay-header" style="margin: 0;">  <!-- margin을 0으로 초기화 -->
+            <label class="form-label" style="margin-bottom: 0.4rem;">왼쪽의 두 주제 중 하나를 선택하여 작성해 주세요.</label>
+            <div class="essay-type-selector">
+                <div class="essay-type-options">
+                    <label class="checkbox-label">
+                        <input type="radio" name="travel_essay_type" value="memorable_episode" required onclick="updatePlaceholder('episode')">
+                        <span class="check-icon"></span>
+                        <span class="label-text">기억에 남는 여행 에피소드</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="travel_essay_type" value="planned_travel" required onclick="updatePlaceholder('planned')">
+                        <span class="check-icon"></span>
+                        <span class="label-text">자체 여행 기획 경험</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="오른쪽 상단에 두 주제 중 하나를 체크 클릭해주세요."></textarea>
+    </div>
+</section>
+
+    <section class="form-section">
+    <h2 class="section-title">지원자의 이야기</h2>
+
+    <!-- 지원 동기 입력 칸 -->
+    <div class="form-group" style="margin-bottom: 2rem;">
+        <label class="form-label required">지원 동기를 적어주세요.</label>
+        <textarea class="form-control" name="motivation" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
+    </div>
     
-    // 스크롤 위치 초기화
-    if (imageContainer) {
-        imageContainer.scrollTop = 0;
-    }
+    <!-- 마지막 한마디 작성 부분 -->
+    <div class="form-group">
+        <div class="essay-header" style="margin: 0;">
+            <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
+        </div>
+        <textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
+    </div>
+</section>
+
+<!-- 활동 안내사항 섹션 -->
+<section class="form-section">
+    <h2 class="section-title">활동 안내사항 확인</h2>
     
-    // 스크롤 인디케이터 초기화
-    if (scrollIndicator) {
-        scrollIndicator.style.opacity = '0';
-    }
-}
+    <div class="notice-card">
+        <div class="notice-header">
+            <h3>아래 내용을 반드시 확인해주세요</h3>
+            <span class="required-badge">필수</span>
+        </div>
 
-// ESC 키로 닫기
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeExample();
-    }
-});
+        <div class="notice-list">
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_1" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
 
-// 모달 외부 클릭으로 닫기
-window.onclick = function(event) {
-    const modal = document.getElementById('exampleModal');
-    if (event.target === modal) {
-        closeExample();
-    }
-}
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_2" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
 
-// 닫기 버튼들에 대한 이벤트 리스너 추가
-document.addEventListener('DOMContentLoaded', function() {
-    const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeExample);
-    });
-});
-</script>
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교 여행을 주로 진행합니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_1" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_3" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_4" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_5" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_6" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>  
+        </div>
+    </div>
+</section>
+    
+</form>  
 
 <!-- 예시 보기 모달 -->
 <div class="example-modal" id="exampleModal">
@@ -2149,5 +2446,347 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+<div class="rules-modal" id="rulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">성적 자기 결정권 침해 사례 처리 회칙</h3>
+            <p class="rules-modal-desc"><i class="fas fa-exclamation-triangle"></i>발자취는 모든 부원의 안전과 권리를 최우선으로 합니다.</p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content">
+                <div class="rules-title">제32조 (성적 자기 결정권 침해 사례 처리)</div>
+                <ol>
+                    <li>성적 자기 결정권 침해 사례가 발생한 경우, 집행부는 사례가 제보된 3일 이내에 긴급 회의를 소집해야 한다.</li>
+                    <li>집행부는 피해 부원의 신변 보호를 최우선으로 한다.</li>
+                    <li>피해 부원이 공론화를 원하지 않는 경우, 집행부는 피해 내용에 대한 비밀을 보장할 의무가 있다.</li>
+                    <li>집행부는 피해 부원이 원하는 구제 내용을 적극적으로 이행할 의무가 있다.</li>
+                    <li>피의 부원이 징계의 이행을 수용하지 않을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관할 수 있다.</li>
+                    <li>집행부는 합의한 경우를 제외하고 피해 및 피의 부원의 익명성을 유지할 의무가 있으며, 자의적인 사법적 판단을 할 수 없다.</li>
+                    <li>집행부는 피해 부원이 사법적 절차를 진행하길 원할 경우 적극적으로 절차 진행을 지원해야 한다.</li>
+                    <li>집행부 내부에 피의 부원이 있을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관한다.</li>
+                    <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
+                    <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
+                </ol>
+                <div class="rules-source">발자취 총칙 중 발췌 (개정: 2024.11.11)</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close">닫기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 날짜 선택 모달 관련 요소들
+    const dateInput = document.querySelector('input[name="birthdate"]');
+    const dateModal = document.getElementById('dateModal');
+    const confirmBtn = document.querySelector('.confirm-btn');
+    const cancelBtn = document.querySelector('.cancel-btn');
+    const yearMonthDisplay = document.querySelector('.year-month-display');
+    const prevMonthBtn = document.querySelector('.month-prev');
+    const nextMonthBtn = document.querySelector('.month-next');
+    const yearUpBtn = document.querySelector('.year-up');
+    const yearDownBtn = document.querySelector('.year-down');
+
+    let currentDate = new Date(2001, 0); // 01년생부터 시작
+    let selectedDate = null;
+
+    // 날짜 선택 모달 이벤트
+    if(dateInput) {
+        dateInput.addEventListener('click', function(e) {
+            e.preventDefault();
+            dateModal.style.display = 'block';
+            renderCalendar(currentDate);
+        });
+    }
+
+    // 달력 확인/취소 버튼 이벤트
+    if(confirmBtn) {
+        confirmBtn.addEventListener('click', function() {
+            if(selectedDate) {
+                const year = selectedDate.getFullYear();
+                const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                const day = String(selectedDate.getDate()).padStart(2, '0');
+                dateInput.value = `${year}-${month}-${day}`;
+            }
+            dateModal.style.display = 'none';
+        });
+    }
+
+    if(cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            dateModal.style.display = 'none';
+        });
+    }
+
+    // 달력 이전/다음 버튼 이벤트
+    if(prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    if(nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    // 달력 연도 변경 버튼 이벤트
+    if(yearUpBtn) {
+        yearUpBtn.addEventListener('click', function() {
+            currentDate.setFullYear(currentDate.getFullYear() + 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    if(yearDownBtn) {
+        yearDownBtn.addEventListener('click', function() {
+            currentDate.setFullYear(currentDate.getFullYear() - 1);
+            renderCalendar(currentDate);
+        });
+    }
+
+    // 달력 렌더링 함수
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        
+        yearMonthDisplay.textContent = `${year}년 ${month + 1}월`;
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        
+        const calendarGrid = document.querySelector('.calendar-grid');
+        calendarGrid.innerHTML = '';
+        
+        // 요일 헤더 추가
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+        days.forEach(day => {
+            const dayEl = document.createElement('div');
+            dayEl.textContent = day;
+            dayEl.style.fontWeight = 'bold';
+            calendarGrid.appendChild(dayEl);
+        });
+        
+        // 빈 칸 추가
+        for(let i = 0; i < firstDay.getDay(); i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            calendarGrid.appendChild(emptyDay);
+        }
+        
+        // 날짜 추가
+        for(let i = 1; i <= lastDay.getDate(); i++) {
+            const dayEl = document.createElement('div');
+            dayEl.className = 'calendar-day';
+            dayEl.textContent = i;
+            
+            const currentDateObj = new Date(year, month, i);
+            if(selectedDate && 
+               currentDateObj.getDate() === selectedDate.getDate() &&
+               currentDateObj.getMonth() === selectedDate.getMonth() &&
+               currentDateObj.getFullYear() === selectedDate.getFullYear()) {
+                dayEl.classList.add('selected');
+            }
+            
+            dayEl.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedDate = new Date(year, month, i);
+            });
+            
+            calendarGrid.appendChild(dayEl);
+        }
+    }
+
+    // 예시 보기 모달 관련 이벤트
+    const exampleBtns = document.querySelectorAll('.example-btn');
+    exampleBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const type = this.getAttribute('data-type');
+            showExample(type);
+        });
+    });
+
+    // ESC 키 이벤트 (모든 모달 닫기)
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeExample();
+            if(dateModal) dateModal.style.display = 'none';
+        }
+    });
+
+    // 모달 외부 클릭 이벤트
+    const exampleModal = document.getElementById('exampleModal');
+    if (exampleModal) {
+        exampleModal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeExample();
+            }
+        });
+    }
+
+    if (dateModal) {
+        dateModal.addEventListener('click', function(e) {
+            if(e.target === dateModal) {
+                dateModal.style.display = 'none';
+            }
+        });
+    }
+
+    // 닫기 버튼 이벤트
+    const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeExample();
+        });
+    });
+    
+    // 보안 관련 이벤트
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    
+    // 단축키 방지
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+            (e.ctrlKey && e.keyCode === 85) || 
+            e.keyCode === 123) {
+            e.preventDefault();
+        }
+    });
+});
+
+function showRules() {
+    const modal = document.getElementById('rulesModal');
+    if (!modal) return;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+    
+    // 닫기 버튼 이벤트
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+    
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+    
+    // ESC 키 누르면 닫기
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+}
+
+document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    showRules();
+});
+
+function showExample(type) {
+    const modal = document.getElementById('exampleModal');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalDesc = document.querySelector('.modal-desc');
+    const imageContainer = document.querySelector('.modal-image-container');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (type === 'rules') {
+        showRules();
+        return;
+    }
+
+    const contents = {
+        feedback: {
+            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+            title: '피드백 예시',
+            desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        },
+        content: {
+            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+            title: '콘텐츠 공유 예시',
+            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        }
+    };
+
+    const content = contents[type];
+    if (!content) return;
+
+    imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
+    modalTitle.textContent = content.title;
+    modalDesc.textContent = content.desc;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const newImage = imageContainer.querySelector('img');
+    if (newImage) {
+        newImage.onload = function() {
+            if (scrollIndicator) {
+                setTimeout(() => {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.transition = 'opacity 0.5s ease';
+                }, 100);
+            }
+            if (imageContainer) {
+                const handleScroll = () => {
+                    if (imageContainer.scrollTop > 300) {
+                        if (scrollIndicator) {
+                            scrollIndicator.style.opacity = '0';
+                            scrollIndicator.style.transition = 'opacity 2s ease';
+                        }
+                        imageContainer.removeEventListener('scroll', handleScroll);
+                    }
+                };
+                
+                imageContainer.addEventListener('scroll', handleScroll);
+            }
+        };
+    }
+}
+
+function closeExample() {
+    const modal = document.getElementById('exampleModal');
+    const imageContainer = document.querySelector('.modal-image-container');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (modal) modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    if (imageContainer) imageContainer.scrollTop = 0;
+    if (imageContainer) imageContainer.innerHTML = '';
+    if (scrollIndicator) scrollIndicator.style.opacity = '0';
+}
+
+function updatePlaceholder(type) {
+    const textarea = document.getElementById('travelEssay');
+    const placeholders = {
+        episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
+        planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
+    };
+    
+    if (textarea && placeholders[type]) {
+        textarea.placeholder = placeholders[type];
+    }
+}
+</script>
+    
 </body>
 </html>
