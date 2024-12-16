@@ -1375,9 +1375,12 @@ animation: bounce 1s infinite;
     border-radius: 16px;
     width: 90%;
     max-width: 800px;
-    margin: 30px auto;  /* 40px에서 30px로 줄여서 더 길게 보이게 */
+    margin: 50vh auto;  /* 상단 마진을 50vh로 설정 */
+    transform: translateY(-50%);  /* 자신의 높이의 절반만큼 위로 이동 */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    height: 90vh;      /* 85vh에서 90vh로 증가 */
+    height: auto;
+    min-height: auto;  /* 필요한 만큼만 높이 가지도록 */
+    max-height: 80vh;  /* 화면 높이의 80%를 넘지 않도록 */
     display: flex;
     flex-direction: column;
 }
@@ -1417,7 +1420,7 @@ font-size: 0.9rem;
 
 /* rules-content 스타일 수정 - 기존 스타일을 찾아 이것으로 교체해주세요 */
 .rules-content {
-    padding: 1.8rem;
+    padding: 1.4rem;
     background: #f8f9fa;
     border-radius: 8px;
     margin: 0;  /* 여백 제거 */
@@ -1455,15 +1458,15 @@ font-size: 0.9rem;
     position: absolute;
     left: 0;
     top: -2px;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
     background: var(--primary-color);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 500;
 }
 
@@ -1480,7 +1483,7 @@ font-size: 0.9rem;
 .rules-modal-desc {
     color: var(--primary-color);
     font-size: 0.9rem;
-    margin: 0 0 2rem 0; /* 하단 여백 증가 */
+    margin: 1rem 0 2rem 0;
     padding: 0.8rem 1rem;
     background: rgba(47, 82, 41, 0.05);
     border-radius: 4px;
@@ -1513,9 +1516,9 @@ font-size: 0.9rem;
     }
     
     .rules-content li::before {
-        width: 1.6rem;
-        height: 1.6rem;
-        font-size: 0.75rem;
+        width: 1.3rem;
+        height: 1.3rem;
+        font-size: 0.65rem;
     }
 }
     
@@ -2306,7 +2309,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     
     <div class="notice-card">
         <div class="notice-header">
-            <h3>제출하기 전, 아래 내용을 반드시 확인해주세요</h3>
+            <h3>아래 내용을 반드시 확인해주세요</h3>
             <span class="required-badge">필수</span>
         </div>
 
@@ -2438,7 +2441,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
                     <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
                 </ol>
-                <div class="rules-source">발자취 총칙에서 일부 발췌 (개정: 2024.11.11)</div>
+                <div class="rules-source">발자취 총칙 중 발췌 (개정: 2024.11.11)</div>
             </div>
         </div>
         <div class="modal-footer">
