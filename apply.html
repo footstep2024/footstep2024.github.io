@@ -2486,22 +2486,22 @@ function showExample(type) {
     modalTitle.textContent = content.title;
     modalDesc.textContent = content.desc;
 
-    image.onload = function() {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        setTimeout(() => {
-            if (scrollIndicator) {
-                scrollIndicator.style.opacity = '1';
-                scrollIndicator.style.transition = 'opacity 0.5s ease';
-            }
-        }, 1000);
+image.onload = function() {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+        if (scrollIndicator) {
+            scrollIndicator.style.opacity = '1';
+            scrollIndicator.style.transition = 'opacity 0.5s ease';
+        }
+    }, 200);
 
         if (imageContainer) {
             const handleScroll = () => {
-                if (imageContainer.scrollTop > 100) {
+                if (imageContainer.scrollTop > 700) {
                     scrollIndicator.style.opacity = '0';
-                    scrollIndicator.style.transition = 'opacity 1s ease';
+                    scrollIndicator.style.transition = 'opacity 2s ease';
                     imageContainer.removeEventListener('scroll', handleScroll);
                 }
             };
