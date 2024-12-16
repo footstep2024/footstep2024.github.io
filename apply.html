@@ -427,17 +427,17 @@ border-radius: 8px;
 transition: all 0.3s ease;
 }
 
-    /* 자기소개 textarea의 높이 설정 */
+/* 자기소개 textarea의 높이 설정 */
 textarea[name="introduction"] {
-    height: 100px !important;  /* 높이를 250px로 고정 */
-    min-height: 100px;  /* 최소 높이도 250px로 설정 */
-    resize: none;  /* 크기 조절 비활성화 */
+    height: 100px !important;
+    min-height: 100px;
+    resize: none;
 }
 
 textarea[name="visited_places"] {
-    resize: none;  /* 크기 조절 비활성화 */
-    height: 60px !important;  /* 높이 고정 */
-    min-height: 60px;  /* 최소 높이 설정 */
+    resize: none;
+    height: 60px !important;
+    min-height: 60px;
 }
 
 /* 여행 경험 에세이 섹션 스타일 */
@@ -448,15 +448,28 @@ textarea[name="travel_essay"] {
 }
 
 textarea[name="motivation"] {
-    resize: none;  /* 크기 조절 비활성화 */
-    height: 100px !important;  /* 60px에서 100px로 증가 */
-    min-height: 100px;  /* 60px에서 100px로 증가 */
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
 }
 
 textarea[name="final_words"] {
     resize: none;
-    height: 150px !important;  /* 기존보다 더 높게 설정 */
+    height: 150px !important;
     min-height: 150px;
+}
+
+/* 여기에 새로 추가하는 부분 */
+textarea[name="extracurricular"] {
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
+}
+
+textarea[name="fixed_schedule"] {
+    resize: none;
+    height: 100px !important;
+    min-height: 100px;
 }
     
 /* 여기에 date input 스타일 추가 */
@@ -1980,7 +1993,22 @@ color: var(--text-color);
 </div>
 </div>
 </div>
+    
+</section>
 
+<!-- 기본 정보 섹션 끝나고, 활동 참여 및 동의 여부 섹션 시작하기 전에 다음 코드를 추가 -->
+<section class="form-section">
+<h2 class="section-title">추가 정보</h2>
+
+<div class="form-group">
+<label class="form-label">대외활동 경력을 자유롭게 적어주세요.</label>
+<textarea class="form-control" name="extracurricular" required placeholder="최근 1년 내 참여했던 의미있는 대외활동이 있다면 자유롭게 적어주세요."></textarea>
+</div>
+
+<div class="form-group" style="margin-top: 2rem;">
+<label class="form-label">주간 고정 일정을 적어주세요.</label>
+<textarea class="form-control" name="fixed_schedule" required placeholder="아르바이트, 과외, 학원 수업 등 매주 고정적으로 참여해야 하는 일정이 있다면 요일과 시간대를 구체적으로 적어주세요. (예: 월요일 저녁 7-10시 과외, 목요일 오후 3-6시 아르바이트)"></textarea>
+</div>
 </section>
 
 <section class="form-section">
