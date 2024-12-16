@@ -1719,6 +1719,113 @@ color: var(--text-color);
 }
 }
 </style>
+
+<style>
+/* 면접 일정 선택 스타일 */
+.interview-schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.schedule-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.schedule-date {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.schedule-date .date {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.interview-type {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.time-slots {
+    display: flex;
+    gap: 1rem;
+}
+
+.time-slot {
+    flex: 1;
+    cursor: pointer;
+}
+
+.time-slot input {
+    display: none;
+}
+
+.slot-text {
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.time-slot input:checked + .slot-text {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.offline-interview {
+    background: rgba(47, 82, 41, 0.03);
+}
+
+.offline-notice {
+    font-size: 0.8rem;
+    color: #dc3545;
+    margin-top: 0.2rem;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .interview-schedule-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-card {
+        padding: 1.2rem;
+    }
+
+    .schedule-date .date {
+        font-size: 1.1rem;
+    }
+
+    .time-slots {
+        gap: 0.8rem;
+    }
+
+    .slot-text {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+    
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
   
@@ -2420,7 +2527,116 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 </section>
+
+<!-- 면접 일정 선택 섹션 -->
+<section class="form-section" id="interviewSection" style="display: none;">
+    <h2 class="section-title">면접 일정 선택</h2>
     
+    <!-- 안내 문구 카드 -->
+    <div class="notice-card" style="margin-bottom: 2rem;">
+        <div class="notice-content">
+            <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+            <p>면접 대상자로 선정되신 것을 축하드립니다! 아래에서 희망하시는 면접 일정을 선택해주세요.</p>
+        </div>
+    </div>
+
+    <!-- 면접 일정 선택 그리드 -->
+    <div class="interview-schedule-grid">
+        <!-- 1월 17일 (금) -->
+        <div class="schedule-card">
+            <div class="schedule-date">
+                <span class="date">17일 (금)</span>
+                <span class="interview-type">비대면 면접</span>
+            </div>
+            <div class="time-slots">
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0117_am">
+                    <span class="slot-text">오전</span>
+                </label>
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0117_pm">
+                    <span class="slot-text">오후</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 1월 18일 (토) -->
+        <div class="schedule-card">
+            <div class="schedule-date">
+                <span class="date">18일 (토)</span>
+                <span class="interview-type">비대면 면접</span>
+            </div>
+            <div class="time-slots">
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0118_am">
+                    <span class="slot-text">오전</span>
+                </label>
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0118_pm">
+                    <span class="slot-text">오후</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 1월 19일 (일) -->
+        <div class="schedule-card">
+            <div class="schedule-date">
+                <span class="date">19일 (일)</span>
+                <span class="interview-type">비대면 면접</span>
+            </div>
+            <div class="time-slots">
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0119_am">
+                    <span class="slot-text">오전</span>
+                </label>
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0119_pm">
+                    <span class="slot-text">오후</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 1월 20일 (월) -->
+        <div class="schedule-card offline-interview">
+            <div class="schedule-date">
+                <span class="date">20일 (월)</span>
+                <span class="interview-type">대면 면접</span>
+                <span class="offline-notice">부득이한 경우에만 선택해주세요</span>
+            </div>
+            <div class="time-slots">
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0120_am">
+                    <span class="slot-text">오전</span>
+                </label>
+                <label class="time-slot">
+                    <input type="radio" name="interview_time" value="0120_pm">
+                    <span class="slot-text">오후</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- 추가 요청사항 입력 -->
+    <div class="additional-requests" style="margin-top: 2rem;">
+        <div class="form-group">
+            <label class="form-label">추가 요청사항</label>
+            <textarea class="form-control" name="interview_requests" rows="3" 
+                placeholder="면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 오후 2시 이후로 가능합니다."></textarea>
+        </div>
+    </div>
+
+    <!-- 알림 메시지 -->
+    <div class="alerts" style="margin-top: 1rem;">
+        <div class="alert-green">
+            <i class="fas fa-info-circle"></i>
+            비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
+        </div>
+        <div class="alert-red">
+            <i class="fas fa-exclamation-circle"></i>
+            대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
+        </div>
+    </div>
+</section>
 </form>  
 
 <!-- 예시 보기 모달 -->
