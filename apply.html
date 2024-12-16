@@ -2280,7 +2280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const yearUpBtn = document.querySelector('.year-up');
     const yearDownBtn = document.querySelector('.year-down');
 
-    let currentDate = new Date(1995, 0); // 95년생부터 시작
+    let currentDate = new Date(2001, 0); // 01년생부터 시작
     let selectedDate = null;
 
     // 날짜 선택 모달 이벤트
@@ -2296,8 +2296,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if(confirmBtn) {
         confirmBtn.addEventListener('click', function() {
             if(selectedDate) {
-                const formattedDate = selectedDate.toISOString().split('T')[0];
-                dateInput.value = formattedDate;
+                const year = selectedDate.getFullYear();
+                const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                const day = String(selectedDate.getDate()).padStart(2, '0');
+                dateInput.value = `${year}-${month}-${day}`;
             }
             dateModal.style.display = 'none';
         });
