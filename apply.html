@@ -1220,7 +1220,6 @@ background: rgba(0, 0, 0, 0.85); /* 배경 어둡게 조정 */
 z-index: 1000;
 backdrop-filter: blur(5px);
 overflow-y: auto;
-/* 스크롤바 스타일링 */
 scrollbar-width: thin;
 scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
@@ -1237,6 +1236,19 @@ background: transparent;
 .example-modal::-webkit-scrollbar-thumb {
 background-color: rgba(255, 255, 255, 0.3);
 border-radius: 4px;
+}
+
+.rules-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    overflow-y: auto;
 }
 
 /* 닫기 버튼들 스타일링 */
@@ -2404,6 +2416,37 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     </div>
 </div>
 
+<div class="rules-modal" id="rulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">성적 자기 결정권 침해 사례 처리 회칙</h3>
+            <p class="rules-modal-desc"><i class="fas fa-exclamation-triangle"></i>발자취는 모든 부원의 안전과 권리를 최우선으로 합니다.</p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content">
+                <div class="rules-title">제32조 (성적 자기 결정권 침해 사례 처리)</div>
+                <ol>
+                    <li>성적 자기 결정권 침해 사례가 발생한 경우, 집행부는 사례가 제보된 3일 이내에 긴급 회의를 소집해야 한다.</li>
+                    <li>집행부는 피해 부원의 신변 보호를 최우선으로 한다.</li>
+                    <li>피해 부원이 공론화를 원하지 않는 경우, 집행부는 피해 내용에 대한 비밀을 보장할 의무가 있다.</li>
+                    <li>집행부는 피해 부원이 원하는 구제 내용을 적극적으로 이행할 의무가 있다.</li>
+                    <li>피의 부원이 징계의 이행을 수용하지 않을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관할 수 있다.</li>
+                    <li>집행부는 합의한 경우를 제외하고 피해 및 피의 부원의 익명성을 유지할 의무가 있으며, 자의적인 사법적 판단을 할 수 없다.</li>
+                    <li>집행부는 피해 부원이 사법적 절차를 진행하길 원할 경우 적극적으로 절차 진행을 지원해야 한다.</li>
+                    <li>집행부 내부에 피의 부원이 있을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관한다.</li>
+                    <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
+                    <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
+                </ol>
+                <div class="rules-source">발자취 총칙에서 일부 발췌 (개정: 2024.11.11)</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close">닫기</button>
+        </div>
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 날짜 선택 모달 관련 요소들
@@ -2591,17 +2634,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function showRules() {
+    const modal = document.getElementById('rulesModal');
+    if (!modal) return;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+    
+    // 닫기 버튼 이벤트
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+    
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+    
+    // ESC 키 누르면 닫기
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+}
+
+document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    showRules();
+});
+    
 // 예시 모달 관련 전역 함수들
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
-    const image = document.getElementById('exampleImage');
     const modalTitle = document.querySelector('.modal-title');
     const modalDesc = document.querySelector('.modal-desc');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
     const imageContainer = document.querySelector('.modal-image-container');
-
-    if (imageContainer) imageContainer.scrollTop = 0;
-    if (scrollIndicator) scrollIndicator.style.opacity = '0';
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (type === 'rules') {
+        showRules();
+        return;
+    }
 
     const contents = {
         feedback: {
@@ -2616,74 +2698,74 @@ function showExample(type) {
         }
     };
 
-if (type === 'rules') {
-   modalTitle.textContent = '성적 자기 결정권 침해 사례 처리 회칙';
-   modalDesc.innerHTML = '<i class="fas fa-exclamation-triangle"></i>발자취는 모든 부원의 안전과 권리를 최우선으로 합니다.';
-   modalDesc.className = 'rules-modal-desc';
-   
-   const content = document.createElement('div');
-   content.className = 'rules-content';
-   content.innerHTML = `
-       <div class="rules-title">제32조 (성적 자기 결정권 침해 사례 처리)</div>
-       <ol>
-           <li>성적 자기 결정권 침해 사례가 발생한 경우, 집행부는 사례가 제보된 3일 이내에 긴급 회의를 소집해야 한다.</li>
-           <li>집행부는 피해 부원의 신변 보호를 최우선으로 한다.</li>
-           <li>피해 부원이 공론화를 원하지 않는 경우, 집행부는 피해 내용에 대한 비밀을 보장할 의무가 있다.</li>
-           <li>집행부는 피해 부원이 원하는 구제 내용을 적극적으로 이행할 의무가 있다.</li>
-           <li>피의 부원이 징계의 이행을 수용하지 않을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관할 수 있다.</li>
-           <li>집행부는 합의한 경우를 제외하고 피해 및 피의 부원의 익명성을 유지할 의무가 있으며, 자의적인 사법적 판단을 할 수 없다.</li>
-           <li>집행부는 피해 부원이 사법적 절차를 진행하길 원할 경우 적극적으로 절차 진행을 지원해야 한다.</li>
-           <li>집행부 내부에 피의 부원이 있을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관한다.</li>
-           <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
-           <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
-       </ol>
-       <div class="rules-source">발자취 총칙에서 일부 발췌 (개정: 2024.11.11)</div>
-   `;
-   
-   imageContainer.innerHTML = '';
-   imageContainer.appendChild(content);
-   
-   const modalContent = document.querySelector('.example-modal-content');
-   if (modalContent) {
-       modalContent.style.height = 'auto';
-       modalContent.style.maxHeight = '90vh';
-   }
-   
-   modal.style.display = 'block';
-   document.body.style.overflow = 'hidden';
-   return;
+    const content = contents[type];
+    if (!content) return;
+
+    imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
+    modalTitle.textContent = content.title;
+    modalDesc.textContent = content.desc;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
-const content = contents[type];
-if (!content) return;
-imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
-modalTitle.textContent = content.title;
-modalDesc.textContent = content.desc;
-modal.style.display = 'block';
-document.body.style.overflow = 'hidden';
-const newImage = imageContainer.querySelector('img');
-if (newImage) {
-   newImage.onload = function() {
-       if (scrollIndicator) {
-           setTimeout(() => {
-               scrollIndicator.style.opacity = '1';
-               scrollIndicator.style.transition = 'opacity 0.5s ease';
-           }, 100);
-       }
-       if (imageContainer) {
-           const handleScroll = () => {
-               if (imageContainer.scrollTop > 300) {
-                   if (scrollIndicator) {
-                       scrollIndicator.style.opacity = '0';
-                       scrollIndicator.style.transition = 'opacity 2s ease';
-                   }
-                   imageContainer.removeEventListener('scroll', handleScroll);
-               }
-           };
-           
-           imageContainer.addEventListener('scroll', handleScroll);
-       }
-   };
-}
+
+function showExample(type) {
+    const modal = document.getElementById('exampleModal');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalDesc = document.querySelector('.modal-desc');
+    const imageContainer = document.querySelector('.modal-image-container');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (type === 'rules') {
+        showRules();
+        return;
+    }
+
+    const contents = {
+        feedback: {
+            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+            title: '피드백 예시',
+            desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        },
+        content: {
+            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+            title: '콘텐츠 공유 예시',
+            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        }
+    };
+
+    const content = contents[type];
+    if (!content) return;
+
+    imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
+    modalTitle.textContent = content.title;
+    modalDesc.textContent = content.desc;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const newImage = imageContainer.querySelector('img');
+    if (newImage) {
+        newImage.onload = function() {
+            if (scrollIndicator) {
+                setTimeout(() => {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.transition = 'opacity 0.5s ease';
+                }, 100);
+            }
+            if (imageContainer) {
+                const handleScroll = () => {
+                    if (imageContainer.scrollTop > 300) {
+                        if (scrollIndicator) {
+                            scrollIndicator.style.opacity = '0';
+                            scrollIndicator.style.transition = 'opacity 2s ease';
+                        }
+                        imageContainer.removeEventListener('scroll', handleScroll);
+                    }
+                };
+                
+                imageContainer.addEventListener('scroll', handleScroll);
+            }
+        };
+    }
 }
 
 function closeExample() {
