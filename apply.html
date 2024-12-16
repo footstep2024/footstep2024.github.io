@@ -1403,6 +1403,30 @@ font-size: 0.9rem;
 }
 }
 
+.rules-content {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.rules-content h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.rules-content ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+}
+
+.rules-content li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+    
 /* 기본 섹션 스타일 */
 .notice-card {
     background: white;
@@ -2115,7 +2139,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
 <div class="special-intro-container">
     <div class="special-intro-input">
-        <textarea class="form-control" name="special_introduction" rows="4" required placeholder="예: '허당' 주우재 유형입니다. 여행 갈 때마다 어김없이 중요한 걸 깜빡하지만, 그 덕분에 예상치 못한 재미있는 상황이 연출되곤 합니다.&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋아요.)"></textarea>
+        <textarea class="form-control" name="special_introduction" rows="4" required placeholder="예: '허당' 주우재 유형입니다. 여행 갈 때마다 어김없이 중요한 걸 깜빡하지만, 그 덕분에 예상치 못한 재미있는 상황이 연출되곤 합니다.&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>
     </div>
     <div class="special-intro-examples">
         <div class="examples-title">유형 예시</div>
@@ -2162,7 +2186,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                 </div>
             </div>
         </div>
-        <textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="왼쪽 위의 주제 중 하나를 클릭해주세요."></textarea>
+        <textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="오른쪽 상단에 두 주제 중 하나를 체크 클릭해주세요."></textarea>
     </div>
 </section>
 
@@ -2220,14 +2244,25 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
             <div class="notice-item">
                 <div class="notice-content">
                     <i class="fas fa-circle-exclamation"></i>
-                    <p>신입 기수는 가입비가 없으나, 활동 연장 및 OB 전환 시 동아리 발전기금(여행 보조금 등으로 활용)을 납부하게 됩니다.</p>
+                    <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교 여행을 주로 진행합니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_1" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
                     <label class="confirm-check">
                         <input type="checkbox" name="notice_check_3" required>
                         <span class="check-text">확인함</span>
                     </label>
                 </div>
             </div>
-
+            
             <div class="notice-item">
                 <div class="notice-content">
                     <i class="fas fa-circle-exclamation"></i>
@@ -2238,6 +2273,28 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     </label>
                 </div>
             </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_5" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-content">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+                    <label class="confirm-check">
+                        <input type="checkbox" name="notice_check_6" required>
+                        <span class="check-text">확인함</span>
+                    </label>
+                </div>
+            </div>  
         </div>
     </div>
 </section>
@@ -2456,59 +2513,84 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 예시 모달 관련 전역 함수들
 function showExample(type) {
-    const modal = document.getElementById('exampleModal');
-    const image = document.getElementById('exampleImage');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const imageContainer = document.querySelector('.modal-image-container');
+   const modal = document.getElementById('exampleModal');
+   const image = document.getElementById('exampleImage');
+   const modalTitle = document.querySelector('.modal-title');
+   const modalDesc = document.querySelector('.modal-desc');
+   const scrollIndicator = document.querySelector('.scroll-indicator');
+   const imageContainer = document.querySelector('.modal-image-container');
 
-    if (imageContainer) imageContainer.scrollTop = 0;
-    if (scrollIndicator) scrollIndicator.style.opacity = '0';
+   if (imageContainer) imageContainer.scrollTop = 0;
+   if (scrollIndicator) scrollIndicator.style.opacity = '0';
 
-    const contents = {
-        feedback: {
-            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-            title: '피드백 예시',
-            desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-        },
-        content: {
-            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-            title: '콘텐츠 공유 예시',
-            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-        }
-    };
+   const contents = {
+       feedback: {
+           src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+           title: '피드백 예시',
+           desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+       },
+       content: {
+           src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+           title: '콘텐츠 공유 예시',
+           desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+       }
+   };
 
-    const content = contents[type];
-    if (!content) return;
+   if (type === 'rules') {
+       modalTitle.textContent = '성적 자기 결정권 침해 사례 처리 회칙';
+       modalDesc.textContent = '제32조 (성적 자기 결정권 침해 사례 처리)';
+       
+       const content = document.createElement('div');
+       content.className = 'rules-content';
+       content.innerHTML = `
+           <ol>
+               <li>성적 자기 결정권 침해 사례가 발생한 경우, 집행부는 사례가 제보된 3일 이내에 긴급 회의를 소집해야 한다.</li>
+               <li>집행부는 피해 부원의 신변 보호를 최우선으로 한다.</li>
+               <li>피해 부원이 공론화를 원하지 않는 경우, 집행부는 피해 내용에 대한 비밀을 보장할 의무가 있다.</li>
+               <li>집행부는 피해 부원이 원하는 구제 내용을 적극적으로 이행할 의무가 있다.</li>
+               <li>피의 부원이 징계의 이행을 수용하지 않을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관할 수 있다.</li>
+               <li>집행부는 합의한 경우를 제외하고 피해 및 피의 부원의 익명성을 유지할 의무가 있으며, 자의적인 사법적 판단을 할 수 없다.</li>
+               <li>집행부는 피해 부원이 사법적 절차를 진행하길 원할 경우 적극적으로 절차 진행을 지원해야 한다.</li>
+               <li>집행부 내부에 피의 부원이 있을 경우, 피해 부원의 동의하에 피의 부원의 소속 학교(단체)의 인권(성평등)센터에 사건을 이관한다.</li>
+               <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
+               <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
+           </ol>
+       `;
+       
+       imageContainer.innerHTML = '';
+       imageContainer.appendChild(content);
+   }
 
-    image.src = content.src;
-    modalTitle.textContent = content.title;
-    modalDesc.textContent = content.desc;
+   const content = contents[type];
+   if (!content) return;
 
-image.onload = function() {
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    setTimeout(() => {
-        if (scrollIndicator) {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }
-    }, 200);
+   image.src = content.src;
+   modalTitle.textContent = content.title;
+   modalDesc.textContent = content.desc;
 
-        if (imageContainer) {
-            const handleScroll = () => {
-                if (imageContainer.scrollTop > 700) {
-                    scrollIndicator.style.opacity = '0';
-                    scrollIndicator.style.transition = 'opacity 2s ease';
-                    imageContainer.removeEventListener('scroll', handleScroll);
-                }
-            };
-            
-            imageContainer.addEventListener('scroll', handleScroll);
-        }
-    };
+   image.onload = function() {
+       modal.style.display = 'block';
+       document.body.style.overflow = 'hidden';
+       
+       setTimeout(() => {
+           if (scrollIndicator) {
+               scrollIndicator.style.opacity = '1';
+               scrollIndicator.style.transition = 'opacity 0.5s ease';
+           }
+       }, 1000);
+
+       if (imageContainer) {
+           const handleScroll = () => {
+               if (imageContainer.scrollTop > 100) {
+                   scrollIndicator.style.opacity = '0';
+                   scrollIndicator.style.transition = 'opacity 1s ease';
+                   imageContainer.removeEventListener('scroll', handleScroll);
+               }
+           };
+           
+           imageContainer.addEventListener('scroll', handleScroll);
+       }
+   };
 }
 
 function closeExample() {
@@ -2528,8 +2610,8 @@ function closeExample() {
 function updatePlaceholder(type) {
     const textarea = document.getElementById('travelEssay');
     const placeholders = {
-        episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다.",
-        planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 등고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
+        episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
+        planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
     };
     
     if (textarea && placeholders[type]) {
