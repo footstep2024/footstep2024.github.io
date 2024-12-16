@@ -2671,42 +2671,6 @@ document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
     e.preventDefault();
     showRules();
 });
-    
-// 예시 모달 관련 전역 함수들
-function showExample(type) {
-    const modal = document.getElementById('exampleModal');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    if (type === 'rules') {
-        showRules();
-        return;
-    }
-
-    const contents = {
-        feedback: {
-            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-            title: '피드백 예시',
-            desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-        },
-        content: {
-            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-            title: '콘텐츠 공유 예시',
-            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-        }
-    };
-
-    const content = contents[type];
-    if (!content) return;
-
-    imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
-    modalTitle.textContent = content.title;
-    modalDesc.textContent = content.desc;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
 
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
