@@ -2390,7 +2390,7 @@ textarea.form-control[readonly] {
 <h2 class="section-title">추가 정보</h2>
 
 <div class="form-group">
-<label class="form-label">대외활동 경력을 자유롭게 적어주세요.</label>
+<label class="form-label">동아리 및 대외활동 경력을 자유롭게 적어주세요.</label>
 <textarea class="form-control" name="extracurricular" required placeholder="현재 참여 중이거나 대학 생활 이후로 참여했던 의미있는 대외활동과 동아리 활동을 자유롭게 적어주세요."></textarea>
 </div>
 
@@ -2755,7 +2755,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
             <div class="notice-item">
                 <div class="notice-content">
                     <i class="fas fa-circle-exclamation"></i>
-                    <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교 여행을 주로 진행합니다.</p>
+                    <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
                     <label class="confirm-check">
                         <input type="checkbox" name="notice_check_1" required>
                         <span class="check-text">확인함</span>
@@ -2818,7 +2818,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     <div class="schedule-select-wrapper">
         <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
             <i class="fas fa-calendar-alt"></i>
-            가능한 면접 일정 모두 선택하기
+            가능한 면접 시간 모두 선택하기
         </button>
         <div class="selected-schedule" id="selectedSchedule">
             <p class="no-schedule">가능한 면접 시간을 모두 선택해주세요.</p>
@@ -2831,7 +2831,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
             <label class="form-label">추가 요청사항</label>
             <textarea class="form-control" name="interview_requests" 
                 style="height: 75px !important; min-height: 75px; resize: none;"
-                placeholder="개인사정상 구체적으로 희망하는 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일 오후 2시 이후로 가능합니다."></textarea>
+                placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
         </div>
     </div>
 
@@ -3565,7 +3565,7 @@ function previewApplication() {
             <h2 class="section-title">추가 정보</h2>
 
             <div class="form-group">
-                <label class="form-label">대외활동 경력</label>
+                <label class="form-label">대외활동 및 동아리 경력</label>
                 <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
             </div>
 
