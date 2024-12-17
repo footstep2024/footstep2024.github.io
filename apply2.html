@@ -2068,6 +2068,12 @@ color: var(--text-color);
     min-height: 38px;
 }
 
+textarea.form-control[readonly] {
+    height: auto !important;
+    min-height: unset !important;
+    overflow: hidden !important;
+}
+
 /* 모바일 대응 */
 @media (max-width: 768px) {
     .preview-modal-content {
@@ -3423,114 +3429,276 @@ function previewApplication() {
     const previewContent = modal.querySelector('.preview-content');
     
     let previewHTML = '';
-    
+
     // 기본 정보 섹션
     previewHTML += `
-        <div class="preview-section">
-            <h4>기본 정보</h4>
+        <section class="form-section">
+            <h2 class="section-title">기본 정보</h2>
+
             <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
-                <div class="preview-item" style="width: 20%">
-                    <div class="preview-label">이름</div>
-                    <div class="preview-value">${form.querySelector('[name="name"]').value || '-'}</div>
+                <div class="form-group" style="width: 20%">
+                    <label class="form-label">이름</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item" style="width: 25%">
-                    <div class="preview-label">생년월일</div>
-                    <div class="preview-value">${form.querySelector('[name="birthdate"]').value || '-'}</div>
+                <div class="form-group" style="width: 25%">
+                    <label class="form-label">생년월일</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item" style="width: 25%">
-                    <div class="preview-label">성별</div>
-                    <div class="preview-value">${form.querySelector('input[name="gender"]:checked')?.value || '-'}</div>
+                <div class="form-group" style="width: 25%">
+                    <label class="form-label">성별</label>
+                    <div style="display: flex; gap: 10px">
+                        ${form.querySelector('input[name="gender"]:checked')?.value === '남성' ? `
+                            <label class="gender-select">
+                                <input type="radio" name="gender_preview" checked disabled>
+                                <span class="gender-button">
+                                    <i class="fas fa-mars"></i>
+                                    남성
+                                </span>
+                            </label>
+                        ` : `
+                            <label class="gender-select">
+                                <input type="radio" name="gender_preview" checked disabled>
+                                <span class="gender-button">
+                                    <i class="fas fa-venus"></i>
+                                    여성
+                                </span>
+                            </label>
+                        `}
+                    </div>
                 </div>
-                <div class="preview-item" style="width: 22%">
-                    <div class="preview-label">MBTI</div>
-                    <div class="preview-value">${form.querySelector('[name="mbti"]').value || '-'}</div>
+                <div class="form-group" style="width: 22%">
+                    <label class="form-label">MBTI</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly>
                 </div>
             </div>
 
             <div class="form-row three-columns">
-                <div class="preview-item">
-                    <div class="preview-label">연락처</div>
-                    <div class="preview-value">${form.querySelector('[name="phone"]').value || '-'}</div>
+                <div class="form-group">
+                    <label class="form-label">연락처</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item">
-                    <div class="preview-label">본가</div>
-                    <div class="preview-value">${form.querySelector('[name="home_address"]').value || '-'}</div>
+                <div class="form-group">
+                    <label class="form-label">본가</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item">
-                    <div class="preview-label">현재 거주지</div>
-                    <div class="preview-value">${form.querySelector('[name="current_address"]').value || '-'}</div>
+                <div class="form-group">
+                    <label class="form-label">현재 거주지</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly>
                 </div>
             </div>
 
             <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
-                <div class="preview-item" style="width: 24%">
-                    <div class="preview-label">학교</div>
-                    <div class="preview-value">${form.querySelector('[name="school"]').value || '-'}</div>
+                <div class="form-group" style="width: 24%">
+                    <label class="form-label">학교</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item" style="width: 30%">
-                    <div class="preview-label">전공</div>
-                    <div class="preview-value">${form.querySelector('[name="major"]').value || '-'}</div>
+                <div class="form-group" style="width: 30%">
+                    <label class="form-label">전공</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item" style="width: 15%">
-                    <div class="preview-label">학번</div>
-                    <div class="preview-value">${form.querySelector('[name="student_id"]').value || '-'}</div>
+                <div class="form-group" style="width: 15%">
+                    <label class="form-label">학번</label>
+                    <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly>
                 </div>
-                <div class="preview-item" style="width: 15%">
-                    <div class="preview-label">학년</div>
-                    <div class="preview-value">${form.querySelector('[name="grade"]').value || '-'}</div>
+                <div class="form-group" style="width: 15%">
+                    <div style="position: relative">
+                        <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                            <label class="checkbox-label">
+                                <input type="checkbox" ${form.querySelector('[name="is_leave"]').checked ? 'checked' : ''} disabled>
+                                <span class="check-icon"></span>
+                                <span class="label-text">휴학</span>
+                            </label>
+                        </div>
+                        <label class="form-label">학년</label>
+                        <input type="text" class="form-control" value="${form.querySelector('[name="grade"]').value || ''}" readonly>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-    
-    // 자기소개 섹션
-    previewHTML += `
-        <div class="preview-section">
-            <h4>자기소개</h4>
-            <div class="preview-item">
-                <div class="preview-label">간단한 자기소개</div>
-                <div class="preview-value" style="min-height: 100px">${form.querySelector('[name="introduction"]').value || '-'}</div>
-            </div>
-            <div class="preview-item">
-                <div class="preview-label">특별 자기소개</div>
-                <div class="preview-value" style="min-height: 250px">${form.querySelector('[name="special_introduction"]').value || '-'}</div>
-            </div>
-        </div>
-    `;
 
-    // 여행 경험 에세이 섹션
-    previewHTML += `
-        <div class="preview-section">
-            <h4>여행 경험 에세이</h4>
-            <div class="preview-item">
-                <div class="preview-label">가본 여행지</div>
-                <div class="preview-value" style="min-height: 60px">${form.querySelector('[name="visited_places"]').value || '-'}</div>
+            <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+                <div style="display: grid; grid-template-columns: 180px 180px 1fr; gap: 24px; align-items: center">
+                    <input type="text" class="form-control" value="${form.querySelector('[name="driving_status"]').value === 'car' ? '자차 보유' : form.querySelector('[name="driving_status"]').value === 'license' ? '면허만 보유' : '해당사항 없음'}" readonly>
+                    <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
+                    <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly>
+                </div>
             </div>
-            <div class="preview-item">
-                <div class="preview-label">에세이</div>
-                <div class="preview-value" style="min-height: 200px">${form.querySelector('[name="travel_essay"]').value || '-'}</div>
-            </div>
-        </div>
+        </section>
     `;
-
-    // 지원 동기 섹션
+ // 추가 정보 섹션
     previewHTML += `
-        <div class="preview-section">
-            <h4>지원 동기</h4>
-            <div class="preview-item">
-                <div class="preview-label">지원 동기</div>
-                <div class="preview-value" style="min-height: 100px">${form.querySelector('[name="motivation"]').value || '-'}</div>
+        <section class="form-section">
+            <h2 class="section-title">추가 정보</h2>
+
+            <div class="form-group">
+                <label class="form-label">대외활동 경력</label>
+                <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
             </div>
-            <div class="preview-item">
-                <div class="preview-label">마지막 한마디</div>
-                <div class="preview-value" style="min-height: 150px">${form.querySelector('[name="final_words"]').value || '-'}</div>
+
+            <div class="form-group" style="margin-top: 2rem;">
+                <label class="form-label">주간 고정 일정</label>
+                <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="fixed_schedule"]').value || ''}</textarea>
             </div>
-        </div>
+        </section>
+
+        <section class="form-section">
+            <h2 class="section-title">활동 참여 및 동의 여부</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div class="schedule-card" style="margin: 0;">
+                    <div class="card-header">
+                        <h3>OT 및 MT 안내</h3>
+                        <span class="required-badge">필수</span>
+                    </div>
+                    <div class="radio-group-container" style="margin: 0; padding-top: 0.5rem;">
+                        <label class="radio-label">
+                            ${form.querySelector('input[name="ot_mt_attendance"]:checked')?.value || '-'}
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="schedule-card" style="margin: 0;">
+                    <div class="card-header">
+                        <h3>정기 활동 안내</h3>
+                        <span class="required-badge">필수</span>
+                    </div>
+                    <div class="radio-group-container" style="margin: 0; padding-top: 0.5rem;">
+                        <label class="radio-label">
+                            ${form.querySelector('input[name="regular_attendance"]:checked')?.value || '-'}
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="schedule-card" style="margin: 0;">
+                    <div class="card-header">
+                        <h3>콘텐츠 활용 동의</h3>
+                        <span class="recommended-badge">권장</span>
+                    </div>
+                    <div class="radio-group-container" style="margin: 0; padding-top: 0.5rem;">
+                        <label class="radio-label">
+                            ${form.querySelector('input[name="content_agreement"]:checked')?.value || '-'}
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="schedule-card" style="margin: 0;">
+                    <div class="card-header">
+                        <h3>여행 운영 참여 안내</h3>
+                        <span class="recommended-badge">권장</span>
+                    </div>
+                    <div class="radio-group-container" style="margin: 0; padding-top: 0.5rem;">
+                        <label class="radio-label">
+                            ${form.querySelector('input[name="participation_agreement"]:checked')?.value || '-'}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2 class="section-title">자기소개</h2>
+
+            <div class="form-group">
+                <label class="form-label">간단한 자기소개</label>
+                <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
+            </div>
+            
+            <div class="form-group" style="margin-top: 2rem;">
+                <label class="form-label">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
+                <div class="special-intro-container">
+                    <div class="special-intro-input">
+                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
+                    </div>
+                    <div class="special-intro-examples">
+                        <div class="examples-title">유형 예시</div>
+                        <ul class="examples-list">
+                            <li><span class="example-icon">▲</span> '편안한 리더십' 유재석</li>
+                            <li><span class="example-icon">▲</span> '긍정 에너지' 노홍철</li>
+                            <li><span class="example-icon">▲</span> '아이돌 센터' 장원영</li>
+                            <li><span class="example-icon">▲</span> '노빠꾸 예능감' 탁재훈</li>
+                            <li><span class="example-icon">▲</span> '삼시세끼' 차승원</li>
+                            <li><span class="example-icon">▲</span> '베스트 드라이버' 이수근</li>
+                            <li><span class="example-icon">▲</span> '여행 플레너' 나영석</li>
+                            <li><span class="example-icon">▲</span> '허당' 주우재</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="form-section">
+            <h2 class="section-title">여행 경험 에세이</h2>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label class="form-label">지금까지 가본 여행지</label>
+                <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <div class="essay-header" style="margin: 0;">
+                    <label class="form-label">에세이 작성</label>
+                    <div class="essay-type-selector">
+                        <div class="essay-type-options">
+                            <label class="checkbox-label">
+                                <input type="radio" name="travel_essay_type_preview" ${form.querySelector('input[name="travel_essay_type"][value="memorable_episode"]')?.checked ? 'checked' : ''} disabled>
+                                <span class="check-icon"></span>
+                                <span class="label-text">기억에 남는 여행 에피소드</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="travel_essay_type_preview" ${form.querySelector('input[name="travel_essay_type"][value="planned_travel"]')?.checked ? 'checked' : ''} disabled>
+                                <span class="check-icon"></span>
+                                <span class="label-text">자체 여행 기획 경험</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2 class="section-title">지원자의 이야기</h2>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label class="form-label">지원 동기</label>
+                <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">마지막으로 하고 싶은 말</label>
+                <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
+            </div>
+        </section>
+        
+        <section class="form-section">
+            <h2 class="section-title">면접 일정</h2>
+            
+            <div class="schedule-select-wrapper">
+                <div class="selected-schedule">
+                    ${document.getElementById('selectedSchedule').innerHTML}
+                </div>
+            </div>
+
+            <div class="additional-requests" style="margin-top: 2rem;">
+                <div class="form-group">
+                    <label class="form-label">추가 요청사항</label>
+                    <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
+                </div>
+            </div>
+        </section>
     `;
     
     previewContent.innerHTML = previewHTML;
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    // textarea 높이 자동 조절 적용
+    function adjustTextareaHeight(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = (textarea.scrollHeight + 2) + 'px';
+    }
+
+    document.querySelectorAll('textarea.form-control[readonly]').forEach(textarea => {
+        adjustTextareaHeight(textarea);
+    });
 }
 
 // 모달 외부 클릭 시 닫기 이벤트 추가
@@ -3552,7 +3720,8 @@ document.addEventListener('keydown', function(event) {
         closePreview();
     }
 });
-    
+
+
 </script>
 </body>
 </html>
