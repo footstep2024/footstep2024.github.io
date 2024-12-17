@@ -3444,26 +3444,23 @@ function previewApplication() {
                     <label class="form-label">생년월일</label>
                     <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly>
                 </div>
-                <div class="form-group" style="width: 25%">
+                 <div class="form-group" style="width: 30%">
                     <label class="form-label">성별</label>
-                    <div style="display: flex; gap: 10px">
-                        ${form.querySelector('input[name="gender"]:checked')?.value === '남성' ? `
-                            <label class="gender-select">
-                                <input type="radio" name="gender_preview" checked disabled>
-                                <span class="gender-button">
-                                    <i class="fas fa-mars"></i>
-                                    남성
-                                </span>
-                            </label>
-                        ` : `
-                            <label class="gender-select">
-                                <input type="radio" name="gender_preview" checked disabled>
-                                <span class="gender-button">
-                                    <i class="fas fa-venus"></i>
-                                    여성
-                                </span>
-                            </label>
-                        `}
+                    <div style="display: flex; gap: 10px; flex-wrap: nowrap"> <!-- flex-wrap: nowrap 추가 -->
+                        <label class="gender-select" style="flex: 1"> <!-- flex: 1 추가로 공간 균등 분배 -->
+                            <input type="radio" name="gender_preview" disabled>
+                            <span class="gender-button" style="width: 100%"> <!-- width 100%로 변경 -->
+                                <i class="fas fa-mars"></i>
+                                남성
+                            </span>
+                        </label>
+                        <label class="gender-select" style="flex: 1">
+                            <input type="radio" name="gender_preview" disabled>
+                            <span class="gender-button" style="width: 100%">
+                                <i class="fas fa-venus"></i>
+                                여성
+                            </span>
+                        </label>
                     </div>
                 </div>
                 <div class="form-group" style="width: 22%">
@@ -3502,13 +3499,15 @@ function previewApplication() {
                 </div>
                 <div class="form-group" style="width: 15%">
                     <div style="position: relative">
-                        <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
-                            <label class="checkbox-label">
-                                <input type="checkbox" ${form.querySelector('[name="is_leave"]').checked ? 'checked' : ''} disabled>
-                                <span class="check-icon"></span>
-                                <span class="label-text">휴학</span>
-                            </label>
-                        </div>
+                        ${form.querySelector('[name="is_leave"]').checked ? `
+                            <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked disabled>
+                                    <span class="check-icon"></span>
+                                    <span class="label-text">휴학</span>
+                                </label>
+                            </div>
+                        ` : ''}
                         <label class="form-label">학년</label>
                         <input type="text" class="form-control" value="${form.querySelector('[name="grade"]').value || ''}" readonly>
                     </div>
@@ -3516,9 +3515,9 @@ function previewApplication() {
             </div>
 
             <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-                <div style="display: grid; grid-template-columns: 180px 180px 1fr; gap: 24px; align-items: center">
-                    <input type="text" class="form-control" value="${form.querySelector('[name="driving_status"]').value === 'car' ? '자차 보유' : form.querySelector('[name="driving_status"]').value === 'license' ? '면허만 보유' : '해당사항 없음'}" readonly>
-                    <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
+                <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
+                    <input type="text" class="form-control" value="${form.querySelector('[name="driving_status"]').value || ''}" readonly>
+                    <input type="text" class="form-control" style="text-align: right;" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
                     <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly>
                 </div>
             </div>
