@@ -2646,10 +2646,10 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     <div class="schedule-select-wrapper">
         <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
             <i class="fas fa-calendar-alt"></i>
-            희망하는 면접 일정 선택하기
+            가능한 면접 일정 모두 선택하기
         </button>
         <div class="selected-schedule" id="selectedSchedule">
-            <p class="no-schedule">아직 면접 일정을 선택하지 않았습니다.</p>
+            <p class="no-schedule">가능한 면접 시간을 모두 선택해주세요.</p>
         </div>
     </div>
 
@@ -2663,17 +2663,21 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 
-    <!-- 알림 메시지 -->
-    <div class="alerts" style="margin-top: 1rem;">
-        <div class="alert-green">
-            <i class="fas fa-info-circle"></i>
-            비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
-        </div>
-        <div class="alert-red">
-            <i class="fas fa-exclamation-circle"></i>
-            대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
-        </div>
+<!-- 알림 메시지 -->
+<div class="alerts" style="margin-top: 1rem;">
+    <div class="alert-green">
+        <i class="fas fa-info-circle"></i>
+        면접 대상자에 한해 선택하신 시간대 중 하나로 배정하여 개별 통보드립니다.
     </div>
+    <div class="alert-green">
+        <i class="fas fa-info-circle"></i>
+        비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
+    </div>
+    <div class="alert-red">
+        <i class="fas fa-exclamation-circle"></i>
+        대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
+    </div>
+</div>
 </section>
 
 <!-- 면접 일정 선택 모달 -->
@@ -2694,11 +2698,11 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     </div>
                     <div class="time-options">
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0117_am">
+                            <input type="checkbox" name="interview_slots[]" value="0117_am">
                             <span class="time-label">오전</span>
                         </label>
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0117_pm">
+                            <input type="checkbox" name="interview_slots[]" value="0117_pm">
                             <span class="time-label">오후</span>
                         </label>
                     </div>
@@ -2711,11 +2715,11 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     </div>
                     <div class="time-options">
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0118_am">
+                            <input type="checkbox" name="interview_slots[]" value="0118_am">
                             <span class="time-label">오전</span>
                         </label>
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0118_pm">
+                            <input type="checkbox" name="interview_slots[]" value="0118_pm">
                             <span class="time-label">오후</span>
                         </label>
                     </div>
@@ -2728,11 +2732,11 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     </div>
                     <div class="time-options">
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0119_am">
+                            <input type="checkbox" name="interview_slots[]" value="0119_am">
                             <span class="time-label">오전</span>
                         </label>
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0119_pm">
+                            <input type="checkbox" name="interview_slots[]" value="0119_pm">
                             <span class="time-label">오후</span>
                         </label>
                     </div>
@@ -2746,11 +2750,11 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
                     </div>
                     <div class="time-options">
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0120_am">
+                            <input type="checkbox" name="interview_slots[]" value="0120_am">
                             <span class="time-label">오전</span>
                         </label>
                         <label class="time-option">
-                            <input type="radio" name="interview_slot" value="0120_pm">
+                            <input type="checkbox" name="interview_slots[]" value="0120_pm">
                             <span class="time-label">오후</span>
                         </label>
                     </div>
@@ -3135,46 +3139,76 @@ function updatePlaceholder(type) {
 
 <script>
 function openScheduleModal() {
-    document.getElementById('scheduleModal').style.display = 'block';
+    const modal = document.getElementById('scheduleModal');
+    const modalContent = modal.querySelector('.schedule-modal-content');
+    
+    modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    // 모달 컨텐츠 영역 클릭 시 이벤트 즉시 중단
+    modalContent.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+    });
+
+    // 모달 외부 영역 클릭 시 닫기
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeScheduleModal();
+        }
+    });
 }
 
 function closeScheduleModal() {
-    document.getElementById('scheduleModal').style.display = 'none';
+    const modal = document.getElementById('scheduleModal');
+    if (!modal) return;
+    
+    modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
 function confirmSchedule() {
-    const selectedSlot = document.querySelector('input[name="interview_slot"]:checked');
+    const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
     const selectedSchedule = document.getElementById('selectedSchedule');
     
-    if (selectedSlot) {
-        const dateOption = selectedSlot.closest('.date-option');
-        const date = dateOption.querySelector('.date').textContent;
-        const type = dateOption.querySelector('.interview-type').textContent;
-        const time = selectedSlot.nextElementSibling.textContent;
+    if (selectedSlots.length > 0) {
+        let scheduleHTML = '<div style="display: flex; flex-direction: column; gap: 8px;">';
         
-        selectedSchedule.innerHTML = `
-            <p style="margin: 0; color: var(--primary-color);">
-                <strong>${date} ${time}</strong> - ${type}
-            </p>
-        `;
+        selectedSlots.forEach(slot => {
+            const dateOption = slot.closest('.date-option');
+            const date = dateOption.querySelector('.date').textContent;
+            const type = dateOption.querySelector('.interview-type').textContent;
+            const time = slot.nextElementSibling.textContent;
+            
+            scheduleHTML += `
+                <p style="margin: 0; color: var(--primary-color);">
+                    <strong>${date} ${time}</strong> - ${type}
+                </p>
+            `;
+        });
         
-        closeScheduleModal();
+        scheduleHTML += '</div>';
+        selectedSchedule.innerHTML = scheduleHTML;
+        
+        // 모달 닫기 전 현재 스크롤 위치 저장
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 모달 닫기
+        const modal = document.getElementById('scheduleModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // 저장된 스크롤 위치로 복원
+        setTimeout(() => {
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'instant'
+            });
+        }, 0);
     } else {
-        alert('면접 일정을 선택해주세요.');
+        alert('면접 일정을 하나 이상 선택해주세요.');
     }
 }
 
-// 모달 외부 클릭 시 닫기
-window.onclick = function(event) {
-    const modal = document.getElementById('scheduleModal');
-    if (event.target === modal) {
-        closeScheduleModal();
-    }
-}
-
-// ESC 키 입력 시 모달 닫기
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeScheduleModal();
