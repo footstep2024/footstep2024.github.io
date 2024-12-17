@@ -1999,6 +1999,72 @@ color: var(--text-color);
 
 </style>
 
+<style>
+
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    overflow-y: auto;
+}
+
+.preview-modal-content {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.preview-content {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+}
+
+.preview-section {
+    margin-bottom: 30px;
+}
+
+.preview-section h4 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.preview-item {
+    margin: 15px 0;
+}
+
+.preview-label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.preview-value {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+</style>
+
+
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
   
@@ -2837,6 +2903,22 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     </div>
 </div>
 
+<!-- 미리보기 모달 추가 -->
+<div class="preview-modal" id="previewModal">
+    <div class="preview-modal-content">
+        <button class="example-close" onclick="closePreview()">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">지원서 미리보기</h3>
+            <p class="modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
+        </div>
+        <div class="preview-content">
+            <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closePreview()">닫기</button>
+        </div>
+    </div>
+</div>
     
 </form>  
 
@@ -3296,6 +3378,129 @@ document.addEventListener('keydown', function(event) {
     }
 });
 </script>
+
+<script>
+
+function previewApplication() {
+    const form = document.getElementById('applicationForm');
+    const modal = document.getElementById('previewModal');
+    const previewContent = modal.querySelector('.preview-content');
     
+    let previewHTML = '';
+    
+    // 기본 정보 섹션
+    previewHTML += `
+        <div class="preview-section">
+            <h4>기본 정보</h4>
+            <div class="preview-item">
+                <div class="preview-label">이름</div>
+                <div class="preview-value">${form.querySelector('[name="name"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">생년월일</div>
+                <div class="preview-value">${form.querySelector('[name="birthdate"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">성별</div>
+                <div class="preview-value">${form.querySelector('input[name="gender"]:checked')?.value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">MBTI</div>
+                <div class="preview-value">${form.querySelector('[name="mbti"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">연락처</div>
+                <div class="preview-value">${form.querySelector('[name="phone"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">본가</div>
+                <div class="preview-value">${form.querySelector('[name="home_address"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">현재 거주지</div>
+                <div class="preview-value">${form.querySelector('[name="current_address"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">학교/전공</div>
+                <div class="preview-value">${form.querySelector('[name="school"]').value || '-'} / ${form.querySelector('[name="major"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">학번/학년</div>
+                <div class="preview-value">${form.querySelector('[name="student_id"]').value || '-'} / ${form.querySelector('[name="grade"]').value || '-'}</div>
+            </div>
+        </div>
+    `;
+    
+    // 자기소개 섹션
+    previewHTML += `
+        <div class="preview-section">
+            <h4>자기소개</h4>
+            <div class="preview-item">
+                <div class="preview-label">자기소개</div>
+                <div class="preview-value">${form.querySelector('[name="introduction"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">특별 자기소개</div>
+                <div class="preview-value">${form.querySelector('[name="special_introduction"]').value || '-'}</div>
+            </div>
+        </div>
+    `;
+
+    // 여행 경험 에세이 섹션
+    previewHTML += `
+        <div class="preview-section">
+            <h4>여행 경험 에세이</h4>
+            <div class="preview-item">
+                <div class="preview-label">가본 여행지</div>
+                <div class="preview-value">${form.querySelector('[name="visited_places"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">에세이</div>
+                <div class="preview-value">${form.querySelector('[name="travel_essay"]').value || '-'}</div>
+            </div>
+        </div>
+    `;
+
+    // 지원 동기 섹션
+    previewHTML += `
+        <div class="preview-section">
+            <h4>지원 동기</h4>
+            <div class="preview-item">
+                <div class="preview-label">지원 동기</div>
+                <div class="preview-value">${form.querySelector('[name="motivation"]').value || '-'}</div>
+            </div>
+            <div class="preview-item">
+                <div class="preview-label">마지막 한마디</div>
+                <div class="preview-value">${form.querySelector('[name="final_words"]').value || '-'}</div>
+            </div>
+        </div>
+    `;
+    
+    previewContent.innerHTML = previewHTML;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// 모달 외부 클릭 시 닫기 이벤트 추가
+document.getElementById('previewModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closePreview();
+    }
+});
+    
+function closePreview() {
+    const modal = document.getElementById('previewModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// ESC 키로 모달 닫기
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closePreview();
+    }
+});
+    
+</script>
 </body>
 </html>
