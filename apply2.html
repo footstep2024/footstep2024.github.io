@@ -3162,8 +3162,19 @@ function closeScheduleModal() {
     const modal = document.getElementById('scheduleModal');
     if (!modal) return;
     
+    // 현재 스크롤 위치 저장
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+    
+    // 스크롤 위치 복원
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
 }
 
 function confirmSchedule() {
