@@ -2065,7 +2065,8 @@ color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: #f8f9fa;
-    min-height: 38px;
+    overflow-wrap: break-word;
+    line-height: 1.5;
 }
 
 textarea.form-control[readonly] {
@@ -3724,15 +3725,18 @@ function previewApplication() {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 
-    // textarea 높이 자동 조절 적용
-    function adjustTextareaHeight(textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = (textarea.scrollHeight + 2) + 'px';
-    }
 
-    document.querySelectorAll('textarea.form-control[readonly]').forEach(textarea => {
-        adjustTextareaHeight(textarea);
-    });
+        function convertTextareaToDiv(textarea) {
+            const content = textarea.value || '';
+            return `<div class="preview-value" style="white-space: pre-wrap; min-height: ${textarea.style.height || '100px'}; height: auto;">${content}</div>`;
+        }
+        
+        previewContent.innerHTML = previewHTML;
+        previewContent.querySelectorAll('textarea.form-control[readonly]').forEach(textarea => {
+            const div = document.createElement('div');
+            div.innerHTML = convertTextareaToDiv(textarea);
+            textarea.parentNode.replaceChild(div.firstChild, textarea);
+        });
 }
 
 // 모달 외부 클릭 시 닫기 이벤트 추가
