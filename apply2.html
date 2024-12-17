@@ -1382,36 +1382,34 @@ animation: bounce 1s infinite;
 }
 
 .example-modal-content {
-    position: relative;
+    position: fixed; /* absolute에서 fixed로 변경 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: white;
     padding: 30px;
     border-radius: 16px;
     width: 90%;
     max-width: 800px;
-    margin: 50vh auto;  /* 상단 마진을 50vh로 설정 */
-    transform: translateY(-50%);  /* 자신의 높이의 절반만큼 위로 이동 */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    height: auto;
-    min-height: auto;  /* 필요한 만큼만 높이 가지도록 */
-    max-height: 80vh;  /* 화면 높이의 80%를 넘지 않도록 */
+    max-height: 80vh;  /* 뷰포트 높이의 80%로 제한 */
     display: flex;
     flex-direction: column;
 }
 
 .modal-image-container {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto;  /* 내용물이 넘칠 경우 스크롤 */
     margin: 0 -15px;
     padding: 0 15px;
-    position: relative;  /* 추가 */
 }
-    
+
 /* 모바일 대응 */
 @media (max-width: 768px) {
-.example-modal-content {
-width: 95%;
-margin: 20px auto;
-padding: 20px;
+    .example-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
 }
 
 .example-close {
