@@ -2658,7 +2658,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         <div class="form-group">
             <label class="form-label">추가 요청사항</label>
             <textarea class="form-control" name="interview_requests" 
-                style="height: 150px !important; min-height: 150px; resize: none;"
+                style="height: 75px !important; min-height: 75px; resize: none;"
                 placeholder="면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 오후 2시 이후로 가능합니다."></textarea>
         </div>
     </div>
@@ -3171,7 +3171,8 @@ function confirmSchedule() {
     const selectedSchedule = document.getElementById('selectedSchedule');
     
     if (selectedSlots.length > 0) {
-        let scheduleHTML = '<div style="display: flex; flex-direction: column; gap: 8px;">';
+        // 그리드 레이아웃을 사용하여 2열로 배치
+        let scheduleHTML = '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 4px;">';
         
         selectedSlots.forEach(slot => {
             const dateOption = slot.closest('.date-option');
@@ -3180,24 +3181,25 @@ function confirmSchedule() {
             const time = slot.nextElementSibling.textContent;
             
             scheduleHTML += `
-                <p style="margin: 0; color: var(--primary-color);">
+                <p style="margin: 0; color: var(--primary-color); padding: 4px 8px; background: rgba(47, 82, 41, 0.03); border-radius: 6px;">
                     <strong>${date} ${time}</strong> - ${type}
                 </p>
             `;
         });
         
+        // 홀수 개일 경우 마지막 항목이 2열을 다 차지하도록 처리
+        if (selectedSlots.length % 2 === 1) {
+            scheduleHTML += `<p style="margin: 0; grid-column: span 2;"></p>`;
+        }
+        
         scheduleHTML += '</div>';
         selectedSchedule.innerHTML = scheduleHTML;
         
-        // 모달 닫기 전 현재 스크롤 위치 저장
+        // 스크롤 위치 유지 코드
         const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // 모달 닫기
         const modal = document.getElementById('scheduleModal');
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        
-        // 저장된 스크롤 위치로 복원
         setTimeout(() => {
             window.scrollTo({
                 top: scrollPosition,
