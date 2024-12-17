@@ -1719,6 +1719,223 @@ color: var(--text-color);
 }
 }
 </style>
+
+<style>
+/* 면접 일정 선택 버튼 스타일 */
+.schedule-select-wrapper {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.schedule-select-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.schedule-select-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.selected-schedule {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(47, 82, 41, 0.05);
+    border-radius: 8px;
+}
+
+.no-schedule {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* 모달 스타일 */
+.schedule-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.schedule-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+    padding: 0;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.date-selection {
+    display: grid;
+    gap: 1rem;
+}
+
+.date-option {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.date-option:hover {
+    background: #f0f2f5;
+}
+
+.date-header {
+    margin-bottom: 1rem;
+}
+
+.date {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.interview-type {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.notice {
+    display: block;
+    font-size: 0.8rem;
+    color: #dc3545;
+    margin-top: 0.3rem;
+}
+
+.time-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.time-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.time-option input {
+    display: none;
+}
+
+.time-label {
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.time-option input:checked + .time-label {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.date-option.offline {
+    background: rgba(47, 82, 41, 0.05);
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.confirm-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.cancel-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .schedule-modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .date-option {
+        padding: 1rem;
+    }
+
+    .time-options {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .time-label {
+        padding: 0.6rem;
+    }
+}
+</style>
+    
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
   
@@ -2420,6 +2637,134 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 </section>
+
+<!-- 면접 일정 선택 섹션 -->
+<section class="form-section">
+    <h2 class="section-title">면접 일정 선택</h2>
+    
+    <!-- 일정 선택 버튼 -->
+    <div class="schedule-select-wrapper">
+        <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
+            <i class="fas fa-calendar-alt"></i>
+            희망하는 면접 일정 선택하기
+        </button>
+        <div class="selected-schedule" id="selectedSchedule">
+            <p class="no-schedule">아직 면접 일정을 선택하지 않았습니다.</p>
+        </div>
+    </div>
+
+    <!-- 추가 요청사항 입력 -->
+    <div class="additional-requests" style="margin-top: 2rem;">
+        <div class="form-group">
+            <label class="form-label">추가 요청사항</label>
+            <textarea class="form-control" name="interview_requests" 
+                style="height: 150px !important; min-height: 150px; resize: none;"
+                placeholder="면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 오후 2시 이후로 가능합니다."></textarea>
+        </div>
+    </div>
+
+    <!-- 알림 메시지 -->
+    <div class="alerts" style="margin-top: 1rem;">
+        <div class="alert-green">
+            <i class="fas fa-info-circle"></i>
+            비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
+        </div>
+        <div class="alert-red">
+            <i class="fas fa-exclamation-circle"></i>
+            대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
+        </div>
+    </div>
+</section>
+
+<!-- 면접 일정 선택 모달 -->
+<div class="schedule-modal" id="scheduleModal">
+    <div class="schedule-modal-content">
+        <div class="modal-header">
+            <h3>면접 일정 선택</h3>
+            <button class="modal-close" onclick="closeScheduleModal()">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <!-- 날짜 선택 섹션 -->
+            <div class="date-selection">
+                <div class="date-option" data-date="17" data-type="비대면">
+                    <div class="date-header">
+                        <span class="date">17일 (금)</span>
+                        <span class="interview-type">비대면 면접</span>
+                    </div>
+                    <div class="time-options">
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0117_am">
+                            <span class="time-label">오전</span>
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0117_pm">
+                            <span class="time-label">오후</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="date-option" data-date="18" data-type="비대면">
+                    <div class="date-header">
+                        <span class="date">18일 (토)</span>
+                        <span class="interview-type">비대면 면접</span>
+                    </div>
+                    <div class="time-options">
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0118_am">
+                            <span class="time-label">오전</span>
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0118_pm">
+                            <span class="time-label">오후</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="date-option" data-date="19" data-type="비대면">
+                    <div class="date-header">
+                        <span class="date">19일 (일)</span>
+                        <span class="interview-type">비대면 면접</span>
+                    </div>
+                    <div class="time-options">
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0119_am">
+                            <span class="time-label">오전</span>
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0119_pm">
+                            <span class="time-label">오후</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="date-option offline" data-date="20" data-type="대면">
+                    <div class="date-header">
+                        <span class="date">20일 (월)</span>
+                        <span class="interview-type">대면 면접</span>
+                        <span class="notice">부득이한 경우에만 선택해주세요</span>
+                    </div>
+                    <div class="time-options">
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0120_am">
+                            <span class="time-label">오전</span>
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="interview_slot" value="0120_pm">
+                            <span class="time-label">오후</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="confirm-btn" onclick="confirmSchedule()">선택 완료</button>
+            <button class="cancel-btn" onclick="closeScheduleModal()">취소</button>
+        </div>
+    </div>
+</div>
+
     
 </form>  
 
@@ -2786,6 +3131,55 @@ function updatePlaceholder(type) {
         textarea.placeholder = placeholders[type];
     }
 }
+</script>
+
+<script>
+function openScheduleModal() {
+    document.getElementById('scheduleModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeScheduleModal() {
+    document.getElementById('scheduleModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function confirmSchedule() {
+    const selectedSlot = document.querySelector('input[name="interview_slot"]:checked');
+    const selectedSchedule = document.getElementById('selectedSchedule');
+    
+    if (selectedSlot) {
+        const dateOption = selectedSlot.closest('.date-option');
+        const date = dateOption.querySelector('.date').textContent;
+        const type = dateOption.querySelector('.interview-type').textContent;
+        const time = selectedSlot.nextElementSibling.textContent;
+        
+        selectedSchedule.innerHTML = `
+            <p style="margin: 0; color: var(--primary-color);">
+                <strong>${date} ${time}</strong> - ${type}
+            </p>
+        `;
+        
+        closeScheduleModal();
+    } else {
+        alert('면접 일정을 선택해주세요.');
+    }
+}
+
+// 모달 외부 클릭 시 닫기
+window.onclick = function(event) {
+    const modal = document.getElementById('scheduleModal');
+    if (event.target === modal) {
+        closeScheduleModal();
+    }
+}
+
+// ESC 키 입력 시 모달 닫기
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeScheduleModal();
+    }
+});
 </script>
     
 </body>
