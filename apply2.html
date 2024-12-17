@@ -3446,16 +3446,16 @@ function previewApplication() {
                 </div>
                  <div class="form-group" style="width: 30%">
                     <label class="form-label">성별</label>
-                    <div style="display: flex; gap: 10px; flex-wrap: nowrap"> <!-- flex-wrap: nowrap 추가 -->
-                        <label class="gender-select" style="flex: 1"> <!-- flex: 1 추가로 공간 균등 분배 -->
-                            <input type="radio" name="gender_preview" disabled>
-                            <span class="gender-button" style="width: 100%"> <!-- width 100%로 변경 -->
+                    <div style="display: flex; gap: 10px; flex-wrap: nowrap">
+                        <label class="gender-select" style="flex: 1">
+                            <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
+                            <span class="gender-button" style="width: 100%">
                                 <i class="fas fa-mars"></i>
                                 남성
                             </span>
                         </label>
                         <label class="gender-select" style="flex: 1">
-                            <input type="radio" name="gender_preview" disabled>
+                            <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
                             <span class="gender-button" style="width: 100%">
                                 <i class="fas fa-venus"></i>
                                 여성
@@ -3508,19 +3508,54 @@ function previewApplication() {
                                 </label>
                             </div>
                         ` : ''}
-                        <label class="form-label">학년</label>
-                        <input type="text" class="form-control" value="${form.querySelector('[name="grade"]').value || ''}" readonly>
+                    <label class="form-label">학년</label>
+                    <input type="text" class="form-control" value="${
+                        (() => {
+                            const grade = form.querySelector('[name="grade"]').value;
+                            const gradeMap = {
+                                '1': '1학년',
+                                '2': '2학년',
+                                '3': '3학년',
+                                '4': '4학년',
+                                'graduating': '졸업예정',
+                                'graduated': '졸업'
+                            };
+                            return gradeMap[grade] || grade;
+                        })()
+                    }" readonly>
                     </div>
                 </div>
             </div>
 
-            <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-                <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
-                    <input type="text" class="form-control" value="${form.querySelector('[name="driving_status"]').value || ''}" readonly>
-                    <input type="text" class="form-control" style="text-align: right;" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
-                    <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly>
+                <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+                    <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
+                        <!-- 운전가능여부 -->
+                        <div class="form-group" style="margin: 0">
+                            <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
+                            <input type="text" class="form-control" value="${
+                                (() => {
+                                    const val = form.querySelector('[name="driving_status"]').value;
+                                    const options = {
+                                        'car': '자차 보유',
+                                        'license': '면허만 보유',
+                                        'none': '해당사항 없음'
+                                    };
+                                    return options[val] || val;
+                                })()
+                            }" readonly>
+                        </div>
+                        <!-- 여행경비 -->
+                        <div class="form-group" style="margin: 0">
+                            <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
+                            <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
+                        </div>
+                        <!-- SNS -->
+                        <div class="form-group" style="margin: 0">
+                            <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
+                            <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </section>
     `;
  // 추가 정보 섹션
