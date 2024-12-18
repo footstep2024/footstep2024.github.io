@@ -1780,180 +1780,235 @@ font-size: 0.9rem;
 margin: 0;
 }
 
-/* 모달 스타일 */
+/* 면접 일정 선택 모달 스타일 */
 .schedule-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.5);
-z-index: 1000;
-backdrop-filter: blur(5px);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .schedule-modal-content {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-width: 90%;
-max-width: 600px;
-border-radius: 12px;
-box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .modal-header {
-display: flex;
-flex-direction: column;
-gap: 10px;
-margin-bottom: 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    position: relative;
+    text-align: center;
 }
 
 .modal-header h3 {
-margin: 0;
-color: var(--primary-color);
-font-size: 1.2rem;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.modal-subtitle {
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
 .modal-close {
-background: none;
-border: none;
-font-size: 1.5rem;
-cursor: pointer;
-color: var(--light-text);
-padding: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .modal-body {
-padding: 1.5rem;
-max-height: calc(100vh - 250px);
-overflow-y: auto;
+    padding: 20px;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
 }
 
 .date-selection {
-display: grid;
-gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .date-option {
-background: #f8f9fa;
-border-radius: 8px;
-padding: 1.2rem;
-transition: all 0.3s ease;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.3s ease;
 }
 
 .date-option:hover {
-background: #f0f2f5;
+    background: #f0f2f5;
 }
 
 .date-header {
-margin-bottom: 1rem;
+    margin-bottom: 12px;
+}
+
+.date-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .date {
-font-size: 1.1rem;
-font-weight: 500;
-color: var(--primary-color);
-margin-right: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-color);
 }
 
 .interview-type {
-font-size: 0.9rem;
-color: var(--light-text);
+    font-size: 0.9rem;
+    color: var(--light-text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.interview-type i {
+    font-size: 0.9rem;
 }
 
 .notice {
-display: block;
-font-size: 0.8rem;
-color: #dc3545;
-margin-top: 0.3rem;
+    display: block;
+    font-size: 0.8rem;
+    color: #dc3545;
+    margin-top: 4px;
 }
 
-.time-options {
-display: flex;
-gap: 1rem;
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
-.time-option {
-flex: 1;
-cursor: pointer;
+.time-slot {
+    cursor: pointer;
 }
 
-.time-option input {
-display: none;
+.time-slot input {
+    display: none;
 }
 
 .time-label {
-display: block;
-text-align: center;
-padding: 0.8rem;
-border: 1px solid var(--border-color);
-border-radius: 6px;
-transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #e1e2e3;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--text-color);
 }
 
-.time-option input:checked + .time-label {
-background: var(--primary-color);
-color: white;
-border-color: var(--primary-color);
+.time-slot input:checked + .time-label {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .date-option.offline {
-background: rgba(47, 82, 41, 0.05);
+    background: rgba(47, 82, 41, 0.05);
 }
 
 .modal-footer {
-padding: 1rem 1.5rem;
-border-top: 1px solid var(--border-color);
-display: flex;
-justify-content: flex-end;
-gap: 1rem;
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .confirm-btn, .cancel-btn {
-padding: 0.8rem 1.5rem;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-font-size: 0.9rem;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
 .confirm-btn {
-background: var(--primary-color);
-color: white;
+    background: var(--primary-color);
+    color: white;
+}
+
+.confirm-btn:hover {
+    background: var(--primary-light);
 }
 
 .cancel-btn {
-background: var(--border-color);
-color: var(--text-color);
+    background: var(--border-color);
+    color: var(--text-color);
 }
 
+.cancel-btn:hover {
+    background: #d0d3d4;
+}
+
+/* 모바일 대응 */
 @media (max-width: 768px) {
-.schedule-modal-content {
-width: 95%;
-margin: 20px auto;
+    .schedule-modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .date-option {
+        padding: 12px;
+    }
+
+    .time-label {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .modal-footer {
+        padding: 12px 15px;
+    }
+
+    .confirm-btn, .cancel-btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
 }
 
-.modal-body {
-padding: 1rem;
-}
-
-.date-option {
-padding: 1rem;
-}
-
-.time-options {
-flex-direction: column;
-gap: 0.5rem;
-}
-
-.time-label {
-padding: 0.6rem;
-}
-}
 </style>
 
 
@@ -2876,89 +2931,137 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <!-- 면접 일정 선택 모달 -->
 <div class="schedule-modal" id="scheduleModal">
 <div class="schedule-modal-content">
-<div class="modal-header">
-<h3>면접 일정 선택</h3>
-<button class="modal-close" onclick="closeScheduleModal()">&times;</button>
-</div>
+    <div class="modal-header">
+        <h3>면접 일정 선택</h3>
+        <p class="modal-subtitle">가능한 시간을 모두 선택해주세요</p>
+        <button class="modal-close" onclick="closeScheduleModal()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="modal-body">
+        <div class="date-selection">
+            <!-- 비대면 면접 일정들 -->
+            <div class="date-option">
+                <div class="date-header">
+                    <div class="date-main">
+                        <span class="date">17일 (금)</span>
+                        <span class="interview-type">
+                            <i class="fas fa-video"></i>
+                            비대면 면접
+                        </span>
+                    </div>
+                </div>
+                <div class="time-slots">
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0117_am">
+                        <span class="time-label">
+                            <i class="fas fa-sun"></i>
+                            오전
+                        </span>
+                    </label>
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0117_pm">
+                        <span class="time-label">
+                            <i class="fas fa-moon"></i>
+                            오후
+                        </span>
+                    </label>
+                </div>
+            </div>
 
-<div class="modal-body">
-<!-- 날짜 선택 섹션 -->
-<div class="date-selection">
-<div class="date-option" data-date="17" data-type="비대면">
-<div class="date-header">
-<span class="date">17일 (금)</span>
-<span class="interview-type">비대면 면접</span>
-</div>
-<div class="time-options">
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0117_am">
-<span class="time-label">오전</span>
-</label>
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0117_pm">
-<span class="time-label">오후</span>
-</label>
-</div>
-</div>
+            <div class="date-option">
+                <div class="date-header">
+                    <div class="date-main">
+                        <span class="date">18일 (토)</span>
+                        <span class="interview-type">
+                            <i class="fas fa-video"></i>
+                            비대면 면접
+                        </span>
+                    </div>
+                </div>
+                <div class="time-slots">
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0118_am">
+                        <span class="time-label">
+                            <i class="fas fa-sun"></i>
+                            오전
+                        </span>
+                    </label>
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0118_pm">
+                        <span class="time-label">
+                            <i class="fas fa-moon"></i>
+                            오후
+                        </span>
+                    </label>
+                </div>
+            </div>
 
-<div class="date-option" data-date="18" data-type="비대면">
-<div class="date-header">
-<span class="date">18일 (토)</span>
-<span class="interview-type">비대면 면접</span>
-</div>
-<div class="time-options">
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0118_am">
-<span class="time-label">오전</span>
-</label>
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0118_pm">
-<span class="time-label">오후</span>
-</label>
-</div>
-</div>
+            <div class="date-option">
+                <div class="date-header">
+                    <div class="date-main">
+                        <span class="date">19일 (일)</span>
+                        <span class="interview-type">
+                            <i class="fas fa-video"></i>
+                            비대면 면접
+                        </span>
+                    </div>
+                </div>
+                <div class="time-slots">
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0119_am">
+                        <span class="time-label">
+                            <i class="fas fa-sun"></i>
+                            오전
+                        </span>
+                    </label>
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0119_pm">
+                        <span class="time-label">
+                            <i class="fas fa-moon"></i>
+                            오후
+                        </span>
+                    </label>
+                </div>
+            </div>
 
-<div class="date-option" data-date="19" data-type="비대면">
-<div class="date-header">
-<span class="date">19일 (일)</span>
-<span class="interview-type">비대면 면접</span>
-</div>
-<div class="time-options">
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0119_am">
-<span class="time-label">오전</span>
-</label>
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0119_pm">
-<span class="time-label">오후</span>
-</label>
-</div>
-</div>
+            <!-- 대면 면접 일정 (특별 스타일링) -->
+            <div class="date-option offline">
+                <div class="date-header">
+                    <div class="date-main">
+                        <span class="date">20일 (월)</span>
+                        <span class="interview-type">
+                            <i class="fas fa-user-friends"></i>
+                            대면 면접
+                        </span>
+                    </div>
+                    <span class="notice">부득이한 경우에만 선택해주세요</span>
+                </div>
+                <div class="time-slots">
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0120_am">
+                        <span class="time-label">
+                            <i class="fas fa-sun"></i>
+                            오전
+                        </span>
+                    </label>
+                    <label class="time-slot">
+                        <input type="checkbox" name="interview_slots[]" value="0120_pm">
+                        <span class="time-label">
+                            <i class="fas fa-moon"></i>
+                            오후
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="date-option offline" data-date="20" data-type="대면">
-<div class="date-header">
-<span class="date">20일 (월)</span>
-<span class="interview-type">대면 면접</span>
-<span class="notice">부득이한 경우에만 선택해주세요</span>
-</div>
-<div class="time-options">
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0120_am">
-<span class="time-label">오전</span>
-</label>
-<label class="time-option">
-<input type="checkbox" name="interview_slots[]" value="0120_pm">
-<span class="time-label">오후</span>
-</label>
-</div>
-</div>
-</div>
-</div>
-
-<div class="modal-footer">
-<button class="confirm-btn" onclick="confirmSchedule()">선택 완료</button>
-<button class="cancel-btn" onclick="closeScheduleModal()">취소</button>
-</div>
+    <div class="modal-footer">
+        <button class="confirm-btn" onclick="confirmSchedule()">선택 완료</button>
+        <button class="cancel-btn" onclick="closeScheduleModal()">취소</button>
+    </div>
 </div>
 </div>
 
