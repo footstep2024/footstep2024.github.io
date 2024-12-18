@@ -3873,6 +3873,18 @@ document.getElementById('previewModal').addEventListener('click', function(event
     
 function closePreview() {
     const modal = document.getElementById('previewModal');
+    if (!modal) return;
+    
+    // 모든 내용 초기화
+    const previewContent = modal.querySelector('.preview-content');
+    const modalTitle = modal.querySelector('.preview-modal-title');
+    const modalDesc = modal.querySelector('.preview-modal-desc');
+    
+    modalTitle.textContent = '지원서 미리보기';
+    modalDesc.textContent = '제출 전 마지막으로 작성하신 내용을 확인해주세요.';
+    previewContent.innerHTML = '';
+    if (previewContent) previewContent.scrollTop = 0;
+    
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
