@@ -3262,10 +3262,17 @@ document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
 
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
-    const modalTitle = document.querySelector('.modal-title');
-    const modalDesc = document.querySelector('.modal-desc');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDesc = modal.querySelector('.modal-desc');
+    const imageContainer = modal.querySelector('.modal-image-container');
+    const scrollIndicator = modal.querySelector('.scroll-indicator');
+    
+    // 모달 초기화
+    modalTitle.textContent = '';
+    modalDesc.textContent = '';
+    imageContainer.innerHTML = '';
+    scrollIndicator.style.opacity = '0';
+    imageContainer.scrollTop = 0;
     
     if (type === 'rules') {
         showRules();
@@ -3322,15 +3329,22 @@ function showExample(type) {
 
 function closeExample() {
     const modal = document.getElementById('exampleModal');
-    const imageContainer = document.querySelector('.modal-image-container');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (!modal) return;
     
-    if (modal) modal.style.display = 'none';
+    // 모든 내용 초기화
+    const imageContainer = modal.querySelector('.modal-image-container');
+    const scrollIndicator = modal.querySelector('.scroll-indicator');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDesc = modal.querySelector('.modal-desc');
+    
+    modalTitle.textContent = '';
+    modalDesc.textContent = '';
+    imageContainer.innerHTML = '';
+    scrollIndicator.style.opacity = '0';
+    imageContainer.scrollTop = 0;
+    
+    modal.style.display = 'none';
     document.body.style.overflow = 'auto';
-    
-    if (imageContainer) imageContainer.scrollTop = 0;
-    if (imageContainer) imageContainer.innerHTML = '';
-    if (scrollIndicator) scrollIndicator.style.opacity = '0';
 }
 
 function updatePlaceholder(type) {
