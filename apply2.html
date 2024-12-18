@@ -1767,17 +1767,139 @@ background: var(--primary-light);
 transform: translateY(-2px);
 }
 
-.selected-schedule {
-margin-top: 1rem;
-padding: 1rem;
-background: rgba(47, 82, 41, 0.05);
-border-radius: 8px;
+.no-schedule {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(47, 82, 41, 0.03);
+    border: 2px dashed rgba(47, 82, 41, 0.15);
+    border-radius: 12px;
+    margin: 1rem 0;
 }
 
-.no-schedule {
-color: var(--light-text);
-font-size: 0.9rem;
-margin: 0;
+.no-schedule i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.no-schedule p {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.selected-times-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px;
+}
+
+.selected-time-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid rgba(47, 82, 41, 0.1);
+    transition: all 0.3s ease;
+    max-width: 400px;  /* 최대 너비 제한 */
+    margin: 0 auto;    /* 중앙 정렬 */
+}
+
+.selected-time-item:hover {
+    transform: translateX(5px);
+    border-color: var(--primary-color);
+    background: rgba(47, 82, 41, 0.02);
+}
+
+.selected-time-item.offline {
+    background: rgba(47, 82, 41, 0.02);
+}
+
+.time-badge {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.time-badge i {
+    font-size: 1rem;
+}
+
+.time-info {
+    flex: 1;
+}
+
+.time-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;        /* 간격 조정 */
+    margin-bottom: 2px;
+}
+
+.time-date {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.time-period {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: rgba(47, 82, 41, 0.05);
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.time-period i {
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.time-type {
+    font-size: 0.85rem;
+    color: var(--light-text);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .selected-time-item {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .time-badge {
+        width: 32px;
+        height: 32px;
+    }
+
+    .time-badge i {
+        font-size: 0.9rem;
+    }
+
+    .time-date {
+        font-size: 0.9rem;
+    }
+
+    .time-period {
+        font-size: 0.85rem;
+    }
+
+    .time-type {
+        font-size: 0.8rem;
+    }
 }
 
 /* 면접 일정 선택 모달 스타일 */
@@ -2887,13 +3009,16 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <!-- 일정 선택 버튼 -->
 <div class="schedule-select-wrapper">
-<button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
-<i class="fas fa-calendar-alt"></i>
-가능한 면접 시간 모두 선택하기
-</button>
-<div class="selected-schedule" id="selectedSchedule">
-<p class="no-schedule">가능한 면접 시간을 모두 선택해주세요.</p>
-</div>
+    <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
+        <i class="fas fa-calendar-alt"></i>
+        가능한 면접 시간 모두 선택하기
+    </button>
+    <div class="selected-schedule" id="selectedSchedule">
+        <div class="no-schedule">
+            <i class="fas fa-calendar-plus"></i>
+            <p>가능한 면접 시간을 모두 선택해주세요.</p>
+        </div>
+    </div>
 </div>
 
 <!-- 추가 요청사항 입력 -->
@@ -3504,48 +3629,54 @@ behavior: 'instant'
 }
 
 function confirmSchedule() {
-const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
-const selectedSchedule = document.getElementById('selectedSchedule');
+   const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
+   const selectedSchedule = document.getElementById('selectedSchedule');
 
-if (selectedSlots.length > 0) {
-// 그리드 레이아웃을 사용하여 2열로 배치
-let scheduleHTML = '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 4px;">';
+   if (selectedSlots.length > 0) {
+       let scheduleHTML = '<div class="selected-times-container">';
 
-selectedSlots.forEach(slot => {
-const dateOption = slot.closest('.date-option');
-const date = dateOption.querySelector('.date').textContent;
-const type = dateOption.querySelector('.interview-type').textContent;
-const time = slot.nextElementSibling.textContent;
+       selectedSlots.forEach(slot => {
+           const dateOption = slot.closest('.date-option');
+           const date = dateOption.querySelector('.date').textContent;
+           const type = dateOption.querySelector('.interview-type').textContent;
+           const time = slot.nextElementSibling.textContent.trim();
+           const isOffline = dateOption.classList.contains('offline');
 
-scheduleHTML += `
-               <p style="margin: 0; color: var(--primary-color); padding: 4px 8px; background: rgba(47, 82, 41, 0.03); border-radius: 6px;">
-                   <strong>${date} ${time}</strong> - ${type}
-               </p>
+           scheduleHTML += `
+               <div class="selected-time-item ${isOffline ? 'offline' : ''}">
+                   <div class="time-badge">
+                       <i class="fas ${isOffline ? 'fa-user-friends' : 'fa-video'}"></i>
+                   </div>
+                   <div class="time-info">
+                       <div class="time-main">
+                           <span class="time-date">${date}</span>
+                           <span class="time-period">
+                               <i class="fas ${time.includes('오전') ? 'fa-sun' : 'fa-moon'}"></i>
+                               ${time}
+                           </span>
+                       </div>
+                       <div class="time-type">${type}</div>
+                   </div>
+               </div>
            `;
-});
+       });
 
-// 홀수 개일 경우 마지막 항목이 2열을 다 차지하도록 처리
-if (selectedSlots.length % 2 === 1) {
-scheduleHTML += `<p style="margin: 0; grid-column: span 2;"></p>`;
-}
+       scheduleHTML += '</div>';
+       selectedSchedule.innerHTML = scheduleHTML;
 
-scheduleHTML += '</div>';
-selectedSchedule.innerHTML = scheduleHTML;
-
-// 스크롤 위치 유지 코드
-const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-const modal = document.getElementById('scheduleModal');
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
-setTimeout(() => {
-window.scrollTo({
-top: scrollPosition,
-behavior: 'instant'
-});
-}, 0);
-} else {
-alert('면접 일정을 하나 이상 선택해주세요.');
-}
+       const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+       const modal = document.getElementById('scheduleModal');
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       setTimeout(() => {
+           window.scrollTo({
+               top: scrollPosition,
+               behavior: 'instant'
+           });
+       }, 0);
+   } else {
+       alert('면접 일정을 하나 이상 선택해주세요.');
+   }
 }
 
 document.addEventListener('keydown', function(event) {
