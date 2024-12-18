@@ -1382,26 +1382,28 @@ margin: 0.4rem 0 1.5rem 0;  /* 모바일에서는 여백 살짝 줄임 */
 }
 
 .example-modal-content {
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-width: 90%;
-max-width: 800px;
-padding: 30px;
-border-radius: 16px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-max-height: 80vh;
-display: flex;
-flex-direction: column;
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    margin: 50vh auto;  
+    transform: translateY(-50%);  
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    height: auto;
+    min-height: auto;  
+    max-height: 80vh;  
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-image-container {
-flex: 1;
-overflow-y: auto;  /* 내용물이 넘칠 경우 스크롤 */
-margin: 0 -15px;
-padding: 0 15px;
+    flex: 1;
+    overflow-y: auto;
+    margin: 0 -15px;
+    padding: 0 15px;
+    position: relative;
 }
 
 /* 모바일 대응 */
@@ -1947,7 +1949,7 @@ transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.modal-header {
+.schedule-modal .modal-header {
     background: var(--primary-color);
     color: white;
     padding: 20px;
@@ -1955,13 +1957,13 @@ transform: translateY(-2px);
     text-align: center;
 }
 
-.modal-header h3 {
+.schedule-modal .modal-header h3 {
     margin: 0;
     font-size: 1.4rem;
     font-weight: 500;
 }
 
-.modal-subtitle {
+.schedule-modal .modal-subtitle {
     margin: 8px 0 0;
     font-size: 0.9rem;
     opacity: 0.9;
