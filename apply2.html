@@ -1452,6 +1452,22 @@ animation: bounce 1s infinite;
     margin-right: 0.5rem;
 }
 
+    .preview-modal-title {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.preview-modal-desc {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin: 0.5rem 0 2rem 0;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
 .rules-content .rules-title {
     color: var(--primary-color);
     font-size: 1.4rem;
@@ -2950,9 +2966,9 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="preview-modal" id="previewModal">
     <div class="preview-modal-content">
         <button class="example-close" onclick="closePreview()">&times;</button>
-        <div class="modal-header">
-            <h3 class="modal-title">지원서 미리보기</h3>
-            <p class="modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
+        <div class="preview-modal-header">
+            <h3 class="preview-modal-title">지원서 미리보기</h3>
+            <p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
         </div>
         <div class="preview-content">
             <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
@@ -3429,7 +3445,10 @@ function previewApplication() {
     const modal = document.getElementById('previewModal');
     const previewContent = modal.querySelector('.preview-content');
     
-    let previewHTML = '';
+    let previewHTML = `
+        <section class="form-section">
+            <h2 class="section-title">기본 정보</h2>
+    `;
 
     // 기본 정보 섹션
     previewHTML += `
