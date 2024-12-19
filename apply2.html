@@ -2435,6 +2435,7 @@ padding: 0.5rem 0.7rem;
 </div>
 </div>
 </section>
+    
 <!-- 새로운 개인정보 수집 섹션 끝 -->
 
 <form id="applicationForm">
@@ -3747,10 +3748,7 @@ function previewApplication() {
                 <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
                     <span>기본 정보</span>
                     ${(() => {
-                        const privacyCheckbox = form.querySelector('input[name="privacy_agreement"]');
-                        if (!privacyCheckbox) return '';
-                        
-                        const isAgreed = privacyCheckbox.checked;
+                        const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
                         if (isAgreed) {
                             return `<span style="display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: var(--primary-color); font-weight: 400;">
                                 <i class="fas fa-check-circle"></i>
