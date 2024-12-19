@@ -3748,17 +3748,25 @@ function previewApplication() {
                 <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
                     <span>기본 정보</span>
                     ${(() => {
-                        const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
+                        const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
                         if (isAgreed) {
-                            return `<span style="display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: var(--primary-color); font-weight: 400;">
-                                <i class="fas fa-check-circle"></i>
-                                개인정보 이용 동의함
-                            </span>`;
+                            return `
+                                <div style="display: flex; align-items: center;">
+                                    <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
+                                        <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
+                                            <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                        </div>
+                                        <span style="color: var(--text-color); font-size: 0.85rem;">동의함</span>
+                                    </div>
+                                </div>
+                            `;
                         } else {
-                            return `<span style="display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: #dc3545; font-weight: 400;">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                개인정보 수집에 동의해주세요
-                            </span>`;
+                            return `
+                                <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
+                                    <i class="fas fa-exclamation-triangle" style="font-size: 0.9em;"></i>
+                                    <span style="font-family: 'Gowun Batang', var(--system-font); font-size: 0.85em;">개인정보 수집에 동의해주세요</span>
+                                </div>
+                            `;
                         }
                     })()}
                 </h2>
