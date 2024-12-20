@@ -1456,6 +1456,129 @@ color: var(--primary-color);
 font-weight: 500;
 }
 
+.activity-timeline {
+    padding: 1rem;
+}
+
+.timeline-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.timeline-text {
+    flex: 1;
+}
+
+.timeline-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 90px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-image img {
+    transform: scale(1.05);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .timeline-image {
+        width: 100px;
+        height: 75px;
+    }
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(47, 82, 41, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+.timeline-date {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-content h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin: 0 0 0.3rem 0;
+    font-weight: 500;
+}
+
+.timeline-content p {
+    color: var(--light-text);
+    font-size: 0.85rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.attendance {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.attendance i {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        padding: 0.8rem;
+        gap: 1rem;
+    }
+
+    .timeline-date {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.8rem;
+    }
+
+    .attendance {
+        font-size: 0.75rem;
+    }
+}
+    
+
 .rules-modal-desc {
 background: rgba(47, 82, 41, 0.05);
 padding: 0.8rem 1rem;
@@ -3334,28 +3457,89 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     <div class="example-modal-content">
         <button class="example-close">&times;</button>
         <div class="modal-header">
-            <h3 class="modal-title">여행 운영 안내</h3>
+            <h3 class="modal-title">2024년 정기 여행 기록</h3>
             <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
-                <i class="fas fa-exclamation-circle"></i> 
-                발자취는 단체 여행의 끈끈한 케미를 추구합니다.
+                <i class="fas fa-map-marked-alt"></i> 
+                발자취와 함께한 우리들의 여정
             </p>
         </div>
         <div class="modal-image-container">
-            <div class="rules-content">
-                <div class="rules-title">제12조 (여행 운영 원칙)</div>
-                <ol>
-                    <li>모든 정기 여행은 최소 10인 이상의 단체로 진행한다.</li>
-                    <li>여행지는 수도권(서울, 경기, 인천)을 우선으로 한다.</li>
-                    <li>수도권 외 지역은 충청권과 강원권을 중심으로 진행한다.</li>
-                    <li>장거리 여행은 방학 중 진행을 원칙으로 한다.</li>
-                    <li>여행 경비는 1인당 5만원 이내로 기획한다.</li>
-                    <li>모든 여행은 1박 2일을 기본으로 한다.</li>
-                    <li>여행지는 매달 투표를 통해 선정한다.</li>
-                    <li>여행 계획은 출발 2주 전까지 공지한다.</li>
-                    <li>조별 활동은 현지에서 진행할 수 있다.</li>
-                    <li>여행 일정은 전체 회의를 통해 결정한다.</li>
-                </ol>
-                <div class="rules-source">발자취 총칙 중 발췌 (개정: 2024.11.11)</div>
+            <div class="rules-content" style="background: transparent; padding: 0;">
+            <div class="activity-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">9월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>OT & MT - 연천 한탄강</h4>
+                            <p>발자취의 시작, 첫 만남과 함께한 1박 2일</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 100% (24/24명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="/api/placeholder/120/90" alt="연천 한탄강 MT 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">10월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>단풍 여행 - 남이섬</h4>
+                            <p>가을 정취 가득한 남이섬에서의 하루</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 75% (18/24명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="/api/placeholder/120/90" alt="남이섬 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">11월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>바다 여행 - 을왕리</h4>
+                            <p>서해의 노을과 함께한 특별한 시간</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 74% (17/23명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="/api/placeholder/120/90" alt="을왕리 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">12월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>눈꽃 여행 - 대관령</h4>
+                            <p>종강 다음 날, 새하얀 설경과 함께한 마지막 여정</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 61% (14/23명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="/api/placeholder/120/90" alt="대관령 단체사진">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
+                <p style="color: var(--primary-color); font-size: 0.9rem;">
+                    <i class="fas fa-chart-line"></i>
+                    평균 참석률 77.5%
+                </p>
+                <p style="color: var(--light-text); font-size: 0.8rem; margin-top: 0.5rem;">
+                    * 2025년 1학기에도 계속될 발자취의 여정을 함께해주세요.
+                </p>
+            </div>
             </div>
         </div>
         <div class="modal-footer">
