@@ -2998,16 +2998,16 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_1" required>
-<span class="check-text">확인함</span>
-</label>
+    <div class="notice-content">
+        <i class="fas fa-circle-exclamation"></i>
+        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">운영 안내</button></p>
+        <label class="confirm-check">
+            <input type="checkbox" name="notice_check_1" required>
+            <span class="check-text">확인함</span>
+        </label>
+    </div>
 </div>
-</div>
-
+    
 <div class="notice-item">
 <div class="notice-content">
 <i class="fas fa-circle-exclamation"></i>
@@ -3031,14 +3031,14 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_5" required>
-<span class="check-text">확인함</span>
-</label>
-</div>
+    <div class="notice-content">
+        <i class="fas fa-circle-exclamation" style="color: #dc3545;"></i>
+        <p style="color: #dc3545;">성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
+        <label class="confirm-check">
+            <input type="checkbox" name="notice_check_5" required>
+            <span class="check-text" style="color: #dc3545;">확인함</span>
+        </label>
+    </div>
 </div>
 
 <div class="notice-item">
@@ -3330,6 +3330,40 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 
+<div class="rules-modal" id="scheduleRulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">여행 운영 안내</h3>
+            <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
+                <i class="fas fa-exclamation-circle"></i> 
+                발자취는 단체 여행의 끈끈한 케미를 추구합니다.
+            </p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content">
+                <div class="rules-title">제12조 (여행 운영 원칙)</div>
+                <ol>
+                    <li>모든 정기 여행은 최소 10인 이상의 단체로 진행한다.</li>
+                    <li>여행지는 수도권(서울, 경기, 인천)을 우선으로 한다.</li>
+                    <li>수도권 외 지역은 충청권과 강원권을 중심으로 진행한다.</li>
+                    <li>장거리 여행은 방학 중 진행을 원칙으로 한다.</li>
+                    <li>여행 경비는 1인당 5만원 이내로 기획한다.</li>
+                    <li>모든 여행은 1박 2일을 기본으로 한다.</li>
+                    <li>여행지는 매달 투표를 통해 선정한다.</li>
+                    <li>여행 계획은 출발 2주 전까지 공지한다.</li>
+                    <li>조별 활동은 현지에서 진행할 수 있다.</li>
+                    <li>여행 일정은 전체 회의를 통해 결정한다.</li>
+                </ol>
+                <div class="rules-source">발자취 총칙 중 발췌 (개정: 2024.11.11)</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close">닫기</button>
+        </div>
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 // 날짜 선택 모달 관련 요소들
@@ -3553,6 +3587,40 @@ document.addEventListener('keydown', escHandler);
 document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
 e.preventDefault();
 showRules();
+});
+
+    document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = document.getElementById('scheduleRulesModal');
+    if (!modal) return;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    // 닫기 버튼 이벤트
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+
+    // ESC 키 누르면 닫기
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
 });
 
 function showExample(type) {
