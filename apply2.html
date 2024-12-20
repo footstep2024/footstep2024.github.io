@@ -2355,110 +2355,131 @@ padding: 0.875rem;
 </style>
 
 <style>
-
 .preview-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.85);
-z-index: 1000;
-backdrop-filter: blur(5px);
-overflow-y: auto;
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.85);
+   z-index: 1000;
+   backdrop-filter: blur(5px);
 }
 
 .preview-modal-content {
-position: relative;
-background: white;
-width: 90%;
-max-width: 800px;
-margin: 40px auto;
-padding: 30px;
-border-radius: 16px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+   position: relative;
+   background: white;
+   width: 90%;
+   max-width: 800px;
+   margin: 40px auto 80px;
+   padding: 30px;
+   border-radius: 0;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+   max-height: 92vh;
+   overflow-y: auto;
+   scrollbar-width: thin;
+   scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
+}
+
+.preview-modal-content::-webkit-scrollbar {
+   width: 8px;
+}
+
+.preview-modal-content::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+.preview-modal-content::-webkit-scrollbar-thumb {
+   background-color: rgba(47, 82, 41, 0.3);
+   border-radius: 4px;
+}
+
+.preview-modal-content::-webkit-scrollbar-thumb:hover {
+   background-color: rgba(47, 82, 41, 0.5);
 }
 
 .preview-content {
-margin: 20px 0;
+   margin: 20px 0;
 }
 
 .preview-section {
-background: white;
-padding: 2rem;
-border-radius: 12px;
-margin-bottom: var(--section-gap);
-box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+   background: white;
+   padding: 2rem;
+   border-radius: 12px;
+   margin-bottom: var(--section-gap);
+   box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
 }
 
 .preview-section h4 {
-font-size: 1.5rem;
-font-weight: 700;
-color: var(--primary-color);
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
-border-bottom: 2px solid var(--border-color);
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--primary-color);
+   margin-bottom: 1.5rem;
+   padding-bottom: 1rem;
+   border-bottom: 2px solid var(--border-color);
 }
 
 .preview-item {
-margin-bottom: 1.5rem;
+   margin-bottom: 1.5rem;
 }
 
 .preview-label {
-display: block;
-font-size: 0.85rem;
-font-weight: 500;
-margin-bottom: 0.4rem;
-color: var(--text-color);
+   display: block;
+   font-size: 0.85rem;
+   font-weight: 500;
+   margin-bottom: 0.4rem;
+   color: var(--text-color);
 }
 
 .preview-value {
-width: 100%;
-padding: 0.6rem 0.8rem;
-font-size: 0.75rem;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-background-color: #f8f9fa;
-overflow-wrap: break-word;
-line-height: 1.5;
+   width: 100%;
+   padding: 0.6rem 0.8rem;
+   font-size: 0.75rem;
+   border: 1px solid var(--border-color);
+   border-radius: 8px;
+   background-color: #f8f9fa;
+   overflow-wrap: break-word;
+   line-height: 1.5;
 }
 
 textarea.form-control[readonly] {
-height: auto !important;
-min-height: unset !important;
-overflow: hidden !important;
+   height: auto !important;
+   min-height: unset !important;
+   overflow: hidden !important;
 }
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
-.preview-modal-content {
-width: 95%;
-padding: 20px;
-margin: 20px auto;
-}
+   .preview-modal-content {
+       width: 95%;
+       padding: 20px;
+       margin: 20px auto 60px;
+       max-height: 85vh; /* 80vh에서 85vh로 높이 증가 */
+       border-radius: 0; /* 각진 모서리로 변경 */
+   }
 
-.preview-section {
-padding: 1.5rem;
-}
+   .preview-section {
+       padding: 1.5rem;
+   }
 
-.preview-section h4 {
-font-size: 1.3rem;
-margin-bottom: 1rem;
-}
+   .preview-section h4 {
+       font-size: 1.3rem;
+       margin-bottom: 1rem;
+   }
 
-.preview-item {
-margin-bottom: 1rem;
-}
+   .preview-item {
+       margin-bottom: 1rem;
+   }
 
-.preview-label {
-font-size: 0.8rem;
-}
+   .preview-label {
+       font-size: 0.8rem;
+   }
 
-.preview-value {
-font-size: 0.7rem;
-padding: 0.5rem 0.7rem;
-}
+   .preview-value {
+       font-size: 0.7rem;
+       padding: 0.5rem 0.7rem;
+   }
 }
 </style>
 
