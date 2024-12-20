@@ -3264,8 +3264,9 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="preview-content">
 <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
 </div>
-<div class="modal-footer">
-<button class="modal-bottom-close" onclick="closePreview()">닫기</button>
+<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
+    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
+    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
 </div>
 </div>
 </div>
@@ -4222,5 +4223,13 @@ closePreview();
 
 
 </script>
+
+<script>
+function submitForm() {
+    closePreview();
+    document.getElementById('applicationForm').submit();
+}
+</script>
+    
 </body>
 </html>
