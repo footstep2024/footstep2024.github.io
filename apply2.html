@@ -3448,7 +3448,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 <div class="modal-footer">
-<button class="modal-bottom-close">닫기</button>
+<button class="modal-bottom-close" onclick="closeExample()">닫기</button>
 </div>
 </div>
 </div>
@@ -3543,7 +3543,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
         <div class="modal-footer">
-            <button class="modal-bottom-close">닫기</button>
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
         </div>
     </div>
 </div>
@@ -3875,23 +3875,20 @@ imageContainer.addEventListener('scroll', handleScroll);
 }
 
 function closeExample() {
-const modal = document.getElementById('exampleModal');
-if (!modal) return;
+    const modal = document.getElementById('exampleModal');
+    const rulesModal = document.getElementById('rulesModal');
+    const scheduleRulesModal = document.getElementById('scheduleRulesModal');
+    
+    // 모든 모달의 컨텐츠 영역 스크롤 초기화
+    const containers = document.querySelectorAll('.modal-image-container');
+    containers.forEach(container => {
+        if(container) container.scrollTop = 0;
+    });
 
-// 모든 내용 초기화
-const imageContainer = modal.querySelector('.modal-image-container');
-const scrollIndicator = modal.querySelector('.scroll-indicator');
-const modalTitle = modal.querySelector('.modal-title');
-const modalDesc = modal.querySelector('.modal-desc');
-
-modalTitle.textContent = '';
-modalDesc.textContent = '';
-imageContainer.innerHTML = '';
-scrollIndicator.style.opacity = '0';
-imageContainer.scrollTop = 0;
-
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
+    if (modal) modal.style.display = 'none';
+    if (rulesModal) rulesModal.style.display = 'none';
+    if (scheduleRulesModal) scheduleRulesModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 function updatePlaceholder(type) {
