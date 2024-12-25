@@ -383,12 +383,70 @@ font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-.form-row, .form-row.three-columns {
-grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
-gap: 0.8rem;
-margin-bottom: 0.8rem;
-}
-}
+    /* form-row의 기본 스타일 재정의 */
+    .form-row, .form-row.three-columns {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* 첫 번째 줄: 이름/생년월일/성별 */
+    .form-row:first-of-type {
+        flex-direction: row !important;
+    }
+    .form-row:first-of-type .form-group:nth-child(1) { width: 25% !important; }
+    .form-row:first-of-type .form-group:nth-child(2) { width: 45% !important; }
+    .form-row:first-of-type .form-group:nth-child(3) { width: 30% !important; }
+    .form-row:first-of-type .form-group:nth-child(4) { display: none !important; }
+
+    /* 성별 버튼 축소 */
+    .gender-select .gender-button span:last-child {
+        display: none;
+    }
+    .gender-select[value="남성"] .gender-button::after { content: '남' !important; }
+    .gender-select[value="여성"] .gender-button::after { content: '여' !important; }
+
+    /* 두 번째 줄: MBTI/연락처 */
+    .form-row.three-columns {
+        flex-direction: row !important;
+    }
+    .form-row.three-columns .form-group:nth-child(1) { 
+        width: 35% !important;
+        order: 2;
+    }
+    .form-row.three-columns .form-group:nth-child(2),
+    .form-row.three-columns .form-group:nth-child(3) { 
+        display: none !important;
+    }
+
+    /* 세 번째 줄: 본가/현재거주지 */
+    .form-row:nth-of-type(3) {
+        flex-direction: row !important;
+    }
+    .form-row:nth-of-type(3) .form-group {
+        width: 50% !important;
+    }
+
+    /* 네 번째 줄: 학교/전공 */
+    .form-row:last-of-type {
+        flex-direction: row !important;
+    }
+    .form-row:last-of-type .form-group:nth-child(1) { width: 40% !important; }
+    .form-row:last-of-type .form-group:nth-child(2) { width: 60% !important; }
+
+    /* 다섯 번째 줄: 학번/학년/휴학 */
+    .form-row:last-of-type {
+        position: relative !important;
+    }
+    .form-row:last-of-type .form-group:nth-child(1) { width: 30% !important; }
+    .form-row:last-of-type .form-group:nth-child(2) { 
+        width: 45% !important;
+        margin-right: 25% !important;
+    }
+
+    /* 휴학 체크박스 위치 조정 */
+    .form-row:last-of-type .checkbox-label {
+        position: absolute !
 
 /* 폼 레이블의 크기 줄임 */
 .form-label {
@@ -545,48 +603,6 @@ background: var(--primary-color);
 color: white;
 border-color: var(--primary-color);
 box-shadow: 0 2px 4px rgba(47, 82, 41, 0.2);
-}
-
-@media (max-width: 768px) {
-    /* 모바일 폼 레이아웃 재정의 */
-    .form-section .form-row {
-        flex-direction: column !important;
-        width: 100% !important;
-        margin-bottom: 16px !important;
-    }
-
-    .form-section .form-row .form-group {
-        width: 100% !important;
-        margin-bottom: 12px !important;
-    }
-
-    .form-section .form-row .form-group:last-child {
-        margin-bottom: 0 !important;
-    }
-
-    /* 성별 선택 버튼 크기 조정 */
-    .gender-select .gender-button {
-        padding: 6px 12px !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* 입력 필드 크기 최적화 */
-    .form-control {
-        height: 42px !important;
-        font-size: 0.9rem !important;
-    }
-
-    /* 라벨 크기 최적화 */
-    .form-label {
-        font-size: 0.85rem !important;
-        margin-bottom: 6px !important;
-    }
-
-    /* 에러 메시지 */
-    .error-message {
-        font-size: 0.75rem !important;
-        margin-top: 4px !important;
-    }
 }
     
 .form-control::placeholder,
