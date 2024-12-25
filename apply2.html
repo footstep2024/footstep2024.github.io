@@ -3928,97 +3928,135 @@ textarea.placeholder = placeholders[type];
 </script>
 
 <script>
+// 면접 일정 상태 관리
+let selectedInterviewSlots = [];
+
 function openScheduleModal() {
-const modal = document.getElementById('scheduleModal');
-const modalContent = modal.querySelector('.schedule-modal-content');
+    const modal = document.getElementById('scheduleModal');
+    const modalContent = modal.querySelector('.schedule-modal-content');
+    
+    // 이전에 선택된 일정 복원
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+        checkbox.checked = selectedInterviewSlots.includes(checkbox.value);
+    });
 
-modal.style.display = 'block';
-document.body.style.overflow = 'hidden';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-// 모달 컨텐츠 영역 클릭 시 이벤트 즉시 중단
-modalContent.addEventListener('mousedown', function(e) {
-e.stopPropagation();
-});
+    modalContent.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+    });
 
-// 모달 외부 영역 클릭 시 닫기
-modal.addEventListener('mousedown', function(e) {
-if (e.target === modal) {
-closeScheduleModal();
-}
-});
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeScheduleModal();
+        }
+    });
 }
 
 function closeScheduleModal() {
-const modal = document.getElementById('scheduleModal');
-if (!modal) return;
+    const modal = document.getElementById('scheduleModal');
+    if (!modal) return;
 
-// 현재 스크롤 위치 저장
-const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 
-// 스크롤 위치 복원
-setTimeout(() => {
-window.scrollTo({
-top: scrollPosition,
-behavior: 'instant'
-});
-}, 0);
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
 }
 
-function confirmSchedule() {
-   const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
-   const selectedSchedule = document.getElementById('selectedSchedule');
+function updateSelectedScheduleDisplay() {
+    const selectedSchedule = document.getElementById('selectedSchedule');
+    
+    if (selectedInterviewSlots.length === 0) {
+        selectedSchedule.innerHTML = `
+            <div class="no-schedule">
+                <i class="fas fa-calendar-plus"></i>
+                <p>가능한 면접 시간을 모두 선택해주세요.</p>
+            </div>`;
+        return;
+    }
 
-   if (selectedSlots.length > 0) {
-       let scheduleHTML = '<div class="selected-times-container">';
+    let scheduleHTML = '<div class="selected-times-container">';
+    
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(slot => {
+        if (selectedInterviewSlots.includes(slot.value)) {
+            const dateOption = slot.closest('.date-option');
+            const date = dateOption.querySelector('.date').textContent;
+            const type = dateOption.querySelector('.interview-type').textContent;
+            const time = slot.nextElementSibling.textContent.trim();
+            const isOffline = dateOption.classList.contains('offline');
 
-       selectedSlots.forEach(slot => {
-           const dateOption = slot.closest('.date-option');
-           const date = dateOption.querySelector('.date').textContent;
-           const type = dateOption.querySelector('.interview-type').textContent;
-           const time = slot.nextElementSibling.textContent.trim();
-           const isOffline = dateOption.classList.contains('offline');
-
-           scheduleHTML += `
-            <div class="selected-time-item ${isOffline ? 'offline' : ''}">
-                <div class="time-badge">
-                    <i class="fas ${isOffline ? 'fa-user-friends' : 'fa-video'}"></i>
-                </div>
-                <div class="time-info">
-                    <div class="time-main">
-                        <span class="time-date">${date}</span>
-                        <div class="time-details">
-                            <span class="time-period">
-                                <i class="fas ${time.includes('오전') ? 'fa-sun' : 'fa-moon'}"></i>
-                                ${time}
-                            </span>
-                            <span class="time-type">${type}</span>
+            scheduleHTML += `
+                <div class="selected-time-item ${isOffline ? 'offline' : ''}">
+                    <div class="time-badge">
+                        <i class="fas ${isOffline ? 'fa-user-friends' : 'fa-video'}"></i>
+                    </div>
+                    <div class="time-info">
+                        <div class="time-main">
+                            <span class="time-date">${date}</span>
+                            <div class="time-details">
+                                <span class="time-period">
+                                    <i class="fas ${time.includes('오전') ? 'fa-sun' : 'fa-moon'}"></i>
+                                    ${time}
+                                </span>
+                                <span class="time-type">${type}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             `;
-            });
-
-       scheduleHTML += '</div>';
-       selectedSchedule.innerHTML = scheduleHTML;
-
-       const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-       const modal = document.getElementById('scheduleModal');
-       modal.style.display = 'none';
-       document.body.style.overflow = 'auto';
-       setTimeout(() => {
-           window.scrollTo({
-               top: scrollPosition,
-               behavior: 'instant'
-           });
-       }, 0);
-   } else {
-       alert('면접 일정을 하나 이상 선택해주세요.');
-   }
+        }
+    });
+    
+    scheduleHTML += '</div>';
+    selectedSchedule.innerHTML = scheduleHTML;
 }
+
+function confirmSchedule() {
+    const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
+    
+    if (selectedSlots.length === 0) {
+        alert('면접 일정을 하나 이상 선택해주세요.');
+        return;
+    }
+
+    // 선택된 일정 업데이트
+    selectedInterviewSlots = Array.from(selectedSlots).map(slot => slot.value);
+    formData.interview_slots = [...selectedInterviewSlots]; // formData도 함께 업데이트
+    updateSelectedScheduleDisplay();
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const modal = document.getElementById('scheduleModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
+}
+
+// 체크박스 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked && !selectedInterviewSlots.includes(this.value)) {
+                selectedInterviewSlots.push(this.value);
+            } else if (!this.checked) {
+                selectedInterviewSlots = selectedInterviewSlots.filter(slot => slot !== this.value);
+            }
+        });
+    });
+});
 
 document.addEventListener('keydown', function(event) {
 if (event.key === 'Escape') {
@@ -4497,10 +4535,103 @@ closePreview();
 </script>
 
 <script>
+let formData = {
+    // 폼 필드 데이터를 저장할 객체
+    interview_slots: []  // 면접 시간 선택 상태 저장
+};
+
+function saveFormState() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 모든 input, select, textarea 값 저장
+    form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
+        if (element.type === 'checkbox' || element.type === 'radio') {
+            formData[element.name] = element.checked;
+        } else {
+            formData[element.name] = element.value;
+        }
+    });
+
+    // 면접 시간 선택 상태 저장
+    formData.interview_slots = [...selectedInterviewSlots];
+}
+
+function restoreFormState() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 저장된 값 복원
+    for (const [name, value] of Object.entries(formData)) {
+        if (name === 'interview_slots') continue;
+        const element = form.querySelector(`[name="${name}"]`);
+        if (element) {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                element.checked = value;
+            } else {
+                element.value = value;
+            }
+        }
+    }
+
+    // 면접 시간 선택 상태 복원
+    selectedInterviewSlots = [...formData.interview_slots];
+    updateSelectedScheduleDisplay();
+}
+
+function openScheduleModal() {
+    saveFormState();  // 모달 열기 전 폼 상태 저장
+    const modal = document.getElementById('scheduleModal');
+    const modalContent = modal.querySelector('.schedule-modal-content');
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    modalContent.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+    });
+
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeScheduleModal();
+        }
+    });
+}
+
+function closeScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    if (!modal) return;
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    restoreFormState();  // 모달 닫을 때 폼 상태 복원
+
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
+}
+
 function submitForm() {
     closePreview();
     document.getElementById('applicationForm').submit();
 }
+
+// 페이지 로드시 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 모든 입력 필드에 change 이벤트 리스너 추가
+    form.querySelectorAll('input, select, textarea').forEach(element => {
+        element.addEventListener('change', saveFormState);
+    });
+});
 </script>
     
 </body>
