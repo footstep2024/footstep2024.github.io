@@ -271,22 +271,32 @@ padding: 1rem 0.8rem;
 }
 
 @media (max-width: 768px) {
-.info-grid {
-grid-template-columns: 1fr;
-gap: 0.8rem;
-}
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
 
-.info-box {
-padding: 0.8rem 1rem;
-}
+    .info-box {
+        padding: 0.8rem 0.8rem;  /* 패딩 줄임 */
+    }
 
-.info-box-title {
-font-size: 0.9rem;
-}
+    .info-box-title {
+        font-size: 0.82rem;      /* 제목 폰트 크기 조절 */
+        margin-bottom: 0.3rem;   /* 제목과 내용 사이 간격 줄임 */
+    }
 
-.info-box-content {
-font-size: 0.85rem;
-}
+    .info-box-content {
+        font-size: 0.75rem;      /* 내용 폰트 크기 조절 */
+        line-height: 1.4;        /* 줄간격 조절 */
+    }
+
+    .info-box-content span {
+        white-space: nowrap;     /* 텍스트 줄바꿈 방지 */
+    }
+
+    .info-box-title i {
+        font-size: 0.78rem;      /* 아이콘 크기 조절 */
+    }
 }
 
 /* 특정 박스들의 텍스트를 한 줄로 만들기 위한 추가 스타일 */
