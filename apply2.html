@@ -548,46 +548,80 @@ box-shadow: 0 2px 4px rgba(47, 82, 41, 0.2);
 }
 
 @media (max-width: 768px) {
-    .form-section .form-row {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-    }
-
-    .form-section .form-row > .form-group {
+    /* 기본 설정 초기화 */
+    .form-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
         width: 100% !important;
-        margin-bottom: 8px;
+    }
+    
+    .form-group {
+        margin-bottom: 12px !important;
     }
 
-    /* MBTI는 연락처와 같은 줄에 */
-    .form-group:has(select[name="mbti"]) {
-        width: 40% !important;
-        display: inline-block;
+    /* 1줄: 이름/생년월일/성별 */
+    .form-row:first-of-type {
+        .form-group:nth-child(1) { width: 25% !important; }  /* 이름 */
+        .form-group:nth-child(2) { width: 45% !important; }  /* 생년월일 */
+        .form-group:nth-child(3) { width: 30% !important; }  /* 성별 */
+        .form-group:nth-child(4) { display: none; }          /* MBTI 숨김 */
     }
 
-    .form-group:has(input[name="phone"]) {
-        width: 60% !important;
-        display: inline-block;
-    }
-
-    /* 성별 버튼 크기 조정 */
+    /* 성별 버튼 텍스트 축소 */
     .gender-button {
-        padding: 6px 12px;
+        padding: 6px 8px !important;
+        font-size: 0.8rem !important;
     }
-    .gender-button i {
-        margin-right: 4px;
-    }
-    .gender-button span:last-child {
-        font-size: 0.8rem;
+    .gender-select[value="남성"] .gender-button span:last-child { display: none; }
+    .gender-select[value="남성"] .gender-button::after { content: '남'; }
+    .gender-select[value="여성"] .gender-button span:last-child { display: none; }
+    .gender-select[value="여성"] .gender-button::after { content: '여'; }
+
+    /* 2줄: MBTI/연락처 - 새로운 줄 추가 */
+    .form-row:has(input[name="phone"]) {
+        display: flex !important;
+        .form-group:has(select[name="mbti"]) { 
+            display: block !important;
+            width: 35% !important; 
+        }
+        .form-group:has(input[name="phone"]) { 
+            width: 65% !important; 
+        }
+        /* 불필요한 form-group 숨김 */
+        .form-group:not(:has(select[name="mbti"])):not(:has(input[name="phone"])) {
+            display: none !important;
+        }
     }
 
-    /* 휴학 체크박스 위치 조정 */
-    .checkbox-label {
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-        margin-left: 8px !important;
+    /* 3줄: 본가/현재거주지 */
+    .form-row:has(input[name="home_address"]) {
+        .form-group { width: 50% !important; }
+    }
+
+    /* 4줄: 학교/전공 */
+    .form-row:has(input[name="school"]) {
+        .form-group:nth-child(1) { width: 40% !important; }  /* 학교 */
+        .form-group:nth-child(2) { width: 60% !important; }  /* 전공 */
+        .form-group:nth-child(n+3) { display: none !important; }  /* 나머지 숨김 */
+    }
+
+    /* 5줄: 학번/학년/휴학 */
+    .form-row:last-of-type {
+        align-items: flex-start !important;
+        .form-group:nth-child(1) { width: 30% !important; }  /* 학번 */
+        .form-group:nth-child(2) { 
+            width: 70% !important;  /* 학년+휴학 */
+            position: relative !important;
+        }
+        /* 휴학 체크박스 위치 조정 */
+        .checkbox-label {
+            position: absolute !important;
+            right: 0 !important;
+            top: 32px !important;
+            transform: none !important;
+        }
     }
 }
     
