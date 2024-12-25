@@ -383,57 +383,35 @@ font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-    .form-section {
-        padding: 1.2rem;
-    }
-
-    /* form-row의 기본 스타일 재정의 */
-    .form-row {
+    /* 기본 정보 섹션의 첫번째 줄 */
+    .form-section .form-row:first-of-type {
         display: flex !important;
-        flex-direction: column !important;
+        flex-wrap: wrap !important;
         gap: 8px !important;
-        margin-bottom: 1rem !important;
     }
 
-    .form-row .form-group {
+    .form-section .form-row:first-of-type .form-group {
+        margin: 0 !important;
+    }
+
+    /* 이름 */
+    .form-section .form-row:first-of-type .form-group:nth-child(1) {
+        width: 30% !important;
+    }
+
+    /* 생년월일 */
+    .form-section .form-row:first-of-type .form-group:nth-child(2) {
+        width: 65% !important;
+    }
+
+    /* 성별 */
+    .form-section .form-row:first-of-type .form-group:nth-child(3) {
         width: 100% !important;
-        margin-bottom: 0.5rem !important;
     }
 
-    /* 입력 필드 최적화 */
-    .form-control {
-        height: 38px !important;
-        font-size: 0.85rem !important;
-        padding: 0.5rem 0.8rem !important;
-    }
-
-    /* 라벨 최적화 */
-    .form-label {
-        font-size: 0.8rem !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    /* 에러 메시지 */
-    .error-message {
-        font-size: 0.75rem !important;
-    }
-
-    /* 성별 버튼 크기 조정 */
-    .gender-button {
-        padding: 6px 12px !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* 체크박스/라디오 크기 조정 */
-    .checkbox-label .label-text,
-    .radio-label .label-text {
-        font-size: 0.85rem !important;
-    }
-
-    /* 모달 관련 스타일 */
-    .modal-content {
-        width: 95% !important;
-        padding: 1rem !important;
+    /* MBTI 숨김 */
+    .form-section .form-row:first-of-type .form-group:nth-child(4) {
+        display: none !important;
     }
 }
 
