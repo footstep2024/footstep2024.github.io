@@ -389,11 +389,25 @@ font-size: 0.8rem;
         gap: 16px;
     }
 
-    /* 첫째 줄: 이름, 생년월일, MBTI */
+@media (max-width: 768px) {
     .basic-info-container .first-row {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 8px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* 연락처 입력 필드를 성별 옆으로 이동 */
+    .basic-info-container .three-columns .form-group:first-child {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: 30% !important;
+    }
+    
+    /* 성별 컨테이너 너비 조정 */
+    .basic-info-container .first-row .form-group:nth-child(3) {
+        width: 65% !important;
     }
     
     .basic-info-container .first-row .form-group {
