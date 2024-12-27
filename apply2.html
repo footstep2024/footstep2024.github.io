@@ -383,68 +383,50 @@ font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-    /* 전체 form-section 패딩 조정 */
-    .form-section {
-        padding: 1.2rem !important;
-    }
-
-    /* 기본 여백 설정 */
-    .form-group {
-        margin-bottom: 1rem !important;
-    }
-
-    /* 라벨 정렬 */
-    .form-label {
-        margin-bottom: 0.3rem !important;
-    }
-
     /* 첫째 줄: 이름, 생년월일, MBTI */
-    .form-section .form-row:first-of-type .form-group {
+    .form-section .form-row:first-of-type {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: 30% 35% 35% !important;
         gap: 8px !important;
-        width: 100% !important;
+        margin-bottom: 16px !important;
     }
 
-    /* 둘째 줄: 성별, 연락처 */
+    /* 둘째 줄 설정: 성별, 연락처 */
+    .form-section .form-row:first-of-type .form-group:last-child {
+        grid-column: 3 !important;
+    }
+
+    .form-section .form-row:first-of-type .form-group:nth-child(3) {
+        grid-row: 2 !important;
+        grid-column: 1 / span 2 !important;
+    }
+
+    /* 셋째 줄: 본가, 현재 거주지 */
     .form-section .form-row.three-columns {
-        display: flex !important;
-        flex-direction: column !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
         gap: 12px !important;
     }
 
-    /* 본가, 현재 거주지 한 줄에 배치 */
-    .form-section .form-row.three-columns .form-group {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
-    /* 학교, 전공 줄 */
+    /* 넷째 줄: 학교(40%), 전공(60%) */
     .form-section .form-row:nth-of-type(4) {
         display: grid !important;
         grid-template-columns: 40% 60% !important;
         gap: 8px !important;
     }
 
-    /* 학번, 학년, 휴학 줄 */
+    /* 다섯째 줄: 학번, 학년, 휴학 */
     .form-section .form-row:last-of-type {
         display: grid !important;
-        grid-template-columns: 30% 70% !important;
+        grid-template-columns: 30% 55% 15% !important;
         gap: 8px !important;
-        align-items: flex-start !important;
+        align-items: center !important;
     }
 
     /* 휴학 체크박스 위치 조정 */
     .form-section .form-row:last-of-type .checkbox-label {
         position: static !important;
-        margin-left: 8px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-    }
-
-    /* 입력 필드 크기 통일 */
-    .form-control {
-        height: 42px !important;
+        margin-left: 0 !important;
     }
 }
 
