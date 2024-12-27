@@ -383,50 +383,98 @@ font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-    /* 이름, 생년월일, MBTI 줄 */
+    /* 기본 정보 섹션 여백 조정 */
+    .form-section {
+        padding: 1.2rem !important;
+    }
+
+    /* 모든 입력칸 기본 높이 통일 */
+    .form-control {
+        height: 42px !important;
+    }
+
+    /* 첫째줄: 이름, 생년월일, MBTI */
     .form-section .form-row:first-of-type {
-        display: grid !important;
-        grid-template-columns: 30% 35% 32% !important;
+        display: flex !important;
         gap: 8px !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 16px !important;
     }
 
-    /* 성별, 연락처 줄 */
-    .form-section .form-row:nth-of-type(2) {
-        display: grid !important;
-        grid-template-columns: 40% 58% !important;
-        gap: 8px !important;
-        margin-bottom: 12px !important;
+    .form-section .form-row:first-of-type > .form-group {
+        margin: 0 !important;
     }
 
-    /* 본가, 현재 거주지 줄 */
-    .form-section .form-row:nth-of-type(3) {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        margin-bottom: 12px !important;
+    .form-section .form-row:first-of-type > .form-group:nth-child(1) {
+        width: 28% !important;  /* 이름 */
+    }
+    .form-section .form-row:first-of-type > .form-group:nth-child(2) {
+        width: 37% !important;  /* 생년월일 */
+    }
+    .form-section .form-row:first-of-type > .form-group:nth-child(4) {
+        width: 35% !important;  /* MBTI */
+    }
+    .form-section .form-row:first-of-type > .form-group:nth-child(3) {
+        display: none !important;  /* 성별 숨김 (다음 줄로 이동) */
     }
 
-    /* 학교, 전공 줄 */
-    .form-section .form-row:nth-of-type(4) {
-        display: grid !important;
-        grid-template-columns: 40% 58% !important;
+    /* 둘째줄: 성별, 연락처 */
+    .form-row:nth-of-type(2) {
+        display: flex !important;
         gap: 8px !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 16px !important;
     }
 
-    /* 학번, 학년, 휴학 체크 줄 */
-    .form-section .form-row:last-of-type {
-        display: grid !important;
-        grid-template-columns: 25% 45% 25% !important;
+    .form-row:nth-of-type(2) > .form-group:first-child {
+        width: 40% !important;
+    }
+    .form-row:nth-of-type(2) > .form-group:last-child {
+        width: 60% !important;
+    }
+
+    /* 셋째줄: 본가, 현재 거주지 */
+    .form-row:nth-of-type(3) {
+        display: flex !important;
         gap: 8px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .form-row:nth-of-type(3) > .form-group {
+        width: 50% !important;
+        margin: 0 !important;
+    }
+
+    /* 넷째줄: 학교, 전공 */
+    .form-row:nth-of-type(4) {
+        display: flex !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .form-row:nth-of-type(4) > .form-group:first-child {
+        width: 40% !important;
+    }
+    .form-row:nth-of-type(4) > .form-group:last-child {
+        width: 60% !important;
+    }
+
+    /* 다섯째줄: 학번, 학년, 휴학 체크 */
+    .form-row:last-of-type {
+        display: flex !important;
         align-items: flex-start !important;
+        gap: 8px !important;
     }
 
-    /* 휴학 체크박스 위치 조정 */
-    .form-section .form-row:last-of-type .checkbox-label {
-        position: static !important;
-        padding-top: 32px !important;
+    .form-row:last-of-type > .form-group:first-child {
+        width: 25% !important;
+    }
+    .form-row:last-of-type > .form-group:nth-child(2) {
+        width: 45% !important;
+    }
+    .form-row:last-of-type .checkbox-label {
+        width: 30% !important;
+        position: relative !important;
+        top: 30px !important;
+        right: 0 !important;
     }
 }
 
