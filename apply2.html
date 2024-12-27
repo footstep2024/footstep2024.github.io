@@ -405,13 +405,14 @@ font-size: 0.8rem;
         grid-row: 2;
         grid-column: 1 / span 2;
     }
-    
-    /* 둘째 줄 : 연락처 */
-    .basic-info-container .three-columns {
-        display: flex !important;
-        flex-direction: column !important;
+
+    /* 둘째 줄: 성별과 연락처를 나란히 */
+    .basic-info-container .second-row {
+        display: grid !important;
+        grid-template-columns: 45% 55% !important;
         gap: 12px !important;
     }
+
 
     /* 셋째 줄: 본가, 현재 거주지 */
     .basic-info-container .three-columns .form-group {
