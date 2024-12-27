@@ -406,11 +406,17 @@ font-size: 0.8rem;
         grid-column: 1 / span 2;
     }
     
-    / 둘째 줄 : 연락처 /
+    /* 둘째 줄 : 연락처 */
     .basic-info-container .three-columns .form-group:first-child {
         display: flex !important;
         flex-direction: column !important;
         gap: 12px !important;
+    }
+
+    /* 성별은 둘째 줄로 이동 */
+    .basic-info-container .first-row .form-group:nth-child(3) {
+        grid-row: 2;
+        grid-column: 1 / span 2;
     }
 
     /* 셋째 줄: 본가, 현재 거주지 */
