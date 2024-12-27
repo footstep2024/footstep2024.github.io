@@ -884,38 +884,27 @@ margin-top: 0.25rem;
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 0.5rem;
-        padding-top: calc(4px + 1rem);
-    }
+.container {
+padding: 0.5rem;
+padding-top: calc(4px + 1rem);
+}
 
-    .header {
-        padding: 1.5rem 0;
-    }
+.header {
+padding: 1.5rem 0;
+}
 
-    .logo {
-        width: 80px;
-        height: 80px;
-    }
+.logo {
+width: 80px;
+height: 80px;
+}
 
-    .title {
-        font-size: 2.5rem;
-    }
+.title {
+font-size: 2.5rem;
+}
 
-    .subtitle {
-        font-size: 1.4rem;
-    }
-
-    .form-section {
-        margin: 1rem 0;
-        padding: 1.2rem;
-    }
-
-    .section-title {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.8rem;
-    }
+.subtitle {
+font-size: 1.4rem;
+}
 
 .button-group {
 flex-direction: column;
@@ -2569,13 +2558,14 @@ textarea.form-control[readonly] {
 <h1 class="title">25-1학기 신입부원 지원서 작성</h1>
 </header>
 
+<section class="form-section"> 
 <div class="section-title">
-    <span>개인정보 수집 및 이용 동의</span>
-    <label class="checkbox-label">
-        <input type="checkbox" name="privacy_agreement" required>
-        <span class="check-icon"></span>
-        <span class="label-text">동의함</span>
-    </label>
+<span>개인정보 수집 및 이용 동의</span>
+<label class="checkbox-label">
+<input type="checkbox" name="privacy_agreement" required>
+<span class="check-icon"></span>
+<span class="label-text">동의함</span>
+</label>
 </div>
 
 <div class="info-grid">
@@ -2765,21 +2755,21 @@ textarea.form-control[readonly] {
 
     <!-- 모바일 버전 레이아웃 -->
     <div class="basic-info-container mobile-only">
-<div class="mobile-form-grid">
-    <!-- 첫째 줄: 이름, 생년월일, MBTI -->
-            <div class="mobile-form-row" style="display: grid; grid-template-columns: 28% 38% 34%; gap: 8px;">
-                <div class="form-group" style="margin: 0;">
-                    <label class="form-label required">이름</label>
-                    <input type="text" class="form-control" name="name_mobile" required>
-                </div>
-                <div class="form-group" style="margin: 0;">
-                    <label class="form-label required">생년월일</label>
-                    <input type="date" class="form-control" name="birthdate_mobile" required>
-                </div>
-                <div class="form-group" style="margin: 0;">
-                    <label class="form-label required">MBTI</label>
-                    <select class="form-control" name="mbti_mobile" required>
-                       <option value="" disabled selected>MBTI 선택</option>
+        <div class="mobile-form-grid">
+            <!-- 첫째 줄: 이름, 생년월일, MBTI -->
+<div class="mobile-form-row" style="display: grid; grid-template-columns: 28% 38% 34%; gap: 8px;">
+    <div class="form-group" style="margin: 0;">
+        <label class="form-label required">이름</label>
+        <input type="text" class="form-control" name="name_mobile" required>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <label class="form-label required">생년월일</label>
+        <input type="date" class="form-control" name="birthdate_mobile" required>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <label class="form-label required">MBTI</label>
+        <select class="form-control" name="mbti_mobile" required>
+            <option value="" disabled selected>MBTI 선택</option>
                        <option value="ISTJ">ISTJ</option>
                        <option value="ISFJ">ISFJ</option>
                        <option value="INFJ">INFJ</option>
