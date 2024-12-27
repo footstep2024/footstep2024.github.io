@@ -2757,19 +2757,19 @@ textarea.form-control[readonly] {
     <div class="basic-info-container mobile-only">
 <div class="mobile-form-grid">
     <!-- 첫째 줄: 이름, 생년월일, MBTI -->
-    <div class="mobile-form-row three-columns">
-        <div class="form-group">
-            <label class="form-label required">이름</label>
-            <input type="text" class="form-control" name="name_mobile" required>
-        </div>
-        <div class="form-group">
-            <label class="form-label required">생년월일</label>
-            <input type="date" class="form-control" name="birthdate_mobile" required>
-        </div>
-        <div class="form-group">
-            <label class="form-label required">MBTI</label>
-            <select class="form-control" name="mbti_mobile" required>
-                <option value="" disabled selected>MBTI 선택</option>
+            <div class="mobile-form-row" style="display: grid; grid-template-columns: 28% 38% 34%; gap: 8px;">
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label required">이름</label>
+                    <input type="text" class="form-control" name="name_mobile" required>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label required">생년월일</label>
+                    <input type="date" class="form-control" name="birthdate_mobile" required>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label required">MBTI</label>
+                    <select class="form-control" name="mbti_mobile" required>
+                       <option value="" disabled selected>MBTI 선택</option>
                        <option value="ISTJ">ISTJ</option>
                        <option value="ISFJ">ISFJ</option>
                        <option value="INFJ">INFJ</option>
