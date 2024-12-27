@@ -383,23 +383,18 @@ font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-   .basic-info-container {
-       display: flex;
-       flex-direction: column;
-       gap: 16px;
-   }
-
-   /* 첫째 줄: 이름, 생년월일, MBTI */
-   .basic-info-container .first-row {
-       display: grid !important;
-       grid-template-columns: repeat(3, 1fr) !important;
-       gap: 8px !important;
-   }
+    /* 첫째 줄: 이름, 생년월일, MBTI (현재 상태 유지) */
+    .basic-info-container .first-row {
+        display: grid !important;
+        grid-template-columns: 30% 35% 35% !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+    }
 
     /* 둘째 줄: 성별과 연락처를 나란히 */
     .basic-info-container .second-row {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 45% 55% !important;
         gap: 12px !important;
     }
 
