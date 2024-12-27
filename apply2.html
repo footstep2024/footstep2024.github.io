@@ -382,6 +382,7 @@ font-size: 0.8rem;
 }
 }
 
+/* 이 코드를 @media (max-width: 768px) {...} 안에 있는 스타일에 추가해주세요 */
 @media (max-width: 768px) {
     /* 기본 정보 섹션의 첫번째 줄 */
     .form-section .form-row:first-of-type {
@@ -396,22 +397,88 @@ font-size: 0.8rem;
 
     /* 이름 */
     .form-section .form-row:first-of-type .form-group:nth-child(1) {
-        width: 30% !important;
+        width: 48% !important;
     }
 
     /* 생년월일 */
     .form-section .form-row:first-of-type .form-group:nth-child(2) {
-        width: 65% !important;
+        width: 48% !important;
+    }
+
+    /* 성별 & 연락처 컨테이너 */
+    .form-section .form-row:nth-of-type(2) {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
     }
 
     /* 성별 */
-    .form-section .form-row:first-of-type .form-group:nth-child(3) {
-        width: 100% !important;
+    .form-section .form-row:nth-of-type(2) .form-group:nth-child(1) {
+        width: 40% !important;
     }
 
-    /* MBTI 숨김 */
-    .form-section .form-row:first-of-type .form-group:nth-child(4) {
-        display: none !important;
+    /* 연락처 */
+    .form-section .form-row:nth-of-type(2) .form-group:nth-child(2) {
+        width: 57% !important;
+    }
+
+    /* 본가/현재 거주지 컨테이너 */
+    .form-section .form-row:nth-of-type(3) {
+        display: flex !important;
+        gap: 8px !important;
+    }
+
+    /* 본가 */
+    .form-section .form-row:nth-of-type(3) .form-group:nth-child(1) {
+        width: 49% !important;
+    }
+
+    /* 현재 거주지 */
+    .form-section .form-row:nth-of-type(3) .form-group:nth-child(2) {
+        width: 49% !important;
+    }
+
+    /* 학교/전공 컨테이너 */
+    .form-section .form-row:nth-of-type(4) {
+        display: flex !important;
+        gap: 8px !important;
+    }
+
+    /* 학교 */
+    .form-section .form-row:nth-of-type(4) .form-group:nth-child(1) {
+        width: 38% !important;
+    }
+
+    /* 전공 */
+    .form-section .form-row:nth-of-type(4) .form-group:nth-child(2) {
+        width: 60% !important;
+    }
+
+    /* 학번/학년/휴학 컨테이너 */
+    .form-section .form-row:nth-of-type(5) {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        align-items: flex-start !important;
+    }
+
+    /* 학번 */
+    .form-section .form-row:nth-of-type(5) .form-group:nth-child(1) {
+        width: 30% !important;
+    }
+
+    /* 학년 선택 */
+    .form-section .form-row:nth-of-type(5) .form-group:nth-child(2) {
+        width: 45% !important;
+    }
+
+    /* 휴학 체크박스 컨테이너 */
+    .form-section .form-row:nth-of-type(5) .form-group:nth-child(2) .checkbox-label {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        padding-top: 8px !important;
+        margin-left: 8px !important;
     }
 }
 
