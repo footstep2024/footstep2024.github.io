@@ -6,6 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="theme-color" content="#2F5229">
 <title>발자취 - 25-1학기 신입부원 지원서</title>
+<link rel="preload" as="image" href="https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -269,22 +271,32 @@ padding: 1rem 0.8rem;
 }
 
 @media (max-width: 768px) {
-.info-grid {
-grid-template-columns: 1fr;
-gap: 0.8rem;
-}
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
 
-.info-box {
-padding: 0.8rem 1rem;
-}
+    .info-box {
+        padding: 0.8rem 0.8rem;  /* 패딩 줄임 */
+    }
 
-.info-box-title {
-font-size: 0.9rem;
-}
+    .info-box-title {
+        font-size: 0.82rem;      /* 제목 폰트 크기 조절 */
+        margin-bottom: 0.3rem;   /* 제목과 내용 사이 간격 줄임 */
+    }
 
-.info-box-content {
-font-size: 0.85rem;
-}
+    .info-box-content {
+        font-size: 0.75rem;      /* 내용 폰트 크기 조절 */
+        line-height: 1.4;        /* 줄간격 조절 */
+    }
+
+    .info-box-content span {
+        white-space: nowrap;     /* 텍스트 줄바꿈 방지 */
+    }
+
+    .info-box-title i {
+        font-size: 0.78rem;      /* 아이콘 크기 조절 */
+    }
 }
 
 /* 특정 박스들의 텍스트를 한 줄로 만들기 위한 추가 스타일 */
@@ -427,6 +439,17 @@ border-radius: 8px;
 transition: all 0.3s ease;
 }
 
+select.form-control option,
+select.form-control optgroup,
+select.form-control option:first-child {
+    color: var(--text-color) !important;
+}
+
+select.form-control option:checked {
+    color: var(--text-color) !important;
+    background-color: transparent !important;
+}
+
 /* 자기소개 textarea의 높이 설정 */
 textarea[name="introduction"] {
 height: 100px !important;
@@ -525,29 +548,97 @@ box-shadow: 0 2px 4px rgba(47, 82, 41, 0.2);
 }
 
 @media (max-width: 768px) {
-.form-row {
-flex-wrap: wrap;
-}
+    /* 기본 모바일 폼 레이아웃 */
+    .form-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 8px;
+        margin-bottom: 12px;
+        width: 100%;
+    }
+    
+    .form-group {
+        width: auto !important;
+        margin-bottom: 8px;
+    }
 
-.form-group {
-width: 100% !important;
-}
+    /* 1. 이름/생년월일/성별 줄 */
+    .form-row:first-of-type {
+        .form-group:nth-child(1) { width: 25% !important; }
+        .form-group:nth-child(2) { width: 45% !important; }
+        .form-group:nth-child(3) { width: 30% !important; }
+    }
 
-.gender-button {
-padding: 6px 12px;
-font-size: 0.85rem;
-}
-}
+    /* 성별 버튼 텍스트 수정 */
+    .gender-button {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    .gender-button span:last-child {
+        font-size: 0.8rem;
+    }
+    .gender-select[value="남성"] .gender-button span:last-child::after { content: '남'; }
+    .gender-select[value="여성"] .gender-button span:last-child::after { content: '여'; }
 
+    /* 2. MBTI/연락처 줄 */
+    .form-row:nth-of-type(2) {
+        .form-group:nth-child(1) { width: 35% !important; }
+        .form-group:nth-child(2) { width: 65% !important; }
+    }
+
+    /* 3. 본가/현재거주지 줄 */
+    .form-row:nth-of-type(3) {
+        .form-group:nth-child(1) { width: 50% !important; }
+        .form-group:nth-child(2) { width: 50% !important; }
+    }
+
+    /* 4. 학교/전공 줄 */
+    .form-row:nth-of-type(4) {
+        .form-group:nth-child(1) { width: 40% !important; }
+        .form-group:nth-child(2) { width: 60% !important; }
+    }
+
+    /* 5. 학번/학년/휴학 줄 */
+    .form-row:nth-of-type(5) {
+        position: relative;
+        .form-group:nth-child(1) { width: 30% !important; }
+        .form-group:nth-child(2) { width: 45% !important; }
+        
+        /* 휴학 체크박스 조정 */
+        .checkbox-label {
+            position: static;
+            margin-left: 8px;
+            transform: translateY(32px);  /* 라벨 높이만큼 아래로 */
+        }
+    }
+
+    /* 입력 필드 최적화 */
+    .form-control {
+        height: 36px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    /* 라벨 크기 최적화 */
+    .form-label {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+        white-space: nowrap;
+    }
+}
+    
 .form-control::placeholder,
 select.form-control option:first-child {
 font-size: 0.75rem;
 color: #999;
 }
 
+
+
 select.form-control {
 font-size: 0.75rem;
 }
+    
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
@@ -1442,6 +1533,129 @@ color: var(--primary-color);
 font-weight: 500;
 }
 
+.activity-timeline {
+    padding: 1rem;
+}
+
+.timeline-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.timeline-text {
+    flex: 1;
+}
+
+.timeline-image {
+    flex-shrink: 0;
+    width: 334px;
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-image img {
+    transform: scale(1.05);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .timeline-image {
+        width: 260px;
+        height: 78px;
+    }
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(47, 82, 41, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+.timeline-date {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-content h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin: 0 0 0.3rem 0;
+    font-weight: 500;
+}
+
+.timeline-content p {
+    color: var(--light-text);
+    font-size: 0.85rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.attendance {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.attendance i {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        padding: 0.8rem;
+        gap: 1rem;
+    }
+
+    .timeline-date {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.8rem;
+    }
+
+    .attendance {
+        font-size: 0.75rem;
+    }
+}
+    
+
 .rules-modal-desc {
 background: rgba(47, 82, 41, 0.05);
 padding: 0.8rem 1rem;
@@ -2216,110 +2430,131 @@ padding: 0.875rem;
 </style>
 
 <style>
-
 .preview-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.85);
-z-index: 1000;
-backdrop-filter: blur(5px);
-overflow-y: auto;
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.85);
+   z-index: 1000;
+   backdrop-filter: blur(5px);
 }
 
 .preview-modal-content {
-position: relative;
-background: white;
-width: 90%;
-max-width: 800px;
-margin: 40px auto;
-padding: 30px;
-border-radius: 16px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+   position: relative;
+   background: white;
+   width: 90%;
+   max-width: 800px;
+   margin: 40px auto 80px;
+   padding: 30px;
+   border-radius: 0;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+   max-height: 92vh;
+   overflow-y: auto;
+   scrollbar-width: thin;
+   scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
+}
+
+.preview-modal-content::-webkit-scrollbar {
+   width: 8px;
+}
+
+.preview-modal-content::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+.preview-modal-content::-webkit-scrollbar-thumb {
+   background-color: rgba(47, 82, 41, 0.3);
+   border-radius: 4px;
+}
+
+.preview-modal-content::-webkit-scrollbar-thumb:hover {
+   background-color: rgba(47, 82, 41, 0.5);
 }
 
 .preview-content {
-margin: 20px 0;
+   margin: 20px 0;
 }
 
 .preview-section {
-background: white;
-padding: 2rem;
-border-radius: 12px;
-margin-bottom: var(--section-gap);
-box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+   background: white;
+   padding: 2rem;
+   border-radius: 12px;
+   margin-bottom: var(--section-gap);
+   box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
 }
 
 .preview-section h4 {
-font-size: 1.5rem;
-font-weight: 700;
-color: var(--primary-color);
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
-border-bottom: 2px solid var(--border-color);
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--primary-color);
+   margin-bottom: 1.5rem;
+   padding-bottom: 1rem;
+   border-bottom: 2px solid var(--border-color);
 }
 
 .preview-item {
-margin-bottom: 1.5rem;
+   margin-bottom: 1.5rem;
 }
 
 .preview-label {
-display: block;
-font-size: 0.85rem;
-font-weight: 500;
-margin-bottom: 0.4rem;
-color: var(--text-color);
+   display: block;
+   font-size: 0.85rem;
+   font-weight: 500;
+   margin-bottom: 0.4rem;
+   color: var(--text-color);
 }
 
 .preview-value {
-width: 100%;
-padding: 0.6rem 0.8rem;
-font-size: 0.75rem;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-background-color: #f8f9fa;
-overflow-wrap: break-word;
-line-height: 1.5;
+   width: 100%;
+   padding: 0.6rem 0.8rem;
+   font-size: 0.75rem;
+   border: 1px solid var(--border-color);
+   border-radius: 8px;
+   background-color: #f8f9fa;
+   overflow-wrap: break-word;
+   line-height: 1.5;
 }
 
 textarea.form-control[readonly] {
-height: auto !important;
-min-height: unset !important;
-overflow: hidden !important;
+   height: auto !important;
+   min-height: unset !important;
+   overflow: hidden !important;
 }
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
-.preview-modal-content {
-width: 95%;
-padding: 20px;
-margin: 20px auto;
-}
+   .preview-modal-content {
+       width: 95%;
+       padding: 20px;
+       margin: 20px auto 60px;
+       max-height: 85vh; /* 80vh에서 85vh로 높이 증가 */
+       border-radius: 0; /* 각진 모서리로 변경 */
+   }
 
-.preview-section {
-padding: 1.5rem;
-}
+   .preview-section {
+       padding: 1.5rem;
+   }
 
-.preview-section h4 {
-font-size: 1.3rem;
-margin-bottom: 1rem;
-}
+   .preview-section h4 {
+       font-size: 1.3rem;
+       margin-bottom: 1rem;
+   }
 
-.preview-item {
-margin-bottom: 1rem;
-}
+   .preview-item {
+       margin-bottom: 1rem;
+   }
 
-.preview-label {
-font-size: 0.8rem;
-}
+   .preview-label {
+       font-size: 0.8rem;
+   }
 
-.preview-value {
-font-size: 0.7rem;
-padding: 0.5rem 0.7rem;
-}
+   .preview-value {
+       font-size: 0.7rem;
+       padding: 0.5rem 0.7rem;
+   }
 }
 </style>
 
@@ -2435,6 +2670,7 @@ padding: 0.5rem 0.7rem;
 </div>
 </div>
 </section>
+    
 <!-- 새로운 개인정보 수집 섹션 끝 -->
 
 <form id="applicationForm">
@@ -2538,13 +2774,27 @@ padding: 0.5rem 0.7rem;
 </div>
 <label class="form-label" style="visibility: hidden">학년</label>
 <select class="form-control" name="grade" required>
-<option value="" disabled selected>학년 선택</option>
-<option value="1">1학년</option>
-<option value="2">2학년</option>
-<option value="3">3학년</option>
-<option value="4">4학년</option>
-<option value="graduating">졸업예정</option>
-<option value="graduated">졸업</option>
+    <option value="" disabled selected>학년 선택</option>
+    <optgroup label="일반학과">
+        <option value="1">1학년</option>
+        <option value="2">2학년</option>
+        <option value="3">3학년</option>
+        <option value="4">4학년</option>
+        <option value="5">5학년</option>
+    </optgroup>
+    <optgroup label="의학/약학계열">
+        <option value="pre1">예과 1학년</option>
+        <option value="pre2">예과 2학년</option>
+        <option value="med1">본과 1학년</option>
+        <option value="med2">본과 2학년</option>
+        <option value="med3">본과 3학년</option>
+        <option value="med4">본과 4학년</option>
+    </optgroup>
+    <optgroup label="졸업관련">
+        <option value="postpone">졸업유예</option>
+        <option value="graduating">졸업예정</option>
+        <option value="graduated">졸업</option>
+    </optgroup>
 </select>
 </div>
 </div>
@@ -2867,18 +3117,18 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
 <div class="special-intro-container">
 <div class="special-intro-input">
-<textarea class="form-control" name="special_introduction" rows="4" required placeholder="예시 1) '허당' 주우재 유형입니다. 여행 갈 때마다 어김없이 중요한 걸 깜빡하지만, 그 덕분에 예상치 못한 재미있는 상황이 연출되곤 합니다.&#13;&#10;&#13;&#10;예시 2) '아이돌 센터' 장원영 유형입니다. 늘 밝고 화사한 표정으로 사진 찍는 걸 좋아해서, 동아리 SNS 홍보대사를 자처하고 싶습니다!&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>    </div>
+<textarea class="form-control" name="special_introduction" rows="4" required placeholder="예시 1) '비글미' 이미주 유형입니다. 흥이 많고, 한시도 가만 있지 못하는 성격입니다. 놀리고, 떠들고, 장난치는 것을 좋아해서 여행 갈 때마다 예상치 못한 웃음 포인트를 만들어드릴 수 있습니다.&#13;&#10;&#13;&#10;예시 2) '아이돌 센터' 장원영 유형입니다. 늘 밝고 화사한 표정으로 사진 찍는 걸 좋아해서, 동아리 SNS 홍보대사를 자처하고 싶습니다!&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>    </div>
 <div class="special-intro-examples">
 <div class="examples-title">유형 예시</div>
 <ul class="examples-list">
 <li><span class="example-icon">▲</span> '편안한 리더십' 유재석</li>
-<li><span class="example-icon">▲</span> '또라이' 노홍철</li>
+<li><span class="example-icon">▲</span> '똘끼' 전소민</li>
 <li><span class="example-icon">▲</span> '아이돌 센터' 장원영</li>
 <li><span class="example-icon">▲</span> '노빠꾸 예능감' 탁재훈</li>
 <li><span class="example-icon">▲</span> '삼시세끼' 차승원</li>
-<li><span class="example-icon">▲</span> '베스트 드라이버' 이수근</li>
+<li><span class="example-icon">▲</span> '4차원' 기안84</li>
 <li><span class="example-icon">▲</span> '여행 플레너' 나영석</li>
-<li><span class="example-icon">▲</span> '허당' 주우재</li>
+<li><span class="example-icon">▲</span> '비글미' 이미주</li>
 </ul>
 </div>
 </div>
@@ -2969,16 +3219,16 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_1" required>
-<span class="check-text">확인함</span>
-</label>
+    <div class="notice-content">
+        <i class="fas fa-circle-exclamation"></i>
+        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
+        <label class="confirm-check">
+            <input type="checkbox" name="notice_check_1" required>
+            <span class="check-text">확인함</span>
+        </label>
+    </div>
 </div>
-</div>
-
+    
 <div class="notice-item">
 <div class="notice-content">
 <i class="fas fa-circle-exclamation"></i>
@@ -3002,14 +3252,14 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_5" required>
-<span class="check-text">확인함</span>
-</label>
-</div>
+    <div class="notice-content">
+        <i class="fas fa-circle-exclamation" style="color: #dc3545;"></i>
+        <p style="color: #dc3545;">성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
+        <label class="confirm-check">
+            <input type="checkbox" name="notice_check_5" required>
+            <span class="check-text" style="color: #dc3545;">확인함</span>
+        </label>
+    </div>
 </div>
 
 <div class="notice-item">
@@ -3235,8 +3485,9 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="preview-content">
 <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
 </div>
-<div class="modal-footer">
-<button class="modal-bottom-close" onclick="closePreview()">닫기</button>
+<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
+    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
+    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
 </div>
 </div>
 </div>
@@ -3291,13 +3542,108 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <li>성적 자기 결정권 침해 사례에 대한 징계 논의는 총회로 이관될 수 없다.</li>
 <li>이 조항에 명시되지 않은 사항은 관련 법령 및 일반적인 윤리 기준을 따른다.</li>
 </ol>
-<div class="rules-source">발자취 총칙 중 발췌 (개정: 2024.11.11)</div>
+<div class="rules-source">발자취 총칙 중 발췌 (최종 개정일: 2024.11.11)</div>
 </div>
 </div>
 <div class="modal-footer">
-<button class="modal-bottom-close">닫기</button>
+<button class="modal-bottom-close" onclick="closeExample()">닫기</button>
 </div>
 </div>
+</div>
+
+<div class="rules-modal" id="scheduleRulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">2024년 정기 여행 기록</h3>
+            <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
+                <i class="fas fa-map-marked-alt"></i> 
+                발자취와 함께한 우리들의 여정
+            </p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content" style="background: transparent; padding: 0;">
+            <div class="activity-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">9월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>OT & MT - 연천 한탄강</h4>
+                            <p>발자취의 시작, 첫 만남과 함께한 1박 2일</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 100% (24/24명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/09.jpg" alt="연천 한탄강 MT 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">10월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>단풍 여행 - 남이섬</h4>
+                            <p>가을 정취 가득한 남이섬에서의 하루</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 75% (18/24명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/10.jpg" alt="남이섬 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">11월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>바다 여행 - 을왕리</h4>
+                            <p>서해의 노을과 함께한 특별한 시간</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 74% (17/23명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/11.jpg" alt="을왕리 단체사진">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="timeline-item">
+                    <div class="timeline-date">12월</div>
+                    <div class="timeline-content">
+                        <div class="timeline-text">
+                            <h4>눈꽃 여행 - 대관령</h4>
+                            <p>종강 다음 날, 우리들의 마지막 여정</p>
+                            <div class="attendance">
+                                <i class="fas fa-users"></i> 참석률 61% (14/23명)
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/12.jpg" alt="대관령 단체사진">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
+                <p style="color: var(--primary-color); font-size: 0.9rem;">
+                    <i class="fas fa-chart-line"></i>
+                    평균 참석률 77.5%
+                </p>
+                <p style="color: var(--light-text); font-size: 0.8rem; margin-top: 0.5rem;">
+                    * 2025년 1학기에도 계속될 발자취의 여정을 함께해주세요.
+                </p>
+            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -3525,6 +3871,40 @@ e.preventDefault();
 showRules();
 });
 
+    document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = document.getElementById('scheduleRulesModal');
+    if (!modal) return;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    // 닫기 버튼 이벤트
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+
+    // ESC 키 누르면 닫기
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+});
+
 function showExample(type) {
 const modal = document.getElementById('exampleModal');
 const modalTitle = modal.querySelector('.modal-title');
@@ -3593,23 +3973,20 @@ imageContainer.addEventListener('scroll', handleScroll);
 }
 
 function closeExample() {
-const modal = document.getElementById('exampleModal');
-if (!modal) return;
+    const modal = document.getElementById('exampleModal');
+    const rulesModal = document.getElementById('rulesModal');
+    const scheduleRulesModal = document.getElementById('scheduleRulesModal');
+    
+    // 모든 모달의 컨텐츠 영역 스크롤 초기화
+    const containers = document.querySelectorAll('.modal-image-container');
+    containers.forEach(container => {
+        if(container) container.scrollTop = 0;
+    });
 
-// 모든 내용 초기화
-const imageContainer = modal.querySelector('.modal-image-container');
-const scrollIndicator = modal.querySelector('.scroll-indicator');
-const modalTitle = modal.querySelector('.modal-title');
-const modalDesc = modal.querySelector('.modal-desc');
-
-modalTitle.textContent = '';
-modalDesc.textContent = '';
-imageContainer.innerHTML = '';
-scrollIndicator.style.opacity = '0';
-imageContainer.scrollTop = 0;
-
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
+    if (modal) modal.style.display = 'none';
+    if (rulesModal) rulesModal.style.display = 'none';
+    if (scheduleRulesModal) scheduleRulesModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 function updatePlaceholder(type) {
@@ -3626,97 +4003,135 @@ textarea.placeholder = placeholders[type];
 </script>
 
 <script>
+// 면접 일정 상태 관리
+let selectedInterviewSlots = [];
+
 function openScheduleModal() {
-const modal = document.getElementById('scheduleModal');
-const modalContent = modal.querySelector('.schedule-modal-content');
+    const modal = document.getElementById('scheduleModal');
+    const modalContent = modal.querySelector('.schedule-modal-content');
+    
+    // 이전에 선택된 일정 복원
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+        checkbox.checked = selectedInterviewSlots.includes(checkbox.value);
+    });
 
-modal.style.display = 'block';
-document.body.style.overflow = 'hidden';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-// 모달 컨텐츠 영역 클릭 시 이벤트 즉시 중단
-modalContent.addEventListener('mousedown', function(e) {
-e.stopPropagation();
-});
+    modalContent.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+    });
 
-// 모달 외부 영역 클릭 시 닫기
-modal.addEventListener('mousedown', function(e) {
-if (e.target === modal) {
-closeScheduleModal();
-}
-});
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeScheduleModal();
+        }
+    });
 }
 
 function closeScheduleModal() {
-const modal = document.getElementById('scheduleModal');
-if (!modal) return;
+    const modal = document.getElementById('scheduleModal');
+    if (!modal) return;
 
-// 현재 스크롤 위치 저장
-const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-modal.style.display = 'none';
-document.body.style.overflow = 'auto';
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 
-// 스크롤 위치 복원
-setTimeout(() => {
-window.scrollTo({
-top: scrollPosition,
-behavior: 'instant'
-});
-}, 0);
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
 }
 
-function confirmSchedule() {
-   const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
-   const selectedSchedule = document.getElementById('selectedSchedule');
+function updateSelectedScheduleDisplay() {
+    const selectedSchedule = document.getElementById('selectedSchedule');
+    
+    if (selectedInterviewSlots.length === 0) {
+        selectedSchedule.innerHTML = `
+            <div class="no-schedule">
+                <i class="fas fa-calendar-plus"></i>
+                <p>가능한 면접 시간을 모두 선택해주세요.</p>
+            </div>`;
+        return;
+    }
 
-   if (selectedSlots.length > 0) {
-       let scheduleHTML = '<div class="selected-times-container">';
+    let scheduleHTML = '<div class="selected-times-container">';
+    
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(slot => {
+        if (selectedInterviewSlots.includes(slot.value)) {
+            const dateOption = slot.closest('.date-option');
+            const date = dateOption.querySelector('.date').textContent;
+            const type = dateOption.querySelector('.interview-type').textContent;
+            const time = slot.nextElementSibling.textContent.trim();
+            const isOffline = dateOption.classList.contains('offline');
 
-       selectedSlots.forEach(slot => {
-           const dateOption = slot.closest('.date-option');
-           const date = dateOption.querySelector('.date').textContent;
-           const type = dateOption.querySelector('.interview-type').textContent;
-           const time = slot.nextElementSibling.textContent.trim();
-           const isOffline = dateOption.classList.contains('offline');
-
-           scheduleHTML += `
-            <div class="selected-time-item ${isOffline ? 'offline' : ''}">
-                <div class="time-badge">
-                    <i class="fas ${isOffline ? 'fa-user-friends' : 'fa-video'}"></i>
-                </div>
-                <div class="time-info">
-                    <div class="time-main">
-                        <span class="time-date">${date}</span>
-                        <div class="time-details">
-                            <span class="time-period">
-                                <i class="fas ${time.includes('오전') ? 'fa-sun' : 'fa-moon'}"></i>
-                                ${time}
-                            </span>
-                            <span class="time-type">${type}</span>
+            scheduleHTML += `
+                <div class="selected-time-item ${isOffline ? 'offline' : ''}">
+                    <div class="time-badge">
+                        <i class="fas ${isOffline ? 'fa-user-friends' : 'fa-video'}"></i>
+                    </div>
+                    <div class="time-info">
+                        <div class="time-main">
+                            <span class="time-date">${date}</span>
+                            <div class="time-details">
+                                <span class="time-period">
+                                    <i class="fas ${time.includes('오전') ? 'fa-sun' : 'fa-moon'}"></i>
+                                    ${time}
+                                </span>
+                                <span class="time-type">${type}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             `;
-            });
-
-       scheduleHTML += '</div>';
-       selectedSchedule.innerHTML = scheduleHTML;
-
-       const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-       const modal = document.getElementById('scheduleModal');
-       modal.style.display = 'none';
-       document.body.style.overflow = 'auto';
-       setTimeout(() => {
-           window.scrollTo({
-               top: scrollPosition,
-               behavior: 'instant'
-           });
-       }, 0);
-   } else {
-       alert('면접 일정을 하나 이상 선택해주세요.');
-   }
+        }
+    });
+    
+    scheduleHTML += '</div>';
+    selectedSchedule.innerHTML = scheduleHTML;
 }
+
+function confirmSchedule() {
+    const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
+    
+    if (selectedSlots.length === 0) {
+        alert('면접 일정을 하나 이상 선택해주세요.');
+        return;
+    }
+
+    // 선택된 일정 업데이트
+    selectedInterviewSlots = Array.from(selectedSlots).map(slot => slot.value);
+    formData.interview_slots = [...selectedInterviewSlots]; // formData도 함께 업데이트
+    updateSelectedScheduleDisplay();
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const modal = document.getElementById('scheduleModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
+}
+
+// 체크박스 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked && !selectedInterviewSlots.includes(this.value)) {
+                selectedInterviewSlots.push(this.value);
+            } else if (!this.checked) {
+                selectedInterviewSlots = selectedInterviewSlots.filter(slot => slot !== this.value);
+            }
+        });
+    });
+});
 
 document.addEventListener('keydown', function(event) {
 if (event.key === 'Escape') {
@@ -3742,151 +4157,157 @@ function previewApplication() {
             return;
         }
 
-        let previewHTML = `
-            <section class="form-section">
-                <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>기본 정보</span>
-                    ${(() => {
-                        const privacyCheckbox = form.querySelector('input[name="privacy_agreement"]');
-                        if (!privacyCheckbox) return '';
-                        
-                        const isAgreed = privacyCheckbox.checked;
-                        if (isAgreed) {
-                            return `<span style="display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: var(--primary-color); font-weight: 400;">
-                                <i class="fas fa-check-circle"></i>
-                                개인정보 이용 동의함
-                            </span>`;
-                        } else {
-                            return `<span style="display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: #dc3545; font-weight: 400;">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                개인정보 수집에 동의해주세요
-                            </span>`;
-                        }
-                    })()}
-                </h2>
+let previewHTML = `
+    <section class="form-section">
+        <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
+            <span>기본 정보</span>
+            ${(() => {
+                const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
+                if (isAgreed) {
+                    return `
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
+                            <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
+                            <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
+                        </div>
+                    `;
+                }
+            })()}
+        </h2>
 
-           <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
-               <div class="form-group" style="width: 20%">
-                   <label class="form-label">이름</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly>
-               </div>
-               <div class="form-group" style="width: 25%">
-                   <label class="form-label">생년월일</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly>
-               </div>
-                <div class="form-group" style="width: 30%">
-                   <label class="form-label">성별</label>
-                   <div style="display: flex; gap: 10px; flex-wrap: nowrap">
-                       <label class="gender-select" style="flex: 1">
-                           <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
-                           <span class="gender-button" style="width: 100%">
-                               <i class="fas fa-mars"></i>
-                               남성
-                           </span>
-                       </label>
-                       <label class="gender-select" style="flex: 1">
-                           <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
-                           <span class="gender-button" style="width: 100%">
-                               <i class="fas fa-venus"></i>
-                               여성
-                           </span>
-                       </label>
-                   </div>
-               </div>
-               <div class="form-group" style="width: 22%">
-                   <label class="form-label">MBTI</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly>
-               </div>
-           </div>
+        <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
+            <div class="form-group" style="width: 20%">
+                <label class="form-label">이름</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group" style="width: 25%">
+                <label class="form-label">생년월일</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group" style="width: 30%">
+                <label class="form-label">성별</label>
+                <div style="display: flex; gap: 10px; flex-wrap: nowrap">
+                    <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
+                        <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
+                        <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
+                            <i class="fas fa-mars"></i>
+                            남성
+                        </span>
+                    </label>
+                    <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
+                        <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
+                        <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
+                            <i class="fas fa-venus"></i>
+                            여성
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" style="width: 22%">
+                <label class="form-label">MBTI</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+        </div>
 
-           <div class="form-row three-columns">
-               <div class="form-group">
-                   <label class="form-label">연락처</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly>
-               </div>
-               <div class="form-group">
-                   <label class="form-label">본가</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly>
-               </div>
-               <div class="form-group">
-                   <label class="form-label">현재 거주지</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly>
-               </div>
-           </div>
+        <div class="form-row three-columns">
+            <div class="form-group">
+                <label class="form-label">연락처</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group">
+                <label class="form-label">본가</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group">
+                <label class="form-label">현재 거주지</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+        </div>
 
-           <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
-               <div class="form-group" style="width: 24%">
-                   <label class="form-label">학교</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly>
-               </div>
-               <div class="form-group" style="width: 30%">
-                   <label class="form-label">전공</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly>
-               </div>
-               <div class="form-group" style="width: 15%">
-                   <label class="form-label">학번</label>
-                   <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly>
-               </div>
-               <div class="form-group" style="width: 15%">
-                   <div style="position: relative">
-                       ${form.querySelector('[name="is_leave"]').checked ? `
-                           <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
-                               <label class="checkbox-label">
-                                   <input type="checkbox" checked disabled>
-                                   <span class="check-icon"></span>
-                                   <span class="label-text">휴학</span>
-                               </label>
-                           </div>
-                       ` : ''}
-                       <label class="form-label">학년</label>
-                       <input type="text" class="form-control" value="${
-                           (() => {
-                               const grade = form.querySelector('[name="grade"]').value;
-                               const gradeMap = {
-                                   '1': '1학년',
-                                   '2': '2학년',
-                                   '3': '3학년',
-                                   '4': '4학년',
-                                   'graduating': '졸업예정',
-                                   'graduated': '졸업'
-                               };
-                               return gradeMap[grade] || grade;
-                           })()
-                       }" readonly>
-                   </div>
-               </div>
-           </div>
+        <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
+            <div class="form-group" style="width: 24%">
+                <label class="form-label">학교</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group" style="width: 30%">
+                <label class="form-label">전공</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group" style="width: 15%">
+                <label class="form-label">학번</label>
+                <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+            </div>
+            <div class="form-group" style="width: 15%">
+                <div style="position: relative">
+                    ${form.querySelector('[name="is_leave"]').checked ? `
+                        <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked disabled style="cursor: default !important; pointer-events: none;">
+                                <span class="check-icon" style="cursor: default !important; pointer-events: none;"></span>
+                                <span class="label-text" style="cursor: default !important; pointer-events: none;">휴학</span>
+                            </label>
+                        </div>
+                    ` : ''}
+                    <label class="form-label">학년</label>
+                    <input type="text" class="form-control" value="${
+                        (() => {
+                            const grade = form.querySelector('[name="grade"]').value;
+                            const gradeMap = {
+                                '1': '1학년',
+                                '2': '2학년',
+                                '3': '3학년',
+                                '4': '4학년',
+                                '5': '5학년',
+                                'pre1': '예과 1학년',
+                                'pre2': '예과 2학년',
+                                'med1': '본과 1학년',
+                                'med2': '본과 2학년',
+                                'med3': '본과 3학년',
+                                'med4': '본과 4학년',
+                                'postpone': '졸업유예',
+                                'graduating': '졸업예정',
+                                'graduated': '졸업'
+                            };
+                            return gradeMap[grade] || grade;
+                        })()
+                    }" readonly style="cursor: default !important; pointer-events: none;">
+                </div>
+            </div>
+        </div>
 
-           <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-               <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
-                   <!-- 운전가능여부 -->
-                   <div class="form-group" style="margin: 0">
-                       <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
-                       <input type="text" class="form-control" value="${
-                           (() => {
-                               const val = form.querySelector('[name="driving_status"]').value;
-                               const options = {
-                                   'car': '자차 보유',
-                                   'license': '면허만 보유',
-                                   'none': '해당사항 없음'
-                               };
-                               return options[val] || val;
-                           })()
-                       }" readonly>
-                   </div>
-                   <!-- 여행경비 -->
-                   <div class="form-group" style="margin: 0">
-                       <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
-                       <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly>
-                   </div>
-                   <!-- SNS -->
-                   <div class="form-group" style="margin: 0">
-                       <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
-                       <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly>
-                   </div>
-               </div>
-           </div>
-       </section>`;
+        <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+            <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
+                <div class="form-group" style="margin: 0">
+                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
+                    <input type="text" class="form-control" value="${
+                        (() => {
+                            const val = form.querySelector('[name="driving_status"]').value;
+                            const options = {
+                                'car': '자차 보유',
+                                'license': '면허만 보유',
+                                'none': '해당사항 없음'
+                            };
+                            return options[val] || val;
+                        })()
+                    }" readonly style="cursor: default !important; pointer-events: none;">
+                </div>
+                <div class="form-group" style="margin: 0">
+                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
+                    <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                </div>
+                <div class="form-group" style="margin: 0">
+                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
+                    <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                </div>
+            </div>
+        </div>
+    </section>`;
         
 // 추가 정보 섹션
 previewHTML += `
@@ -4048,125 +4469,109 @@ previewHTML += `
     </section>
 `;
         
-<section class="form-section">
-           <h2 class="section-title">자기소개</h2>
+previewHTML += `
+    <!-- 자기소개 섹션 -->
+    <section class="form-section">
+        <h2 class="section-title">자기소개</h2>
+        
+        <div class="form-group">
+            <label class="form-label">간단한 자기소개</label>
+            <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
+        </div>
 
-           <div class="form-group">
-               <label class="form-label">간단한 자기소개</label>
-               <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
-           </div>
-           
-           <div class="form-group" style="margin-top: 2rem;">
-               <label class="form-label">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
-               <div class="special-intro-container">
-                   <div class="special-intro-input">
-                       <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
-                   </div>
-                   <div class="special-intro-examples">
-                       <div class="examples-title">유형 예시</div>
-                       <ul class="examples-list">
-                           <li><span class="example-icon">▲</span> '편안한 리더십' 유재석</li>
-                           <li><span class="example-icon">▲</span> '또라이' 노홍철</li>
-                           <li><span class="example-icon">▲</span> '아이돌 센터' 장원영</li>
-                           <li><span class="example-icon">▲</span> '노빠꾸 예능감' 탁재훈</li>
-                           <li><span class="example-icon">▲</span> '삼시세끼' 차승원</li>
-                           <li><span class="example-icon">▲</span> '베스트 드라이버' 이수근</li>
-                           <li><span class="example-icon">▲</span> '여행 플레너' 나영석</li>
-                           <li><span class="example-icon">▲</span> '허당' 주우재</li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-       </section>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="form-label">자신과 가장 잘 맞는 유형과 그 이유</label>
+            <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
+        </div>
+    </section>
 
-<section class="form-section">
-           <h2 class="section-title">여행 경험 에세이</h2>
+    <!-- 여행 경험 에세이 섹션 -->
+    <section class="form-section">
+        <h2 class="section-title">여행 경험 에세이</h2>
 
-           <div class="form-group" style="margin-bottom: 2rem;">
-               <label class="form-label">지금까지 가본 여행지</label>
-               <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
-           </div>
-           
-            <div class="essay-type-selector">
-                <div class="essay-type-options">
-                    ${(() => {
-                        const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
-                        if (!selectedType) {
-                            return `
+        <div class="form-group" style="margin-bottom: 2rem;">
+            <label class="form-label">지금까지 가본 여행지</label>
+            <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
+        </div>
+
+        <div class="essay-type-selector">
+            <div class="essay-type-options">
+                ${(() => {
+                    const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                    if (!selectedType) {
+                        return `
                             <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
                                 <i class="fas fa-exclamation-triangle" style="font-size: 0.9em;"></i>
                                 <span style="font-family: 'Gowun Batang', var(--system-font); font-size: 0.85em;">주제 미선택</span>
                             </div>
-                            `;
-                        }
-                        
-                        const options = {
-                            'memorable_episode': '기억에 남는 여행 에피소드',
-                            'planned_travel': '자체 여행 기획 경험'
-                        };
-                        
-                        return `
-                            <label class="checkbox-label">
-                                <input type="radio" name="travel_essay_type_preview" checked disabled>
-                                <span class="check-icon"></span>
-                                <span class="label-text">${options[selectedType]}</span>
-                            </label>
                         `;
-                    })()}
-                </div>
+                    }
+                    const options = {
+                        'memorable_episode': '기억에 남는 여행 에피소드',
+                        'planned_travel': '자체 여행 기획 경험'
+                    };
+                    return `
+                        <label class="checkbox-label">
+                            <input type="radio" name="travel_essay_type_preview" checked disabled>
+                            <span class="check-icon"></span>
+                            <span class="label-text">${options[selectedType]}</span>
+                        </label>
+                    `;
+                })()}
             </div>
-               <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
-           </div>
-       </section>
+        </div>
+        <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
+    </section>
+`;
+        
+previewHTML += `
+   <!-- 지원자의 이야기 섹션 -->
+   <section class="form-section">
+       <h2 class="section-title">지원자의 이야기</h2>
 
-       <section class="form-section">
-           <h2 class="section-title">지원자의 이야기</h2>
+       <div class="form-group" style="margin-bottom: 2rem;">
+           <label class="form-label">지원 동기</label>
+           <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
+       </div>
 
-           <div class="form-group" style="margin-bottom: 2rem;">
-               <label class="form-label">지원 동기</label>
-               <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
-           </div>
-           
-           <div class="form-group">
-               <label class="form-label">마지막으로 하고 싶은 말</label>
-               <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
-           </div>
-       </section>
+       <div class="form-group">
+           <label class="form-label">마지막으로 하고 싶은 말</label>
+           <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
+       </div>
+   </section>
+
+   <!-- 면접 일정 섹션 -->
+   <section class="form-section">
+       <h2 class="section-title">면접 일정</h2>
        
-       <section class="form-section">
-           <h2 class="section-title">면접 일정</h2>
-           
-           <div class="schedule-select-wrapper">
-               <div class="selected-schedule">
-                   ${document.getElementById('selectedSchedule').innerHTML}
-               </div>
+       <div class="schedule-select-wrapper">
+           <div class="selected-schedule">
+               ${document.getElementById('selectedSchedule').innerHTML}
            </div>
+       </div>
 
-           <div class="additional-requests" style="margin-top: 2rem;">
-               <div class="form-group">
-                   <label class="form-label">추가 요청사항</label>
-                   <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
-               </div>
+       <div class="additional-requests" style="margin-top: 2rem;">
+           <div class="form-group">
+               <label class="form-label">추가 요청사항</label>
+               <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
            </div>
-       </section>
-   `;
+       </div>
+   </section>
+`;
 
 previewContent.innerHTML = previewHTML;
 modal.style.display = 'block';
 document.body.style.overflow = 'hidden';
 
-
-function convertTextareaToDiv(textarea) {
-const content = textarea.value || '';
-return `<div class="preview-value" style="white-space: pre-wrap; min-height: ${textarea.style.height || '100px'}; height: auto;">${content}</div>`;
-}
-
-previewContent.innerHTML = previewHTML;
 previewContent.querySelectorAll('textarea.form-control[readonly]').forEach(textarea => {
-const div = document.createElement('div');
-div.innerHTML = convertTextareaToDiv(textarea);
-textarea.parentNode.replaceChild(div.firstChild, textarea);
+   const div = document.createElement('div');
+   div.innerHTML = `<div class="preview-value" style="white-space: pre-wrap; min-height: ${textarea.style.height || '100px'}; height: auto;">${textarea.value}</div>`;
+   textarea.parentNode.replaceChild(div.firstChild, textarea);
 });
+
+} catch (error) {
+   console.error('Error in previewApplication:', error);
+}
 }
 
 // 모달 외부 클릭 시 닫기 이벤트 추가
@@ -4203,5 +4608,106 @@ closePreview();
 
 
 </script>
+
+<script>
+let formData = {
+    // 폼 필드 데이터를 저장할 객체
+    interview_slots: []  // 면접 시간 선택 상태 저장
+};
+
+function saveFormState() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 모든 input, select, textarea 값 저장
+    form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
+        if (element.type === 'checkbox' || element.type === 'radio') {
+            formData[element.name] = element.checked;
+        } else {
+            formData[element.name] = element.value;
+        }
+    });
+
+    // 면접 시간 선택 상태 저장
+    formData.interview_slots = [...selectedInterviewSlots];
+}
+
+function restoreFormState() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 저장된 값 복원
+    for (const [name, value] of Object.entries(formData)) {
+        if (name === 'interview_slots') continue;
+        const element = form.querySelector(`[name="${name}"]`);
+        if (element) {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                element.checked = value;
+            } else {
+                element.value = value;
+            }
+        }
+    }
+
+    // 면접 시간 선택 상태 복원
+    selectedInterviewSlots = [...formData.interview_slots];
+    updateSelectedScheduleDisplay();
+}
+
+function openScheduleModal() {
+    saveFormState();  // 모달 열기 전 폼 상태 저장
+    const modal = document.getElementById('scheduleModal');
+    const modalContent = modal.querySelector('.schedule-modal-content');
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    modalContent.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+    });
+
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeScheduleModal();
+        }
+    });
+}
+
+function closeScheduleModal() {
+    const modal = document.getElementById('scheduleModal');
+    if (!modal) return;
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    restoreFormState();  // 모달 닫을 때 폼 상태 복원
+
+    setTimeout(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    }, 0);
+}
+
+function submitForm() {
+    closePreview();
+    document.getElementById('applicationForm').submit();
+}
+
+// 페이지 로드시 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('applicationForm');
+    if (!form) return;
+
+    // 모든 입력 필드에 change 이벤트 리스너 추가
+    form.querySelectorAll('input, select, textarea').forEach(element => {
+        element.addEventListener('change', saveFormState);
+    });
+});
+</script>
+    
 </body>
 </html>
