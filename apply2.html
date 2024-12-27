@@ -382,9 +382,13 @@ font-size: 0.8rem;
 }
 }
 
-/* 이 코드를 @media (max-width: 768px) {...} 안에 있는 스타일에 추가해주세요 */
 @media (max-width: 768px) {
-    /* 기본 정보 섹션의 첫번째 줄 */
+    /* 기본 정보 섹션 */
+    .form-section .form-row {
+        margin-bottom: 12px !important;
+    }
+
+    /* 첫 번째 줄: 이름, 생년월일 */
     .form-section .form-row:first-of-type {
         display: flex !important;
         flex-wrap: wrap !important;
@@ -405,79 +409,37 @@ font-size: 0.8rem;
         width: 48% !important;
     }
 
-    /* 성별 & 연락처 컨테이너 */
-    .form-section .form-row:nth-of-type(2) {
-        display: flex !important;
-        flex-wrap: wrap !important;
+    /* 성별, MBTI를 아래로 이동 */
+    .form-section .form-row:first-of-type .form-group:nth-child(3),
+    .form-section .form-row:first-of-type .form-group:nth-child(4) {
+        width: 100% !important;
+        margin-top: 8px !important;
+    }
+
+    /* 연락처, 주소 줄 */
+    .form-section .form-row.three-columns {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
         gap: 8px !important;
     }
 
-    /* 성별 */
-    .form-section .form-row:nth-of-type(2) .form-group:nth-child(1) {
-        width: 40% !important;
-    }
-
-    /* 연락처 */
-    .form-section .form-row:nth-of-type(2) .form-group:nth-child(2) {
-        width: 57% !important;
-    }
-
-    /* 본가/현재 거주지 컨테이너 */
-    .form-section .form-row:nth-of-type(3) {
-        display: flex !important;
+    /* 학교/전공 줄 */
+    .form-section .form-row:last-of-type {
+        display: grid !important;
+        grid-template-columns: 38% 60% !important;
         gap: 8px !important;
     }
 
-    /* 본가 */
-    .form-section .form-row:nth-of-type(3) .form-group:nth-child(1) {
-        width: 49% !important;
-    }
-
-    /* 현재 거주지 */
-    .form-section .form-row:nth-of-type(3) .form-group:nth-child(2) {
-        width: 49% !important;
-    }
-
-    /* 학교/전공 컨테이너 */
-    .form-section .form-row:nth-of-type(4) {
+    /* 학번/학년/휴학 줄 */
+    .form-section .form-row:last-of-type .form-group {
         display: flex !important;
+        align-items: center !important;
         gap: 8px !important;
     }
 
-    /* 학교 */
-    .form-section .form-row:nth-of-type(4) .form-group:nth-child(1) {
-        width: 38% !important;
-    }
-
-    /* 전공 */
-    .form-section .form-row:nth-of-type(4) .form-group:nth-child(2) {
-        width: 60% !important;
-    }
-
-    /* 학번/학년/휴학 컨테이너 */
-    .form-section .form-row:nth-of-type(5) {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-        align-items: flex-start !important;
-    }
-
-    /* 학번 */
-    .form-section .form-row:nth-of-type(5) .form-group:nth-child(1) {
-        width: 30% !important;
-    }
-
-    /* 학년 선택 */
-    .form-section .form-row:nth-of-type(5) .form-group:nth-child(2) {
-        width: 45% !important;
-    }
-
-    /* 휴학 체크박스 컨테이너 */
-    .form-section .form-row:nth-of-type(5) .form-group:nth-child(2) .checkbox-label {
+    .form-section .form-row:last-of-type .form-group .checkbox-label {
         position: relative !important;
-        top: auto !important;
         right: auto !important;
-        padding-top: 8px !important;
         margin-left: 8px !important;
     }
 }
