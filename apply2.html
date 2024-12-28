@@ -350,7 +350,6 @@ margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
 @media (max-width: 768px) {
 .alert-red, .alert-green {
 font-size: 0.8rem;
-margin-top: -30px !important; 
 }
 }
 
@@ -364,6 +363,13 @@ color: #dc3545;
 
 .alert-green {
 color: #2F5229;
+}
+
+@media (max-width: 768px) {
+    .driving-alert.alert-red,
+    .driving-alert.alert-green {
+        margin-top: -16px !important;  /* 이 수치를 조절하시면 됩니다 */
+    }
 }
 
 /* 모바일 대응 */
