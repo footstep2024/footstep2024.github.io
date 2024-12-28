@@ -4895,13 +4895,22 @@ document.addEventListener('DOMContentLoaded', function() {
             mbtiOptions.appendChild(option);
         });
 
-        mbtiSelect.addEventListener('mousedown', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                mbtiModal.style.display = 'block';
-                setTimeout(() => mbtiModal.classList.add('show'), 10);
-            }
-        });
+mbtiSelect.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        mbtiModal.style.display = 'block';
+        setTimeout(() => mbtiModal.classList.add('show'), 10);
+    }
+});
+
+// 기본 select 동작 완전히 막기
+mbtiSelect.addEventListener('mousedown', (e) => {
+    if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+});
     }
 
     // 학년 모달
