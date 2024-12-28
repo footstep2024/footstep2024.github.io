@@ -4872,11 +4872,109 @@ closePreview();
 <script>
 // 모바일 환경에서만 모달 열기
 document.addEventListener('DOMContentLoaded', function() {
+    // MBTI 옵션 생성
+    const mbtiTypes = [
+        'ISTJ', 'ISFJ', 'INFJ', 'INTJ',
+        'ISTP', 'ISFP', 'INFP', 'INTP',
+        'ESTP', 'ESFP', 'ENFP', 'ENTP',
+        'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'
+    ];
+
+    const mbtiOptions = document.getElementById('mbtiOptions');
+    mbtiTypes.forEach(type => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = type;
+        option.onclick = function() {
+            document.querySelector('select[name="mbti"]').value = type;
+            document.querySelector('select[name="mbti_mobile"]').value = type;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        mbtiOptions.appendChild(option);
+    });
+
+    // 학년 옵션 생성
+    const normalGrades = document.getElementById('normalGradeOptions');
+    ['1학년', '2학년', '3학년', '4학년', '5학년'].forEach((grade, index) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = grade;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = (index + 1).toString();
+            document.querySelector('select[name="grade_mobile"]').value = (index + 1).toString();
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        normalGrades.appendChild(option);
+    });
+
+    const medicalGrades = document.getElementById('medicalGradeOptions');
+    [
+        ['예과 1학년', 'pre1'],
+        ['예과 2학년', 'pre2'],
+        ['본과 1학년', 'med1'],
+        ['본과 2학년', 'med2'],
+        ['본과 3학년', 'med3'],
+        ['본과 4학년', 'med4']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        medicalGrades.appendChild(option);
+    });
+
+    const graduateOptions = document.getElementById('graduateOptions');
+    [
+        ['졸업유예', 'postpone'],
+        ['졸업예정', 'graduating'],
+        ['졸업', 'graduated']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        graduateOptions.appendChild(option);
+    });
+
+    // 운전가능여부 옵션 생성
+    const drivingOptions = document.getElementById('drivingOptions');
+    [
+        ['자차 보유', 'car'],
+        ['면허만 보유', 'license'],
+        ['해당사항 없음', 'none']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="driving_status"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        drivingOptions.appendChild(option);
+    });
+
     if (window.innerWidth <= 768) {
         // MBTI select 제어
         const mbtiSelect = document.querySelector('select[name="mbti"]');
         if (mbtiSelect) {
-            // 기본 select 이벤트 완전히 차단
             mbtiSelect.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
