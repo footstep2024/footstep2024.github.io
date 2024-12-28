@@ -4872,77 +4872,70 @@ closePreview();
 <script>
 // 모바일 환경에서만 모달 열기
 document.addEventListener('DOMContentLoaded', function() {
-    // MBTI 모달
-    const mbtiSelect = document.querySelector('select[name="mbti"]');
-    const mbtiModal = document.getElementById('mbtiModal');
-    const mbtiOptions = document.getElementById('mbtiOptions');
-    
-    if (mbtiSelect && window.innerWidth <= 768) {
-        const mbtiValues = ['ISTJ', 'ISFJ', 'INFJ', 'INTJ', 'ISTP', 'ISFP', 'INFP', 'INTP', 
-                           'ESTP', 'ESFP', 'ENFP', 'ENTP', 'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'];
-        
-        mbtiOptions.innerHTML = ''; // 기존 옵션 클리어
-        
-        mbtiValues.forEach(value => {
-            const option = document.createElement('div');
-            option.className = 'select-option';
-            option.textContent = value;
-            option.onclick = () => {
-                mbtiSelect.value = value;
-                mbtiModal.classList.remove('show');
-                setTimeout(() => mbtiModal.style.display = 'none', 300);
-            };
-            mbtiOptions.appendChild(option);
-        });
-
-mbtiSelect.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
-        e.preventDefault();
-        e.stopPropagation();
-        mbtiModal.style.display = 'block';
-        setTimeout(() => mbtiModal.classList.add('show'), 10);
-    }
-});
-
-// 기본 select 동작 완전히 막기
-mbtiSelect.addEventListener('mousedown', (e) => {
-    if (window.innerWidth <= 768) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-});
-    }
-
-    // 학년 모달
-    const gradeSelect = document.querySelector('select[name="grade"]');
-    const gradeModal = document.getElementById('gradeModal');
-    
-    if (gradeSelect && window.innerWidth <= 768) {
-        gradeSelect.addEventListener('mousedown', (e) => {
-            if (window.innerWidth <= 768) {
+        // MBTI select 제어
+        const mbtiSelect = document.querySelector('select[name="mbti"]');
+        if (mbtiSelect) {
+            // 기본 select 이벤트 완전히 차단
+            mbtiSelect.addEventListener('touchstart', (e) => {
                 e.preventDefault();
-                gradeModal.style.display = 'block';
-                setTimeout(() => gradeModal.classList.add('show'), 10);
-            }
-        });
-    }
+                e.stopPropagation();
+                document.getElementById('mbtiModal').style.display = 'block';
+                setTimeout(() => document.getElementById('mbtiModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            mbtiSelect.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('mbtiModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('mbtiModal').classList.add('show'), 10);
+                }
+            });
+        }
 
-    // 운전가능여부 모달
-    const drivingSelect = document.querySelector('select[name="driving_status"]');
-    const drivingModal = document.getElementById('drivingModal');
-    
-    if (drivingSelect && window.innerWidth <= 768) {
-        drivingSelect.addEventListener('mousedown', (e) => {
-            if (window.innerWidth <= 768) {
+        // 학년 select 제어
+        const gradeSelect = document.querySelector('select[name="grade"]');
+        if (gradeSelect) {
+            gradeSelect.addEventListener('touchstart', (e) => {
                 e.preventDefault();
-                drivingModal.style.display = 'block';
-                setTimeout(() => drivingModal.classList.add('show'), 10);
-            }
-        });
-    }
-});
+                e.stopPropagation();
+                document.getElementById('gradeModal').style.display = 'block';
+                setTimeout(() => document.getElementById('gradeModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            gradeSelect.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('gradeModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('gradeModal').classList.add('show'), 10);
+                }
+            });
+        }
 
-    // 모든 모달의 닫기 버튼 이벤트
+        // 운전가능여부 select 제어
+        const drivingSelect = document.querySelector('select[name="driving_status"]');
+        if (drivingSelect) {
+            drivingSelect.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('drivingModal').style.display = 'block';
+                setTimeout(() => document.getElementById('drivingModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            drivingSelect.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('drivingModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('drivingModal').classList.add('show'), 10);
+                }
+            });
+        }
+    }
+
+    // 모달 닫기 버튼 이벤트
     document.querySelectorAll('.select-modal .modal-close').forEach(button => {
         button.addEventListener('click', function() {
             const modal = this.closest('.select-modal');
@@ -4960,6 +4953,7 @@ mbtiSelect.addEventListener('mousedown', (e) => {
             }
         });
     });
+});
     
 </script>
 
