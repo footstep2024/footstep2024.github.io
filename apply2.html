@@ -2460,6 +2460,71 @@ gap: 1rem;
 padding: 0 1rem;
 }
 
+/* 선택 모달 스타일 */
+.select-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.select-modal-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.select-modal.show .select-modal-content {
+    transform: translateY(0);
+}
+
+.select-options {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.select-option {
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-option:active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.select-group-label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin: 16px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+@media (max-width: 768px) {
+    select.form-control {
+        pointer-events: none;
+    }
+}
+
 .preview-btn,
 .submit-btn {
 width: 100%;
@@ -4797,6 +4862,141 @@ closePreview();
 });
 
 
+
+<script>
+// 모바일 환경에서만 모달 열기
+if (window.innerWidth <= 768) {
+    // MBTI 모달
+    const mbtiSelect = document.querySelector('select[name="mbti_mobile"]');
+    const mbtiModal = document.getElementById('mbtiModal');
+    const mbtiOptions = document.getElementById('mbtiOptions');
+    
+    if (mbtiSelect) {
+        const mbtiValues = ['ISTJ', 'ISFJ', 'INFJ', 'INTJ', 'ISTP', 'ISFP', 'INFP', 'INTP', 
+                           'ESTP', 'ESFP', 'ENFP', 'ENTP', 'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'];
+        
+        mbtiValues.forEach(value => {
+            const option = document.createElement('div');
+            option.className = 'select-option';
+            option.textContent = value;
+            option.onclick = () => {
+                mbtiSelect.value = value;
+                mbtiModal.classList.remove('show');
+                setTimeout(() => mbtiModal.style.display = 'none', 300);
+            };
+            mbtiOptions.appendChild(option);
+        });
+
+        mbtiSelect.addEventListener('click', (e) => {
+            e.preventDefault();
+            mbtiModal.style.display = 'block';
+            setTimeout(() => mbtiModal.classList.add('show'), 10);
+        });
+    }
+
+    // 학년 모달
+    const gradeSelect = document.querySelector('select[name="grade_mobile"]');
+    const gradeModal = document.getElementById('gradeModal');
+    
+    if (gradeSelect) {
+        const normalGrades = [
+            { value: '1', text: '1학년' },
+            { value: '2', text: '2학년' },
+            { value: '3', text: '3학년' },
+            { value: '4', text: '4학년' },
+            { value: '5', text: '5학년' }
+        ];
+        
+        const medicalGrades = [
+            { value: 'pre1', text: '예과 1학년' },
+            { value: 'pre2', text: '예과 2학년' },
+            { value: 'med1', text: '본과 1학년' },
+            { value: 'med2', text: '본과 2학년' },
+            { value: 'med3', text: '본과 3학년' },
+            { value: 'med4', text: '본과 4학년' }
+        ];
+        
+        const graduateGrades = [
+            { value: 'postpone', text: '졸업유예' },
+            { value: 'graduating', text: '졸업예정' },
+            { value: 'graduated', text: '졸업' }
+        ];
+        
+        function createOptions(container, options) {
+            options.forEach(({ value, text }) => {
+                const option = document.createElement('div');
+                option.className = 'select-option';
+                option.textContent = text;
+                option.onclick = () => {
+                    gradeSelect.value = value;
+                    gradeModal.classList.remove('show');
+                    setTimeout(() => gradeModal.style.display = 'none', 300);
+                };
+                container.appendChild(option);
+            });
+        }
+
+        createOptions(document.getElementById('normalGradeOptions'), normalGrades);
+        createOptions(document.getElementById('medicalGradeOptions'), medicalGrades);
+        createOptions(document.getElementById('graduateOptions'), graduateGrades);
+
+        gradeSelect.addEventListener('click', (e) => {
+            e.preventDefault();
+            gradeModal.style.display = 'block';
+            setTimeout(() => gradeModal.classList.add('show'), 10);
+        });
+    }
+
+    // 운전가능여부 모달
+    const drivingSelect = document.querySelector('select[name="driving_status"]');
+    const drivingModal = document.getElementById('drivingModal');
+    const drivingOptions = document.getElementById('drivingOptions');
+    
+    if (drivingSelect) {
+        const drivingValues = [
+            { value: 'car', text: '자차 보유' },
+            { value: 'license', text: '면허만 보유' },
+            { value: 'none', text: '해당사항 없음' }
+        ];
+        
+        drivingValues.forEach(({ value, text }) => {
+            const option = document.createElement('div');
+            option.className = 'select-option';
+            option.textContent = text;
+            option.onclick = () => {
+                drivingSelect.value = value;
+                drivingModal.classList.remove('show');
+                setTimeout(() => drivingModal.style.display = 'none', 300);
+            };
+            drivingOptions.appendChild(option);
+        });
+
+        drivingSelect.addEventListener('click', (e) => {
+            e.preventDefault();
+            drivingModal.style.display = 'block';
+            setTimeout(() => drivingModal.classList.add('show'), 10);
+        });
+    }
+
+    // 모든 모달의 닫기 버튼 이벤트
+    document.querySelectorAll('.select-modal .modal-close').forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        });
+    });
+
+    // 모달 외부 클릭시 닫기
+    document.querySelectorAll('.select-modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        });
+    });
+}
 </script>
 
 <script>
@@ -4898,6 +5098,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<!-- MBTI 선택 모달 -->
+<div class="select-modal" id="mbtiModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>MBTI 선택</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-options" id="mbtiOptions"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 학년 선택 모달 -->
+<div class="select-modal" id="gradeModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>학년 선택</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-group-label">일반학과</div>
+            <div class="select-options" id="normalGradeOptions"></div>
+            <div class="select-group-label">의학/약학계열</div>
+            <div class="select-options" id="medicalGradeOptions"></div>
+            <div class="select-group-label">졸업관련</div>
+            <div class="select-options" id="graduateOptions"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 운전가능여부 선택 모달 -->
+<div class="select-modal" id="drivingModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>운전 가능 여부</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-options" id="drivingOptions"></div>
+        </div>
+    </div>
+</div>
     
 </body>
 </html>
