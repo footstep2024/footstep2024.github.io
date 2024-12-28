@@ -343,6 +343,14 @@ font-size: 0.75rem;
 line-height: 1;
 }
 
+@media (max-width: 768px) {
+    .schedule-description + .alerts {
+        margin-top: 1.5rem;  /* 설명문과의 간격 */
+        padding-top: 0.5rem; /* 위쪽 여백 */
+        border-top: 1px solid rgba(47, 82, 41, 0.1); /* 구분선 추가 */
+    }
+}
+
 .driving-alert {
 margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
 }
@@ -1206,9 +1214,25 @@ font-size: 0.9rem;
 }
 
 .info-sub {
-color: var(--light-text);
-font-size: 0.9em;
-margin-left: 0.5rem;
+    color: var(--light-text);
+    font-size: 0.9em;
+    margin-left: 0.5rem;
+}
+
+/* 모바일에서 여행시 일요일 포함 텍스트 위치 조정 */
+@media (max-width: 768px) {
+    .info-item:first-child .info-sub {
+        position: absolute;
+        top: -5px;  /* 위치 조정 */
+        right: 1rem;  /* 오른쪽 여백 */
+        margin-left: 0;
+        font-size: 0.75em;  /* 폰트 크기 조정 */
+    }
+    
+    /* 부모 요소에 relative 포지션 추가 */
+    .schedule-info {
+        position: relative;
+    }
 }
 
 /* 설명 텍스트 스타일 */
@@ -1234,9 +1258,18 @@ border-top: 1px solid rgba(47, 82, 41, 0.1);
 padding: 1.2rem;
 }
 
-.radio-group-container {
-flex-direction: column;
-gap: 1rem;
+/* 모바일에서의 라디오 그룹 스타일 */
+@media (max-width: 768px) {
+    .radio-group-container {
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+    }
+    
+    .radio-group-container .label-text {
+        font-size: 0.75rem; /* 폰트 크기 줄임 */
+    }
 }
 
 .info-item {
