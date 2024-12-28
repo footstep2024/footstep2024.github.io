@@ -428,6 +428,7 @@ font-size: 0.8rem;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        padding: 0 1rem;
     }
 
     .mobile-form-row {
@@ -458,10 +459,10 @@ font-size: 0.8rem;
         display: grid;
         grid-template-columns: 28% 38% 34%;
         gap: 8px;
-        margin: 0;
         padding-left: 0;
         padding-right: 0; 
-        width: 100%; 
+        margin: 0 -1rem;  /* mobile-form-grid의 패딩만큼 네거티브 마진 */
+        width: calc(100% + 2rem);  /* 전체 너비 + 좌우 패딩 */
     }
 
     .mobile-form-row:first-of-type .form-group {
