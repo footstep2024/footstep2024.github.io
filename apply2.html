@@ -4972,17 +4972,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (window.innerWidth <= 768) {
-        // MBTI select 제어
-        const mbtiSelect = document.querySelector('select[name="mbti"]');
-        if (mbtiSelect) {
-            mbtiSelect.addEventListener('touchstart', (e) => {
+    // MBTI select 제어 (PC와 모바일 모두)
+    const mbtiSelectPC = document.querySelector('select[name="mbti"]');
+    const mbtiSelectMobile = document.querySelector('select[name="mbti_mobile"]');
+    [mbtiSelectPC, mbtiSelectMobile].forEach(select => {
+        if (select) {
+            select.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 document.getElementById('mbtiModal').style.display = 'block';
                 setTimeout(() => document.getElementById('mbtiModal').classList.add('show'), 10);
             }, { passive: false });
             
-            mbtiSelect.addEventListener('mousedown', (e) => {
+            select.addEventListener('mousedown', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -4991,18 +4993,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
-
-        // 학년 select 제어
-        const gradeSelect = document.querySelector('select[name="grade"]');
-        if (gradeSelect) {
-            gradeSelect.addEventListener('touchstart', (e) => {
+    });
+    
+    // 학년 select 제어 (PC와 모바일 모두)
+    const gradeSelectPC = document.querySelector('select[name="grade"]');
+    const gradeSelectMobile = document.querySelector('select[name="grade_mobile"]');
+    [gradeSelectPC, gradeSelectMobile].forEach(select => {
+        if (select) {
+            select.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 document.getElementById('gradeModal').style.display = 'block';
                 setTimeout(() => document.getElementById('gradeModal').classList.add('show'), 10);
             }, { passive: false });
             
-            gradeSelect.addEventListener('mousedown', (e) => {
+            select.addEventListener('mousedown', (e) => {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -5011,6 +5016,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    });
 
         // 운전가능여부 select 제어
         const drivingSelect = document.querySelector('select[name="driving_status"]');
