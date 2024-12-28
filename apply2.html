@@ -2521,7 +2521,13 @@ padding: 0 1rem;
 
 @media (max-width: 768px) {
     select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         cursor: pointer;
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 0.7rem center;
+        background-size: 1.2rem;
+        padding-right: 2.5rem;
     }
 }
 
@@ -4871,9 +4877,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const mbtiModal = document.getElementById('mbtiModal');
     const mbtiOptions = document.getElementById('mbtiOptions');
     
-    if (mbtiSelect) {
+    if (mbtiSelect && window.innerWidth <= 768) {
         const mbtiValues = ['ISTJ', 'ISFJ', 'INFJ', 'INTJ', 'ISTP', 'ISFP', 'INFP', 'INTP', 
                            'ESTP', 'ESFP', 'ENFP', 'ENTP', 'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'];
+        
+        mbtiOptions.innerHTML = ''; // 기존 옵션 클리어
         
         mbtiValues.forEach(value => {
             const option = document.createElement('div');
@@ -4887,10 +4895,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mbtiOptions.appendChild(option);
         });
 
-        mbtiSelect.addEventListener('click', (e) => {
-            e.preventDefault();
-            mbtiModal.style.display = 'block';
-            setTimeout(() => mbtiModal.classList.add('show'), 10);
+        mbtiSelect.addEventListener('mousedown', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                mbtiModal.style.display = 'block';
+                setTimeout(() => mbtiModal.classList.add('show'), 10);
+            }
         });
     }
 
@@ -4898,85 +4908,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const gradeSelect = document.querySelector('select[name="grade"]');
     const gradeModal = document.getElementById('gradeModal');
     
-    if (gradeSelect) {
-        const normalGrades = [
-            { value: '1', text: '1학년' },
-            { value: '2', text: '2학년' },
-            { value: '3', text: '3학년' },
-            { value: '4', text: '4학년' },
-            { value: '5', text: '5학년' }
-        ];
-        
-        const medicalGrades = [
-            { value: 'pre1', text: '예과 1학년' },
-            { value: 'pre2', text: '예과 2학년' },
-            { value: 'med1', text: '본과 1학년' },
-            { value: 'med2', text: '본과 2학년' },
-            { value: 'med3', text: '본과 3학년' },
-            { value: 'med4', text: '본과 4학년' }
-        ];
-        
-        const graduateGrades = [
-            { value: 'postpone', text: '졸업유예' },
-            { value: 'graduating', text: '졸업예정' },
-            { value: 'graduated', text: '졸업' }
-        ];
-        
-        function createOptions(container, options) {
-            options.forEach(({ value, text }) => {
-                const option = document.createElement('div');
-                option.className = 'select-option';
-                option.textContent = text;
-                option.onclick = () => {
-                    gradeSelect.value = value;
-                    gradeModal.classList.remove('show');
-                    setTimeout(() => gradeModal.style.display = 'none', 300);
-                };
-                container.appendChild(option);
-            });
-        }
-
-        createOptions(document.getElementById('normalGradeOptions'), normalGrades);
-        createOptions(document.getElementById('medicalGradeOptions'), medicalGrades);
-        createOptions(document.getElementById('graduateOptions'), graduateGrades);
-
-        gradeSelect.addEventListener('click', (e) => {
-            e.preventDefault();
-            gradeModal.style.display = 'block';
-            setTimeout(() => gradeModal.classList.add('show'), 10);
+    if (gradeSelect && window.innerWidth <= 768) {
+        gradeSelect.addEventListener('mousedown', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                gradeModal.style.display = 'block';
+                setTimeout(() => gradeModal.classList.add('show'), 10);
+            }
         });
     }
 
     // 운전가능여부 모달
     const drivingSelect = document.querySelector('select[name="driving_status"]');
     const drivingModal = document.getElementById('drivingModal');
-    const drivingOptions = document.getElementById('drivingOptions');
     
-    if (drivingSelect) {
-        const drivingValues = [
-            { value: 'car', text: '자차 보유' },
-            { value: 'license', text: '면허만 보유' },
-            { value: 'none', text: '해당사항 없음' }
-        ];
-        
-        drivingValues.forEach(({ value, text }) => {
-            const option = document.createElement('div');
-            option.className = 'select-option';
-            option.textContent = text;
-            option.onclick = () => {
-                drivingSelect.value = value;
-                drivingModal.classList.remove('show');
-                setTimeout(() => drivingModal.style.display = 'none', 300);
-            };
-            drivingOptions.appendChild(option);
-        });
-
-        drivingSelect.addEventListener('click', (e) => {
-            e.preventDefault();
-            drivingModal.style.display = 'block';
-            setTimeout(() => drivingModal.classList.add('show'), 10);
+    if (drivingSelect && window.innerWidth <= 768) {
+        drivingSelect.addEventListener('mousedown', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                drivingModal.style.display = 'block';
+                setTimeout(() => drivingModal.classList.add('show'), 10);
+            }
         });
     }
+});
 
     // 모든 모달의 닫기 버튼 이벤트
     document.querySelectorAll('.select-modal .modal-close').forEach(button => {
@@ -4996,7 +4951,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-}
+    
 </script>
 
 <script>
