@@ -1291,6 +1291,44 @@ transform: none;
 }
 }
 
+/* 모바일에서 운전가능여부와 SNS 입력 영역 스타일 */
+@media (max-width: 768px) {
+    /* 운전가능여부 섹션 스타일링 */
+    div[style*="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px"] > div {
+        flex-direction: column;
+    }
+
+    /* 운전가능여부 선택 드롭다운 */
+    select[name="driving_status"] {
+        width: 100% !important;
+        margin-bottom: 8px;
+    }
+
+    /* SNS 및 여행경비 입력 섹션 스타일링 */
+    div[style*="margin-top: 16px"] > div[style*="display: flex; gap: 24px; align-items: center"] {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    /* SNS 및 여행경비 입력 필드 */
+    div[style*="margin-top: 16px"] input[type="text"] {
+        width: 100% !important;
+        margin-bottom: 8px;
+    }
+
+    /* 알림 텍스트 영역 조정 */
+    div[style*="margin-top: 16px"] .alerts {
+        margin-top: 4px !important;
+        flex-grow: 1;
+        width: 100%;
+    }
+    
+    /* 운전 관련 알림 텍스트 조정 */
+    .driving-alert {
+        margin-top: 8px !important;
+    }
+}
+    
 .example-modal {
 display: none;
 position: fixed;
