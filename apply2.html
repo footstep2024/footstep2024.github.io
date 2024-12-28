@@ -2521,7 +2521,7 @@ padding: 0 1rem;
 
 @media (max-width: 768px) {
     select.form-control {
-        pointer-events: none;
+        cursor: pointer;
     }
 }
 
@@ -4865,7 +4865,7 @@ closePreview();
 
 <script>
 // 모바일 환경에서만 모달 열기
-if (window.innerWidth <= 768) {
+document.addEventListener('DOMContentLoaded', function() {
     // MBTI 모달
     const mbtiSelect = document.querySelector('select[name="mbti"]');
     const mbtiModal = document.getElementById('mbtiModal');
