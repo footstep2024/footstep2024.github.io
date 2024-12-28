@@ -3855,15 +3855,23 @@ if(dateInput) {
 
 // 달력 확인/취소 버튼 이벤트
 if(confirmBtn) {
-confirmBtn.addEventListener('click', function() {
-if(selectedDate) {
-const year = selectedDate.getFullYear();
-const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-const day = String(selectedDate.getDate()).padStart(2, '0');
-dateInput.value = `${year}-${month}-${day}`;
-}
-dateModal.style.display = 'none';
-});
+    confirmBtn.addEventListener('click', function() {
+        if(selectedDate) {
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            
+            // PC 버전 입력칸 업데이트
+            const pcInput = document.querySelector('input[name="birthdate"]');
+            if(pcInput) pcInput.value = formattedDate;
+            
+            // 모바일 버전 입력칸 업데이트
+            const mobileInput = document.querySelector('input[name="birthdate_mobile"]');
+            if(mobileInput) mobileInput.value = formattedDate;
+        }
+        dateModal.style.display = 'none';
+    });
 }
 
 if(cancelBtn) {
