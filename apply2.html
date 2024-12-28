@@ -1291,6 +1291,14 @@ transform: none;
 }
 }
 
+@media (max-width: 768px) {
+    .info-grid + .alerts .alert-red,
+    .info-grid + .alerts .alert-green {
+        margin-top: -8px !important;  /* 이 수치를 원하는 만큼 조정하세요 */
+        margin-bottom: 4px !important;  /* 텍스트 간격 조정 */
+    }
+}
+    
 /* 모바일에서 운전가능여부와 SNS 입력 영역 스타일 */
 @media (max-width: 768px) {
     /* 운전가능여부 섹션 스타일링 */
