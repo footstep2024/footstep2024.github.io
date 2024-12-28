@@ -3832,13 +3832,25 @@ const yearDownBtn = document.querySelector('.year-down');
 let currentDate = new Date(2001, 0); // 01년생부터 시작
 let selectedDate = null;
 
-// 날짜 선택 모달 이벤트
 if(dateInput) {
-dateInput.addEventListener('click', function(e) {
-e.preventDefault();
-dateModal.style.display = 'block';
-renderCalendar(currentDate);
-});
+    // 모바일에서 input을 클릭했을 때 기본 달력이 뜨는 것을 방지
+    dateInput.addEventListener('focus', function(e) {
+        e.preventDefault();
+        this.blur();
+        dateModal.style.display = 'block';
+        renderCalendar(currentDate);
+    });
+    
+    // 모바일에서도 동일하게 적용
+    const dateInputMobile = document.querySelector('input[name="birthdate_mobile"]');
+    if(dateInputMobile) {
+        dateInputMobile.addEventListener('focus', function(e) {
+            e.preventDefault();
+            this.blur();
+            dateModal.style.display = 'block';
+            renderCalendar(currentDate);
+        });
+    }
 }
 
 // 달력 확인/취소 버튼 이벤트
