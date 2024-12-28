@@ -5301,7 +5301,49 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- MBTI 선택 모달 -->
+<div class="select-modal" id="mbtiModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>MBTI 선택</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-options" id="mbtiOptions"></div>
+        </div>
+    </div>
+</div>
 
+<!-- 학년 선택 모달 -->
+<div class="select-modal" id="gradeModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>학년 선택</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-group-label">일반학과</div>
+            <div class="select-options" id="normalGradeOptions"></div>
+            <div class="select-group-label">의학/약학계열</div>
+            <div class="select-options" id="medicalGradeOptions"></div>
+            <div class="select-group-label">졸업관련</div>
+            <div class="select-options" id="graduateOptions"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 운전가능여부 선택 모달 -->
+<div class="select-modal" id="drivingModal">
+    <div class="select-modal-content">
+        <div class="modal-header">
+            <h3>운전 가능 여부</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="select-options" id="drivingOptions"></div>
+        </div>
+    </div>
+</div>
     
 </body>
 </html>
