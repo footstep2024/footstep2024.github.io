@@ -165,7 +165,6 @@ gap: 1.5rem;  /* 모바일에서는 간격 줄임 */
 }
 }
 
-/* section-title 스타일도 수정이 필요합니다 */
 .section-title {
 font-size: 1.5rem;
 font-weight: 700;
@@ -175,7 +174,29 @@ padding-bottom: 1rem;
 border-bottom: 2px solid var(--border-color);
 display: flex;
 justify-content: space-between;
-align-items: center;
+align-items: baseline;
+}
+
+/* 모바일 대응 추가 */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+        flex-direction: row;  /* 가로 배치 유지 */
+        align-items: center;  /* 중앙 정렬 */
+        gap: 1rem;           /* 요소 간 간격 */
+    }
+
+    .section-title .checkbox-label {
+        margin-left: auto;
+        padding-top: 0;      /* 패딩 제거 */
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .section-title .checkbox-label .label-text {
+        font-size: 0.8rem;   /* 텍스트 크기 조절 */
+    }
 }
 
 .form-row {
