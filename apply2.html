@@ -2138,6 +2138,7 @@ color: var(--text-color);
 .schedule-select-wrapper {
 text-align: center;
 margin: 2rem 0;
+width: 100%;  /* 추가 */
 }
 
 .schedule-select-btn {
@@ -2166,6 +2167,7 @@ transform: translateY(-2px);
     border: 2px dashed rgba(47, 82, 41, 0.15);
     border-radius: 12px;
     margin: 1rem 0;
+    width: 100%;
 }
 
 .no-schedule i {
@@ -3570,16 +3572,15 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <span class="required-badge">필수</span>
 </div>
 
-<div class="notice-list">
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_1" required>
-<span class="check-text">확인함</span>
-</label>
-</div>
+   <div class="notice-content">
+       <i class="fas fa-circle-exclamation"></i>
+       <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다. <button class="example-btn" type="button" data-type="records">활동 기록 보기</button></p>
+       <label class="confirm-check">
+           <input type="checkbox" name="notice_check_1" required>
+           <span class="check-text">확인함</span>
+       </label>
+   </div>
 </div>
 
 <div class="notice-item">
@@ -4320,16 +4321,21 @@ return;
 }
 
 const contents = {
-feedback: {
-src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-title: '피드백 예시',
-desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-},
-content: {
-src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-title: '콘텐츠 공유 예시',
-desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-}
+    feedback: {
+        src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+        title: '피드백 예시',
+        desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+    },
+    content: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+        title: '콘텐츠 공유 예시',
+        desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+    },
+    records: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/all.jpg',
+        title: '활동 기록',
+        desc: '발자취와 함께한 우리들의 여정'
+    }
 };
 
 const content = contents[type];
@@ -5338,6 +5344,28 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="modal-body">
                 <div class="select-options" id="drivingOptions"></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="example-modal" id="recordsModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title"></h3>
+            <p class="modal-desc"></p>
+        </div>
+        <div class="modal-image-container">
+            <div class="example-image-container">
+                <img id="recordsImage" src="" alt="예시 이미지">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-mouse"></i>
+            스크롤하여 더 보기
         </div>
     </div>
 </div>
