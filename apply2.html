@@ -428,28 +428,16 @@ font-size: 0.8rem;
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 0;  /* 전체 그리드의 패딩 제거 */
     }
 
     .mobile-form-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        width: calc(100% - 32px);
-        margin: 0;    /* 마진 제거 */
     }
 
     .mobile-form-row .form-group {
-        width: 100%;  /* form-group 너비 설정 */
         margin: 0;
-    }
-
-    .mobile-form-row:first-of-type {
-        display: grid;
-        grid-template-columns: 28% 38% 34%;  /* 비율 유지 */
-        gap: 8px;
-        margin: 0;
-        width: calc(100% - 32px);  /* 전체 너비에서 좌우 패딩만큼 제외 */
     }
 
     .mobile-form-row .gender-buttons {
