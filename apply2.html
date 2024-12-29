@@ -2690,6 +2690,95 @@ padding: 0.875rem;
 }
 }
 
+
+
+/* 모바일 공지사항 스타일 */
+@media (max-width: 768px) {
+    .mobile-notice-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .mobile-notice-item {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+    }
+
+    .mobile-notice-item .notice-icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        color: var(--primary-color);
+    }
+
+    .mobile-notice-item .notice-content {
+        flex: 1;
+    }
+
+    .mobile-notice-item p {
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-color);
+        word-break: keep-all;
+    }
+
+    .mobile-example-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 8px;
+        padding: 6px 12px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--primary-color);
+        font-size: 0.75rem;
+    }
+
+    .mobile-example-btn.warning {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
+    .mobile-confirm {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(47, 82, 41, 0.1);
+    }
+
+    .mobile-confirm input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+
+    .mobile-confirm .confirm-text {
+        font-size: 0.8rem;
+        color: var(--light-text);
+    }
+
+    .mobile-notice-item.warning {
+        background: rgba(220, 53, 69, 0.03);
+    }
+
+    .mobile-notice-item.warning .notice-icon {
+        color: #dc3545;
+    }
+
+    .mobile-confirm.warning .confirm-text {
+        color: #dc3545;
+    }
+}
+    
 </style>
 
 <style>
@@ -3956,6 +4045,140 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 </section>
+
+
+<!-- 모바일용 활동 안내사항 확인 섹션 -->
+<section class="form-section mobile-only">
+    <h2 class="section-title">활동 안내사항 확인</h2>
+
+    <div class="mobile-notice-list">
+        <!-- 준비과정 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+                <button type="button" class="mobile-example-btn" data-type="records">
+                    <i class="fas fa-image"></i>
+                    발자취의 여행 준비
+                </button>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_1" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 여행 경비 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_2" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 단체여행 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
+                <button type="button" class="mobile-example-btn" data-type="schedule">
+                    <i class="fas fa-image"></i>
+                    지난 학기 기록
+                </button>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_3" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 가입비 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_4" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 활동 제재 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_5" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 성적자기결정권 공지 -->
+        <div class="mobile-notice-item warning">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.</p>
+                <button type="button" class="mobile-example-btn warning" data-type="rules">
+                    <i class="fas fa-image"></i>
+                    관련 회칙 보기
+                </button>
+                <label class="mobile-confirm warning">
+                    <input type="checkbox" name="notice_check_mobile_6" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 허위기재 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_7" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 접수확인 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_8" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 <div class="button-group">
 <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
