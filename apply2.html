@@ -4060,10 +4060,10 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
-                <button type="button" class="mobile-example-btn" data-type="records">
-                    <i class="fas fa-image"></i>
-                    발자취의 여행 준비
-                </button>
+                    <button type="button" class="mobile-example-btn" data-type="records">
+                        <i class="fas fa-image"></i>
+                        발자취의 여행 준비
+                    </button>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_1" required>
                     <span class="confirm-text">확인했습니다</span>
@@ -4092,10 +4092,10 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
-                <button type="button" class="mobile-example-btn" data-type="schedule">
-                    <i class="fas fa-image"></i>
-                    지난 학기 기록
-                </button>
+                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                        <i class="fas fa-image"></i>
+                        지난 학기 기록
+                    </button>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_3" required>
                     <span class="confirm-text">확인했습니다</span>
@@ -4138,10 +4138,10 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.</p>
-                <button type="button" class="mobile-example-btn warning" data-type="rules">
-                    <i class="fas fa-image"></i>
-                    관련 회칙 보기
-                </button>
+                    <button type="button" class="mobile-example-btn warning" data-type="rules">
+                        <i class="fas fa-image"></i>
+                        관련 회칙 보기
+                    </button>
                 <label class="mobile-confirm warning">
                     <input type="checkbox" name="notice_check_mobile_6" required>
                     <span class="confirm-text">확인했습니다</span>
@@ -4863,6 +4863,31 @@ function closeExample() {
     if (scheduleRulesModal) scheduleRulesModal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 모바일 예시 버튼 이벤트 리스너
+    document.querySelectorAll('.mobile-example-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const type = this.getAttribute('data-type');
+            showExample(type);  // 기존 showExample 함수 재사용
+        });
+    });
+
+    // 모바일 확인 체크박스 이벤트 리스너
+    document.querySelectorAll('.mobile-confirm input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('click', function() {
+            const confirmText = this.nextElementSibling;
+            if (this.checked) {
+                confirmText.style.color = 'var(--primary-color)';
+                confirmText.style.fontWeight = '500';
+            } else {
+                confirmText.style.color = 'var(--light-text)';
+                confirmText.style.fontWeight = 'normal';
+            }
+        });
+    });
+});
 
 function updatePlaceholder(type) {
 const textarea = document.getElementById('travelEssay');
