@@ -1214,86 +1214,67 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    /* 카드 레이아웃 조정 */
-    .schedule-card {
-        padding: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-    /* 헤더 부분 정리 */
-    .card-header {
-        padding-bottom: 0.8rem;
-        margin-bottom: 1rem;
-        align-items: center;
-    }
-
-    /* 정보 박스 스타일링 */
-    .schedule-info {
-        background: rgba(47, 82, 41, 0.03);
+    /* 기존 alerts 컨테이너 수정 */
+    .schedule-card .alerts {
         padding: 1rem;
+        margin-top: 0.5rem;
+        background: rgba(47, 82, 41, 0.02);
         border-radius: 8px;
-        margin-bottom: 1rem;
+        position: relative;
     }
 
-    /* 각 정보 아이템 간격 조정 */
-    .info-item {
+    /* 알림 메시지 레이아웃 수정 */
+    .alert-red, .alert-green {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+        padding-right: 60px; /* 예시 버튼 공간 확보 */
+    }
+
+    /* 알림 아이콘 간격 조정 */
+    .alert-red i, .alert-green i {
+        margin-right: 0.3rem;
+        width: 14px;
+        text-align: center;
+    }
+
+    /* 예시 버튼 스타일 통일 */
+    .example-btn {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+        background: white;
+        border: 1px solid rgba(47, 82, 41, 0.15);
+        border-radius: 4px;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
+        gap: 0.3rem;
+        box-shadow: 0 1px 2px rgba(47, 82, 41, 0.05);
     }
 
-    /* 아이콘 스타일링 */
-    .info-item i {
-        width: 20px;
-        color: var(--primary-color);
-        font-size: 0.9rem;
+    .example-btn i {
+        font-size: 0.7rem;
     }
 
-    /* 레이블 스타일링 */
-    .info-label {
-        min-width: 40px;
-        font-size: 0.85rem;
-    }
-
-    /* 값 스타일링 */
-    .info-value {
-        font-size: 0.85rem;
-    }
-
-    /* 서브 텍스트 위치 조정 */
-    .info-item:first-child .info-sub {
-        position: absolute;
-        top: -1rem;
-        right: 1rem;
-        font-size: 0.75rem;
-        color: var(--light-text);
+    /* 예시 버튼 호버 효과 */
+    .example-btn:hover {
         background: rgba(47, 82, 41, 0.05);
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
+        transform: translateY(-50%) translateX(-2px);
     }
 
-    /* 설명 문구 스타일링 */
-    .schedule-description {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        margin: 1rem 0;
+    /* alerts 컨테이너가 여러 알림을 포함할 경우 */
+    .alerts > div {
+        position: relative;
+        padding-bottom: 0.5rem;
     }
 
-    /* 알림 메시지 스타일링 */
-    .alert-red, .alert-green {
-        font-size: 0.8rem;
-        margin-bottom: 0.4rem;
-        padding-left: 0.5rem;
-    }
-
-    /* 체크 아이콘 크기 조정 */
-    .check-icon {
-        width: 16px;
-        height: 16px;
+    /* 마지막 알림에는 아래 패딩 제거 */
+    .alerts > div:last-child {
+        padding-bottom: 0;
     }
 }
-
 /* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
