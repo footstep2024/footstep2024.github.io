@@ -1363,17 +1363,6 @@ transition: 0.5s;
 }
 
 @media (max-width: 768px) {
-.example-btn {
-padding: 3px 10px;
-font-size: 0.7rem;
-}
-
-.example-btn:hover {
-transform: none;
-}
-}
-
-@media (max-width: 768px) {
     .info-grid + .alerts .alert-red,
     .info-grid + .alerts .alert-green {
         margin-top: -30px !important;  /* 이 수치를 원하는 만큼 조정하세요 */
@@ -2048,7 +2037,7 @@ transform: translateX(50%) translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    /* schedule-info 컴포넌트 스타일링 */
+    /* 컴포넌트 스타일링 */
     .schedule-info {
         position: relative;
         padding: 1rem;
@@ -2056,7 +2045,6 @@ transform: translateX(50%) translateY(-2px);
         background: rgba(47, 82, 41, 0.03);
         border-radius: 8px;
     }
-
     /* info-item 레이아웃 개선 */
     .info-item {
         display: flex;
@@ -2064,7 +2052,6 @@ transform: translateX(50%) translateY(-2px);
         gap: 0.5rem;
         margin-bottom: 0.5rem;
     }
-
     /* info-sub 위치 조정 */
     .info-item:first-child .info-sub {
         position: absolute;
@@ -2076,7 +2063,6 @@ transform: translateX(50%) translateY(-2px);
         border-radius: 4px;
         margin: 0;
     }
-
     /* 라디오 그룹 컨테이너 한 줄 정렬 */
     .radio-group-container {
         display: flex;
@@ -2087,56 +2073,39 @@ transform: translateX(50%) translateY(-2px);
         margin-top: 1rem;
         flex-wrap: nowrap;
     }
-
     /* 라디오 레이블 텍스트 크기 조정 */
     .radio-group-container .label-text {
         font-size: 0.7rem;
         white-space: nowrap;
     }
-
     /* 알림 텍스트 간격 조정 */
     .alert-red, .alert-green {
         font-size: 0.75rem;
         margin-bottom: 0.3rem;
     }
-
     .alert-red i, .alert-green i {
         margin-right: 0.3rem;
     }
-
     /* 설명 문구와 알림 사이 간격 */
     .schedule-description + .alerts {
         margin-top: 1rem;
         padding-top: 1.5rem;
     }
-
-    /* 예시 버튼 위치 및 스타일 조정 */
+    /* 예시 버튼과 설명 관련 스타일 */
     .example-btn {
-        position: relative;
-        margin-left: 0.5rem;
-        padding: 0.2rem 0.5rem;
+        display: inline-flex;
+        margin-left: 6px;
+        padding: 2px 8px;
         font-size: 0.7rem;
-        background: rgba(47, 82, 41, 0.05);
-        border: 1px solid rgba(47, 82, 41, 0.1);
-        border-radius: 4px;
+        vertical-align: middle;
     }
-
-@media (max-width: 768px) {
-    .example-btn {
-        display: block;
-        margin-top: 0.5rem;
-        width: fit-content;
-        padding: 4px 12px;
-        font-size: 0.75rem;
+    .schedule-description {
+        display: inline;
     }
-
-    .schedule-description + .alerts {
-        display: flex;
-        flex-direction: column;
+    .alerts {
+        margin-top: 1rem;
     }
-
     .alerts > div {
-        flex-direction: column;
         width: 100%;
     }
 }
