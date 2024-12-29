@@ -2854,6 +2854,31 @@ padding: 0.875rem;
        margin-left: 4px;
    }
 
+
+.mobile-notice-item.warning {
+    background: rgba(220, 53, 69, 0.02);  /* 매우 연한 빨간색 배경 */
+    border: 1px solid rgba(220, 53, 69, 0.1);  /* 연한 빨간색 테두리 */
+}
+
+.mobile-notice-item.warning .notice-icon i {
+    color: #dc3545;  /* 아이콘 색상을 빨간색으로 */
+}
+
+.mobile-notice-item.warning .notice-content p {
+    color: #dc3545;  /* 텍스트 색상을 빨간색으로 */
+    font-weight: 500;  /* 글씨를 살짝 굵게 */
+}
+
+/* 체크박스 관련 스타일도 함께 수정 */
+.mobile-notice-item.warning .mobile-confirm input[type="checkbox"]:checked ~ .check-text {
+    color: #dc3545;
+}
+
+.mobile-notice-item.warning .mobile-example-btn {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
    /* 모달 버튼 스타일 */
    .mobile-example-btn {
        margin-left: auto;
