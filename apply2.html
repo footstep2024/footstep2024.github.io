@@ -2769,11 +2769,11 @@ padding: 0.875rem;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
     }
     
-    .mobile-confirm .confirm-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+.mobile-confirm .confirm-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 체크아이콘과 텍스트 사이 간격 */
+}
     
     .mobile-example-btn {
         margin-left: auto; /* 오른쪽으로 밀어냄 */
@@ -2794,8 +2794,7 @@ padding: 0.875rem;
 .mobile-confirm .confirm-text {
     font-size: 0.8rem;
     color: var(--light-text);
-    margin-left: 8px; 
-    display: inline-block; 
+    padding-right: 8px; /* 오른쪽 패딩 추가 */
 }
 
     .mobile-notice-item.warning {
