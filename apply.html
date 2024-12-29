@@ -147,22 +147,32 @@ gap: 0.8rem;  /* 체크박스 사이 간격 */
 justify-content: flex-end;  /* 오른쪽 정렬 */
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
-.essay-header {
-flex-direction: column;
-align-items: flex-start;
-gap: 1rem;
-}
+    .essay-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;  /* 간격 줄임 */
+    }
 
-.essay-type-selector {
-width: 100%;
-}
+    .essay-type-selector {
+        width: 100%;
+    }
 
-.essay-type-options {
-justify-content: flex-start;  /* 모바일에서는 왼쪽 정렬 */
-gap: 1.5rem;  /* 모바일에서는 간격 줄임 */
-}
+    .essay-type-options {
+        display: flex;
+        justify-content: space-between;  /* 양쪽 끝으로 정렬 */
+        width: 100%;  /* 전체 너비 사용 */
+        gap: 0.5rem;  /* 간격 축소 */
+    }
+
+    .essay-type-options .checkbox-label {
+        font-size: 0.78rem;  /* 글자 크기 축소 */
+    }
+
+    .essay-type-options .checkbox-label .label-text {
+        font-size: 0.78rem;  /* 레이블 텍스트 크기도 축소 */
+        white-space: nowrap;  /* 텍스트 줄바꿈 방지 */
+    }
 }
 
 .section-title {
@@ -903,13 +913,18 @@ padding: 1rem;
 
 .examples-list {
 font-size: 0.8rem;
+margin-top: -12px;
 }
+
+    .examples-list li {
+        padding: 3px 0;
+        line-height: 1.0;
+    }
 
 .examples-title {
 font-size: 0.85rem;
 }
 }
-
 
 .btn-secondary:hover {
 background-color: #d0d3d4;
@@ -960,6 +975,8 @@ flex-direction: column;
 gap: 0.75rem;
 }
 }
+
+
 
 /* 터치 디바이스에 대한 최적화 */
 @media (hover: none) {
@@ -2289,29 +2306,30 @@ transform: translateY(-2px);
 /* 모바일 대응 */
 @media (max-width: 768px) {
     .selected-times-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
         gap: 8px;
     }
 
+    /* 카드 내부 요소들 크기 조정 */
     .selected-time-item {
-        padding: 10px;
+        padding: 8px;  /* 패딩 줄임 */
     }
 
     .time-badge {
-        width: 32px;
-        height: 32px;
+        width: 28px;  /* 뱃지 크기 줄임 */
+        height: 28px;
     }
 
     .time-date {
-        font-size: 0.85rem;
+        font-size: 0.8rem;  /* 날짜 텍스트 크기 줄임 */
     }
 
     .time-period {
-        font-size: 0.75rem;
+        font-size: 0.7rem;  /* 시간 텍스트 크기 줄임 */
     }
 
     .time-type {
-        font-size: 0.7rem;
+        font-size: 0.65rem;  /* 면접 유형 텍스트 크기 줄임 */
     }
 }
 
@@ -2674,6 +2692,95 @@ padding: 0.875rem;
 }
 }
 
+
+
+/* 모바일 공지사항 스타일 */
+@media (max-width: 768px) {
+    .mobile-notice-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .mobile-notice-item {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+    }
+
+    .mobile-notice-item .notice-icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        color: var(--primary-color);
+    }
+
+    .mobile-notice-item .notice-content {
+        flex: 1;
+    }
+
+    .mobile-notice-item p {
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-color);
+        word-break: keep-all;
+    }
+
+    .mobile-example-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 8px;
+        padding: 6px 12px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--primary-color);
+        font-size: 0.75rem;
+    }
+
+    .mobile-example-btn.warning {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
+    .mobile-confirm {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(47, 82, 41, 0.1);
+    }
+
+    .mobile-confirm input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+
+    .mobile-confirm .confirm-text {
+        font-size: 0.8rem;
+        color: var(--light-text);
+    }
+
+    .mobile-notice-item.warning {
+        background: rgba(220, 53, 69, 0.03);
+    }
+
+    .mobile-notice-item.warning .notice-icon {
+        color: #dc3545;
+    }
+
+    .mobile-confirm.warning .confirm-text {
+        color: #dc3545;
+    }
+}
+    
 </style>
 
 <style>
@@ -3246,6 +3353,9 @@ textarea.form-control[readonly] {
 <section class="form-section">
 <h2 class="section-title">활동 참여 및 동의 여부</h2>
 
+<!-- PC 버전 -->
+<div class="pc-only">
+
 <!-- OT/MT 참석 여부 -->
 <div class="form-group" style="margin-bottom: 2.5rem;">
 <div class="schedule-card">
@@ -3479,7 +3589,235 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
+</div>
+    
+
+<!-- 모바일 버전 -->
+<div class="mobile-only">
+    <div class="schedule-card">
+        <div class="card-header">
+            <h3>OT 및 MT 안내</h3>
+            <span class="required-badge">필수</span>
+        </div>
+
+        <div class="schedule-info">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span class="info-label">일시</span>
+                <span class="info-value">1월 25일(토) ~ 26일(일)</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="info-label">장소</span>
+                <span class="info-value">대성리</span>
+            </div>
+        </div>
+
+        <div class="schedule-description" style="margin-bottom: 24px;">
+            <p>본 행사는 신입 회원 오리엔테이션과 MT를 겸한 중요한 일정입니다. 모든 합격자의 참석이 필수이며, 불가피한 사정이더라도 불참 시 합격이 자동 취소됩니다. 함께 동아리의 첫 걸음을 내딛는 소중한 시간이 될 것이니, 일정 조정을 부탁드립니다.</p>
+        </div>
+
+        <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+            <div class="alert-red">
+                <i class="fas fa-exclamation-circle"></i> 
+                원활한 행사 진행을 위해 가능한 정시 참여를 부탁드립니다.
+            </div>
+            <div class="alert-green">
+                <i class="fas fa-info-circle"></i> 
+                MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니다.
+            </div>
+        </div>
+
+        <div class="radio-group-container">
+            <label class="radio-label">
+                <input type="radio" name="ot_mt_attendance_mobile" value="참석_가능" required>
+                <span class="check-icon"></span>
+                <span class="label-text">참석 가능</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="ot_mt_attendance_mobile" value="늦게_참석" required>
+                <span class="check-icon"></span>
+                <span class="label-text">늦게 참석</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="ot_mt_attendance_mobile" value="참석_불가" required>
+                <span class="check-icon"></span>
+                <span class="label-text">참석 불가</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- 정기 활동 안내 모바일 -->
+    <div class="schedule-card">
+        <div class="card-header">
+            <h3>정기 활동 안내</h3>
+            <span class="required-badge">필수</span>
+        </div>
+
+        <div class="schedule-info">
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="info-label">일정</span>
+                <span class="info-value">
+                    매월 2, 4째 주 주말
+                    <div style="font-size: 0.85em; color: var(--light-text); margin-top: 4px;">
+                        (여행 시 일요일 포함)
+                    </div>
+                </span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-user-check"></i>
+                <span class="info-label">참석</span>
+                <span class="info-value">매월 최소 1회 참여 필수</span>
+            </div>
+        </div>
+
+        <div class="schedule-description" style="margin-bottom: 24px;">
+            <p>본 동아리는 위 일정에 정기 활동을 진행합니다. 회원들의 적극적인 참여가 필요하며, 잦은 불참은 동아리 활동에 제한을 줄 수 있습니다.</p>
+        </div>
+
+        <div class="alerts" style="flex-grow: 1; margin-top: -25px">
+            <div class="alert-red">
+                <i class="fas fa-exclamation-circle"></i> 
+                시험기간 등 동아리 전체 사정이 있을 경우, 해당 달의 일정은 유동적으로 조정될 수 있습니다.
+            </div>
+        </div>
+
+        <div class="radio-group-container">
+            <label class="radio-label">
+                <input type="radio" name="regular_attendance_mobile" value="대부분_참석" required>
+                <span class="check-icon"></span>
+                <span class="label-text">대부분 참여</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="regular_attendance_mobile" value="부분_참석" required>
+                <span class="check-icon"></span>
+                <span class="label-text">부분 참여</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="regular_attendance_mobile" value="참여_어려움" required>
+                <span class="check-icon"></span>
+                <span class="label-text">참여 어려움</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- 콘텐츠 활용 동의 모바일 -->
+    <div class="schedule-card">
+        <div class="card-header">
+            <h3>콘텐츠 활용 동의</h3>
+            <span class="recommended-badge">권장</span>
+        </div>
+
+        <div class="schedule-info">
+            <div class="info-item">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span class="info-label">공유</span>
+                <span class="info-value">활동 사진 클라우드 업로드</span>
+            </div>
+            <div class="info-item">
+                <i class="fab fa-instagram"></i>
+                <span class="info-label">홍보</span>
+                <span class="info-value">SNS 홍보물 활용</span>
+            </div>
+        </div>
+
+        <div class="schedule-description" style="margin-bottom: -16px;">
+            <p>발자취는 모든 활동마다 촬영된 사진과 영상을 동아리 클라우드에 공유하고 있으며, 본인의 얼굴이 포함된 자료를 포함해 엄선된 콘텐츠는 동아리 홍보를 위해 SNS에 게시됩니다. 이는 우리의 소중한 추억을 기록하고 동아리를 알리는 데 큰 도움이 됩니다.</p>
+        </div>
+
+                <button class="example-btn" type="button" data-type="content" style="display: flex; margin: 8px 0; margin-left: auto;">
+            <i class="fas fa-image"></i>
+            예시
+        </button>
+
+        <div class="alert-green">
+            <i class="fas fa-info-circle"></i> 
+            공유된 촬영물은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.
+        </div>
+        <div class="alert-red">
+            <i class="fas fa-exclamation-circle"></i> 
+            SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
+        </div>
+
+        <div class="radio-group-container">
+            <label class="radio-label">
+                <input type="radio" name="content_agreement_mobile" value="전체_동의" required>
+                <span class="check-icon"></span>
+                <span class="label-text">모두 동의</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="content_agreement_mobile" value="클라우드만" required>
+                <span class="check-icon"></span>
+                <span class="label-text">클라우드만 동의</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="content_agreement_mobile" value="동의_거부" required>
+                <span class="check-icon"></span>
+                <span class="label-text">동의 안함</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- 여행 운영 참여 모바일 -->
+    <div class="schedule-card">
+        <div class="card-header">
+            <h3>여행 운영 참여</h3>
+            <span class="recommended-badge">권장</span>
+        </div>
+
+        <div class="schedule-info">
+            <div class="info-item">
+                <i class="fas fa-vote-yea"></i>
+                <span class="info-label">설문</span>
+                <span class="info-value">다음달 여행지 조사</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-comments"></i>
+                <span class="info-label">피드백</span>
+                <span class="info-value">여행 후기 및 개선점 공유</span>
+            </div>
+        </div>
+
+        <div class="schedule-description" style="margin-bottom: -16px;">
+            <p>발자취는 매달 전체 부원을 대상으로 희망 여행지와 피드백을 수집합니다. 모든 의견을 반영하여 다음 여행지를 선정하고, 동시에 이전 여행에서 좋았던 점을 계속해서 이어가는 한편, 아쉬웠던 점을 즉각 개선하여 더 나은 여행 문화를 만들고자 노력하고 있습니다. 이처럼 발자취는 단순한 여행 동아리가 아닌, 부원 모두의 적극적인 참여로 성장하는 동아리이며, 발자취만의 특별한 여행을 만드는 원동력입니다.</p>
+        </div>
+
+        <button class="example-btn" type="button" data-type="feedback" style="display: flex; margin: 8px 0; margin-left: auto;">
+            <i class="fas fa-image"></i>
+            예시
+        </button>
+
+        <div class="alert-green">
+            <i class="fas fa-info-circle"></i> 
+            매달 온라인 구글폼 설문조사를 통해 익명으로 의견을 받습니다. 
+        </div>
+        <div class="alert-red">
+            <i class="fas fa-exclamation-circle"></i> 
+            적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
+        </div>
+
+        <div class="radio-group-container">
+            <label class="radio-label">
+                <input type="radio" name="participation_agreement_mobile" value="적극_참여" required>
+                <span class="check-icon"></span>
+                <span class="label-text">적극 참여</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="participation_agreement_mobile" value="일반_참여" required>
+                <span class="check-icon"></span>
+                <span class="label-text">최소한으로 참여</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="participation_agreement_mobile" value="소극_참여" required>
+                <span class="check-icon"></span>
+                <span class="label-text">관심 없음</span>
+            </label>
+        </div>
+    </div>
+</div>
 </section>
+
 
 <section class="form-section">
 <h2 class="section-title">자기소개</h2>
@@ -3510,8 +3848,10 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
-</section>      
+</section>   
 
+
+    
 <section class="form-section">
 <h2 class="section-title">여행 경험 에세이</h2>
 
@@ -3540,7 +3880,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
-<textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="오른쪽 상단에 두 주제 중 하나를 체크 클릭해주세요."></textarea>
+<textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="위의 두 주제 중 하나를 체크 클릭해주세요."></textarea>
 </div>
 </section>
 
@@ -3608,9 +3948,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </section>
 
 <!-- 활동 안내사항 섹션 -->
-<section class="form-section">
+<section class="form-section pc-only"> 
 <h2 class="section-title">활동 안내사항 확인</h2>
-
 <div class="notice-card">
 <div class="notice-header">
 <h3>아래 내용을 반드시 확인해주세요</h3>
@@ -3707,6 +4046,140 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 </section>
+
+
+<!-- 모바일용 활동 안내사항 확인 섹션 -->
+<div class="mobile-only" style="margin: 0 0.5rem;">
+    <section class="form-section">
+        <h2 class="section-title">활동 안내사항 확인</h2>
+        <div class="mobile-notice-list">
+        <!-- 준비과정 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+                    <button type="button" class="mobile-example-btn" data-type="records">
+                        <i class="fas fa-image"></i>
+                        발자취의 여행 준비
+                    </button>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_1" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 여행 경비 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_2" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 단체여행 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
+                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                        <i class="fas fa-image"></i>
+                        지난 학기 기록
+                    </button>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_3" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 가입비 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_4" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 활동 제재 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_5" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 성적자기결정권 공지 -->
+        <div class="mobile-notice-item warning">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.</p>
+                    <button type="button" class="mobile-example-btn warning" data-type="rules">
+                        <i class="fas fa-image"></i>
+                        관련 회칙 보기
+                    </button>
+                <label class="mobile-confirm warning">
+                    <input type="checkbox" name="notice_check_mobile_6" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 허위기재 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_7" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 접수확인 공지 -->
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_mobile_8" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
 
 <div class="button-group">
 <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
@@ -4335,7 +4808,7 @@ const contents = {
     records: {
         src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
         title: '지난 여행계획서 살펴보기',
-        desc: '발자취는 이렇게 여행을 준비합니다. (지난 12월 여행계획서 중 일부 발췌)',
+        desc: '발자취는 이렇게 여행을 준비합니다. (12월 여행계획서 중 일부)',
     }
 };
 
@@ -4390,6 +4863,31 @@ function closeExample() {
     if (scheduleRulesModal) scheduleRulesModal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 모바일 예시 버튼 이벤트 리스너
+    document.querySelectorAll('.mobile-example-btn, button[data-type="records"], button[data-type="schedule"]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const type = this.getAttribute('data-type');
+            showExample(type);  // 기존 showExample 함수 재사용
+        });
+    });
+
+    // 모바일 확인 체크박스 이벤트 리스너
+    document.querySelectorAll('.mobile-confirm input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('click', function() {
+            const confirmText = this.nextElementSibling;
+            if (this.checked) {
+                confirmText.style.color = 'var(--primary-color)';
+                confirmText.style.fontWeight = '500';
+            } else {
+                confirmText.style.color = 'var(--light-text)';
+                confirmText.style.fontWeight = 'normal';
+            }
+        });
+    });
+});
 
 function updatePlaceholder(type) {
 const textarea = document.getElementById('travelEssay');
