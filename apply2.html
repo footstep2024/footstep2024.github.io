@@ -1214,54 +1214,92 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
+    /* schedule-info 컴포넌트 스타일링 */
     .schedule-info {
+        position: relative;
         padding: 1rem;
+        margin-bottom: 1rem;
         background: rgba(47, 82, 41, 0.03);
         border-radius: 8px;
     }
 
+    /* info-item 레이아웃 개선 */
     .info-item {
         display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .info-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .info-label {
-        font-size: 0.8rem;
-        color: var(--primary-color);
-        font-weight: 500;
-        display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
-    .info-value {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 0.75rem;
-        color: var(--light-text);
-        padding-left: 1.5rem;
-    }
-
-    .example-btn {
-        background: white;
-        border: 1px solid rgba(47, 82, 41, 0.15);
-        padding: 0.25rem 0.5rem;
+    /* info-sub 위치 조정 */
+    .info-item:first-child .info-sub {
+        position: absolute;
+        top: -0.5rem;
+        right: 0.5rem;
+        font-size: 0.7rem;
+        background: rgba(47, 82, 41, 0.05);
+        padding: 0.2rem 0.4rem;
         border-radius: 4px;
-        font-size: 0.7rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
+        margin: 0;
     }
 
-    .example-btn i {
+    /* 라디오 그룹 컨테이너 한 줄 정렬 */
+    .radio-group-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.3rem;
+        padding: 0.5rem 0;
+        margin-top: 1rem;
+        flex-wrap: nowrap;
+    }
+
+    /* 라디오 레이블 텍스트 크기 조정 */
+    .radio-group-container .label-text {
         font-size: 0.7rem;
+        white-space: nowrap;
+    }
+
+    /* 알림 텍스트 간격 조정 */
+    .alert-red, .alert-green {
+        font-size: 0.75rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .alert-red i, .alert-green i {
+        margin-right: 0.3rem;
+    }
+
+    /* 설명 문구와 알림 사이 간격 */
+    .schedule-description + .alerts {
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+    }
+
+    /* 예시 버튼 위치 및 스타일 조정 */
+    .example-btn {
+        position: relative;
+        margin-left: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.7rem;
+        background: rgba(47, 82, 41, 0.05);
+        border: 1px solid rgba(47, 82, 41, 0.1);
+        border-radius: 4px;
+    }
+
+    /* 알림 텍스트와 예시 버튼 컨테이너 */
+    .alerts .alert-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    /* 알림과 예시 버튼 감싸는 컨테이너 */
+    .alerts > div {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.5rem;
     }
 }
     
