@@ -976,6 +976,8 @@ gap: 0.75rem;
 }
 }
 
+
+
 /* 터치 디바이스에 대한 최적화 */
 @media (hover: none) {
 .form-grid .info-box:hover {
@@ -2698,7 +2700,6 @@ padding: 0.875rem;
         display: flex;
         flex-direction: column;
         gap: 16px;
-        margin: 0 1rem;  /* 좌우 여백 추가 */
     }
 
     .mobile-notice-item {
@@ -2708,7 +2709,6 @@ padding: 0.875rem;
         display: flex;
         gap: 12px;
         box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
-        margin: 0 0.5rem;  /* 좌우 여백 추가 */
     }
 
     .mobile-notice-item .notice-icon {
@@ -4049,10 +4049,10 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 
 <!-- 모바일용 활동 안내사항 확인 섹션 -->
-<section class="form-section mobile-only">
-    <h2 class="section-title">활동 안내사항 확인</h2>
-
-    <div class="mobile-notice-list">
+<div class="mobile-only" style="margin: 0 1rem;">
+    <section class="form-section">
+        <h2 class="section-title">활동 안내사항 확인</h2>
+        <div class="mobile-notice-list">
         <!-- 준비과정 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
