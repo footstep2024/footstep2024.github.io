@@ -4866,7 +4866,7 @@ function closeExample() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // 모바일 예시 버튼 이벤트 리스너
-    document.querySelectorAll('.mobile-example-btn').forEach(btn => {
+    document.querySelectorAll('.mobile-example-btn, button[data-type="records"], button[data-type="schedule"]').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const type = this.getAttribute('data-type');
