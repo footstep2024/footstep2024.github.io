@@ -1214,34 +1214,86 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    /* 권장 아이콘 컨테이너 */
-    .badge-container {
+    /* 카드 레이아웃 조정 */
+    .schedule-card {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* 헤더 부분 정리 */
+    .card-header {
+        padding-bottom: 0.8rem;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    /* 정보 박스 스타일링 */
+    .schedule-info {
+        background: rgba(47, 82, 41, 0.03);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    /* 각 정보 아이템 간격 조정 */
+    .info-item {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
+        margin-bottom: 0.5rem;
     }
 
-    /* 예시 버튼 스타일 */
-    .example-btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.7rem;
-        background: white;
-        border: 1px solid rgba(47, 82, 41, 0.15);
-        border-radius: 4px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-    .example-btn i {
-        font-size: 0.7rem;
+    /* 아이콘 스타일링 */
+    .info-item i {
+        width: 20px;
         color: var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    /* 레이블 스타일링 */
+    .info-label {
+        min-width: 40px;
+        font-size: 0.85rem;
+    }
+
+    /* 값 스타일링 */
+    .info-value {
+        font-size: 0.85rem;
+    }
+
+    /* 서브 텍스트 위치 조정 */
+    .info-item:first-child .info-sub {
+        position: absolute;
+        top: -1rem;
+        right: 1rem;
+        font-size: 0.75rem;
+        color: var(--light-text);
+        background: rgba(47, 82, 41, 0.05);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    /* 설명 문구 스타일링 */
+    .schedule-description {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin: 1rem 0;
+    }
+
+    /* 알림 메시지 스타일링 */
+    .alert-red, .alert-green {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+        padding-left: 0.5rem;
+    }
+
+    /* 체크 아이콘 크기 조정 */
+    .check-icon {
+        width: 16px;
+        height: 16px;
     }
 }
-    
+
 /* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
@@ -2056,48 +2108,6 @@ transform: translateX(50%) translateY(-2px);
     .schedule-description + .alerts {
         margin-top: 1rem;
         padding-top: 1.5rem;
-    }
-    
-    /* 권장 아이콘 컨테이너 */
-    .badge-container {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-    }
-    
-    /* 예시 버튼 스타일 */
-    .example-btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.7rem;
-        background: white;
-        border: 1px solid rgba(47, 82, 41, 0.15);
-        border-radius: 4px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-        .example-btn i {
-        font-size: 0.7rem;
-        color: var(--primary-color);
-    }
-
-    /* 알림 텍스트와 예시 버튼 컨테이너 */
-    .alerts .alert-wrapper {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-    }
-
-    /* 알림과 예시 버튼 감싸는 컨테이너 */
-    .alerts > div {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 0.5rem;
     }
 }
 
@@ -3350,36 +3360,20 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 <div class="schedule-card">
 <div class="card-header">
 <h3>콘텐츠 활용 동의</h3>
-<div class="badge-container">
-    <button class="example-btn" type="button" data-type="content">
-        <i class="fas fa-image"></i>
-        예시
-    </button>
-    <span class="recommended-badge">권장</span>
-</div>
+<span class="recommended-badge">권장</span>
 </div>
 
 <div class="schedule-info">
-    <div class="info-item">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <span class="info-label">공유</span>
-        <span class="info-value">활동 사진 클라우드 업로드
-            <button class="example-btn" type="button" data-type="feedback">
-                <i class="fas fa-image"></i>
-                예시
-            </button>
-        </span>
-    </div>
-    <div class="info-item">
-        <i class="fab fa-instagram"></i>
-        <span class="info-label">홍보</span>
-        <span class="info-value">SNS 홍보물 활용
-            <button class="example-btn" type="button" data-type="content">
-                <i class="fas fa-image"></i>
-                예시
-            </button>
-        </span>
-    </div>
+<div class="info-item">
+<i class="fas fa-cloud-upload-alt"></i>
+<span class="info-label">공유</span>
+<span class="info-value">활동 사진 클라우드 업로드</span>
+</div>
+<div class="info-item">
+<i class="fab fa-instagram"></i>
+<span class="info-label">홍보</span>
+<span class="info-value">SNS 홍보물 활용</span>
+</div>
 </div>
 
 <div class="schedule-description">
