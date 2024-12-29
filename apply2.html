@@ -2698,7 +2698,7 @@ padding: 0.875rem;
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 0 16px;
+        padding: 0 16px; /* 좌우 여백 추가 */
     }
 
     .mobile-notice-item {
@@ -2732,15 +2732,15 @@ padding: 0.875rem;
     .mobile-example-btn {
         margin-top: 0; /* 기존 마진 제거 */
         margin-left: auto; /* 오른쪽 정렬 */
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
         padding: 6px 12px;
-        font-size: 0.75rem;
         border: 1px solid var(--primary-color);
         border-radius: 4px;
         background: transparent;
         color: var(--primary-color);
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
+        font-size: 0.75rem;
     }
 
     .mobile-example-btn.warning {
@@ -2752,17 +2752,12 @@ padding: 0.875rem;
         display: flex;
         justify-content: space-between; /* 양끝 정렬로 변경 */
         align-items: center;
+        gap: 8px;
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
     }
 
-    .mobile-confirm .checkbox-area {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
     .mobile-confirm input[type="checkbox"] {
         width: 18px;
         height: 18px;
