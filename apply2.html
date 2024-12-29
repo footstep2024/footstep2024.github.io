@@ -1214,67 +1214,57 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    /* 기존 alerts 컨테이너 수정 */
-    .schedule-card .alerts {
+    .schedule-info {
         padding: 1rem;
-        margin-top: 0.5rem;
-        background: rgba(47, 82, 41, 0.02);
+        background: rgba(47, 82, 41, 0.03);
         border-radius: 8px;
-        position: relative;
     }
 
-    /* 알림 메시지 레이아웃 수정 */
-    .alert-red, .alert-green {
-        font-size: 0.75rem;
-        margin-bottom: 0.5rem;
-        padding-right: 60px; /* 예시 버튼 공간 확보 */
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 0.8rem;
     }
 
-    /* 알림 아이콘 간격 조정 */
-    .alert-red i, .alert-green i {
-        margin-right: 0.3rem;
-        width: 14px;
-        text-align: center;
+    .info-item:last-child {
+        margin-bottom: 0;
     }
 
-    /* 예시 버튼 스타일 통일 */
-    .example-btn {
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 0.3rem 0.6rem;
-        font-size: 0.7rem;
-        background: white;
-        border: 1px solid rgba(47, 82, 41, 0.15);
-        border-radius: 4px;
+    .info-label {
+        font-size: 0.8rem;
+        color: var(--primary-color);
+        font-weight: 500;
         display: flex;
         align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-value {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--light-text);
+        padding-left: 1.5rem;
+    }
+
+    .example-btn {
+        background: white;
+        border: 1px solid rgba(47, 82, 41, 0.15);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        display: inline-flex;
+        align-items: center;
         gap: 0.3rem;
-        box-shadow: 0 1px 2px rgba(47, 82, 41, 0.05);
     }
 
     .example-btn i {
         font-size: 0.7rem;
     }
-
-    /* 예시 버튼 호버 효과 */
-    .example-btn:hover {
-        background: rgba(47, 82, 41, 0.05);
-        transform: translateY(-50%) translateX(-2px);
-    }
-
-    /* alerts 컨테이너가 여러 알림을 포함할 경우 */
-    .alerts > div {
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    /* 마지막 알림에는 아래 패딩 제거 */
-    .alerts > div:last-child {
-        padding-bottom: 0;
-    }
 }
+    
 /* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
@@ -3371,16 +3361,26 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 </div>
 
 <div class="schedule-info">
-<div class="info-item">
-<i class="fas fa-cloud-upload-alt"></i>
-<span class="info-label">공유</span>
-<span class="info-value">활동 사진 클라우드 업로드</span>
-</div>
-<div class="info-item">
-<i class="fab fa-instagram"></i>
-<span class="info-label">홍보</span>
-<span class="info-value">SNS 홍보물 활용</span>
-</div>
+    <div class="info-item">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span class="info-label">공유</span>
+        <span class="info-value">활동 사진 클라우드 업로드
+            <button class="example-btn" type="button" data-type="feedback">
+                <i class="fas fa-image"></i>
+                예시
+            </button>
+        </span>
+    </div>
+    <div class="info-item">
+        <i class="fab fa-instagram"></i>
+        <span class="info-label">홍보</span>
+        <span class="info-value">SNS 홍보물 활용
+            <button class="example-btn" type="button" data-type="content">
+                <i class="fas fa-image"></i>
+                예시
+            </button>
+        </span>
+    </div>
 </div>
 
 <div class="schedule-description">
