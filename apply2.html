@@ -149,20 +149,31 @@ justify-content: flex-end;  /* 오른쪽 정렬 */
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
-.essay-header {
-flex-direction: column;
-align-items: flex-start;
-gap: 1rem;
-}
+    .essay-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem; 
+    }
 
-.essay-type-selector {
-width: 100%;
-}
+    .essay-type-selector {
+        width: 100%;
+    }
 
-.essay-type-options {
-justify-content: flex-start;  /* 모바일에서는 왼쪽 정렬 */
-gap: 1.5rem;  /* 모바일에서는 간격 줄임 */
-}
+    .essay-type-options {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.5rem; 
+    }
+
+    .essay-type-options .checkbox-label {
+        font-size: 0.78rem;
+    }
+
+    .essay-type-options .checkbox-label .label-text {
+        font-size: 0.78rem;
+        white-space: nowrap;
+    }
 }
 
 .section-title {
