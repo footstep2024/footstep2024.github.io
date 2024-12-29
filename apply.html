@@ -165,7 +165,6 @@ gap: 1.5rem;  /* 모바일에서는 간격 줄임 */
 }
 }
 
-/* section-title 스타일도 수정이 필요합니다 */
 .section-title {
 font-size: 1.5rem;
 font-weight: 700;
@@ -175,7 +174,29 @@ padding-bottom: 1rem;
 border-bottom: 2px solid var(--border-color);
 display: flex;
 justify-content: space-between;
-align-items: center;
+align-items: baseline;
+}
+
+/* 모바일 대응 추가 */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+        flex-direction: row;  /* 가로 배치 유지 */
+        align-items: center;  /* 중앙 정렬 */
+        gap: 1rem;           /* 요소 간 간격 */
+    }
+
+    .section-title .checkbox-label {
+        margin-left: auto;
+        padding-top: 0;      /* 패딩 제거 */
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .section-title .checkbox-label .label-text {
+        font-size: 0.8rem;   /* 텍스트 크기 조절 */
+    }
 }
 
 .form-row {
@@ -322,13 +343,15 @@ font-size: 0.75rem;
 line-height: 1;
 }
 
+
+
 .driving-alert {
 margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
 }
 
 @media (max-width: 768px) {
 .alert-red, .alert-green {
-font-size: 0.7rem;
+font-size: 0.8rem;
 }
 }
 
@@ -382,12 +405,62 @@ font-size: 0.8rem;
 }
 }
 
-@media (max-width: 768px) {
-.form-row, .form-row.three-columns {
-grid-template-columns: 1fr;  /* 모바일에서는 한 줄로 */
-gap: 0.8rem;
-margin-bottom: 0.8rem;
+/* PC/모바일 버전 전환을 위한 기본 스타일 */
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+    .pc-only {
+        display: block !important;
+    }
 }
+
+@media (max-width: 768px) {
+    .pc-only {
+        display: none !important;
+    }
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+/* 모바일 버전 기본 정보 스타일 */
+@media (max-width: 768px) {
+    .mobile-form-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .mobile-form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .mobile-form-row:first-of-type {
+        gap: 8px;
+        margin: 0;
+        padding-right: 16px;
+    }
+
+    .mobile-form-row .form-group {
+        margin: 0;
+    }
+
+    .mobile-form-row .gender-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mobile-form-row .gender-button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .mobile-form-row .form-control {
+        height: 42px;
+    }
 }
 
 /* 폼 레이블의 크기 줄임 */
@@ -508,6 +581,16 @@ input[type="date"].form-control::-webkit-datetime-edit-fields-wrapper {
 font-size: 0.75rem;
 }
 
+/* 모바일에서 date input 스타일링 */
+@media (max-width: 768px) {
+    input[name="birthdate"].form-control,
+    input[name="birthdate_mobile"].form-control {
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E") no-repeat right 0.7rem center;
+        background-size: 1.2rem;
+        cursor: pointer;
+    }
+}
+
 /* style 태그 안에 추가 */
 .gender-select {
 cursor: pointer;
@@ -545,86 +628,6 @@ background: var(--primary-color);
 color: white;
 border-color: var(--primary-color);
 box-shadow: 0 2px 4px rgba(47, 82, 41, 0.2);
-}
-
-@media (max-width: 768px) {
-    /* 기본 모바일 폼 레이아웃 */
-    .form-row {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 8px;
-        margin-bottom: 12px;
-        width: 100%;
-    }
-    
-    .form-group {
-        width: auto !important;
-        margin-bottom: 8px;
-    }
-
-    /* 1. 이름/생년월일/성별 줄 */
-    .form-row:first-of-type {
-        .form-group:nth-child(1) { width: 25% !important; }
-        .form-group:nth-child(2) { width: 45% !important; }
-        .form-group:nth-child(3) { width: 30% !important; }
-    }
-
-    /* 성별 버튼 텍스트 수정 */
-    .gender-button {
-        padding: 6px 8px;
-        font-size: 0.8rem;
-    }
-    .gender-button span:last-child {
-        font-size: 0.8rem;
-    }
-    .gender-select[value="남성"] .gender-button span:last-child::after { content: '남'; }
-    .gender-select[value="여성"] .gender-button span:last-child::after { content: '여'; }
-
-    /* 2. MBTI/연락처 줄 */
-    .form-row:nth-of-type(2) {
-        .form-group:nth-child(1) { width: 35% !important; }
-        .form-group:nth-child(2) { width: 65% !important; }
-    }
-
-    /* 3. 본가/현재거주지 줄 */
-    .form-row:nth-of-type(3) {
-        .form-group:nth-child(1) { width: 50% !important; }
-        .form-group:nth-child(2) { width: 50% !important; }
-    }
-
-    /* 4. 학교/전공 줄 */
-    .form-row:nth-of-type(4) {
-        .form-group:nth-child(1) { width: 40% !important; }
-        .form-group:nth-child(2) { width: 60% !important; }
-    }
-
-    /* 5. 학번/학년/휴학 줄 */
-    .form-row:nth-of-type(5) {
-        position: relative;
-        .form-group:nth-child(1) { width: 30% !important; }
-        .form-group:nth-child(2) { width: 45% !important; }
-        
-        /* 휴학 체크박스 조정 */
-        .checkbox-label {
-            position: static;
-            margin-left: 8px;
-            transform: translateY(32px);  /* 라벨 높이만큼 아래로 */
-        }
-    }
-
-    /* 입력 필드 최적화 */
-    .form-control {
-        height: 36px;
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
-    }
-
-    /* 라벨 크기 최적화 */
-    .form-label {
-        font-size: 0.75rem;
-        margin-bottom: 4px;
-        white-space: nowrap;
-    }
 }
     
 .form-control::placeholder,
@@ -942,19 +945,6 @@ font-size: 2.5rem;
 font-size: 1.4rem;
 }
 
-.form-grid {
-grid-template-columns: 1fr;
-gap: 1rem;
-}
-
-.form-section {
-padding: 1.5rem;
-}
-
-.section-title {
-font-size: 1.3rem;
-}
-
 .button-group {
 flex-direction: column;
 padding: 0 1rem;
@@ -1218,9 +1208,90 @@ font-size: 0.9rem;
 }
 
 .info-sub {
-color: var(--light-text);
-font-size: 0.9em;
-margin-left: 0.5rem;
+    color: var(--light-text);
+    font-size: 0.9em;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    /* 카드 레이아웃 조정 */
+    .schedule-card {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* 헤더 부분 정리 */
+    .card-header {
+        padding-bottom: 0.8rem;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    /* 정보 박스 스타일링 */
+    .schedule-info {
+        background: rgba(47, 82, 41, 0.03);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    /* 각 정보 아이템 간격 조정 */
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 아이콘 스타일링 */
+    .info-item i {
+        width: 20px;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    /* 레이블 스타일링 */
+    .info-label {
+        min-width: 40px;
+        font-size: 0.85rem;
+    }
+
+    /* 값 스타일링 */
+    .info-value {
+        font-size: 0.85rem;
+    }
+
+    /* 서브 텍스트 위치 조정 */
+    .info-item:first-child .info-sub {
+        position: absolute;
+        top: -1rem;
+        right: 1rem;
+        font-size: 0.75rem;
+        color: var(--light-text);
+        background: rgba(47, 82, 41, 0.05);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    /* 설명 문구 스타일링 */
+    .schedule-description {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin: 1rem 0;
+    }
+
+    /* 알림 메시지 스타일링 */
+    .alert-red, .alert-green {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+        padding-left: 0.5rem;
+    }
+
+    /* 체크 아이콘 크기 조정 */
+    .check-icon {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* 설명 텍스트 스타일 */
@@ -1245,21 +1316,10 @@ border-top: 1px solid rgba(47, 82, 41, 0.1);
 .schedule-card {
 padding: 1.2rem;
 }
-
-.radio-group-container {
-flex-direction: column;
-gap: 1rem;
 }
 
-.info-item {
-flex-wrap: wrap;
-}
 
-.info-sub {
-margin-left: 2.3rem;
-width: 100%;
-}
-}
+
 
 .example-wrapper {
 display: flex;
@@ -1313,6 +1373,58 @@ transform: none;
 }
 }
 
+@media (max-width: 768px) {
+    .info-grid + .alerts .alert-red,
+    .info-grid + .alerts .alert-green {
+        margin-top: -30px !important;  /* 이 수치를 원하는 만큼 조정하세요 */
+        margin-bottom: 35px !important;  /* 텍스트 간격 조정 */
+    }
+}
+    
+/* 모바일에서 운전가능여부와 SNS 입력 영역 스타일 */
+@media (max-width: 768px) {
+    /* 운전가능여부 섹션 스타일링 */
+    div[style*="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px"] > div {
+        flex-direction: column;
+    }
+
+    /* 운전가능여부 선택 드롭다운 */
+    select[name="driving_status"] {
+        width: 70% !important;
+        margin-bottom: 8px;
+    }
+
+    .driving-alert.alert-red,
+    .driving-alert.alert-green {
+        margin-top: -10px !important; 
+        margin-bottom: 10px !important;
+    }
+
+    /* SNS 및 여행경비 입력 섹션 스타일링 */
+    div[style*="margin-top: 16px"] > div[style*="display: flex; gap: 24px; align-items: center"] {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    /* SNS 및 여행경비 입력 필드 */
+    div[style*="margin-top: 16px"] input[type="text"] {
+        width: 70% !important;
+        margin-bottom: 8px;
+    }
+
+    /* 알림 텍스트 영역 조정 */
+    div[style*="margin-top: 16px"] .alerts {
+        margin-top: -40px !important;
+        flex-grow: 1;
+        width: 100%;
+    }
+    
+    /* 운전 관련 알림 텍스트 조정 */
+    .driving-alert {
+        margin-top: 4px !important;
+    }
+}
+    
 .example-modal {
 display: none;
 position: fixed;
@@ -1935,7 +2047,69 @@ transform: translateX(50%) translateY(-2px);
 }
 }
 
+@media (max-width: 768px) {
+    /* schedule-info 컴포넌트 스타일링 */
+    .schedule-info {
+        position: relative;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background: rgba(47, 82, 41, 0.03);
+        border-radius: 8px;
+    }
 
+    /* info-item 레이아웃 개선 */
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* info-sub 위치 조정 */
+    .info-item:first-child .info-sub {
+        position: absolute;
+        top: -0.5rem;
+        right: 0.5rem;
+        font-size: 0.7rem;
+        background: rgba(47, 82, 41, 0.05);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        margin: 0;
+    }
+
+    /* 라디오 그룹 컨테이너 한 줄 정렬 */
+    .radio-group-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.3rem;
+        padding: 0.5rem 0;
+        margin-top: 1rem;
+        flex-wrap: nowrap;
+    }
+
+    /* 라디오 레이블 텍스트 크기 조정 */
+    .radio-group-container .label-text {
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+
+    /* 알림 텍스트 간격 조정 */
+    .alert-red, .alert-green {
+        font-size: 0.75rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .alert-red i, .alert-green i {
+        margin-right: 0.3rem;
+    }
+
+    /* 설명 문구와 알림 사이 간격 */
+    .schedule-description + .alerts {
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+    }
+}
 
 /* 다크 모드 지원 */
 @media (prefers-color-scheme: dark) {
@@ -1960,11 +2134,13 @@ color: var(--text-color);
 </style>
 
 <style>
+
 /* 면접 일정 선택 버튼 스타일 */
 .schedule-select-wrapper {
-text-align: center;
-margin: 2rem 0;
+    text-align: center;
+    margin: 2rem 0;
 }
+
 
 .schedule-select-btn {
 background: var(--primary-color);
@@ -1992,6 +2168,7 @@ transform: translateY(-2px);
     border: 2px dashed rgba(47, 82, 41, 0.15);
     border-radius: 12px;
     margin: 1rem 0;
+    width: 100%;
 }
 
 .no-schedule i {
@@ -2013,11 +2190,10 @@ transform: translateY(-2px);
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px;
     max-width: 900px;
-    margin: 2rem auto 0;  /* 상단 마진을 2rem으로 설정 */
+    margin: 2rem auto 0;
     padding: 4px;
 }
 
-/* 한 줄에 최대 4개까지만 표시되도록 설정 */
 @media (min-width: 900px) {
     .selected-times-container {
         grid-template-columns: repeat(4, 1fr);
@@ -2420,6 +2596,77 @@ gap: 1rem;
 padding: 0 1rem;
 }
 
+/* 선택 모달 스타일 */
+.select-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.select-modal-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.select-modal.show .select-modal-content {
+    transform: translateY(0);
+}
+
+.select-options {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.select-option {
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-option:active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.select-group-label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin: 16px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+@media (max-width: 768px) {
+    select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 0.7rem center;
+        background-size: 1.2rem;
+        padding-right: 2.5rem;
+    }
+}
+
 .preview-btn,
 .submit-btn {
 width: 100%;
@@ -2604,7 +2851,7 @@ textarea.form-control[readonly] {
 <div class="logo">
 <img src="logo.png" alt="발자취 로고">
 </div>
-<h1 class="title">25-1학기 신입부원 지원서 작성</h1>
+<h1 class="title">25-1학기 신입부원 지원서</h1>
 </header>
 
 <section class="form-section"> 
@@ -2675,130 +2922,260 @@ textarea.form-control[readonly] {
 
 <form id="applicationForm">
 <section class="form-section">
-<h2 class="section-title">기본 정보</h2>
+    <h2 class="section-title">기본 정보</h2>
 
-<!-- 이름, 생년월일, 성별 선택, MBTI를 감싸는 form-row -->
-<div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
-<div class="form-group" style="width: 20%">
-<label class="form-label required">이름</label>
-<input type="text" class="form-control" name="name" required>
-</div>
-<div class="form-group" style="width: 25%">
-<label class="form-label required">생년월일</label>
-<input type="date" class="form-control" name="birthdate" required>
-</div>
-<div class="form-group" style="width: 25%">
-<label class="form-label required" style="margin-bottom: 8px">성별</label>
-<div style="display: flex; gap: 10px">
-<label class="gender-select">
-<input type="radio" name="gender" value="남성" required>
-<span class="gender-button">
-<i class="fas fa-mars"></i>
-남성
-</span>
-</label>
-<label class="gender-select">
-<input type="radio" name="gender" value="여성" required>
-<span class="gender-button">
-<i class="fas fa-venus"></i>
-여성
-</span>
-</label>
-</div>
-</div>
-<div class="form-group" style="width: 22%">
-<label class="form-label">&nbsp;</label>
-<select class="form-control" name="mbti" required>
-<option value="" disabled selected>MBTI 선택</option>
-<option value="ISTJ">ISTJ</option>
-<option value="ISFJ">ISFJ</option>
-<option value="INFJ">INFJ</option>
-<option value="INTJ">INTJ</option>
-<option value="ISTP">ISTP</option>
-<option value="ISFP">ISFP</option>
-<option value="INFP">INFP</option>
-<option value="INTP">INTP</option>
-<option value="ESTP">ESTP</option>
-<option value="ESFP">ESFP</option>
-<option value="ENFP">ENFP</option>
-<option value="ENTP">ENTP</option>
-<option value="ESTJ">ESTJ</option>
-<option value="ESFJ">ESFJ</option>
-<option value="ENFJ">ENFJ</option>
-<option value="ENTJ">ENTJ</option>
-</select>
-</div>
+    <!-- PC 버전 레이아웃 -->
+    <div class="basic-info-container pc-only">
+        <div class="form-row first-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
+            <div class="form-group" style="width: 20%">
+                <label class="form-label required">이름</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="form-group" style="width: 25%">
+                <label class="form-label required">생년월일</label>
+                <input type="text" class="form-control" name="birthdate" readonly required placeholder="생년월일 선택">
+            </div>
+            <div class="form-group" style="width: 25%">
+                <label class="form-label required" style="margin-bottom: 8px">성별</label>
+                <div style="display: flex; gap: 10px">
+                    <label class="gender-select">
+                        <input type="radio" name="gender" value="남성" required>
+                        <span class="gender-button">
+                            <i class="fas fa-mars"></i>
+                            남성
+                        </span>
+                    </label>
+                    <label class="gender-select">
+                        <input type="radio" name="gender" value="여성" required>
+                        <span class="gender-button">
+                            <i class="fas fa-venus"></i>
+                            여성
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" style="width: 22%">
+                <label class="form-label">&nbsp;</label>
+                <select class="form-control" name="mbti" required>
+                    <option value="" disabled selected>MBTI 선택</option>
+                    <option value="ISTJ">ISTJ</option>
+                    <option value="ISFJ">ISFJ</option>
+                    <option value="INFJ">INFJ</option>
+                    <option value="INTJ">INTJ</option>
+                    <option value="ISTP">ISTP</option>
+                    <option value="ISFP">ISFP</option>
+                    <option value="INFP">INFP</option>
+                    <option value="INTP">INTP</option>
+                    <option value="ESTP">ESTP</option>
+                    <option value="ESFP">ESFP</option>
+                    <option value="ENFP">ENFP</option>
+                    <option value="ENTP">ENTP</option>
+                    <option value="ESTJ">ESTJ</option>
+                    <option value="ESFJ">ESFJ</option>
+                    <option value="ENFJ">ENFJ</option>
+                    <option value="ENTJ">ENTJ</option>
+                </select>
+            </div>
+        </div>
+
+    <!-- 두 번째 줄: 연락처, 본가, 현재 거주지 -->
+    <div class="form-row three-columns" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div class="form-group">
+            <label class="form-label required">연락처</label>
+            <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+            <div class="error-message">올바른 연락처를 입력해주세요.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label required">본가</label>
+            <input type="text" class="form-control" name="home_address" placeholder="'시 구 동'까지만 입력" required>
+            <div class="error-message">본가 주소를 입력해주세요.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label required">현재 거주지</label>
+            <input type="text" class="form-control" name="current_address" placeholder="가까운 역 기준으로 입력" required>
+            <div class="error-message">현재 거주지를 입력해주세요.</div>
+        </div>
+    </div>
+
+    <!-- 학교, 전공, 학번, 학년 줄 -->
+    <div class="form-row fourth-row" style="display: flex; gap: 16px; align-items: flex-start">
+        <div class="form-group" style="width: 24%">
+            <label class="form-label required">학교</label>
+            <input type="text" class="form-control" name="school" required>
+        </div>
+        <div class="form-group" style="width: 30%">
+            <label class="form-label required">전공</label>
+            <input type="text" class="form-control" name="major" required>
+        </div>
+        <div class="form-group" style="width: 15%">
+            <label class="form-label required">학번</label>
+            <input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
+        </div>
+        <div class="form-group" style="width: 15%">
+            <div style="position: relative">
+                <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="is_leave">
+                        <span class="check-icon"></span>
+                        <span class="label-text">휴학</span>
+                    </label>
+                </div>
+                <label class="form-label" style="visibility: hidden">학년</label>
+                <select class="form-control" name="grade" required>
+                    <option value="" disabled selected>학년 선택</option>
+                    <optgroup label="일반학과">
+                        <option value="1">1학년</option>
+                        <option value="2">2학년</option>
+                        <option value="3">3학년</option>
+                        <option value="4">4학년</option>
+                        <option value="5">5학년</option>
+                    </optgroup>
+                    <optgroup label="의학/약학계열">
+                        <option value="pre1">예과 1학년</option>
+                        <option value="pre2">예과 2학년</option>
+                        <option value="med1">본과 1학년</option>
+                        <option value="med2">본과 2학년</option>
+                        <option value="med3">본과 3학년</option>
+                        <option value="med4">본과 4학년</option>
+                    </optgroup>
+                    <optgroup label="졸업관련">
+                        <option value="postpone">졸업유예</option>
+                        <option value="graduating">졸업예정</option>
+                        <option value="graduated">졸업</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- 두 번째 줄: 연락처, 본가, 현재 거주지 -->
-<div class="form-row three-columns">
-<div class="form-group">
-<label class="form-label required">연락처</label>
-<input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
-<div class="error-message">올바른 연락처를 입력해주세요.</div>
-</div>
-<div class="form-group">
-<label class="form-label required">본가</label>
-<input type="text" class="form-control" name="home_address" placeholder="'시 구 동'까지만 입력" required>
-<div class="error-message">본가 주소를 입력해주세요.</div>
-</div>
-<div class="form-group">
-<label class="form-label required">현재 거주지</label>
-<input type="text" class="form-control" name="current_address" placeholder="가까운 역 기준으로 입력" required>
-<div class="error-message">현재 거주지를 입력해주세요.</div>
-</div>
-</div>
+    <!-- 모바일 버전 레이아웃 -->
+    <div class="basic-info-container mobile-only">
+        <div class="mobile-form-grid">
+            <!-- 첫째 줄: 이름, 생년월일, MBTI -->
+<div class="mobile-form-row" style="display: grid; grid-template-columns: 27% 41% 32%; gap: 8px;">
+    <div class="form-group" style="margin: 0;">
+        <label class="form-label required">이름</label>
+        <input type="text" class="form-control" name="name_mobile" required>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <label class="form-label required">생년월일</label>
+        <input type="date" class="form-control" name="birthdate_mobile" required>
+    </div>
+    <div class="form-group" style="margin-top: 27px">
+        <select class="form-control" name="mbti_mobile" required>
+            <option value="" disabled selected>MBTI 선택</option>
+                       <option value="ISTJ">ISTJ</option>
+                       <option value="ISFJ">ISFJ</option>
+                       <option value="INFJ">INFJ</option>
+                       <option value="INTJ">INTJ</option>
+                       <option value="ISTP">ISTP</option>
+                       <option value="ISFP">ISFP</option>
+                       <option value="INFP">INFP</option>
+                       <option value="INTP">INTP</option>
+                       <option value="ESTP">ESTP</option>
+                       <option value="ESFP">ESFP</option>
+                       <option value="ENFP">ENFP</option>
+                       <option value="ENTP">ENTP</option>
+                       <option value="ESTJ">ESTJ</option>
+                       <option value="ESFJ">ESFJ</option>
+                       <option value="ENFJ">ENFJ</option>
+                       <option value="ENTJ">ENTJ</option>
+                   </select>
+               </div>
+           </div>
 
-<!-- 학교/전공/학번/학년 줄 -->
-<div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
-<div class="form-group" style="width: 24%">
-<label class="form-label required">학교</label>
-<input type="text" class="form-control" name="school" required>
+    <!-- 둘째 줄: 성별, 연락처 -->
+    <div class="mobile-form-row">
+        <div class="form-group" style="margin-top: 28px">
+            <div class="gender-buttons">
+                <label class="gender-select">
+                    <input type="radio" name="gender_mobile" value="남성" required>
+                    <span class="gender-button">
+                        <i class="fas fa-mars"></i>
+                        남성
+                    </span>
+                </label>
+                <label class="gender-select">
+                    <input type="radio" name="gender_mobile" value="여성" required>
+                    <span class="gender-button">
+                        <i class="fas fa-venus"></i>
+                        여성
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label required">연락처</label>
+            <input type="tel" class="form-control" name="phone_mobile" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+        </div>
+    </div>
+
+    <!-- 셋째 줄: 본가, 현재 거주지 -->
+    <div class="mobile-form-row">
+        <div class="form-group">
+            <label class="form-label required">본가</label>
+            <input type="text" class="form-control" name="home_address_mobile" placeholder="'시 구 동'까지만 입력" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label required">현재 거주지</label>
+            <input type="text" class="form-control" name="current_address_mobile" placeholder="가까운 역 기준으로 입력" required>
+        </div>
+    </div>
+
+    <!-- 넷째 줄: 학교, 전공 -->
+    <div class="mobile-form-row">
+        <div class="form-group">
+            <label class="form-label required">학교</label>
+            <input type="text" class="form-control" name="school_mobile" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label required">전공</label>
+            <input type="text" class="form-control" name="major_mobile" required>
+        </div>
+    </div>
+
+    <!-- 다섯째 줄: 학번, 학년, 휴학여부 -->
+    <div class="mobile-form-row three-part" style="display: grid; grid-template-columns: 30% 40% 30%; gap: 8px;">
+        <div class="form-group" style="margin: 0;">
+            <label class="form-label required">학번</label>
+            <input type="text" class="form-control" name="student_id_mobile" placeholder="예: 25학번" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px">
+            <select class="form-control" name="grade_mobile" required>
+                <option value="" disabled selected>학년 선택</option>
+                       <optgroup label="일반학과">
+                           <option value="1">1학년</option>
+                           <option value="2">2학년</option>
+                           <option value="3">3학년</option>
+                           <option value="4">4학년</option>
+                           <option value="5">5학년</option>
+                       </optgroup>
+                       <optgroup label="의학/약학계열">
+                           <option value="pre1">예과 1학년</option>
+                           <option value="pre2">예과 2학년</option>
+                           <option value="med1">본과 1학년</option>
+                           <option value="med2">본과 2학년</option>
+                           <option value="med3">본과 3학년</option>
+                           <option value="med4">본과 4학년</option>
+                       </optgroup>
+                       <optgroup label="졸업관련">
+                           <option value="postpone">졸업유예</option>
+                           <option value="graduating">졸업예정</option>
+                           <option value="graduated">졸업</option>
+                       </optgroup>
+            </select>
+        </div>
+        <div class="form-group" style="margin: 32px 0px 0px 10px">
+            <label class="checkbox-label">
+                <input type="checkbox" name="is_leave_mobile">
+                <span class="check-icon"></span>
+                <span class="label-text">휴학</span>
+            </label>
+        </div>
+    </div>
 </div>
-<div class="form-group" style="width: 30%">
-<label class="form-label required">전공</label>
-<input type="text" class="form-control" name="major" required>
-</div>
-<div class="form-group" style="width: 15%">
-<label class="form-label required">학번</label>
-<input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
-</div>
-<div class="form-group" style="width: 15%">
-<div style="position: relative">
-<div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
-<label class="checkbox-label">
-<input type="checkbox" name="is_leave">
-<span class="check-icon"></span>
-<span class="label-text">휴학</span>
-</label>
-</div>
-<label class="form-label" style="visibility: hidden">학년</label>
-<select class="form-control" name="grade" required>
-    <option value="" disabled selected>학년 선택</option>
-    <optgroup label="일반학과">
-        <option value="1">1학년</option>
-        <option value="2">2학년</option>
-        <option value="3">3학년</option>
-        <option value="4">4학년</option>
-        <option value="5">5학년</option>
-    </optgroup>
-    <optgroup label="의학/약학계열">
-        <option value="pre1">예과 1학년</option>
-        <option value="pre2">예과 2학년</option>
-        <option value="med1">본과 1학년</option>
-        <option value="med2">본과 2학년</option>
-        <option value="med3">본과 3학년</option>
-        <option value="med4">본과 4학년</option>
-    </optgroup>
-    <optgroup label="졸업관련">
-        <option value="postpone">졸업유예</option>
-        <option value="graduating">졸업예정</option>
-        <option value="graduated">졸업</option>
-    </optgroup>
-</select>
-</div>
-</div>
-</div>
+    </div>
 
 <!-- 운전가능여부 섹션 -->
 <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
@@ -2848,9 +3225,9 @@ textarea.form-control[readonly] {
 </div>
 </div>
 </div>
-
+    
 </section>
-
+    
 <!-- 기본 정보 섹션 끝나고, 활동 참여 및 동의 여부 섹션 시작하기 전에 다음 코드를 추가 -->
 <section class="form-section">
 <h2 class="section-title">추가 정보</h2>
@@ -2962,12 +3339,12 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 <label class="radio-label">
 <input type="radio" name="regular_attendance" value="대부분_참석" required>
 <span class="check-icon"></span>
-<span class="label-text">대부분 참여 가능</span>
+<span class="label-text">대부분 참여</span>
 </label>
 <label class="radio-label">
 <input type="radio" name="regular_attendance" value="부분_참석" required>
 <span class="check-icon"></span>
-<span class="label-text">부분 참여 가능</span>
+<span class="label-text">부분 참여</span>
 </label>
 <label class="radio-label">
 <input type="radio" name="regular_attendance" value="참여_어려움" required>
@@ -3031,12 +3408,12 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="radio-label">
 <input type="radio" name="content_agreement" value="클라우드만" required>
 <span class="check-icon"></span>
-<span class="label-text">클라우드 공유만 동의</span>
+<span class="label-text">클라우드만 동의</span>
 </label>
 <label class="radio-label">
 <input type="radio" name="content_agreement" value="동의_거부" required>
 <span class="check-icon"></span>
-<span class="label-text">동의하지 않음</span>
+<span class="label-text">동의 안함</span>
 </label>
 </div>
 </div>
@@ -3087,17 +3464,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="radio-label">
 <input type="radio" name="participation_agreement" value="적극_참여" required>
 <span class="check-icon"></span>
-<span class="label-text">적극적 참여 가능</span>
+<span class="label-text">적극 참여</span>
 </label>
 <label class="radio-label">
 <input type="radio" name="participation_agreement" value="일반_참여" required>
 <span class="check-icon"></span>
-<span class="label-text">최소한으로 참여 가능</span>
+<span class="label-text">최소한으로 참여</span>
 </label>
 <label class="radio-label">
 <input type="radio" name="participation_agreement" value="소극_참여" required>
 <span class="check-icon"></span>
-<span class="label-text">이런 참여에는 관심 없음</span>
+<span class="label-text">관심 없음</span>
 </label>
 </div>
 </div>
@@ -3195,16 +3572,15 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <span class="required-badge">필수</span>
 </div>
 
-<div class="notice-list">
 <div class="notice-item">
-<div class="notice-content">
-<i class="fas fa-circle-exclamation"></i>
-<p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
-<label class="confirm-check">
-<input type="checkbox" name="notice_check_1" required>
-<span class="check-text">확인함</span>
-</label>
-</div>
+   <div class="notice-content">
+       <i class="fas fa-circle-exclamation"></i>
+       <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다. <button class="example-btn" type="button" data-type="records">활동 기록 보기</button></p>
+       <label class="confirm-check">
+           <input type="checkbox" name="notice_check_1" required>
+           <span class="check-text">확인함</span>
+       </label>
+   </div>
 </div>
 
 <div class="notice-item">
@@ -3305,31 +3681,30 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     </div>
 </div>
 
-<!-- 추가 요청사항 입력 -->
-<div class="additional-requests" style="margin-top: 2rem;">
-<div class="form-group">
-<label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="interview_requests" 
-style="height: 75px !important; min-height: 75px; resize: none;"
-placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
-</div>
-</div>
+        <div class="additional-requests" style="margin-top: 2rem;">
+            <div class="form-group">
+                <label class="form-label">추가 요청사항</label>
+                <textarea class="form-control" name="interview_requests" 
+                style="height: 75px !important; min-height: 75px; resize: none;"
+                placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
+            </div>
+        </div>
 
-<!-- 알림 메시지 -->
-<div class="alerts" style="margin-top: 1rem;">
-<div class="alert-green">
-<i class="fas fa-info-circle"></i>
-면접 대상자에 한해 선택하신 시간대 중 하나로 배정하여 개별 통보드립니다.
-</div>
-<div class="alert-green">
-<i class="fas fa-info-circle"></i>
-비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
-</div>
-<div class="alert-red">
-<i class="fas fa-exclamation-circle"></i>
-대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
-</div>
-</div>
+        <div class="alerts" style="margin-top: 1rem;">
+            <div class="alert-green">
+                <i class="fas fa-info-circle"></i>
+                면접 대상자에 한해 선택하신 시간대 중 하나로 배정하여 개별 통보드립니다.
+            </div>
+            <div class="alert-green">
+                <i class="fas fa-info-circle"></i>
+                비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
+            </div>
+            <div class="alert-red">
+                <i class="fas fa-exclamation-circle"></i>
+                대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
+            </div>
+        </div>
+    </div>
 </section>
 
 <div class="button-group">
@@ -3662,26 +4037,46 @@ const yearDownBtn = document.querySelector('.year-down');
 let currentDate = new Date(2001, 0); // 01년생부터 시작
 let selectedDate = null;
 
-// 날짜 선택 모달 이벤트
 if(dateInput) {
-dateInput.addEventListener('click', function(e) {
-e.preventDefault();
-dateModal.style.display = 'block';
-renderCalendar(currentDate);
-});
+    // 모바일에서 input을 클릭했을 때 기본 달력이 뜨는 것을 방지
+    dateInput.addEventListener('focus', function(e) {
+        e.preventDefault();
+        this.blur();
+        dateModal.style.display = 'block';
+        renderCalendar(currentDate);
+    });
+    
+    // 모바일에서도 동일하게 적용
+    const dateInputMobile = document.querySelector('input[name="birthdate_mobile"]');
+    if(dateInputMobile) {
+        dateInputMobile.addEventListener('focus', function(e) {
+            e.preventDefault();
+            this.blur();
+            dateModal.style.display = 'block';
+            renderCalendar(currentDate);
+        });
+    }
 }
 
 // 달력 확인/취소 버튼 이벤트
 if(confirmBtn) {
-confirmBtn.addEventListener('click', function() {
-if(selectedDate) {
-const year = selectedDate.getFullYear();
-const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-const day = String(selectedDate.getDate()).padStart(2, '0');
-dateInput.value = `${year}-${month}-${day}`;
-}
-dateModal.style.display = 'none';
-});
+    confirmBtn.addEventListener('click', function() {
+        if(selectedDate) {
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            
+            // PC 버전 입력칸 업데이트
+            const pcInput = document.querySelector('input[name="birthdate"]');
+            if(pcInput) pcInput.value = formattedDate;
+            
+            // 모바일 버전 입력칸 업데이트
+            const mobileInput = document.querySelector('input[name="birthdate_mobile"]');
+            if(mobileInput) mobileInput.value = formattedDate;
+        }
+        dateModal.style.display = 'none';
+    });
 }
 
 if(cancelBtn) {
@@ -3925,16 +4320,21 @@ return;
 }
 
 const contents = {
-feedback: {
-src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-title: '피드백 예시',
-desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-},
-content: {
-src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-title: '콘텐츠 공유 예시',
-desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-}
+    feedback: {
+        src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+        title: '피드백 예시',
+        desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+    },
+    content: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+        title: '콘텐츠 공유 예시',
+        desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+    },
+    records: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/all.jpg',
+        title: '활동 기록',
+        desc: '발자취와 함께한 우리들의 여정'
+    }
 };
 
 const content = contents[type];
@@ -4378,8 +4778,8 @@ previewHTML += `
                             `;
                         }
                         const options = {
-                            '대부분_참석': '대부분 참여 가능',
-                            '부분_참석': '부분 참여 가능',
+                            '대부분_참석': '대부분 참여',
+                            '부분_참석': '부분 참여',
                             '참여_어려움': '참여 어려움'
                         };
                         return `
@@ -4414,8 +4814,8 @@ previewHTML += `
                         }
                         const options = {
                             '전체_동의': '모두 동의',
-                            '클라우드만': '클라우드 공유만 동의',
-                            '동의_거부': '동의하지 않음'
+                            '클라우드만': '클라우드만 동의',
+                            '동의_거부': '동의 안함'
                         };
                         return `
                             <div style="display: flex; align-items: center;">
@@ -4448,9 +4848,9 @@ previewHTML += `
                             `;
                         }
                         const options = {
-                            '적극_참여': '적극적 참여 가능',
-                            '일반_참여': '최소한으로 참여 가능',
-                            '소극_참여': '이런 참여에는 관심 없음'
+                            '적극_참여': '적극 참여',
+                            '일반_참여': '최소한으로 참여',
+                            '소극_참여': '관심 없음'
                         };
                         return `
                             <div style="display: flex; align-items: center;">
@@ -4555,7 +4955,7 @@ previewHTML += `
                <label class="form-label">추가 요청사항</label>
                <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
            </div>
-       </div>
+       </div>       
    </section>
 `;
 
@@ -4606,7 +5006,198 @@ closePreview();
 }
 });
 
+</script>
 
+<script>
+// 모바일 환경에서만 모달 열기
+document.addEventListener('DOMContentLoaded', function() {
+    // MBTI 옵션 생성
+    const mbtiTypes = [
+        'ISTJ', 'ISFJ', 'INFJ', 'INTJ',
+        'ISTP', 'ISFP', 'INFP', 'INTP',
+        'ESTP', 'ESFP', 'ENFP', 'ENTP',
+        'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'
+    ];
+
+    const mbtiOptions = document.getElementById('mbtiOptions');
+    mbtiTypes.forEach(type => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = type;
+        option.onclick = function() {
+            document.querySelector('select[name="mbti"]').value = type;
+            document.querySelector('select[name="mbti_mobile"]').value = type;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        mbtiOptions.appendChild(option);
+    });
+
+    // 학년 옵션 생성
+    const normalGrades = document.getElementById('normalGradeOptions');
+    ['1학년', '2학년', '3학년', '4학년', '5학년'].forEach((grade, index) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = grade;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = (index + 1).toString();
+            document.querySelector('select[name="grade_mobile"]').value = (index + 1).toString();
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        normalGrades.appendChild(option);
+    });
+
+    const medicalGrades = document.getElementById('medicalGradeOptions');
+    [
+        ['예과 1학년', 'pre1'],
+        ['예과 2학년', 'pre2'],
+        ['본과 1학년', 'med1'],
+        ['본과 2학년', 'med2'],
+        ['본과 3학년', 'med3'],
+        ['본과 4학년', 'med4']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        medicalGrades.appendChild(option);
+    });
+
+    const graduateOptions = document.getElementById('graduateOptions');
+    [
+        ['졸업유예', 'postpone'],
+        ['졸업예정', 'graduating'],
+        ['졸업', 'graduated']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        graduateOptions.appendChild(option);
+    });
+
+    // 운전가능여부 옵션 생성
+    const drivingOptions = document.getElementById('drivingOptions');
+    [
+        ['자차 보유', 'car'],
+        ['면허만 보유', 'license'],
+        ['해당사항 없음', 'none']
+    ].forEach(([label, value]) => {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = label;
+        option.onclick = function() {
+            document.querySelector('select[name="driving_status"]').value = value;
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        };
+        drivingOptions.appendChild(option);
+    });
+
+    if (window.innerWidth <= 768) {
+    // MBTI select 제어 (PC와 모바일 모두)
+    const mbtiSelectPC = document.querySelector('select[name="mbti"]');
+    const mbtiSelectMobile = document.querySelector('select[name="mbti_mobile"]');
+    [mbtiSelectPC, mbtiSelectMobile].forEach(select => {
+        if (select) {
+            select.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('mbtiModal').style.display = 'block';
+                setTimeout(() => document.getElementById('mbtiModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            select.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('mbtiModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('mbtiModal').classList.add('show'), 10);
+                }
+            });
+        }
+    });
+    
+    // 학년 select 제어 (PC와 모바일 모두)
+    const gradeSelectPC = document.querySelector('select[name="grade"]');
+    const gradeSelectMobile = document.querySelector('select[name="grade_mobile"]');
+    [gradeSelectPC, gradeSelectMobile].forEach(select => {
+        if (select) {
+            select.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('gradeModal').style.display = 'block';
+                setTimeout(() => document.getElementById('gradeModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            select.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('gradeModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('gradeModal').classList.add('show'), 10);
+                }
+            });
+        }
+    });
+
+        // 운전가능여부 select 제어
+        const drivingSelect = document.querySelector('select[name="driving_status"]');
+        if (drivingSelect) {
+            drivingSelect.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('drivingModal').style.display = 'block';
+                setTimeout(() => document.getElementById('drivingModal').classList.add('show'), 10);
+            }, { passive: false });
+            
+            drivingSelect.addEventListener('mousedown', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('drivingModal').style.display = 'block';
+                    setTimeout(() => document.getElementById('drivingModal').classList.add('show'), 10);
+                }
+            });
+        }
+    }
+
+    // 모달 닫기 버튼 이벤트
+    document.querySelectorAll('.select-modal .modal-close').forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.select-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        });
+    });
+
+    // 모달 외부 클릭시 닫기
+    document.querySelectorAll('.select-modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        });
+    });
+});
+    
 </script>
 
 <script>
@@ -4708,6 +5299,75 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<!-- 모바일 전용 모달들 -->
+<div class="mobile-only">
+    <!-- MBTI 선택 모달 -->
+    <div class="select-modal" id="mbtiModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>MBTI 선택</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-options" id="mbtiOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 학년 선택 모달 -->
+    <div class="select-modal" id="gradeModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>학년 선택</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-group-label">일반학과</div>
+                <div class="select-options" id="normalGradeOptions"></div>
+                <div class="select-group-label">의학/약학계열</div>
+                <div class="select-options" id="medicalGradeOptions"></div>
+                <div class="select-group-label">졸업관련</div>
+                <div class="select-options" id="graduateOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 운전가능여부 선택 모달 -->
+    <div class="select-modal" id="drivingModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>운전 가능 여부</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-options" id="drivingOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example-modal" id="recordsModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title"></h3>
+            <p class="modal-desc"></p>
+        </div>
+        <div class="modal-image-container">
+            <div class="example-image-container">
+                <img id="recordsImage" src="" alt="예시 이미지">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-mouse"></i>
+            스크롤하여 더 보기
+        </div>
+    </div>
+</div>
     
 </body>
 </html>
