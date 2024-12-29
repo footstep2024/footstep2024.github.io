@@ -2750,11 +2750,27 @@ padding: 0.875rem;
 
     .mobile-confirm {
         display: flex;
+        justify-content: space-between; /* 양쪽 정렬 */
         align-items: center;
-        gap: 8px;
+        width: 100%; /* 전체 너비 사용 */
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
+    }
+    
+    .mobile-confirm .confirm-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .mobile-example-btn {
+        margin-left: auto; /* 오른쪽으로 밀어냄 */
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
     }
 
     .mobile-confirm input[type="checkbox"] {
@@ -4060,13 +4076,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+                <label class="mobile-confirm">
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_mobile_1" required>
+                        <span class="confirm-text">확인했습니다</span>
+                    </div>
                     <button type="button" class="mobile-example-btn" data-type="records">
                         <i class="fas fa-image"></i>
                         발자취의 여행 준비
                     </button>
-                <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_mobile_1" required>
-                    <span class="confirm-text">확인했습니다</span>
                 </label>
             </div>
         </div>
@@ -4092,13 +4110,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
+                <label class="mobile-confirm">
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_mobile_3" required>
+                        <span class="confirm-text">확인했습니다</span>
+                    </div>
                     <button type="button" class="mobile-example-btn" data-type="schedule">
                         <i class="fas fa-image"></i>
                         지난 학기 기록
                     </button>
-                <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_mobile_3" required>
-                    <span class="confirm-text">확인했습니다</span>
                 </label>
             </div>
         </div>
@@ -4138,13 +4158,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             <div class="notice-content">
                 <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.</p>
+                <label class="mobile-confirm warning">
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_mobile_6" required>
+                        <span class="confirm-text">확인했습니다</span>
+                    </div>
                     <button type="button" class="mobile-example-btn warning" data-type="rules">
                         <i class="fas fa-image"></i>
                         관련 회칙 보기
                     </button>
-                <label class="mobile-confirm warning">
-                    <input type="checkbox" name="notice_check_mobile_6" required>
-                    <span class="confirm-text">확인했습니다</span>
                 </label>
             </div>
         </div>
