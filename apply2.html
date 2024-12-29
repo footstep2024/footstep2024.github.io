@@ -2058,8 +2058,8 @@ transform: translateX(50%) translateY(-2px);
        width: 100%;
    }
     /* OT/MT 안내와 정기활동 안내에만 적용되도록 선택자 구체화 */
-    .ot-mt-section .schedule-description,
-    .regular-activity-section .schedule-description {
+    .schedule-card:has(> .card-header:has(h3:matches("OT 및 MT 안내"), h3:matches("정기 활동 안내"))) 
+    .schedule-description {
         margin-bottom: 24px;
     }
 }
