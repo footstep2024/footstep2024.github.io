@@ -4641,22 +4641,10 @@ function closeExample() {
 
 function updatePlaceholder(type) {
 const textarea = document.getElementById('travelEssay');
-const isMobile = window.innerWidth <= 768;
-
-const mobilePlaceholder = "상단의 두 주제 중 하나를 체크 클릭해주세요.";
-
-const pcPlaceholders = {
-    episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
-    planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
+const placeholders = {
+episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
+planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
 };
-
-if (textarea) {
-    if (!type) {
-        textarea.placeholder = isMobile ? mobilePlaceholder : "오른쪽 상단에 두 주제 중 하나를 체크 클릭해주세요.";
-    } else {
-        textarea.placeholder = isMobile ? mobilePlaceholder : pcPlaceholders[type];
-    }
-}
 
 if (textarea && placeholders[type]) {
 textarea.placeholder = placeholders[type];
