@@ -2692,52 +2692,89 @@ padding: 0.875rem;
 
 
 
+/* 모바일 공지사항 스타일 */
 @media (max-width: 768px) {
     .mobile-notice-list {
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 0 16px; /* 좌우 여백 추가 */
+    }
+
+    .mobile-notice-item {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+    }
+
+    .mobile-notice-item .notice-icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        color: var(--primary-color);
     }
 
     .mobile-notice-item .notice-content {
         flex: 1;
     }
 
-    /* 하단 영역 레이아웃 수정 */
+    .mobile-notice-item p {
+        margin: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-color);
+        word-break: keep-all;
+    }
+
+    .mobile-example-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 8px;
+        padding: 6px 12px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--primary-color);
+        font-size: 0.75rem;
+    }
+
+    .mobile-example-btn.warning {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
     .mobile-confirm {
         display: flex;
-        justify-content: space-between; /* 양끝 정렬로 변경 */
         align-items: center;
+        gap: 8px;
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
     }
 
-    /* 체크박스 영역 스타일 */
-    .mobile-confirm .checkbox-area {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    .mobile-confirm input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
     }
 
-    /* 버튼 스타일 수정 */
-    .mobile-example-btn {
-        margin-top: 0; /* 기존 마진 제거 */
-        margin-left: auto; /* 오른쪽 정렬 */
-        padding: 6px 12px;
-        font-size: 0.75rem;
-        border: 1px solid var(--primary-color);
-        border-radius: 4px;
-        background: transparent;
-        color: var(--primary-color);
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
+    .mobile-confirm .confirm-text {
+        font-size: 0.8rem;
+        color: var(--light-text);
     }
 
-    .mobile-example-btn.warning {
-        border-color: #dc3545;
+    .mobile-notice-item.warning {
+        background: rgba(220, 53, 69, 0.03);
+    }
+
+    .mobile-notice-item.warning .notice-icon {
+        color: #dc3545;
+    }
+
+    .mobile-confirm.warning .confirm-text {
         color: #dc3545;
     }
 }
