@@ -2696,138 +2696,110 @@ padding: 0.875rem;
 
 /* 모바일 공지사항 스타일 */
 @media (max-width: 768px) {
-    .mobile-notice-list {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    
-    .mobile-notice-item {
-        background: #fff;
-        border-radius: 12px;
-        padding: 16px;
-        display: flex;
-        gap: 12px;
-        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
-    }
+   .mobile-notice-list {
+       display: flex;
+       flex-direction: column;
+       gap: 16px;
+   }
+   
+   .mobile-notice-item {
+       background: #fff;
+       border-radius: 12px;
+       padding: 16px;
+       display: flex;
+       gap: 12px;
+       box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
+   }
 
-    .mobile-notice-item .notice-icon {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        color: var(--primary-color);
-    }
+   .mobile-notice-item .notice-icon {
+       flex-shrink: 0;
+       width: 24px;
+       height: 24px;
+       color: var(--primary-color);
+   }
 
-    .mobile-notice-item .notice-content {
-        flex: 1;
-    }
+   .mobile-notice-item .notice-content {
+       flex: 1;
+   }
 
-    .mobile-notice-item p {
-        margin: 0;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: var(--text-color);
-        word-break: keep-all;
-    }
+   .mobile-notice-item p {
+       margin: 0;
+       font-size: 0.85rem;
+       line-height: 1.5;
+       color: var(--text-color);
+       word-break: keep-all;
+   }
 
-    .mobile-example-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        margin-top: 8px;
-        padding: 6px 12px;
-        border: 1px solid var(--primary-color);
-        border-radius: 4px;
-        background: transparent;
-        color: var(--primary-color);
-        font-size: 0.75rem;
-    }
+   /* 체크박스 관련 스타일 */
+   .mobile-confirm {
+       display: flex;
+       align-items: center;
+       width: 100%;
+       margin-top: 12px;
+       padding-top: 12px;
+       border-top: 1px solid rgba(47, 82, 41, 0.1);
+   }
 
-    .mobile-example-btn.warning {
-        border-color: #dc3545;
-        color: #dc3545;
-    }
+   .mobile-confirm .confirm-wrapper {
+       display: flex;
+       align-items: center;
+       gap: 8px;
+   }
 
-.mobile-confirm .check-icon {
-    width: 24px;  /* 크기를 동의함 아이콘과 동일하게 조정 */
-    height: 24px;
-    border-radius: 50%;  /* 원형으로 만들기 */
-    border: 1px solid #ddd;
-    background: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-    
-    .mobile-confirm {
-        display: flex;
-        align-items: center;
-        width: 100%; /* 전체 너비 사용 */
-        margin-top: 12px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(47, 82, 41, 0.1);
-    }
-    
-.mobile-confirm .confirm-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* 체크아이콘과 텍스트 사이 간격 */
-}
-    
-    .mobile-example-btn {
-        margin-left: auto; /* 오른쪽으로 밀어냄 */
-        padding: 4px 8px;
-        font-size: 0.7rem;
-        border: 1px solid var(--primary-color);
-        border-radius: 4px;
-        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-    }
+   .mobile-confirm input[type="checkbox"] {
+       display: none;
+   }
 
-    .mobile-confirm input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        margin: 0;
-        display: none;
-    }
+   .mobile-confirm .check-icon {
+       width: 24px;
+       height: 24px;
+       border-radius: 50%;
+       border: 1px solid #ddd;
+       background: white;
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       transition: all 0.2s ease;
+   }
 
-.mobile-confirm .confirm-text {
-    font-size: 0.8rem;
-    color: var(--light-text);
-    padding-right: 8px; /* 오른쪽 패딩 추가 */
-}
+   .mobile-confirm input[type="checkbox"]:checked + .check-icon {
+       border: none;
+       background: var(--primary-color);
+   }
 
-    .mobile-notice-item.warning {
-        background: rgba(220, 53, 69, 0.03);
-    }
+   .mobile-confirm .check-icon::after {
+       content: '\f00c';
+       font-family: 'Font Awesome 5 Free';
+       font-weight: 900;
+       font-size: 14px;
+       color: transparent;
+       transition: all 0.2s ease;
+   }
 
-    .mobile-notice-item.warning .notice-icon {
-        color: #dc3545;
-    }
+   .mobile-confirm input[type="checkbox"]:checked + .check-icon::after {
+       color: white;
+   }
 
-    .mobile-confirm.warning .confirm-text {
-        color: #dc3545;
-    }
+   .mobile-confirm .confirm-text {
+       font-size: 0.8rem;
+       color: var(--light-text);
+       padding-right: 8px;
+   }
 
-
-
-.mobile-confirm .check-icon::before {
-    content: '\f00c';  /* 체크 아이콘 */
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    font-size: 14px;
-    color: transparent;  /* 체크 전에는 투명 */
-    transition: all 0.2s ease;
-}
-
-.mobile-confirm input[type="checkbox"]:checked + .check-icon {
-    background: var(--primary-color);  /* 체크시 초록색 배경 */
-    border-color: var(--primary-color);
-}
-    
-.mobile-confirm input[type="checkbox"]:checked + .check-icon::before {
-    color: white;  /* 체크시 흰색으로 변경 */
-    }
+   /* 모달 버튼 스타일 */
+   .mobile-example-btn {
+       margin-left: auto;
+       padding: 4px 8px;
+       font-size: 0.7rem;
+       border: 1px solid var(--primary-color);
+       border-radius: 4px;
+       white-space: nowrap;
+       display: inline-flex;
+       align-items: center;
+       gap: 4px;
+       background: transparent;
+       color: var(--primary-color);
+   }
 }
     
 </style>
