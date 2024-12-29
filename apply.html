@@ -1672,10 +1672,19 @@ font-weight: 500;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .timeline-text {
     flex: 1;
+    min-width: 0;
+}
+
+.timeline-text h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 .timeline-image {
@@ -1733,10 +1742,6 @@ font-weight: 500;
     font-weight: 500;
 }
 
-.timeline-content {
-    flex: 1;
-}
-
 .timeline-content h4 {
     color: var(--primary-color);
     font-size: 1rem;
@@ -1753,6 +1758,7 @@ font-weight: 500;
 .attendance {
     font-size: 0.8rem;
     color: var(--primary-color);
+    white-space: nowrap;
 }
 
 .attendance i {
@@ -2048,7 +2054,7 @@ padding-bottom: 2.5rem;
 }
 
 .notice-content p {
-font-size: 0.8rem;
+font-size: 0.65rem;
 }
 
 .confirm-check {
@@ -2705,7 +2711,7 @@ padding: 0.875rem;
    .mobile-notice-item {
        background: #fff;
        border-radius: 12px;
-       padding: 16px;
+       padding: 16px 16px 0px 16px;
        display: flex;
        gap: 12px;
        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
@@ -2735,8 +2741,9 @@ padding: 0.875rem;
        display: flex;
        align-items: center;
        width: 100%;
-       margin-top: 12px;
+       margin-top: 8px;
        padding-top: 12px;
+       margin-bottom: -20px;
        border-top: 1px solid rgba(47, 82, 41, 0.1);
    }
 
