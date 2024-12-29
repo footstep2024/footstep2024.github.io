@@ -2698,6 +2698,7 @@ padding: 0.875rem;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        padding: 0 16px;
     }
 
     .mobile-notice-item {
@@ -2729,16 +2730,17 @@ padding: 0.875rem;
     }
 
     .mobile-example-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        margin-top: 8px;
+        margin-top: 0; /* 기존 마진 제거 */
+        margin-left: auto; /* 오른쪽 정렬 */
         padding: 6px 12px;
+        font-size: 0.75rem;
         border: 1px solid var(--primary-color);
         border-radius: 4px;
         background: transparent;
         color: var(--primary-color);
-        font-size: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
 
     .mobile-example-btn.warning {
@@ -2748,13 +2750,19 @@ padding: 0.875rem;
 
     .mobile-confirm {
         display: flex;
+        justify-content: space-between; /* 양끝 정렬로 변경 */
         align-items: center;
-        gap: 8px;
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
     }
 
+    .mobile-confirm .checkbox-area {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
     .mobile-confirm input[type="checkbox"] {
         width: 18px;
         height: 18px;
@@ -4063,11 +4071,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                     발자취의 여행 준비
                 </button>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_mobile_1" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <div class="checkbox-area">
+                        <input type="checkbox" name="notice_check_mobile_1" required>
+                        <span class="confirm-text">확인했습니다</span>
+                    </div>
+                    <button type="button" class="mobile-example-btn" data-type="records">
+                        <i class="fas fa-image"></i>
+                        발자취의 여행 준비
+                    </button>
                 </label>
-            </div>
-        </div>
 
         <!-- 여행 경비 공지 -->
         <div class="mobile-notice-item">
