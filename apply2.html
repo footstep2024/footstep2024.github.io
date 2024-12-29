@@ -2121,19 +2121,23 @@ transform: translateX(50%) translateY(-2px);
         border-radius: 4px;
     }
 
-    /* 알림 텍스트와 예시 버튼 컨테이너 */
-    .alerts .alert-wrapper {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+@media (max-width: 768px) {
+    .example-btn {
+        display: block;
+        margin-top: 0.5rem;
+        width: fit-content;
+        padding: 4px 12px;
+        font-size: 0.75rem;
     }
 
-    /* 알림과 예시 버튼 감싸는 컨테이너 */
-    .alerts > div {
+    .schedule-description + .alerts {
         display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 0.5rem;
+        flex-direction: column;
+    }
+
+    .alerts > div {
+        flex-direction: column;
+        width: 100%;
     }
 }
 
