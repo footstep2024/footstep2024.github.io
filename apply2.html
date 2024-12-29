@@ -2748,9 +2748,19 @@ padding: 0.875rem;
         color: #dc3545;
     }
 
+    .mobile-confirm .check-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+    
     .mobile-confirm {
         display: flex;
-        justify-content: space-between; /* 양쪽 정렬 */
         align-items: center;
         width: 100%; /* 전체 너비 사용 */
         margin-top: 12px;
@@ -2797,16 +2807,7 @@ padding: 0.875rem;
         color: #dc3545;
     }
 
-    .mobile-confirm .check-icon {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        border: 1px solid #ccc;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-    }
+
 
     .mobile-confirm .check-icon::before {
         content: '';
