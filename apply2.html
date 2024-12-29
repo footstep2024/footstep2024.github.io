@@ -2707,7 +2707,6 @@ padding: 0.875rem;
     display: flex;
     gap: 12px;
     box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
-    margin: 0 16px; /* 좌우 여백 추가 */
 }
 
     .mobile-notice-item .notice-icon {
@@ -4057,22 +4056,19 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
             </div>
-            <div class="notice-content">
-                <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+        <div class="notice-content">
+            <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
+            <label class="mobile-confirm">
+                <div class="checkbox-area">
+                    <input type="checkbox" name="notice_check_mobile_1" required>
+                    <span class="confirm-text">확인했습니다</span>
+                </div>
                 <button type="button" class="mobile-example-btn" data-type="records">
                     <i class="fas fa-image"></i>
                     발자취의 여행 준비
                 </button>
-                <label class="mobile-confirm">
-                    <div class="checkbox-area">
-                        <input type="checkbox" name="notice_check_mobile_1" required>
-                        <span class="confirm-text">확인했습니다</span>
-                    </div>
-                    <button type="button" class="mobile-example-btn" data-type="records">
-                        <i class="fas fa-image"></i>
-                        발자취의 여행 준비
-                    </button>
-                </label>
+            </label>
+        </div>
 
         <!-- 여행 경비 공지 -->
         <div class="mobile-notice-item">
