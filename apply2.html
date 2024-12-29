@@ -1213,87 +1213,6 @@ font-size: 0.9rem;
     margin-left: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    /* 카드 레이아웃 조정 */
-    .schedule-card {
-        padding: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-    /* 헤더 부분 정리 */
-    .card-header {
-        padding-bottom: 0.8rem;
-        margin-bottom: 1rem;
-        align-items: center;
-    }
-
-    /* 정보 박스 스타일링 */
-    .schedule-info {
-        background: rgba(47, 82, 41, 0.03);
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-    }
-
-    /* 각 정보 아이템 간격 조정 */
-    .info-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    /* 아이콘 스타일링 */
-    .info-item i {
-        width: 20px;
-        color: var(--primary-color);
-        font-size: 0.9rem;
-    }
-
-    /* 레이블 스타일링 */
-    .info-label {
-        min-width: 40px;
-        font-size: 0.85rem;
-    }
-
-    /* 값 스타일링 */
-    .info-value {
-        font-size: 0.85rem;
-    }
-
-    /* 서브 텍스트 위치 조정 */
-    .info-item:first-child .info-sub {
-        position: absolute;
-        top: -1rem;
-        right: 1rem;
-        font-size: 0.75rem;
-        color: var(--light-text);
-        background: rgba(47, 82, 41, 0.05);
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-    }
-
-    /* 설명 문구 스타일링 */
-    .schedule-description {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        margin: 1rem 0;
-    }
-
-    /* 알림 메시지 스타일링 */
-    .alert-red, .alert-green {
-        font-size: 0.8rem;
-        margin-bottom: 0.4rem;
-        padding-left: 0.5rem;
-    }
-
-    /* 체크 아이콘 크기 조정 */
-    .check-icon {
-        width: 16px;
-        height: 16px;
-    }
-}
-
 /* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
@@ -2037,77 +1956,117 @@ transform: translateX(50%) translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    /* 컴포넌트 스타일링 */
-    .schedule-info {
-        position: relative;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        background: rgba(47, 82, 41, 0.03);
-        border-radius: 8px;
-    }
-    /* info-item 레이아웃 개선 */
-    .info-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-    /* info-sub 위치 조정 */
-    .info-item:first-child .info-sub {
-        position: absolute;
-        top: -0.5rem;
-        right: 0.5rem;
-        font-size: 0.7rem;
-        background: rgba(47, 82, 41, 0.05);
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        margin: 0;
-    }
-    /* 라디오 그룹 컨테이너 한 줄 정렬 */
-    .radio-group-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 0.3rem;
-        padding: 0.5rem 0;
-        margin-top: 1rem;
-        flex-wrap: nowrap;
-    }
-    /* 라디오 레이블 텍스트 크기 조정 */
-    .radio-group-container .label-text {
-        font-size: 0.7rem;
-        white-space: nowrap;
-    }
-    /* 알림 텍스트 간격 조정 */
-    .alert-red, .alert-green {
-        font-size: 0.75rem;
-        margin-bottom: 0.3rem;
-    }
-    .alert-red i, .alert-green i {
-        margin-right: 0.3rem;
-    }
-    /* 설명 문구와 알림 사이 간격 */
-    .schedule-description + .alerts {
-        margin-top: 1rem;
-        padding-top: 1.5rem;
-    }
-    /* 예시 버튼과 설명 관련 스타일 */
-    .example-btn {
-        display: inline-flex;
-        margin-left: 6px;
-        padding: 2px 8px;
-        font-size: 0.7rem;
-        vertical-align: middle;
-    }
-    .schedule-description {
-        display: inline;
-    }
-    .alerts {
-        margin-top: 1rem;
-    }
-    .alerts > div {
-        width: 100%;
-    }
+   /* 카드 레이아웃 조정 */
+   .schedule-card {
+       padding: 1.2rem;
+       margin-bottom: 1rem;
+   }
+   /* 헤더 부분 정리 */
+   .card-header {
+       padding-bottom: 0.8rem;
+       margin-bottom: 1rem;
+       align-items: center;
+   }
+   /* 정보 박스 스타일링 */
+   .schedule-info {
+       background: rgba(47, 82, 41, 0.03);
+       padding: 1rem;
+       border-radius: 8px;
+       margin-bottom: 1rem;
+   }
+   /* 각 정보 아이템 간격 조정 */
+   .info-item {
+       display: flex;
+       align-items: center;
+       gap: 0.5rem;
+       margin-bottom: 0.5rem;
+   }
+   /* 아이콘 스타일링 */
+   .info-item i {
+       width: 20px;
+       color: var(--primary-color);
+       font-size: 0.9rem;
+   }
+   /* 레이블 스타일링 */
+   .info-label {
+       min-width: 40px;
+       font-size: 0.85rem;
+   }
+   /* 값 스타일링 */
+   .info-value {
+       font-size: 0.85rem;
+   }
+   /* 서브 텍스트 위치 조정 */
+   .info-item:first-child .info-sub {
+       position: absolute;
+       top: -1rem;
+       right: 1rem;
+       font-size: 0.75rem;
+       color: var(--light-text);
+       background: rgba(47, 82, 41, 0.05);
+       padding: 0.2rem 0.5rem;
+       border-radius: 4px;
+   }
+   /* 설명 문구 스타일링 */
+   .schedule-description {
+       display: inline;
+       font-size: 0.85rem;
+       line-height: 1.6;
+       margin: 1rem 0;
+   }
+   /* 알림 메시지 스타일링 */
+   .alert-red, .alert-green {
+       font-size: 0.8rem;
+       margin-bottom: 0.4rem;
+       padding-left: 0.5rem;
+   }
+   .alert-red i, .alert-green i {
+       margin-right: 0.3rem;
+   }
+   /* 체크 아이콘 크기 조정 */
+   .check-icon {
+       width: 16px;
+       height: 16px;
+   }
+   /* 라디오 그룹 컨테이너 한 줄 정렬 */
+   .radio-group-container {
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+       gap: 0.3rem;
+       padding: 0.5rem 0;
+       margin-top: 1rem;
+       flex-wrap: nowrap;
+   }
+   /* 라디오 레이블 텍스트 크기 조정 */
+   .radio-group-container .label-text {
+       font-size: 0.7rem;
+       white-space: nowrap;
+   }
+   /* 설명 문구와 알림 사이 간격 */
+   .schedule-description + .alerts {
+       margin-top: 1rem;
+       padding-top: 1.5rem;
+       display: flex;
+       flex-direction: column;
+   }
+   /* 예시 버튼 스타일링 */
+   .example-btn {
+       display: inline-flex;
+       margin-left: 6px;
+       padding: 2px 8px;
+       font-size: 0.7rem;
+       vertical-align: middle;
+   }
+   .example-btn:hover {
+       transform: none;
+   }
+   .alerts {
+       margin-top: 1rem;
+   }
+   .alerts > div {
+       width: 100%;
+   }
 }
 
 /* 다크 모드 지원 */
