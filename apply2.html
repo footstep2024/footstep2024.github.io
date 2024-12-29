@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="theme-color" content="#2F5229">
+
+
+    
 <title>발자취 - 25-1학기 신입부원 지원서</title>
 <link rel="preload" as="image" href="https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png">
@@ -12,6 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
 
 <style>
 :root {
@@ -3216,9 +3221,9 @@ textarea.form-control[readonly] {
 
 <!-- OT/MT 참석 여부 -->
 <!-- PC 버전 레이아웃 -->
-<div class="pc-only">
     <div class="form-group" style="margin-bottom: 2.5rem;">
-    <div class="schedule-card">
+<div class="pc-only">
+ <div class="schedule-card">
         <div class="card-header">
             <h3>OT 및 MT 안내</h3>
             <span class="required-badge">필수</span>
@@ -3271,7 +3276,7 @@ textarea.form-control[readonly] {
         </div>
     </div>
 </div>
-    </div>
+</div>
 
 <!-- 모바일 버전 레이아웃 -->
 <div class="mobile-only">
@@ -4517,10 +4522,22 @@ function closeExample() {
 
 function updatePlaceholder(type) {
 const textarea = document.getElementById('travelEssay');
-const placeholders = {
-episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
-planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
+const isMobile = window.innerWidth <= 768;  // 모바일 여부 체크
+
+const mobilePlaceholder = "두 주제 중 하나를 체크 클릭해주세요.";
+
+const pcPlaceholders = {
+    episode: "특별한 여행이 아닌 일상 속 소소한 여행 경험도 좋습니다. \n마땅한 여행 경험이 없다면, 발자취와 함께 앞으로 어떤 여행을 가보고 싶은지를 자유롭게 적어주세요.",
+    planned: "계획 단계에서 겪은 어려움이나 특별히 신경 쓴 부분을 듣고 싶습니다.\n실제 여행에서 계획대로 진행된 점과 예상 밖의 상황들도 공유해 주세요."
 };
+
+if (textarea) {
+    if (!type) {
+        textarea.placeholder = isMobile ? mobilePlaceholder : "오른쪽 상단에 두 주제 중 하나를 체크 클릭해주세요.";
+    } else {
+        textarea.placeholder = isMobile ? mobilePlaceholder : pcPlaceholders[type];
+    }
+}
 
 if (textarea && placeholders[type]) {
 textarea.placeholder = placeholders[type];
