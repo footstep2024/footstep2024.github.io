@@ -2694,10 +2694,19 @@ padding: 0.875rem;
 
 /* 모바일 공지사항 스타일 */
 @media (max-width: 768px) {
+    .form-section {
+        padding: 1rem;
+    }
+    
     .mobile-notice-list {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        max-width: 100%;
+    }
+
+    .mobile-notice-item {
+        margin: 0;
     }
 
 .mobile-notice-item {
