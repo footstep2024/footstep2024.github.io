@@ -2762,22 +2762,15 @@ padding: 0.875rem;
        transition: all 0.2s ease;
    }
 
-   .mobile-confirm input[type="checkbox"]:checked + .check-icon {
-       border: none;
-       background: var(--primary-color);
-   }
-
-   .mobile-confirm .check-icon::after {
-       content: '\f00c';
-       font-family: 'Font Awesome 5 Free';
-       font-weight: 900;
-       font-size: 14px;
-       color: transparent;
-   }
-
-   .mobile-confirm input[type="checkbox"]:checked + .check-icon::after {
-       color: white;
-   }
+    .mobile-confirm input[type="checkbox"]:checked ~ .check-text {
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+    
+    .mobile-confirm input[type="checkbox"]:checked ~ .check-text::before {
+        content: '✓';
+        margin-right: 4px;
+    }
 
    .mobile-confirm .confirm-text {
        font-size: 0.8rem;
