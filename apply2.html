@@ -4798,42 +4798,49 @@ showRules();
 });
 
 function showExample(type) {
-const modal = document.getElementById('exampleModal');
-const modalTitle = modal.querySelector('.modal-title');
-const modalDesc = modal.querySelector('.modal-desc');
-const imageContainer = modal.querySelector('.modal-image-container');
-const scrollIndicator = modal.querySelector('.scroll-indicator');
+    const modal = document.getElementById('exampleModal');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDesc = modal.querySelector('.modal-desc');
+    const imageContainer = modal.querySelector('.modal-image-container');
+    const scrollIndicator = modal.querySelector('.scroll-indicator');
 
-// 모달 초기화
-modalTitle.textContent = '';
-modalDesc.textContent = '';
-imageContainer.innerHTML = '';
-scrollIndicator.style.opacity = '0';
-imageContainer.scrollTop = 0;
+    // 모달 초기화
+    modalTitle.textContent = '';
+    modalDesc.textContent = '';
+    imageContainer.innerHTML = '';
+    scrollIndicator.style.opacity = '0';
+    imageContainer.scrollTop = 0;
 
-if (type === 'rules') {
-showRules();
-return;
-}
-
-const contents = {
-    feedback: {
-        src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-        title: '피드백 예시',
-        desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-    },
-    content: {
-        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-        title: '콘텐츠 공유 예시',
-        desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
-    },
-    records: {
-        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
-        title: '지난 여행계획서 살펴보기',
-        desc: '발자취는 이렇게 여행을 준비합니다. (12월 여행계획서 중 일부)',
+    if (type === 'rules') {
+        showRules();
+        return;
     }
-};
 
+    if (type === 'schedule') {
+        const scheduleModal = document.getElementById('scheduleRulesModal');
+        if (!scheduleModal) return;
+        scheduleModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        return;
+    }
+
+    const contents = {
+        feedback: {
+            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+            title: '피드백 예시',
+            desc: '공유된 피드백은 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        },
+        content: {
+            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+            title: '콘텐츠 공유 예시',
+            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
+        },
+        records: {
+            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
+            title: '지난 여행계획서 살펴보기',
+            desc: '발자취는 이렇게 여행을 준비합니다. (12월 여행계획서 중 일부)',
+        }
+    };
 const content = contents[type];
 if (!content) return;
 
