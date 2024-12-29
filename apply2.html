@@ -2186,17 +2186,17 @@ transform: translateY(-2px);
 
 .selected-times-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개로 고정 */
     gap: 12px;
-    max-width: 900px;
-    margin: 2rem auto 0;
+    width: 100%;
+    margin: 2rem 0 0;
     padding: 4px;
 }
 
-/* 한 줄에 최대 4개까지만 표시되도록 설정 */
+
 @media (min-width: 900px) {
     .selected-times-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
