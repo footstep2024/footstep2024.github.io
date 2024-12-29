@@ -2134,12 +2134,13 @@ color: var(--text-color);
 </style>
 
 <style>
+
 /* 면접 일정 선택 버튼 스타일 */
 .schedule-select-wrapper {
-text-align: center;
-margin: 2rem 0;
-width: 100%;  /* 추가 */
+    text-align: center;
+    margin: 2rem 0;
 }
+
 
 .schedule-select-btn {
 background: var(--primary-color);
@@ -2186,17 +2187,16 @@ transform: translateY(-2px);
 
 .selected-times-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개로 고정 */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px;
-    width: 100%;
-    margin: 2rem 0 0;
+    max-width: 900px;
+    margin: 2rem auto 0;
     padding: 4px;
 }
 
-
 @media (min-width: 900px) {
     .selected-times-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -3562,6 +3562,51 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </section>
 
+<!-- 면접 일정 선택 섹션 -->
+<section class="form-section">
+<h2 class="section-title">면접 일정 선택</h2>
+
+<!-- 일정 선택 버튼 -->
+<div class="schedule-select-wrapper">
+    <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
+        <i class="fas fa-calendar-alt"></i>
+        가능한 면접 시간 모두 선택하기
+    </button>
+    <div class="selected-schedule" id="selectedSchedule">
+        <div class="no-schedule">
+            <i class="fas fa-calendar-plus"></i>
+            <p>가능한 면접 시간을 모두 선택해주세요.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 추가 요청사항 입력 -->
+<div class="additional-requests" style="margin-top: 2rem;">
+<div class="form-group">
+<label class="form-label">추가 요청사항</label>
+<textarea class="form-control" name="interview_requests" 
+style="height: 75px !important; min-height: 75px; resize: none;"
+placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
+</div>
+</div>
+
+<!-- 알림 메시지 -->
+<div class="alerts" style="margin-top: 1rem;">
+<div class="alert-green">
+<i class="fas fa-info-circle"></i>
+면접 대상자에 한해 선택하신 시간대 중 하나로 배정하여 개별 통보드립니다.
+</div>
+<div class="alert-green">
+<i class="fas fa-info-circle"></i>
+비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
+</div>
+<div class="alert-red">
+<i class="fas fa-exclamation-circle"></i>
+대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
+</div>
+</div>
+</section>
+
 <!-- 활동 안내사항 섹션 -->
 <section class="form-section">
 <h2 class="section-title">활동 안내사항 확인</h2>
@@ -3663,55 +3708,30 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </section>
 
-<!-- 면접 일정 선택 섹션 -->
-<section class="form-section">
-<h2 class="section-title">면접 일정 선택</h2>
-
-<!-- 일정 선택 버튼 -->
-<div class="schedule-select-wrapper">
-    <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
-        <i class="fas fa-calendar-alt"></i>
-        가능한 면접 시간 모두 선택하기
-    </button>
-    <div class="selected-schedule" id="selectedSchedule">
-        <div class="no-schedule">
-            <i class="fas fa-calendar-plus"></i>
-            <p>가능한 면접 시간을 모두 선택해주세요.</p>
-        </div>
-    </div>
-</div>
-
-<!-- 추가 요청사항 입력 -->
-<div class="additional-requests" style="margin-top: 2rem;">
-<div class="form-group">
-<label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="interview_requests" 
-style="height: 75px !important; min-height: 75px; resize: none;"
-placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
-</div>
-</div>
-
-<!-- 알림 메시지 -->
-<div class="alerts" style="margin-top: 1rem;">
-<div class="alert-green">
-<i class="fas fa-info-circle"></i>
-면접 대상자에 한해 선택하신 시간대 중 하나로 배정하여 개별 통보드립니다.
-</div>
-<div class="alert-green">
-<i class="fas fa-info-circle"></i>
-비대면 면접은 Zoom을 통해 진행되며, 면접 링크는 당일 문자로 전송됩니다.
-</div>
-<div class="alert-red">
-<i class="fas fa-exclamation-circle"></i>
-대면 면접 장소는 해당자에 한해 추후 개별 통보됩니다.
-</div>
-</div>
-</section>
-
 <div class="button-group">
 <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
 <button type="submit" class="submit-btn">제출하기</button>
 </div>
+
+<!-- 미리보기 모달 추가 -->
+<div class="preview-modal" id="previewModal">
+<div class="preview-modal-content">
+<button class="example-close" onclick="closePreview()">&times;</button>
+<div class="preview-modal-header">
+<h3 class="preview-modal-title">지원서 미리보기</h3>
+<p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
+</div>
+<div class="preview-content">
+<!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
+</div>
+<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
+    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
+    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
+</div>
+</div>
+</div>
+
+</form>
 
 <!-- 면접 일정 선택 모달 -->
 <div class="schedule-modal" id="scheduleModal">
@@ -3850,26 +3870,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 
-<!-- 미리보기 모달 추가 -->
-<div class="preview-modal" id="previewModal">
-<div class="preview-modal-content">
-<button class="example-close" onclick="closePreview()">&times;</button>
-<div class="preview-modal-header">
-<h3 class="preview-modal-title">지원서 미리보기</h3>
-<p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
-</div>
-<div class="preview-content">
-<!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
-</div>
-<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
-    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
-    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
-</div>
-</div>
-</div>
-
-</form>  
-
+    
 <!-- 예시 보기 모달 -->
 <div class="example-modal" id="exampleModal">
 <div class="example-modal-content">
