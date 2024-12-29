@@ -2751,10 +2751,22 @@ padding: 0.875rem;
     .mobile-confirm {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid rgba(47, 82, 41, 0.1);
+    }
+    
+    .mobile-confirm .confirm-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .mobile-example-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
     }
 
     .mobile-confirm input[type="checkbox"] {
@@ -4087,18 +4099,17 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
         <!-- 단체여행 공지 -->
         <div class="mobile-notice-item">
-            <div class="notice-icon">
-                <i class="fas fa-circle-exclamation"></i>
-            </div>
             <div class="notice-content">
-                <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
+                <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다...</p>
+                <label class="mobile-confirm">
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_mobile_3" required>
+                        <span class="confirm-text">확인했습니다</span>
+                    </div>
                     <button type="button" class="mobile-example-btn" data-type="schedule">
                         <i class="fas fa-image"></i>
                         지난 학기 기록
                     </button>
-                <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_mobile_3" required>
-                    <span class="confirm-text">확인했습니다</span>
                 </label>
             </div>
         </div>
