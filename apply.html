@@ -2854,6 +2854,29 @@ padding: 0.875rem;
        margin-left: 4px;
    }
 
+
+.mobile-notice-item.warning {
+    background: rgba(220, 53, 69, 0.02);  /* 매우 연한 빨간색 배경 */
+    border: 1px solid rgba(220, 53, 69, 0.1);  /* 연한 빨간색 테두리 */
+}
+
+.mobile-notice-item.warning .notice-icon i {
+    color: #dc3545;  /* 아이콘 색상을 빨간색으로 */
+}
+
+.mobile-notice-item.warning .notice-content p {
+    color: #dc3545;  /* 텍스트 색상을 빨간색으로 */
+}
+
+.mobile-notice-item.warning .mobile-confirm input[type="checkbox"]:checked ~ .check-text {
+    color: #dc3545;
+}
+
+.mobile-notice-item.warning .mobile-example-btn {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
    /* 모달 버튼 스타일 */
    .mobile-example-btn {
        margin-left: auto;
@@ -4535,7 +4558,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                     <div class="timeline-content">
                         <div class="timeline-text">
                             <h4>단풍 여행 - 남이섬</h4>
-                            <p>가을 정취 가득한 남이섬에서의 하루</p>
+                            <p>가을 정취 가득한 남이섬에서의 이야기</p>
                             <div class="attendance">
                                 <i class="fas fa-users"></i> 참석률 75% (18/24명)
                             </div>
