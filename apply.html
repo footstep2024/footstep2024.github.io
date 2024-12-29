@@ -1457,7 +1457,86 @@ scrollbar-width: thin;
 scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
-/* 커스텀 스크롤바 스타일 */
+/* 모바일 타임라인 모달 스타일 */
+@media (max-width: 768px) {
+    #scheduleRulesModal .example-modal-content {
+        padding: 16px;
+    }
+
+    #scheduleRulesModal .activity-timeline {
+        padding: 0;
+    }
+
+    #scheduleRulesModal .timeline-item {
+        position: relative;  /* position 수정 */
+        flex-direction: column;
+        gap: 12px;
+        padding: 0;
+        margin-bottom: 20px;
+        transform: none !important;
+    }
+
+    #scheduleRulesModal .timeline-date {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+        z-index: 1;
+        background: rgba(47, 82, 41, 0.9);
+    }
+
+    #scheduleRulesModal .timeline-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/5;  /* 원본 이미지 비율에 맞게 설정 */
+        margin: 0;
+        border-radius: 8px 8px 0 0;
+    }
+ 
+    #scheduleRulesModal .timeline-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #scheduleRulesModal .timeline-content {
+        padding: 12px;
+        background: #f8f9fa;
+        border-radius: 0 0 8px 8px;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #scheduleRulesModal .timeline-text {
+        width: 100%;
+    }
+
+    #scheduleRulesModal .timeline-text h4 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    #scheduleRulesModal .timeline-text p {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+
+    #scheduleRulesModal .attendance {
+        font-size: 0.75rem;
+        padding: 4px 0;
+        border-top: 1px solid rgba(47, 82, 41, 0.1);
+    }
+
+    #scheduleRulesModal .modal-footer {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+}
+
 .example-modal::-webkit-scrollbar {
 width: 8px;
 }
@@ -1642,11 +1721,6 @@ height: 28px;
 font-size: 18px;
 top: 10px;
 right: 10px;
-}
-
-.modal-bottom-close {
-padding: 10px;
-font-size: 0.9rem;
 }
 
 .rules-content {
