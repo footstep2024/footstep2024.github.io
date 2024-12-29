@@ -2777,6 +2777,7 @@ padding: 0.875rem;
         width: 18px;
         height: 18px;
         margin: 0;
+        display: none;
     }
 
     .mobile-confirm .confirm-text {
@@ -2794,6 +2795,36 @@ padding: 0.875rem;
 
     .mobile-confirm.warning .confirm-text {
         color: #dc3545;
+    }
+
+    .mobile-confirm .check-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-confirm .check-icon::before {
+        content: '';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 12px;
+        color: transparent;
+        transition: all 0.2s ease;
+    }
+
+   .mobile-confirm input[type="checkbox"]:checked + .check-icon {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    
+    .mobile-confirm input[type="checkbox"]:checked + .check-icon::before {
+        content: '\f00c';  /* 체크 아이콘 */
+        color: white;
     }
 }
     
@@ -4079,7 +4110,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <label class="mobile-confirm">
                     <div class="confirm-wrapper">
                         <input type="checkbox" name="notice_check_mobile_1" required>
-                        <span class="confirm-text">확인했습니다</span>
+                        <span class="check-icon"></span>
+                        <span class="confirm-text">확인함</span>
                     </div>
                     <button type="button" class="mobile-example-btn" data-type="records">
                         <i class="fas fa-image"></i>
@@ -4098,7 +4130,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_2" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <span class="check-icon"></span>
+                    <span class="confirm-text">확인함</span>
                 </label>
             </div>
         </div>
@@ -4113,7 +4146,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <label class="mobile-confirm">
                     <div class="confirm-wrapper">
                         <input type="checkbox" name="notice_check_mobile_3" required>
-                        <span class="confirm-text">확인했습니다</span>
+                        <span class="check-icon"></span>
+                        <span class="confirm-text">확인함함</span>
                     </div>
                     <button type="button" class="mobile-example-btn" data-type="schedule">
                         <i class="fas fa-image"></i>
@@ -4132,7 +4166,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_4" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <span class="check-icon"></span>
+                    <span class="confirm-text">확인함함</span>
                 </label>
             </div>
         </div>
@@ -4146,7 +4181,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_5" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <span class="check-icon"></span>
+                    <span class="confirm-text">확인함</span>
                 </label>
             </div>
         </div>
@@ -4161,7 +4197,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <label class="mobile-confirm warning">
                     <div class="confirm-wrapper">
                         <input type="checkbox" name="notice_check_mobile_6" required>
-                        <span class="confirm-text">확인했습니다</span>
+                        <span class="check-icon"></span>
+                        <span class="confirm-text">확인함함</span>
                     </div>
                     <button type="button" class="mobile-example-btn warning" data-type="rules">
                         <i class="fas fa-image"></i>
@@ -4180,7 +4217,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_7" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <span class="check-icon"></span>
+                    <span class="confirm-text">확인함</span>
                 </label>
             </div>
         </div>
@@ -4194,7 +4232,8 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_8" required>
-                    <span class="confirm-text">확인했습니다</span>
+                    <span class="check-icon"></span>
+                    <span class="confirm-text">확인함</span>
                 </label>
             </div>
         </div>
