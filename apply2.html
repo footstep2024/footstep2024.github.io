@@ -5478,18 +5478,18 @@ function previewApplication() {
                     <!-- 면접 일정 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">면접 일정</h3>
-                        <div class="mobile-preview-schedule">
-                            ${document.getElementById('selectedSchedule').innerHTML}
+                        <div class="interview-notice">
+                            <i class="fas fa-calendar-plus"></i>
+                            <p>가능한 면접 시간을 모두 선택해주세요.</p>
                         </div>
-                        ${(() => {
-                            const requests = form.querySelector('[name="interview_requests"]')?.value;
-                            return requests ? `
-                                <div class="mobile-preview-item full-width">
-                                    <span class="mobile-preview-label">추가 요청사항</span>
-                                    <div class="mobile-preview-value text-area">${requests}</div>
-                                </div>
-                            ` : '';
-                        })()}
+                        <!-- 선택된 면접 시간 표시 -->
+                        
+                        <div class="request-section">
+                            <div class="request-label">추가 요청사항</div>
+                            <div class="request-value">
+                                ${form.querySelector('[name="interview_requests"]').value || '작성된 요청사항이 없습니다.'}
+                            </div>
+                        </div>
                     </section>
                 </div>
             `;
