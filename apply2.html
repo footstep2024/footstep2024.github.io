@@ -5322,15 +5322,28 @@ function previewApplication() {
 
             let previewHTML = `
                 <div class="mobile-preview">
-                
                     <section class="mobile-preview-section">
-                        <h3 class="mobile-preview-title">
-                            기본 정보
-                            <span class="privacy-status ${form.querySelector('[name="privacy_agreement"]')?.checked ? 'agreed' : 'not-agreed'}">
-                                <i class="fas ${form.querySelector('[name="privacy_agreement"]')?.checked ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                                ${form.querySelector('[name="privacy_agreement"]')?.checked ? '개인정보 수집에 동의함' : '개인정보 수집에 동의해주세요'}
-                            </span>
-                        </h3>
+                        <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
+                            <span>기본 정보</span>
+                            ${(() => {
+                                const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
+                                if (isAgreed) {
+                                    return `
+                                        <div style="display: flex; align-items: center; gap: 4px;">
+                                            <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
+                                            <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
+                                        </div>
+                                    `;
+                                } else {
+                                    return `
+                                        <div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
+                                            <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
+                                            <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
+                                        </div>
+                                    `;
+                                }
+                            })()}
+                        </h2>
 
                         
                         <div class="mobile-preview-grid">
@@ -6331,6 +6344,31 @@ document.addEventListener('DOMContentLoaded', function() {
         element.addEventListener('change', saveFormState);
     });
 });
+
+// 개인정보 동의 체크박스 이벤트 리스너
+document.addEventListener('DOMContentLoaded', function() {
+    const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
+    if (privacyCheckbox) {
+        privacyCheckbox.addEventListener('change', function() {
+            // 미리보기 버튼 클릭하여 미리보기 갱신
+            previewApplication();
+        });
+    }
+
+    // 모바일용 체크박스도 동일하게 처리
+    const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
+    if (privacyCheckboxMobile) {
+        privacyCheckboxMobile.addEventListener('change', function() {
+            // PC 체크박스와 동기화
+            if (privacyCheckbox) {
+                privacyCheckbox.checked = this.checked;
+            }
+            // 미리보기 갱신
+            previewApplication();
+        });
+    }
+});
+    
 </script>
 
 <!-- 모바일 전용 모달들 -->
