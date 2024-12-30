@@ -5372,9 +5372,10 @@ function previewApplication() {
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학년</span>
-                                <div class="mobile-preview-value">
+                                <div class="mobile-preview-value" style="display: flex; justify-content: space-between; align-items: center;">
                                     ${(() => {
                                         const grade = form.querySelector('[name="grade_mobile"]')?.value;
+                                        const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
                                         const gradeMap = {
                                             '1': '1학년',
                                             '2': '2학년',
@@ -5390,13 +5391,18 @@ function previewApplication() {
                                             'postpone': '졸업유예',
                                             'graduating': '졸업예정',
                                             'graduated': '졸업'
-                                        };
-                                        return gradeMap[grade] || grade;
-                                    })()}
-                                    ${form.querySelector('[name="is_leave_mobile"]')?.checked ? ' (휴학)' : ''}
-                                </div>
-                            </div>
-                        </div>
+                                            };
+                                            return `
+                                                <span>${gradeMap[grade] || grade}</span>
+                                                ${isLeave ? `
+                                                    <span style="display: flex; align-items: center; gap: 4px;">
+                                                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.7rem;"></i>
+                                                        <span style="color: var(--primary-color); font-size: 0.75rem;">휴학</span>
+                                                    </span>
+                                                ` : ''}
+                                            `;
+                                        })()}
+                                    </div>
                                 
                         <!-- 추가 정보 -->                                
                         <div class="additional-info">
