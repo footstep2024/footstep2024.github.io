@@ -5470,71 +5470,83 @@ function previewApplication() {
                     <!-- 활동 참여 및 동의 여부 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">활동 참여 및 동의 여부</h3>
-                            <div class="participation-grid">
-                               <div class="participation-item">
-                                   <h4 class="participation-title">OT 및 MT 참석</h4>
-                                   <div class="participation-value">
-                                       ${(() => {
-                                           const selected = form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
-                                           if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                           const options = {
-                                               '참석_가능': '참석 가능',
-                                               '늦게_참석': '늦게 참석',
-                                               '참석_불가': '참석 불가'
-                                           };
-                                           return `<i class="fas fa-check"></i>${options[selected]}`;
-                                       })()}
-                                   </div>
-                               </div>
-                               
-                               <div class="participation-item">
-                                   <h4 class="participation-title">정기 활동 참여</h4>
-                                   <div class="participation-value">
-                                       ${(() => {
-                                           const selected = form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
-                                           if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                           const options = {
-                                               '대부분_참석': '대부분 참여',
-                                               '부분_참석': '부분 참여',
-                                               '참여_어려움': '참여 어려움'
-                                           };
-                                           return `<i class="fas fa-check"></i>${options[selected]}`;
-                                       })()}
-                                   </div>
-                               </div>
-                            
-                               <div class="participation-item">
-                                   <h4 class="participation-title">콘텐츠 활용 동의</h4>
-                                   <div class="participation-value">
-                                       ${(() => {
-                                           const selected = form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
-                                           if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                           const options = {
-                                               '전체_동의': '모두 동의',
-                                               '클라우드만': '클라우드만 동의',
-                                               '동의_거부': '동의 안함'
-                                           };
-                                           return `<i class="fas fa-check"></i>${options[selected]}`;
-                                       })()}
-                                   </div>
-                               </div>
-                            
-                               <div class="participation-item">
-                                   <h4 class="participation-title">여행 운영 참여</h4>
-                                   <div class="participation-value">
-                                       ${(() => {
-                                           const selected = form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
-                                           if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                           const options = {
-                                               '적극_참여': '적극 참여',
-                                               '일반_참여': '최소한으로 참여',
-                                               '소극_참여': '관심 없음'
-                                           };
-                                           return `<i class="fas fa-check"></i>${options[selected]}`;
-                                       })()}
-                                   </div>
-                               </div>
-                            </div>
+                        <div class="participation-grid">
+                          <div class="participation-item">
+                              <div class="participation-header">
+                                  <div class="participation-title">OT 및 MT 참석</div>
+                                  <span class="participation-badge required">필수</span>
+                              </div>
+                              <div class="participation-value">
+                                  ${(() => {
+                                      const selected = form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+                                      if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
+                                      const options = {
+                                          '참석_가능': '참석 가능',
+                                          '늦게_참석': '늦게 참석',
+                                          '참석_불가': '참석 불가'
+                                      };
+                                      return `<i class="fas fa-check"></i>${options[selected]}`;
+                                  })()}
+                              </div>
+                          </div>
+                          
+                          <div class="participation-item">
+                              <div class="participation-header">
+                                  <div class="participation-title">정기 활동 참여</div>
+                                  <span class="participation-badge required">필수</span>
+                              </div>
+                              <div class="participation-value">
+                                  ${(() => {
+                                      const selected = form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+                                      if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
+                                      const options = {
+                                          '대부분_참석': '대부분 참여',
+                                          '부분_참석': '부분 참여',
+                                          '참여_어려움': '참여 어려움'
+                                      };
+                                      return `<i class="fas fa-check"></i>${options[selected]}`;
+                                  })()}
+                              </div>
+                          </div>
+                        
+                          <div class="participation-item">
+                              <div class="participation-header">
+                                  <div class="participation-title">콘텐츠 활용 동의</div>
+                                  <span class="participation-badge">권장</span>
+                              </div>
+                              <div class="participation-value">
+                                  ${(() => {
+                                      const selected = form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+                                      if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
+                                      const options = {
+                                          '전체_동의': '모두 동의',
+                                          '클라우드만': '클라우드만 동의',
+                                          '동의_거부': '동의 안함'
+                                      };
+                                      return `<i class="fas fa-check"></i>${options[selected]}`;
+                                  })()}
+                              </div>
+                          </div>
+                        
+                          <div class="participation-item">
+                              <div class="participation-header">
+                                  <div class="participation-title">여행 운영 참여</div>
+                                  <span class="participation-badge">권장</span>
+                              </div>
+                              <div class="participation-value">
+                                  ${(() => {
+                                      const selected = form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+                                      if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
+                                      const options = {
+                                          '적극_참여': '적극 참여',
+                                          '일반_참여': '최소한으로 참여',
+                                          '소극_참여': '관심 없음'
+                                      };
+                                      return `<i class="fas fa-check"></i>${options[selected]}`;
+                                  })()}
+                              </div>
+                          </div>
+                        </div>
                     </section>
                     
 
