@@ -5307,9 +5307,16 @@ function previewApplication() {
         if (isMobile) {
             let previewHTML = `
                 <div class="mobile-preview">
-                    <!-- 기본 정보 섹션 -->
                     <section class="mobile-preview-section">
-                        <h3 class="mobile-preview-title">기본 정보</h3>
+                        <h3 class="mobile-preview-title">
+                            기본 정보
+                            <span class="privacy-status ${form.querySelector('[name="privacy_agreement"]')?.checked ? 'agreed' : 'not-agreed'}">
+                                <i class="fas ${form.querySelector('[name="privacy_agreement"]')?.checked ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                                ${form.querySelector('[name="privacy_agreement"]')?.checked ? '개인정보 수집에 동의함' : '개인정보 수집에 동의해주세요'}
+                            </span>
+                        </h3>
+
+                        
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">이름</span>
