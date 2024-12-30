@@ -2969,7 +2969,6 @@ textarea.form-control[readonly] {
    overflow: hidden !important;
 }
 
-/* 모바일 미리보기 스타일 */
 @media (max-width: 768px) {
     .mobile-preview {
         padding: 0px;
@@ -2989,6 +2988,29 @@ textarea.form-control[readonly] {
         margin-bottom: 16px;
         padding-bottom: 8px;
         border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 개인정보 동의 상태 표시 */
+    .privacy-status {
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .privacy-status i {
+        font-size: 0.7rem;
+    }
+
+    .privacy-status.not-agreed {
+        color: #dc3545;
+    }
+
+    .privacy-status.agreed {
+        color: var(--primary-color);
     }
 
     .mobile-preview-grid {
@@ -3008,45 +3030,105 @@ textarea.form-control[readonly] {
         grid-column: 1 / -1;
     }
 
-    .mobile-preview-label {
-        font-size: 0.75rem;
-        color: var(--light-text);
+    /* 성별, 학년 입력란 크기 조정 */
+    .mobile-preview-value {
+        background: #f8f9fa;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        word-break: break-all;
+        min-height: 36px;
+        display: flex;
+        align-items: center;
     }
 
-    .mobile-preview-value {
+    /* 학년과 휴학 체크박스 */
+    .grade-leave-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .leave-status {
+        font-size: 0.75rem;
+        color: var(--light-text);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    /* 운전/여행경비/SNS 정보 */
+    .additional-info {
+        border-top: 1px solid rgba(47, 82, 41, 0.1);
+        padding-top: 12px;
+        margin-top: 12px;
+    }
+
+    /* 활동참여 동의 상태 */
+    .participation-grid {
+        display: grid;
+        gap: 12px;
+        margin: 12px 0;
+    }
+
+    .participation-item {
+        background: rgba(47, 82, 41, 0.03);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .participation-title {
+        font-size: 0.8rem;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+
+    .participation-value {
+        font-size: 0.75rem;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* 면접 일정 섹션 */
+    .interview-notice {
+        text-align: center;
+        padding: 16px;
+        border: 1px dashed rgba(47, 82, 41, 0.2);
+        border-radius: 8px;
+        margin: 12px 0;
+    }
+
+    .interview-notice p {
+        font-size: 0.85rem;
+        color: var(--light-text);
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* 추가 요청사항 */
+    .request-section {
+        margin-top: 12px;
+    }
+
+    .request-label {
+        font-size: 0.8rem;
+        color: var(--light-text);
+        margin-bottom: 4px;
+    }
+
+    .request-value {
         background: #f8f9fa;
         padding: 12px;
         border-radius: 8px;
         font-size: 0.85rem;
-        margin-bottom: 10px;
         line-height: 1.5;
-        word-break: break-all;
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
-        min-height: 44px;
-        height: auto;
-        max-height: none;
-    }
-    
-    .mobile-preview-value.text-area {
-        min-height: 100px;
-        height: auto;
-        max-height: none;
-    }
-
-    .mobile-preview-tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 12px;
-        background: var(--primary-color);
-        color: white;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        margin: 8px 0;
-    }
-
-    .mobile-preview-schedule {
-        margin-top: 8px;
+        min-height: 42px;
     }
 }
 
