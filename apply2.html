@@ -5606,7 +5606,7 @@ function previewApplication() {
                     <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                         <span>기본 정보</span>
                         ${(() => {
-                            const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
+                            const isAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || form.querySelector('[name="privacy_agreement_mobile"]')?.checked;
                             if (isAgreed) {
                                 return `
                                     <div style="display: flex; align-items: center; gap: 4px;">
@@ -6256,6 +6256,7 @@ function saveFormState() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
+    // 모든 input, select, textarea 값 저장
     form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
         if (element.type === 'checkbox' || element.type === 'radio') {
             formData[element.name] = element.checked;
@@ -6264,6 +6265,13 @@ function saveFormState() {
         }
     });
 
+    // 개인정보 동의 상태 명시적으로 저장
+    const pcAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || false;
+    const mobileAgreed = form.querySelector('[name="privacy_agreement_mobile"]')?.checked || false;
+    formData.privacy_agreement = pcAgreed;
+    formData.privacy_agreement_mobile = mobileAgreed;
+
+    // 면접 시간 선택 상태 저장
     formData.interview_slots = [...selectedInterviewSlots];
 }
 
@@ -6346,20 +6354,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // 개인정보 동의 체크박스 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
     const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
+    const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
+
+    const updateCheckboxes = (checked) => {
+        if (privacyCheckbox) privacyCheckbox.checked = checked;
+        if (privacyCheckboxMobile) privacyCheckboxMobile.checked = checked;
+        saveFormState();
+    };
+
     if (privacyCheckbox) {
-        privacyCheckbox.addEventListener('change', function() {
-            saveFormState(); // 상태만 저장
-        });
+        privacyCheckbox.addEventListener('change', (e) => updateCheckboxes(e.target.checked));
     }
 
-    const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
     if (privacyCheckboxMobile) {
-        privacyCheckboxMobile.addEventListener('change', function() {
-            if (privacyCheckbox) {
-                privacyCheckbox.checked = this.checked;
-            }
-            saveFormState(); // 상태만 저장
-        });
+        privacyCheckboxMobile.addEventListener('change', (e) => updateCheckboxes(e.target.checked));
     }
 });
     
