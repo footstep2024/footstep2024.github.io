@@ -2681,19 +2681,19 @@ transform: translateY(-2px);
 /* 모바일 대응 */
 @media (max-width: 768px) {
     .button-group {
-        flex-direction: column;
-        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
         padding: 0 1rem;
+        margin: 1rem 0;
     }
 
-    .btn {
-        width: 100%;
-        padding: 0.875rem;
-    }
+    .btn,
     .preview-btn,
     .submit-btn {
-        width: 100%;
+        flex: 1;
         padding: 0.875rem;
+        font-size: 0.9rem;
     }
 
     /* select 컨트롤 스타일 */
