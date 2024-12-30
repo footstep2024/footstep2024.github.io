@@ -5349,77 +5349,73 @@ function previewApplication() {
                         </h2>
 
                         
-                        <div class="mobile-preview-grid">
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">이름</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="name_mobile"]')?.value || ''}</div>
+                        <div style="padding: 0 1.2rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                            <!-- 개인정보 영역 -->
+                            <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">이름</span>
+                                <div style="font-size: 0.95rem; color: #333; font-weight: 500;">${form.querySelector('[name="name_mobile"]')?.value || '미입력'}</div>
                             </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">생년월일</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="birthdate_mobile"]')?.value || ''}</div>
+                            <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">MBTI</span>
+                                <div style="font-size: 0.95rem; color: #333; font-weight: 500;">${form.querySelector('[name="mbti_mobile"]')?.value || '미입력'}</div>
                             </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">성별</span>
-                                <div class="mobile-preview-value">
-                                    ${form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked ? '남성' : 
-                                      form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked ? '여성' : ''}
+                        </div>
+                    
+                        <!-- 연락처/주소 영역 -->
+                        <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+                            <div style="margin-bottom: 1rem;">
+                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">연락처</span>
+                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="phone_mobile"]')?.value || '미입력'}</div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">본가</span>
+                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="home_address_mobile"]')?.value || '미입력'}</div>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">현재 거주지</span>
+                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="current_address_mobile"]')?.value || '미입력'}</div>
+                            </div>
+                        </div>
+                    
+                        <!-- 학교 정보 영역 -->
+                        <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학교</span>
+                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="school_mobile"]')?.value || '미입력'}</div>
+                                </div>
+                                <div>
+                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">전공</span>
+                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="major_mobile"]')?.value || '미입력'}</div>
                                 </div>
                             </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">MBTI</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="mbti_mobile"]')?.value || ''}</div>
-                            </div>
-                        </div>
-
-                        <div class="mobile-preview-grid">
-                            <div class="mobile-preview-item full-width">
-                                <span class="mobile-preview-label">연락처</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="phone_mobile"]')?.value || ''}</div>
-                            </div>
-                            <div class="mobile-preview-item full-width">
-                                <span class="mobile-preview-label">본가</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="home_address_mobile"]')?.value || ''}</div>
-                            </div>
-                            <div class="mobile-preview-item full-width">
-                                <span class="mobile-preview-label">현재 거주지</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="current_address_mobile"]')?.value || ''}</div>
-                            </div>
-                        </div>
-
-                        <div class="mobile-preview-grid">
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">학교</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="school_mobile"]')?.value || ''}</div>
-                            </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">전공</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="major_mobile"]')?.value || ''}</div>
-                            </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">학번</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="student_id_mobile"]')?.value || ''}</div>
-                            </div>
-                            <div class="mobile-preview-item">
-                                <span class="mobile-preview-label">학년</span>
-                                <div class="mobile-preview-value" style="display: flex; justify-content: space-between; align-items: center;">
-                                    ${(() => {
-                                        const grade = form.querySelector('[name="grade_mobile"]')?.value;
-                                        const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
-                                        const gradeMap = {
-                                            '1': '1학년',
-                                            '2': '2학년',
-                                            '3': '3학년',
-                                            '4': '4학년',
-                                            '5': '5학년',
-                                            'pre1': '예과 1학년',
-                                            'pre2': '예과 2학년',
-                                            'med1': '본과 1학년',
-                                            'med2': '본과 2학년',
-                                            'med3': '본과 3학년',
-                                            'med4': '본과 4학년',
-                                            'postpone': '졸업유예',
-                                            'graduating': '졸업예정',
-                                            'graduated': '졸업'
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학번</span>
+                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="student_id_mobile"]')?.value || '미입력'}</div>
+                                </div>
+                                <div>
+                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학년</span>
+                                    <div style="font-size: 0.95rem; color: #333; display: flex; justify-content: space-between; align-items: center;">
+                                        ${(() => {
+                                            const grade = form.querySelector('[name="grade_mobile"]')?.value;
+                                            const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
+                                            const gradeMap = {
+                                                '1': '1학년',
+                                                '2': '2학년',
+                                                '3': '3학년',
+                                                '4': '4학년',
+                                                '5': '5학년',
+                                                'pre1': '예과 1학년',
+                                                'pre2': '예과 2학년',
+                                                'med1': '본과 1학년',
+                                                'med2': '본과 2학년',
+                                                'med3': '본과 3학년',
+                                                'med4': '본과 4학년',
+                                                'postpone': '졸업유예',
+                                                'graduating': '졸업예정',
+                                                'graduated': '졸업'
                                             };
                                             return `
                                                 <span>${gradeMap[grade] || grade}</span>
