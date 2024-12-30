@@ -2876,30 +2876,155 @@ transform: translateY(-2px);
 
 <style>
 .preview-modal {
-   display: none;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: rgba(0, 0, 0, 0.85);
-   z-index: 1000;
-   backdrop-filter: blur(5px);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .preview-modal-content {
-   position: relative;
-   background: white;
-   width: 90%;
-   max-width: 800px;
-   margin: 40px auto 80px;
-   padding: 30px;
-   border-radius: 0;
-   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-   max-height: 92vh;
-   overflow-y: auto;
-   scrollbar-width: thin;
-   scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto 80px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-height: 92vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
+}
+
+/* 모바일 대응을 위한 미디어쿼리 */
+@media (max-width: 768px) {
+    .preview-modal-content {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 20px;
+        border-radius: 0;
+        max-height: 100vh;
+    }
+
+    /* 모바일 미리보기 헤더 */
+    .preview-modal-header {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 10;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .preview-modal-title {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .preview-modal-desc {
+        font-size: 0.75rem;
+        margin-bottom: 0;
+    }
+
+    /* 모바일 미리보기 섹션 */
+    .preview-section {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+    }
+
+    .preview-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    /* 입력 필드 스타일 */
+    .preview-value {
+        font-size: 0.85rem;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    /* 라벨 스타일 */
+    .preview-label {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        color: var(--light-text);
+    }
+
+    /* 모바일용 하단 버튼 */
+    .modal-footer {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 15px 0;
+        margin-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .modal-bottom-close {
+        width: calc(50% - 5px);
+        padding: 12px;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    /* 스크롤바 스타일링 */
+    .preview-modal-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .preview-modal-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .preview-modal-content::-webkit-scrollbar-thumb {
+        background-color: rgba(47, 82, 41, 0.2);
+        border-radius: 4px;
+    }
+
+    /* 닫기 버튼 위치 조정 */
+    .preview-modal .example-close {
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--text-color);
+    }
+
+    /* 모바일용 입력값 스타일 */
+    .mobile-preview-value {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        word-break: break-word;
+    }
+
+    /* 선택된 옵션 스타일 */
+    .mobile-selected-option {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(47, 82, 41, 0.05);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--primary-color);
+    }
 }
 
 .preview-modal-content::-webkit-scrollbar {
