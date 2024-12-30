@@ -5307,11 +5307,6 @@ function previewApplication() {
         // 모바일일 경우 다른 레이아웃 사용
         if (isMobile) {
 
-        // 개인정보 동의 상태 체크
-        const privacyAgreed = form.querySelector('[name="privacy_agreement"]').checked;
-        document.querySelector('.privacy-status').classList.toggle('agreed', privacyAgreed);
-        document.querySelector('.privacy-status').classList.toggle('not-agreed', !privacyAgreed);
-            
             let previewHTML = `
                 <div class="mobile-preview">
                 
