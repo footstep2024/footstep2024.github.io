@@ -2982,6 +2982,74 @@ textarea.form-control[readonly] {
    overflow: hidden !important;
 }
 
+/* 모바일 미리보기 스타일 */
+@media (max-width: 768px) {
+    .section-title.mobile {
+        font-size: 1.2rem;
+        padding: 0 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-card {
+        background: #fff;
+        margin: 0 1.2rem 1rem;
+        padding: 1.2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .info-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .info-item.full {
+        margin-bottom: 1rem;
+    }
+
+    .info-item.full:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-item label {
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    .info-item strong {
+        font-size: 0.95rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .leave-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.75rem;
+        color: var(--primary-color);
+        background: rgba(47, 82, 41, 0.08);
+        padding: 2px 8px;
+        border-radius: 12px;
+    }
+
+    .leave-badge i {
+        font-size: 0.7rem;
+    }
+}
+
 @media (max-width: 768px) {
     .mobile-preview {
         padding: 0px;
@@ -5326,141 +5394,130 @@ function previewApplication() {
                 <div class="mobile-preview">
                 
                     <section class="mobile-preview-section">
-                        <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
-                            <span>기본 정보</span>
-                            ${(() => {
-                                const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
-                                if (isAgreed) {
-                                    return `
-                                        <div style="display: flex; align-items: center; gap: 4px;">
-                                            <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
-                                            <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
-                                        </div>
-                                    `;
-                                } else {
-                                    return `
-                                        <div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
-                                            <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
-                                            <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
-                                        </div>
-                                    `;
-                                }
-                            })()}
-                        </h2>
+                       <h2 class="section-title mobile">
+                           기본 정보
+                           ${(() => {
+                               const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
+                               if (isAgreed) {
+                                   return `<div style="display: flex; align-items: center; gap: 4px;">
+                                       <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
+                                       <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
+                                   </div>`;
+                               } else {
+                                   return `<div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
+                                       <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
+                                       <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
+                                   </div>`;
+                               }
+                           })()}
+                       </h2>
 
                         
-                        <div style="padding: 0 1.2rem;">
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
-                            <!-- 개인정보 영역 -->
-                            <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">이름</span>
-                                <div style="font-size: 0.95rem; color: #333; font-weight: 500;">${form.querySelector('[name="name_mobile"]')?.value || '미입력'}</div>
-                            </div>
-                            <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">MBTI</span>
-                                <div style="font-size: 0.95rem; color: #333; font-weight: 500;">${form.querySelector('[name="mbti_mobile"]')?.value || '미입력'}</div>
+                        <!-- 이름/MBTI 영역 -->
+                        <div class="info-card">
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <label>이름</label>
+                                    <strong>${form.querySelector('[name="name_mobile"]')?.value || ''}</strong>
+                                </div>
+                                <div class="info-item">
+                                    <label>MBTI</label>
+                                    <strong>${form.querySelector('[name="mbti_mobile"]')?.value || ''}</strong>
+                                </div>
                             </div>
                         </div>
                     
-                        <!-- 연락처/주소 영역 -->
-                        <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-                            <div style="margin-bottom: 1rem;">
-                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">연락처</span>
-                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="phone_mobile"]')?.value || '미입력'}</div>
-                            </div>
-                            <div style="margin-bottom: 1rem;">
-                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">본가</span>
-                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="home_address_mobile"]')?.value || '미입력'}</div>
-                            </div>
-                            <div>
-                                <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">현재 거주지</span>
-                                <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="current_address_mobile"]')?.value || '미입력'}</div>
-                            </div>
-                        </div>
-                    
-                        <!-- 학교 정보 영역 -->
-                        <div style="background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
-                                <div>
-                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학교</span>
-                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="school_mobile"]')?.value || '미입력'}</div>
+                            <!-- 연락처 영역 -->
+                            <div class="info-card">
+                                <div class="info-item full">
+                                    <label>연락처</label>
+                                    <strong>${form.querySelector('[name="phone_mobile"]')?.value || ''}</strong>
                                 </div>
-                                <div>
-                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">전공</span>
-                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="major_mobile"]')?.value || '미입력'}</div>
+                                <div class="info-item full">
+                                    <label>본가</label>
+                                    <strong>${form.querySelector('[name="home_address_mobile"]')?.value || ''}</strong>
+                                </div>
+                                <div class="info-item full">
+                                    <label>현재 거주지</label>
+                                    <strong>${form.querySelector('[name="current_address_mobile"]')?.value || ''}</strong>
                                 </div>
                             </div>
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                                <div>
-                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학번</span>
-                                    <div style="font-size: 0.95rem; color: #333;">${form.querySelector('[name="student_id_mobile"]')?.value || '미입력'}</div>
-                                </div>
-                                <div>
-                                    <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 0.4rem;">학년</span>
-                                    <div style="font-size: 0.95rem; color: #333; display: flex; justify-content: space-between; align-items: center;">
-                                        ${(() => {
-                                            const grade = form.querySelector('[name="grade_mobile"]')?.value;
-                                            const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
-                                            const gradeMap = {
-                                                '1': '1학년',
-                                                '2': '2학년',
-                                                '3': '3학년',
-                                                '4': '4학년',
-                                                '5': '5학년',
-                                                'pre1': '예과 1학년',
-                                                'pre2': '예과 2학년',
-                                                'med1': '본과 1학년',
-                                                'med2': '본과 2학년',
-                                                'med3': '본과 3학년',
-                                                'med4': '본과 4학년',
-                                                'postpone': '졸업유예',
-                                                'graduating': '졸업예정',
-                                                'graduated': '졸업'
-                                            };
-                                            return `
-                                                <span>${gradeMap[grade] || grade}</span>
-                                                ${isLeave ? `
-                                                    <span style="display: flex; align-items: center; gap: 4px;">
-                                                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.7rem;"></i>
-                                                        <span style="color: var(--primary-color); font-size: 0.75rem;">휴학</span>
-                                                    </span>
-                                                ` : ''}
-                                            `;
-                                        })()}
+                        
+                            <!-- 학교 정보 영역 -->
+                            <div class="info-card">
+                                <div class="info-row">
+                                    <div class="info-item">
+                                        <label>학교</label>
+                                        <strong>${form.querySelector('[name="school_mobile"]')?.value || ''}</strong>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>전공</label>
+                                        <strong>${form.querySelector('[name="major_mobile"]')?.value || ''}</strong>
                                     </div>
                                 </div>
+                                <div class="info-row">
+                                    <div class="info-item">
+                                        <label>학번</label>
+                                        <strong>${form.querySelector('[name="student_id_mobile"]')?.value || ''}</strong>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>학년</label>
+                                        <strong style="display: flex; justify-content: space-between; align-items: center">
+                                            ${(() => {
+                                                const grade = form.querySelector('[name="grade_mobile"]')?.value;
+                                                const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
+                                                const gradeMap = {
+                                                    '1': '1학년', '2': '2학년', '3': '3학년',
+                                                    '4': '4학년', '5': '5학년',
+                                                    'pre1': '예과 1학년', 'pre2': '예과 2학년',
+                                                    'med1': '본과 1학년', 'med2': '본과 2학년',
+                                                    'med3': '본과 3학년', 'med4': '본과 4학년',
+                                                    'postpone': '졸업유예',
+                                                    'graduating': '졸업예정',
+                                                    'graduated': '졸업'
+                                                };
+                                                return `
+                                                    <span>${gradeMap[grade] || grade}</span>
+                                                    ${isLeave ? `
+                                                        <span class="leave-badge">
+                                                            <i class="fas fa-check"></i>
+                                                            휴학
+                                                        </span>
+                                                    ` : ''}
+                                                `;
+                                            })()}
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
                                 
-                        <!-- 추가 정보 -->                                
-                        <div class="additional-info">
-                            <div class="mobile-preview-grid">
-                                <div class="mobile-preview-item">
-                                    <span class="mobile-preview-label">운전가능여부</span>
-                                    <div class="mobile-preview-value">
-                                        ${(() => {
-                                            const val = form.querySelector('[name="driving_status"]').value;
-                                            return {
-                                                'car': '자차 보유',
-                                                'license': '면허만 보유',
-                                                'none': '해당사항 없음'
-                                            }[val] || '';
-                                        })()}
-                                    </div>
-                                </div>
-                                <div class="mobile-preview-item">
-                                    <span class="mobile-preview-label">여행경비</span>
-                                    <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
-                                    </div>
-                                </div>
-                                <div class="mobile-preview-item full-width">
-                                    <span class="mobile-preview-label">SNS</span>
-                                    <div class="mobile-preview-value">
-                                        ${form.querySelector('input[name="sns"]').value || '미입력'}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                           <!-- 추가 정보 카드 -->
+                           <div class="info-card">
+                               <div class="info-row">
+                                   <div class="info-item">
+                                       <label>운전가능여부</label>
+                                       <strong>
+                                           ${(() => {
+                                               const val = form.querySelector('[name="driving_status"]').value;
+                                               return {
+                                                   'car': '자차 보유',
+                                                   'license': '면허만 보유',
+                                                   'none': '해당사항 없음'
+                                               }[val] || '미입력';
+                                           })()}
+                                       </strong>
+                                   </div>
+                                   <div class="info-item">
+                                       <label>여행경비</label>
+                                       <strong>${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}</strong>
+                                   </div>
+                               </div>
+                               <div class="info-item full">
+                                   <label>SNS</label>
+                                   <strong>${form.querySelector('input[name="sns"]').value || '미입력'}</strong>
+                               </div>
+                           </div>
+                        </section>
 
 
                     <!-- 활동 참여 및 동의 여부 섹션 -->
