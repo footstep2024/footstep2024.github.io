@@ -2876,30 +2876,30 @@ transform: translateY(-2px);
 
 <style>
 .preview-modal {
-   display: none;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: rgba(0, 0, 0, 0.85);
-   z-index: 1000;
-   backdrop-filter: blur(5px);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .preview-modal-content {
-   position: relative;
-   background: white;
-   width: 90%;
-   max-width: 800px;
-   margin: 40px auto 80px;
-   padding: 30px;
-   border-radius: 0;
-   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-   max-height: 92vh;
-   overflow-y: auto;
-   scrollbar-width: thin;
-   scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto 80px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-height: 92vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(47, 82, 41, 0.3) transparent;
 }
 
 .preview-modal-content::-webkit-scrollbar {
@@ -2969,38 +2969,87 @@ textarea.form-control[readonly] {
    overflow: hidden !important;
 }
 
-/* 모바일 대응 */
+/* 모바일 미리보기 스타일 */
 @media (max-width: 768px) {
-   .preview-modal-content {
-       width: 95%;
-       padding: 20px;
-       margin: 20px auto 60px;
-       max-height: 85vh; /* 80vh에서 85vh로 높이 증가 */
-       border-radius: 0; /* 각진 모서리로 변경 */
-   }
+    .mobile-preview {
+        padding: 0px;
+    }
 
-   .preview-section {
-       padding: 1.5rem;
-   }
+    .mobile-preview-section {
+        background: #fff;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
 
-   .preview-section h4 {
-       font-size: 1.3rem;
-       margin-bottom: 1rem;
-   }
+    .mobile-preview-title {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+    }
 
-   .preview-item {
-       margin-bottom: 1rem;
-   }
+    .mobile-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+    }
 
-   .preview-label {
-       font-size: 0.8rem;
-   }
+    .mobile-preview-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
 
-   .preview-value {
-       font-size: 0.7rem;
-       padding: 0.5rem 0.7rem;
-   }
+    .mobile-preview-item.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .mobile-preview-label {
+        font-size: 0.75rem;
+        color: var(--light-text);
+    }
+
+    .mobile-preview-value {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        word-break: break-all;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        min-height: 44px;
+        height: auto;
+        max-height: none;
+    }
+    
+    .mobile-preview-value.text-area {
+        min-height: 100px;
+        height: auto;
+        max-height: none;
+    }
+
+    .mobile-preview-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        margin: 8px 0;
+    }
+
+    .mobile-preview-schedule {
+        margin-top: 8px;
+    }
 }
+
 </style>
 
 
@@ -5162,6 +5211,9 @@ function previewApplication() {
             console.error('Required elements not found');
             return;
         }
+
+        // 모바일 환경 체크
+        const isMobile = window.innerWidth <= 768;
         
         const previewContent = modal.querySelector('.preview-content');
         if (!previewContent) {
@@ -5169,409 +5221,563 @@ function previewApplication() {
             return;
         }
 
-let previewHTML = `
-    <section class="form-section">
-        <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
-            <span>기본 정보</span>
-            ${(() => {
-                const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
-                if (isAgreed) {
-                    return `
-                        <div style="display: flex; align-items: center; gap: 4px;">
-                            <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
-                            <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
+        // 모바일일 경우 다른 레이아웃 사용
+        if (isMobile) {
+            let previewHTML = `
+                <div class="mobile-preview">
+                    <!-- 기본 정보 섹션 -->
+                    <section class="mobile-preview-section">
+                        <h3 class="mobile-preview-title">기본 정보</h3>
+                        <div class="mobile-preview-grid">
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">이름</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="name_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">생년월일</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="birthdate_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">성별</span>
+                                <div class="mobile-preview-value">
+                                    ${form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked ? '남성' : 
+                                      form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked ? '여성' : ''}
+                                </div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">MBTI</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="mbti_mobile"]')?.value || ''}</div>
+                            </div>
                         </div>
-                    `;
-                } else {
-                    return `
-                        <div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
-                            <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
-                            <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
+
+                        <div class="mobile-preview-grid">
+                            <div class="mobile-preview-item full-width">
+                                <span class="mobile-preview-label">연락처</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="phone_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item full-width">
+                                <span class="mobile-preview-label">본가</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="home_address_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item full-width">
+                                <span class="mobile-preview-label">현재 거주지</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="current_address_mobile"]')?.value || ''}</div>
+                            </div>
                         </div>
-                    `;
-                }
-            })()}
-        </h2>
 
-        <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
-            <div class="form-group" style="width: 20%">
-                <label class="form-label">이름</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group" style="width: 25%">
-                <label class="form-label">생년월일</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group" style="width: 30%">
-                <label class="form-label">성별</label>
-                <div style="display: flex; gap: 10px; flex-wrap: nowrap">
-                    <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                        <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
-                        <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
-                            <i class="fas fa-mars"></i>
-                            남성
-                        </span>
-                    </label>
-                    <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                        <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
-                        <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
-                            <i class="fas fa-venus"></i>
-                            여성
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group" style="width: 22%">
-                <label class="form-label">MBTI</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-        </div>
-
-        <div class="form-row three-columns">
-            <div class="form-group">
-                <label class="form-label">연락처</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group">
-                <label class="form-label">본가</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group">
-                <label class="form-label">현재 거주지</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-        </div>
-
-        <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
-            <div class="form-group" style="width: 24%">
-                <label class="form-label">학교</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group" style="width: 30%">
-                <label class="form-label">전공</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group" style="width: 15%">
-                <label class="form-label">학번</label>
-                <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-            </div>
-            <div class="form-group" style="width: 15%">
-                <div style="position: relative">
-                    ${form.querySelector('[name="is_leave"]').checked ? `
-                        <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
-                            <label class="checkbox-label">
-                                <input type="checkbox" checked disabled style="cursor: default !important; pointer-events: none;">
-                                <span class="check-icon" style="cursor: default !important; pointer-events: none;"></span>
-                                <span class="label-text" style="cursor: default !important; pointer-events: none;">휴학</span>
-                            </label>
+                        <div class="mobile-preview-grid">
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">학교</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="school_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">전공</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="major_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">학번</span>
+                                <div class="mobile-preview-value">${form.querySelector('[name="student_id_mobile"]')?.value || ''}</div>
+                            </div>
+                            <div class="mobile-preview-item">
+                                <span class="mobile-preview-label">학년</span>
+                                <div class="mobile-preview-value">
+                                    ${(() => {
+                                        const grade = form.querySelector('[name="grade_mobile"]')?.value;
+                                        const gradeMap = {
+                                            '1': '1학년',
+                                            '2': '2학년',
+                                            '3': '3학년',
+                                            '4': '4학년',
+                                            '5': '5학년',
+                                            'pre1': '예과 1학년',
+                                            'pre2': '예과 2학년',
+                                            'med1': '본과 1학년',
+                                            'med2': '본과 2학년',
+                                            'med3': '본과 3학년',
+                                            'med4': '본과 4학년',
+                                            'postpone': '졸업유예',
+                                            'graduating': '졸업예정',
+                                            'graduated': '졸업'
+                                        };
+                                        return gradeMap[grade] || grade;
+                                    })()}
+                                    ${form.querySelector('[name="is_leave_mobile"]')?.checked ? ' (휴학)' : ''}
+                                </div>
+                            </div>
                         </div>
-                    ` : ''}
-                    <label class="form-label">학년</label>
-                    <input type="text" class="form-control" value="${
-                        (() => {
-                            const grade = form.querySelector('[name="grade"]').value;
-                            const gradeMap = {
-                                '1': '1학년',
-                                '2': '2학년',
-                                '3': '3학년',
-                                '4': '4학년',
-                                '5': '5학년',
-                                'pre1': '예과 1학년',
-                                'pre2': '예과 2학년',
-                                'med1': '본과 1학년',
-                                'med2': '본과 2학년',
-                                'med3': '본과 3학년',
-                                'med4': '본과 4학년',
-                                'postpone': '졸업유예',
-                                'graduating': '졸업예정',
-                                'graduated': '졸업'
-                            };
-                            return gradeMap[grade] || grade;
-                        })()
-                    }" readonly style="cursor: default !important; pointer-events: none;">
-                </div>
-            </div>
-        </div>
+                    </section>
 
-        <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-            <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
-                <div class="form-group" style="margin: 0">
-                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
-                    <input type="text" class="form-control" value="${
-                        (() => {
-                            const val = form.querySelector('[name="driving_status"]').value;
-                            const options = {
-                                'car': '자차 보유',
-                                'license': '면허만 보유',
-                                'none': '해당사항 없음'
-                            };
-                            return options[val] || val;
-                        })()
-                    }" readonly style="cursor: default !important; pointer-events: none;">
-                </div>
-                <div class="form-group" style="margin: 0">
-                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
-                    <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-                </div>
-                <div class="form-group" style="margin: 0">
-                    <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
-                    <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
-                </div>
-            </div>
-        </div>
-    </section>`;
-        
-// 추가 정보 섹션
-previewHTML += `
-    <section class="form-section">
-        <h2 class="section-title">추가 정보</h2>
-        <div class="form-group">
-            <label class="form-label">대외활동 및 동아리 경력</label>
-            <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
-        </div>
-        <div class="form-group" style="margin-top: 2rem;">
-            <label class="form-label">주간 고정 일정</label>
-            <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="fixed_schedule"]').value || ''}</textarea>
-        </div>
-    </section>
+                    <!-- 자기소개 섹션 -->
+                    <section class="mobile-preview-section">
+                        <h3 class="mobile-preview-title">자기소개</h3>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">간단한 자기소개</span>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="introduction"]')?.value || ''}</div>
+                        </div>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">자신과 가장 잘 맞는 유형과 그 이유</span>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="special_introduction"]')?.value || ''}</div>
+                        </div>
+                    </section>
 
-    <section class="form-section">
-        <h2 class="section-title">활동 참여 및 동의 여부</h2>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-            <!-- OT/MT 안내 카드 -->
-            <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
-                <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
-                    <h3>OT 및 MT 참석</h3>
-                    <span class="required-badge">필수</span>
-                </div>
-                <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
-                    ${(() => {
-                        const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value;
-                        if (!selected) {
-                            return `
-                                <div style="display: flex; align-items: center;">
-                                    <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
+                    <!-- 여행 경험 에세이 섹션 -->
+                    <section class="mobile-preview-section">
+                        <h3 class="mobile-preview-title">여행 경험 에세이</h3>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">가본 여행지</span>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="visited_places"]')?.value || ''}</div>
+                        </div>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">에세이</span>
+                            <div class="mobile-preview-tag">
+                                ${(() => {
+                                    const type = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                                    return type === 'memorable_episode' ? '기억에 남는 여행 에피소드' :
+                                           type === 'planned_travel' ? '자체 여행 기획 경험' : '주제 미선택';
+                                })()}
+                            </div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="travel_essay"]')?.value || ''}</div>
+                        </div>
+                    </section>
+
+                    <!-- 지원자의 이야기 섹션 -->
+                    <section class="mobile-preview-section">
+                        <h3 class="mobile-preview-title">지원자의 이야기</h3>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">지원 동기</span>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="motivation"]')?.value || ''}</div>
+                        </div>
+                        <div class="mobile-preview-item full-width">
+                            <span class="mobile-preview-label">마지막으로 하고 싶은 말</span>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="final_words"]')?.value || ''}</div>
+                        </div>
+                    </section>
+
+                    <!-- 면접 일정 섹션 -->
+                    <section class="mobile-preview-section">
+                        <h3 class="mobile-preview-title">면접 일정</h3>
+                        <div class="mobile-preview-schedule">
+                            ${document.getElementById('selectedSchedule').innerHTML}
+                        </div>
+                        ${(() => {
+                            const requests = form.querySelector('[name="interview_requests"]')?.value;
+                            return requests ? `
+                                <div class="mobile-preview-item full-width">
+                                    <span class="mobile-preview-label">추가 요청사항</span>
+                                    <div class="mobile-preview-value text-area">${requests}</div>
                                 </div>
-                            `;
-                        }
-                        const options = {
-                            '참석_가능': '참석 가능',
-                            '늦게_참석': '늦게 참석',
-                            '참석_불가': '참석 불가'
-                        };
-                        return `
-                            <div style="display: flex; align-items: center;">
-                                <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
-                                    <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
-                                        <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                            ` : '';
+                        })()}
+                    </section>
+                </div>
+            `;
+            previewContent.innerHTML = previewHTML;
+        } else {
+            let previewHTML = `
+                <section class="form-section">
+                    <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
+                        <span>기본 정보</span>
+                        ${(() => {
+                            const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
+                            if (isAgreed) {
+                                return `
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <i class="fas fa-check-circle" style="color: #2F5229; font-size: 0.8rem;"></i>
+                                        <span style="color: #2F5229; font-size: 0.8rem; font-weight: normal;">개인정보 수집에 동의함</span>
                                     </div>
-                                    <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
-                                </div>
-                            </div>
-                        `;
-                    })()}
-                </div>
-            </div>
-
-            <!-- 정기 활동 안내 카드 -->
-            <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
-                <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
-                    <h3>정기 활동 관련</h3>
-                    <span class="required-badge">필수</span>
-                </div>
-                <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
-                    ${(() => {
-                        const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value;
-                        if (!selected) {
-                            return `
-                                <div style="display: flex; align-items: center;">
-                                    <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
-                                </div>
-                            `;
-                        }
-                        const options = {
-                            '대부분_참석': '대부분 참여',
-                            '부분_참석': '부분 참여',
-                            '참여_어려움': '참여 어려움'
-                        };
-                        return `
-                            <div style="display: flex; align-items: center;">
-                                <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
-                                    <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
-                                        <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                `;
+                            } else {
+                                return `
+                                    <div style="display: flex; align-items: center; gap: 4px; opacity: 0.5;">
+                                        <i class="fas fa-exclamation-triangle" style="font-size: 0.8rem;"></i>
+                                        <span style="font-weight: normal; font-size: 0.8rem;">개인정보 수집에 동의해주세요</span>
                                     </div>
-                                    <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
-                                </div>
+                                `;
+                            }
+                        })()}
+                    </h2>
+            
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
+                        <div class="form-group" style="width: 20%">
+                            <label class="form-label">이름</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group" style="width: 25%">
+                            <label class="form-label">생년월일</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group" style="width: 30%">
+                            <label class="form-label">성별</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: nowrap">
+                                <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
+                                    <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
+                                        <i class="fas fa-mars"></i>
+                                        남성
+                                    </span>
+                                </label>
+                                <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
+                                    <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
+                                        <i class="fas fa-venus"></i>
+                                        여성
+                                    </span>
+                                </label>
                             </div>
-                        `;
-                    })()}
-                </div>
-            </div>
-
-            <!-- 콘텐츠 활용 동의 카드 -->
-            <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
-                <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
-                    <h3>콘텐츠 활용 동의 여부</h3>
-                    <span class="recommended-badge">권장</span>
-                </div>
-                <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
-                    ${(() => {
-                        const selected = form.querySelector('input[name="content_agreement"]:checked')?.value;
-                        if (!selected) {
-                            return `
-                                <div style="display: flex; align-items: center;">
-                                    <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
-                                </div>
-                            `;
-                        }
-                        const options = {
-                            '전체_동의': '모두 동의',
-                            '클라우드만': '클라우드만 동의',
-                            '동의_거부': '동의 안함'
-                        };
-                        return `
-                            <div style="display: flex; align-items: center;">
-                                <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
-                                    <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
-                                        <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                        </div>
+                        <div class="form-group" style="width: 22%">
+                            <label class="form-label">MBTI</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                    </div>
+            
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label class="form-label">연락처</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">본가</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">현재 거주지</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                    </div>
+            
+                    <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
+                        <div class="form-group" style="width: 24%">
+                            <label class="form-label">학교</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group" style="width: 30%">
+                            <label class="form-label">전공</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <label class="form-label">학번</label>
+                            <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                        </div>
+                        <div class="form-group" style="width: 15%">
+                            <div style="position: relative">
+                                ${form.querySelector('[name="is_leave"]').checked ? `
+                                    <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" checked disabled style="cursor: default !important; pointer-events: none;">
+                                            <span class="check-icon" style="cursor: default !important; pointer-events: none;"></span>
+                                            <span class="label-text" style="cursor: default !important; pointer-events: none;">휴학</span>
+                                        </label>
                                     </div>
-                                    <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
-                                </div>
+                                ` : ''}
+                                <label class="form-label">학년</label>
+                                <input type="text" class="form-control" value="${
+                                    (() => {
+                                        const grade = form.querySelector('[name="grade"]').value;
+                                        const gradeMap = {
+                                            '1': '1학년',
+                                            '2': '2학년',
+                                            '3': '3학년',
+                                            '4': '4학년',
+                                            '5': '5학년',
+                                            'pre1': '예과 1학년',
+                                            'pre2': '예과 2학년',
+                                            'med1': '본과 1학년',
+                                            'med2': '본과 2학년',
+                                            'med3': '본과 3학년',
+                                            'med4': '본과 4학년',
+                                            'postpone': '졸업유예',
+                                            'graduating': '졸업예정',
+                                            'graduated': '졸업'
+                                        };
+                                        return gradeMap[grade] || grade;
+                                    })()
+                                }" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
-                        `;
-                    })()}
-                </div>
-            </div>
-
-            <!-- 여행 운영 참여 안내 카드 -->
-            <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
-                <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
-                    <h3>여행 운영 참여 관련</h3>
-                    <span class="recommended-badge">권장</span>
-                </div>
-                <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
-                    ${(() => {
-                        const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value;
-                        if (!selected) {
-                            return `
-                                <div style="display: flex; align-items: center;">
-                                    <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
-                                </div>
-                            `;
-                        }
-                        const options = {
-                            '적극_참여': '적극 참여',
-                            '일반_참여': '최소한으로 참여',
-                            '소극_참여': '관심 없음'
-                        };
-                        return `
-                            <div style="display: flex; align-items: center;">
-                                <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
-                                    <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
-                                        <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
-                                    </div>
-                                    <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
-                                </div>
+                        </div>
+                    </div>
+            
+                    <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
+                        <div style="display: grid; grid-template-columns: 150px 150px 1fr; gap: 24px; align-items: center">
+                            <div class="form-group" style="margin: 0">
+                                <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
+                                <input type="text" class="form-control" value="${
+                                    (() => {
+                                        const val = form.querySelector('[name="driving_status"]').value;
+                                        const options = {
+                                            'car': '자차 보유',
+                                            'license': '면허만 보유',
+                                            'none': '해당사항 없음'
+                                        };
+                                        return options[val] || val;
+                                    })()
+                                }" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
-                        `;
-                    })()}
-                </div>
-            </div>
-        </div>
-    </section>
-`;
-        
-previewHTML += `
-    <!-- 자기소개 섹션 -->
-    <section class="form-section">
-        <h2 class="section-title">자기소개</h2>
-        
-        <div class="form-group">
-            <label class="form-label">간단한 자기소개</label>
-            <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
-        </div>
-
-        <div class="form-group" style="margin-top: 2rem;">
-            <label class="form-label">자신과 가장 잘 맞는 유형과 그 이유</label>
-            <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
-        </div>
-    </section>
-
-    <!-- 여행 경험 에세이 섹션 -->
-    <section class="form-section">
-        <h2 class="section-title">여행 경험 에세이</h2>
-
-        <div class="form-group" style="margin-bottom: 2rem;">
-            <label class="form-label">지금까지 가본 여행지</label>
-            <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
-        </div>
-
-        <div class="essay-type-selector">
-            <div class="essay-type-options">
-                ${(() => {
-                    const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
-                    if (!selectedType) {
-                        return `
-                            <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 0.9em;"></i>
-                                <span style="font-family: 'Gowun Batang', var(--system-font); font-size: 0.85em;">주제 미선택</span>
+                            <div class="form-group" style="margin: 0">
+                                <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
+                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
-                        `;
-                    }
-                    const options = {
-                        'memorable_episode': '기억에 남는 여행 에피소드',
-                        'planned_travel': '자체 여행 기획 경험'
-                    };
-                    return `
-                        <label class="checkbox-label">
-                            <input type="radio" name="travel_essay_type_preview" checked disabled>
-                            <span class="check-icon"></span>
-                            <span class="label-text">${options[selectedType]}</span>
-                        </label>
-                    `;
-                })()}
-            </div>
-        </div>
-        <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
-    </section>
-`;
+                            <div class="form-group" style="margin: 0">
+                                <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
+                                <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            </div>
+                        </div>
+                    </div>
+                </section>`;
+                    
+            // 추가 정보 섹션
+            previewHTML += `
+                <section class="form-section">
+                    <h2 class="section-title">추가 정보</h2>
+                    <div class="form-group">
+                        <label class="form-label">대외활동 및 동아리 경력</label>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
+                    </div>
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label class="form-label">주간 고정 일정</label>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="fixed_schedule"]').value || ''}</textarea>
+                    </div>
+                </section>
+            
+                <section class="form-section">
+                    <h2 class="section-title">활동 참여 및 동의 여부</h2>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                        <!-- OT/MT 안내 카드 -->
+                        <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
+                            <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                                <h3>OT 및 MT 참석</h3>
+                                <span class="required-badge">필수</span>
+                            </div>
+                            <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
+                                ${(() => {
+                                    const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value;
+                                    if (!selected) {
+                                        return `
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
+                                            </div>
+                                        `;
+                                    }
+                                    const options = {
+                                        '참석_가능': '참석 가능',
+                                        '늦게_참석': '늦게 참석',
+                                        '참석_불가': '참석 불가'
+                                    };
+                                    return `
+                                        <div style="display: flex; align-items: center;">
+                                            <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
+                                                <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
+                                                    <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                                </div>
+                                                <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                })()}
+                            </div>
+                        </div>
+            
+                        <!-- 정기 활동 안내 카드 -->
+                        <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
+                            <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                                <h3>정기 활동 관련</h3>
+                                <span class="required-badge">필수</span>
+                            </div>
+                            <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
+                                ${(() => {
+                                    const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value;
+                                    if (!selected) {
+                                        return `
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
+                                            </div>
+                                        `;
+                                    }
+                                    const options = {
+                                        '대부분_참석': '대부분 참여',
+                                        '부분_참석': '부분 참여',
+                                        '참여_어려움': '참여 어려움'
+                                    };
+                                    return `
+                                        <div style="display: flex; align-items: center;">
+                                            <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
+                                                <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
+                                                    <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                                </div>
+                                                <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                })()}
+                            </div>
+                        </div>
+            
+                        <!-- 콘텐츠 활용 동의 카드 -->
+                        <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
+                            <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                                <h3>콘텐츠 활용 동의 여부</h3>
+                                <span class="recommended-badge">권장</span>
+                            </div>
+                            <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
+                                ${(() => {
+                                    const selected = form.querySelector('input[name="content_agreement"]:checked')?.value;
+                                    if (!selected) {
+                                        return `
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
+                                            </div>
+                                        `;
+                                    }
+                                    const options = {
+                                        '전체_동의': '모두 동의',
+                                        '클라우드만': '클라우드만 동의',
+                                        '동의_거부': '동의 안함'
+                                    };
+                                    return `
+                                        <div style="display: flex; align-items: center;">
+                                            <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
+                                                <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
+                                                    <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                                </div>
+                                                <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                })()}
+                            </div>
+                        </div>
+            
+                        <!-- 여행 운영 참여 안내 카드 -->
+                        <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
+                            <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                                <h3>여행 운영 참여 관련</h3>
+                                <span class="recommended-badge">권장</span>
+                            </div>
+                            <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
+                                ${(() => {
+                                    const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value;
+                                    if (!selected) {
+                                        return `
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="display: inline-block; padding: 6px 16px; background: #f5f5f5; border-radius: 20px; color: var(--light-text); font-size: 0.85rem;">미선택</span>
+                                            </div>
+                                        `;
+                                    }
+                                    const options = {
+                                        '적극_참여': '적극 참여',
+                                        '일반_참여': '최소한으로 참여',
+                                        '소극_참여': '관심 없음'
+                                    };
+                                    return `
+                                        <div style="display: flex; align-items: center;">
+                                            <div style="display: flex; align-items: center; padding: 6px 16px; background: rgba(47, 82, 41, 0.05); border-radius: 20px;">
+                                                <div style="width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px;">
+                                                    <i class="fas fa-check" style="color: white; font-size: 0.7rem;"></i>
+                                                </div>
+                                                <span style="color: var(--text-color); font-size: 0.85rem;">${options[selected] || selected}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                })()}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+                    
+            previewHTML += `
+                <!-- 자기소개 섹션 -->
+                <section class="form-section">
+                    <h2 class="section-title">자기소개</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">간단한 자기소개</label>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
+                    </div>
+            
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label class="form-label">자신과 가장 잘 맞는 유형과 그 이유</label>
+                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
+                    </div>
+                </section>
+            
+                <!-- 여행 경험 에세이 섹션 -->
+                <section class="form-section">
+                    <h2 class="section-title">여행 경험 에세이</h2>
+            
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label class="form-label">지금까지 가본 여행지</label>
+                        <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
+                    </div>
+            
+                    <div class="essay-type-selector">
+                        <div class="essay-type-options">
+                            ${(() => {
+                                const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                                if (!selectedType) {
+                                    return `
+                                        <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
+                                            <i class="fas fa-exclamation-triangle" style="font-size: 0.9em;"></i>
+                                            <span style="font-family: 'Gowun Batang', var(--system-font); font-size: 0.85em;">주제 미선택</span>
+                                        </div>
+                                    `;
+                                }
+                                const options = {
+                                    'memorable_episode': '기억에 남는 여행 에피소드',
+                                    'planned_travel': '자체 여행 기획 경험'
+                                };
+                                return `
+                                    <label class="checkbox-label">
+                                        <input type="radio" name="travel_essay_type_preview" checked disabled>
+                                        <span class="check-icon"></span>
+                                        <span class="label-text">${options[selectedType]}</span>
+                                    </label>
+                                `;
+                            })()}
+                        </div>
+                    </div>
+                    <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
+                </section>
+            `;
+                    
+            previewHTML += `
+               <!-- 지원자의 이야기 섹션 -->
+               <section class="form-section">
+                   <h2 class="section-title">지원자의 이야기</h2>
+            
+                   <div class="form-group" style="margin-bottom: 2rem;">
+                       <label class="form-label">지원 동기</label>
+                       <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
+                   </div>
+            
+                   <div class="form-group">
+                       <label class="form-label">마지막으로 하고 싶은 말</label>
+                       <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
+                   </div>
+               </section>
+            
+               <!-- 면접 일정 섹션 -->
+               <section class="form-section">
+                   <h2 class="section-title">면접 일정</h2>
+                   
+                   <div class="schedule-select-wrapper">
+                       <div class="selected-schedule">
+                           ${document.getElementById('selectedSchedule').innerHTML}
+                       </div>
+                   </div>
+            
+                   <div class="additional-requests" style="margin-top: 2rem;">
+                       <div class="form-group">
+                           <label class="form-label">추가 요청사항</label>
+                           <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
+                       </div>
+                   </div>       
+               </section>
+            `;
+            
+            previewContent.innerHTML = previewHTML;
+        }
         
-previewHTML += `
-   <!-- 지원자의 이야기 섹션 -->
-   <section class="form-section">
-       <h2 class="section-title">지원자의 이야기</h2>
-
-       <div class="form-group" style="margin-bottom: 2rem;">
-           <label class="form-label">지원 동기</label>
-           <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
-       </div>
-
-       <div class="form-group">
-           <label class="form-label">마지막으로 하고 싶은 말</label>
-           <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
-       </div>
-   </section>
-
-   <!-- 면접 일정 섹션 -->
-   <section class="form-section">
-       <h2 class="section-title">면접 일정</h2>
-       
-       <div class="schedule-select-wrapper">
-           <div class="selected-schedule">
-               ${document.getElementById('selectedSchedule').innerHTML}
-           </div>
-       </div>
-
-       <div class="additional-requests" style="margin-top: 2rem;">
-           <div class="form-group">
-               <label class="form-label">추가 요청사항</label>
-               <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
-           </div>
-       </div>       
-   </section>
-`;
-
-previewContent.innerHTML = previewHTML;
 modal.style.display = 'block';
 document.body.style.overflow = 'hidden';
 
