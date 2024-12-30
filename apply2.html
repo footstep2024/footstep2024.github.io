@@ -6350,21 +6350,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
     if (privacyCheckbox) {
         privacyCheckbox.addEventListener('change', function() {
-            // 미리보기 버튼 클릭하여 미리보기 갱신
-            previewApplication();
+            saveFormState(); // 상태만 저장
         });
     }
 
-    // 모바일용 체크박스도 동일하게 처리
     const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
     if (privacyCheckboxMobile) {
         privacyCheckboxMobile.addEventListener('change', function() {
-            // PC 체크박스와 동기화
             if (privacyCheckbox) {
                 privacyCheckbox.checked = this.checked;
             }
-            // 미리보기 갱신
-            previewApplication();
+            saveFormState(); // 상태만 저장
         });
     }
 });
