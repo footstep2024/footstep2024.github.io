@@ -5305,6 +5305,16 @@ function previewApplication() {
 
         // 모바일일 경우 다른 레이아웃 사용
         if (isMobile) {
+
+            // 개인정보 동의 상태 체크
+            const privacyAgreed = form.querySelector('[name="privacy_agreement"]').checked;
+            document.querySelector('.privacy-status').classList.toggle('agreed', privacyAgreed);
+            document.querySelector('.privacy-status').classList.toggle('not-agreed', !privacyAgreed);
+            
+            // 추가 요청사항이 없을 때도 섹션 표시
+            const requestValue = form.querySelector('[name="interview_requests"]').value;
+            document.querySelector('.request-value').textContent = requestValue || '작성된 요청사항이 없습니다.';
+  
             let previewHTML = `
                 <div class="mobile-preview">
                 
