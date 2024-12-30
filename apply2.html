@@ -2244,9 +2244,22 @@ transform: translateY(-2px);
 
 .no-schedule p {
     color: var(--light-text);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     margin: 0;
-    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .no-schedule p {
+        font-size: 0.78rem;
+        padding: 0 1rem;
+    }
+    .no-schedule i {
+        font-size: 1.5rem;
+    }
 }
 
 .selected-times-container {
