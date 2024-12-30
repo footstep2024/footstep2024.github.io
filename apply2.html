@@ -2244,22 +2244,9 @@ transform: translateY(-2px);
 
 .no-schedule p {
     color: var(--light-text);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-}
-
-@media (max-width: 768px) {
-    .no-schedule p {
-        font-size: 0.78rem;
-        padding: 0 1rem;
-    }
-    .no-schedule i {
-        font-size: 1.5rem;
-    }
+    line-height: 1.6;
 }
 
 .selected-times-container {
@@ -2982,6 +2969,7 @@ textarea.form-control[readonly] {
    overflow: hidden !important;
 }
 
+/* 모바일 미리보기 스타일 */
 @media (max-width: 768px) {
     .mobile-preview {
         padding: 0px;
@@ -3001,29 +2989,6 @@ textarea.form-control[readonly] {
         margin-bottom: 16px;
         padding-bottom: 8px;
         border-bottom: 1px solid rgba(47, 82, 41, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* 개인정보 동의 상태 표시 */
-    .privacy-status {
-        font-size: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .privacy-status i {
-        font-size: 0.7rem;
-    }
-
-    .privacy-status.not-agreed {
-        color: #dc3545;
-    }
-
-    .privacy-status.agreed {
-        color: var(--primary-color);
     }
 
     .mobile-preview-grid {
@@ -3043,105 +3008,45 @@ textarea.form-control[readonly] {
         grid-column: 1 / -1;
     }
 
-    /* 성별, 학년 입력란 크기 조정 */
+    .mobile-preview-label {
+        font-size: 0.75rem;
+        color: var(--light-text);
+    }
+
     .mobile-preview-value {
         background: #f8f9fa;
-        padding: 8px 12px;
+        padding: 12px;
         border-radius: 8px;
         font-size: 0.85rem;
+        margin-bottom: 10px;
         line-height: 1.5;
         word-break: break-all;
-        min-height: 36px;
-        display: flex;
-        align-items: center;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        min-height: 44px;
+        height: auto;
+        max-height: none;
+    }
+    
+    .mobile-preview-value.text-area {
+        min-height: 100px;
+        height: auto;
+        max-height: none;
     }
 
-    /* 학년과 휴학 체크박스 */
-    .grade-leave-wrapper {
-        display: flex;
+    .mobile-preview-tag {
+        display: inline-flex;
         align-items: center;
-        gap: 8px;
-    }
-
-    .leave-status {
+        padding: 4px 12px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 20px;
         font-size: 0.75rem;
-        color: var(--light-text);
-        display: flex;
-        align-items: center;
-        gap: 4px;
+        margin: 8px 0;
     }
 
-    /* 운전/여행경비/SNS 정보 */
-    .additional-info {
-        border-top: 1px solid rgba(47, 82, 41, 0.1);
-        padding-top: 12px;
-        margin-top: 12px;
-    }
-
-    /* 활동참여 동의 상태 */
-    .participation-grid {
-        display: grid;
-        gap: 12px;
-        margin: 12px 0;
-    }
-
-    .participation-item {
-        background: rgba(47, 82, 41, 0.03);
-        padding: 12px;
-        border-radius: 8px;
-    }
-
-    .participation-title {
-        font-size: 0.8rem;
-        color: var(--primary-color);
-        margin-bottom: 4px;
-        font-weight: 500;
-    }
-
-    .participation-value {
-        font-size: 0.75rem;
-        color: var(--text-color);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    /* 면접 일정 섹션 */
-    .interview-notice {
-        text-align: center;
-        padding: 16px;
-        border: 1px dashed rgba(47, 82, 41, 0.2);
-        border-radius: 8px;
-        margin: 12px 0;
-    }
-
-    .interview-notice p {
-        font-size: 0.85rem;
-        color: var(--light-text);
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* 추가 요청사항 */
-    .request-section {
-        margin-top: 12px;
-    }
-
-    .request-label {
-        font-size: 0.8rem;
-        color: var(--light-text);
-        margin-bottom: 4px;
-    }
-
-    .request-value {
-        background: #f8f9fa;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        min-height: 42px;
+    .mobile-preview-schedule {
+        margin-top: 8px;
     }
 }
 
@@ -5311,7 +5216,6 @@ function previewApplication() {
         const isMobile = window.innerWidth <= 768;
         
         const previewContent = modal.querySelector('.preview-content');
-        
         if (!previewContent) {
             console.error('Preview content element not found');
             return;
@@ -5319,22 +5223,11 @@ function previewApplication() {
 
         // 모바일일 경우 다른 레이아웃 사용
         if (isMobile) {
-
             let previewHTML = `
                 <div class="mobile-preview">
-                
+                    <!-- 기본 정보 섹션 -->
                     <section class="mobile-preview-section">
-                        <h3 class="mobile-preview-title">
-                            기본 정보
-                            <div style="display: flex; align-items: center; gap: 4px;">
-                                <i class="fas ${isAgreed ? 'fa-check-circle' : 'fa-exclamation-triangle'}" style="font-size: 0.8rem;"></i>
-                                <span style="font-weight: normal; font-size: 0.8rem; color: ${isAgreed ? '#2F5229' : '#666666'}">
-                                    ${isAgreed ? '개인정보 수집에 동의함' : '개인정보 수집에 동의해주세요'}
-                                </span>
-                            </div>
-                        </h3>
-
-                        
+                        <h3 class="mobile-preview-title">기본 정보</h3>
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">이름</span>
@@ -5407,7 +5300,7 @@ function previewApplication() {
                                             'graduating': '졸업예정',
                                             'graduated': '졸업'
                                         };
-                                        return `
+                                    return `
                                         <span>${gradeMap[grade] || grade}</span>
                                         ${isLeave ? `
                                             <span style="display: flex; align-items: center; gap: 4px;">
@@ -5418,112 +5311,7 @@ function previewApplication() {
                                     `;
                                 })()}
                             </div>
-                            </div>
-                        </div>
-                                
-                        <!-- 추가 정보 -->                                
-                        <div class="additional-info">
-                            <div class="mobile-preview-grid">
-                                <div class="mobile-preview-item">
-                                    <span class="mobile-preview-label">운전가능여부</span>
-                                    <div class="mobile-preview-value">
-                                        ${(() => {
-                                            const val = form.querySelector('[name="driving_status"]').value;
-                                            return {
-                                                'car': '자차 보유',
-                                                'license': '면허만 보유',
-                                                'none': '해당사항 없음'
-                                            }[val] || '';
-                                        })()}
-                                    </div>
-                                </div>
-                                <div class="mobile-preview-item">
-                                    <span class="mobile-preview-label">여행경비</span>
-                                    <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
-                                    </div>
-                                </div>
-                                <div class="mobile-preview-item full-width">
-                                    <span class="mobile-preview-label">SNS</span>
-                                    <div class="mobile-preview-value">
-                                        ${form.querySelector('input[name="sns"]').value || '미입력'}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-                    <!-- 활동 참여 및 동의 여부 섹션 -->
-                    <section class="mobile-preview-section">
-                        <h3 class="mobile-preview-title">활동 참여 및 동의 여부</h3>
-                        <div class="participation-grid">
-                           <div class="participation-item">
-                               <h4 class="participation-title">OT 및 MT 참석</h4>
-                               <div class="participation-value">
-                                   ${(() => {
-                                       const selected = form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
-                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                       const options = {
-                                           '참석_가능': '참석 가능',
-                                           '늦게_참석': '늦게 참석',
-                                           '참석_불가': '참석 불가'
-                                       };
-                                       return `<i class="fas fa-check"></i>${options[selected]}`;
-                                   })()}
-                               </div>
-                           </div>
-                           
-                           <div class="participation-item">
-                               <h4 class="participation-title">정기 활동 참여</h4>
-                               <div class="participation-value">
-                                   ${(() => {
-                                       const selected = form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
-                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                       const options = {
-                                           '대부분_참석': '대부분 참여',
-                                           '부분_참석': '부분 참여',
-                                           '참여_어려움': '참여 어려움'
-                                       };
-                                       return `<i class="fas fa-check"></i>${options[selected]}`;
-                                   })()}
-                               </div>
-                           </div>
-                        
-                           <div class="participation-item">
-                               <h4 class="participation-title">콘텐츠 활용 동의</h4>
-                               <div class="participation-value">
-                                   ${(() => {
-                                       const selected = form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
-                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                       const options = {
-                                           '전체_동의': '모두 동의',
-                                           '클라우드만': '클라우드만 동의',
-                                           '동의_거부': '동의 안함'
-                                       };
-                                       return `<i class="fas fa-check"></i>${options[selected]}`;
-                                   })()}
-                               </div>
-                           </div>
-                        
-                           <div class="participation-item">
-                               <h4 class="participation-title">여행 운영 참여</h4>
-                               <div class="participation-value">
-                                   ${(() => {
-                                       const selected = form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
-                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
-                                       const options = {
-                                           '적극_참여': '적극 참여',
-                                           '일반_참여': '최소한으로 참여',
-                                           '소극_참여': '관심 없음'
-                                       };
-                                       return `<i class="fas fa-check"></i>${options[selected]}`;
-                                   })()}
-                               </div>
-                           </div>
-                        </div>
-                    </section>
-                    
+                        </section>
 
                     <!-- 자기소개 섹션 -->
                     <section class="mobile-preview-section">
