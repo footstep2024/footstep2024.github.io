@@ -5307,6 +5307,7 @@ function previewApplication() {
         if (isMobile) {
             let previewHTML = `
                 <div class="mobile-preview">
+                
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">
                             기본 정보
@@ -5394,7 +5395,39 @@ function previewApplication() {
                                 </div>
                             </div>
                         </div>
+                                
+                        <!-- 추가 정보 -->                                
+                        <div class="additional-info">
+                            <div class="mobile-preview-grid">
+                                <div class="mobile-preview-item">
+                                    <span class="mobile-preview-label">운전가능여부</span>
+                                    <div class="mobile-preview-value">
+                                        ${(() => {
+                                            const val = form.querySelector('[name="driving_status"]').value;
+                                            return {
+                                                'car': '자차 보유',
+                                                'license': '면허만 보유',
+                                                'none': '해당사항 없음'
+                                            }[val] || '';
+                                        })()}
+                                    </div>
+                                </div>
+                                <div class="mobile-preview-item">
+                                    <span class="mobile-preview-label">여행경비</span>
+                                    <div class="mobile-preview-value">
+                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
+                                    </div>
+                                </div>
+                                <div class="mobile-preview-item full-width">
+                                    <span class="mobile-preview-label">SNS</span>
+                                    <div class="mobile-preview-value">
+                                        ${form.querySelector('input[name="sns"]').value || '미입력'}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
+                    
 
                     <!-- 자기소개 섹션 -->
                     <section class="mobile-preview-section">
