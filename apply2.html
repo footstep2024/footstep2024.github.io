@@ -5326,7 +5326,7 @@ function previewApplication() {
                         <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                             <span>기본 정보</span>
                             ${(() => {
-                                const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
+                                const isAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || form.querySelector('[name="privacy_agreement_mobile"]')?.checked;
                                 if (isAgreed) {
                                     return `
                                         <div style="display: flex; align-items: center; gap: 4px;">
@@ -6256,7 +6256,6 @@ function saveFormState() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
-    // 모든 input, select, textarea 값 저장
     form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
         if (element.type === 'checkbox' || element.type === 'radio') {
             formData[element.name] = element.checked;
@@ -6265,7 +6264,6 @@ function saveFormState() {
         }
     });
 
-    // 면접 시간 선택 상태 저장
     formData.interview_slots = [...selectedInterviewSlots];
 }
 
