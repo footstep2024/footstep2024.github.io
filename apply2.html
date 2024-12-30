@@ -3014,17 +3014,24 @@ textarea.form-control[readonly] {
     }
 
     .mobile-preview-value {
-        font-size: 0.85rem;
-        padding: 8px 12px;
-        background: rgba(47, 82, 41, 0.03);
-        border-radius: 6px;
-        line-height: 1.4;
-    }
-
-    .mobile-preview-value.text-area {
-        white-space: pre-wrap;
+        background: #f8f9fa;
         padding: 12px;
-        min-height: 60px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        word-break: break-all;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        min-height: 44px;
+        height: auto;
+        max-height: none;
+    }
+    
+    .mobile-preview-value.text-area {
+        min-height: 100px;
+        height: auto;
+        max-height: none;
     }
 
     .mobile-preview-tag {
