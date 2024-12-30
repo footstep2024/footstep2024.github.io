@@ -6257,17 +6257,11 @@ function saveFormState() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
-    // 모든 input, select, textarea 값 저장
-    form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
-        if (element.type === 'checkbox' || element.type === 'radio') {
-            formData[element.name] = element.checked;
-        } else {
-            formData[element.name] = element.value;
-        }
-    });
+    // 기존 input, select, textarea 값 저장 로직...
 
-    // 면접 시간 선택 상태 저장
-    formData.interview_slots = [...selectedInterviewSlots];
+    // 개인정보 동의 상태 명시적으로 저장
+    formData.privacy_agreement = form.querySelector('[name="privacy_agreement"]')?.checked || false;
+    formData.privacy_agreement_mobile = form.querySelector('[name="privacy_agreement_mobile"]')?.checked || false;
 }
 
 function restoreFormState() {
