@@ -6468,6 +6468,51 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
+
+
+<script>
+function submitToGoogleForm() {
+    const form = document.getElementById('applicationForm');
+    
+    // 모바일/PC 버전 필드 값 통합
+    const name = form.querySelector('[name="name"]')?.value || form.querySelector('[name="name_mobile"]')?.value || '';
+    const birthdate = form.querySelector('[name="birthdate"]')?.value || form.querySelector('[name="birthdate_mobile"]')?.value || '';
+
+    // 구글 폼 제출 URL
+    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
+    
+    // 구글 폼에 맞는 필드명으로 데이터 변환
+    const formEntries = new URLSearchParams({
+        'entry.1814453632': name,
+        'entry.460609193': birthdate
+    });
+
+    // 폼 제출
+    fetch(googleFormUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formEntries.toString()
+    })
+    .then(() => {
+        alert('지원서가 성공적으로 제출되었습니다.');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+    });
+
+    return false; // 폼 기본 제출 방지
+}
+
+// 기존의 submitForm 함수 수정
+function submitForm() {
+    closePreview();
+    submitToGoogleForm();
+}
+</script>
     
 </body>
 </html>
