@@ -6471,49 +6471,31 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
-
 function submitToGoogleForm() {
-    const form = document.getElementById('applicationForm');
-   
-    // 개인정보 동의 체크 확인
-    const privacyAgreement = form.querySelector('input[name="privacy_agreement"]')?.checked || 
-                            form.querySelector('input[name="privacy_agreement_mobile"]')?.checked;
-    if (!privacyAgreement) {
-        alert('개인정보 수집 및 이용에 동의해주세요.');
-        return false;
-    }
-
-    // 성별 선택 확인
-    const genderSelected = form.querySelector('input[name="gender"]:checked') || 
-                          form.querySelector('input[name="gender_mobile"]:checked);
-    if (!genderSelected) {
-        alert('성별을 선택해주세요.');
-        return false;
-    }
+   const form = document.getElementById('applicationForm');
    
    // PC/모바일 버전 통합 데이터 수집
    const getData = (name) => {
        return form.querySelector(`[name="${name}"]`)?.value || 
               form.querySelector(`[name="${name}_mobile"]`)?.value || '';
    };
+   
+    const getCheckedValue = (name) => {
+         return form.querySelector(`input[name="${name}"]`)?.checked || 
+            form.querySelector(`input[name="${name}_mobile"]`)?.checked ? '동의함' : '';
+    };
 
    const tempForm = document.createElement('form');
    tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse';
    tempForm.method = 'POST';
    tempForm.target = '_blank';
 
-        const privacyAgreement = form.querySelector('input[name="privacy_agreement"]')?.checked || 
-                                form.querySelector('input[name="privacy_agreement_mobile"]')?.checked;
-        
-        const formEntries = {
-            'entry.564864113': privacyAgreement ? '동의함' : '',       // 체크된 경우만 '동의함' 전송
-            'entry.481763846': getData('name'),                         // 이름
-            'entry.360260459': getData('birthdate'),                    // 생년월일
-            'entry.645127600': (() => {                                // 성별
-                const genderPC = form.querySelector('input[name="gender"]:checked')?.value;
-                const genderMobile = form.querySelector('input[name="gender_mobile"]:checked')?.value;
-                return genderPC || genderMobile || '';                  // 선택된 값만 전송
-            })(),
+    // 구글 폼에 맞는 필드명으로 데이터 변환
+    const formEntries = {
+        'entry.564864113': '동의함',                            // 개인정보 동의 여부
+        'entry.481763846': getData('name'),                     // 이름
+        'entry.360260459': getData('birthdate'),                // 생년월일
+        'entry.645127600': getData('gender'),                   // 성별
         };
 
    // 각 엔트리를 폼에 추가
