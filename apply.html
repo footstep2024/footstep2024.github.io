@@ -534,45 +534,45 @@ select.form-control option:checked {
 }
 
 /* 자기소개 textarea의 높이 설정 */
-textarea[name="introduction"] {
+textarea[name="entry.1273113780"] {
 height: 100px !important;
 min-height: 100px;
 resize: none;
 }
 
-textarea[name="visited_places"] {
+textarea[name="entry.1358351649"] {
 resize: none;
 height: 60px !important;
 min-height: 60px;
 }
 
 /* 여행 경험 에세이 섹션 스타일 */
-textarea[name="travel_essay"] {
+textarea[name="entry.1113044219"] {
 height: 200px !important;
 min-height: 200px;
 resize: none;
 }
 
-textarea[name="motivation"] {
+textarea[name="entry.94464175"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
 }
 
-textarea[name="final_words"] {
+textarea[name="entry.1054938056"] {
 resize: none;
 height: 150px !important;
 min-height: 150px;
 }
 
 /* 여기에 새로 추가하는 부분 */
-textarea[name="extracurricular"] {
+textarea[name="entry.1358351649"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
 }
 
-textarea[name="fixed_schedule"] {
+textarea[name="entry.1309671483"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
@@ -593,8 +593,8 @@ font-size: 0.75rem;
 
 /* 모바일에서 date input 스타일링 */
 @media (max-width: 768px) {
-    input[name="birthdate"].form-control,
-    input[name="birthdate_mobile"].form-control {
+    input[name="entry.1586698654"].form-control,
+    input[name="entry.1586698654"].form-control {
         background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E") no-repeat right 0.7rem center;
         background-size: 1.2rem;
         cursor: pointer;
@@ -1363,7 +1363,7 @@ transform: none;
     }
 
     /* 운전가능여부 선택 드롭다운 */
-    select[name="driving_status"] {
+    select[name="entry.1334231597"] {
         width: 70% !important;
         margin-bottom: 8px;
     }
@@ -3203,7 +3203,7 @@ textarea.form-control[readonly] {
 <div class="section-title">
 <span>개인정보 수집 및 이용 동의</span>
 <label class="checkbox-label">
-<input type="checkbox" name="privacy_agreement" required>
+<input type="checkbox" name="entry.1832572178" required>
 <span class="check-icon"></span>
 <span class="label-text">동의함</span>
 </label>
@@ -4758,7 +4758,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 // 날짜 선택 모달 관련 요소들
-const dateInput = document.querySelector('input[name="birthdate"]');
+const dateInput = document.querySelector('input[name="entry.1586698654"]');
 const dateModal = document.getElementById('dateModal');
 const confirmBtn = document.querySelector('.confirm-btn');
 const cancelBtn = document.querySelector('.cancel-btn');
@@ -4781,7 +4781,7 @@ if(dateInput) {
     });
     
     // 모바일에서도 동일하게 적용
-    const dateInputMobile = document.querySelector('input[name="birthdate_mobile"]');
+    const dateInputMobile = document.querySelector('input[name="entry.1586698654"]');
     if(dateInputMobile) {
         dateInputMobile.addEventListener('focus', function(e) {
             e.preventDefault();
@@ -4802,11 +4802,11 @@ if(confirmBtn) {
             const formattedDate = `${year}-${month}-${day}`;
             
             // PC 버전 입력칸 업데이트
-            const pcInput = document.querySelector('input[name="birthdate"]');
+            const pcInput = document.querySelector('input[name="entry.1586698654"]');
             if(pcInput) pcInput.value = formattedDate;
             
             // 모바일 버전 입력칸 업데이트
-            const mobileInput = document.querySelector('input[name="birthdate_mobile"]');
+            const mobileInput = document.querySelector('input[name="entry.1586698654"]');
             if(mobileInput) mobileInput.value = formattedDate;
         }
         dateModal.style.display = 'none';
@@ -5177,7 +5177,7 @@ function openScheduleModal() {
     const modalContent = modal.querySelector('.schedule-modal-content');
     
     // 이전에 선택된 일정 복원
-    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+    document.querySelectorAll('input[name="entry.94464175"]').forEach(checkbox => {
         checkbox.checked = selectedInterviewSlots.includes(checkbox.value);
     });
 
@@ -5226,7 +5226,7 @@ function updateSelectedScheduleDisplay() {
 
     let scheduleHTML = '<div class="selected-times-container">';
     
-    document.querySelectorAll('input[name="interview_slots[]"]').forEach(slot => {
+    document.querySelectorAll('input[name="entry.94464175"]').forEach(slot => {
         if (selectedInterviewSlots.includes(slot.value)) {
             const dateOption = slot.closest('.date-option');
             const date = dateOption.querySelector('.date').textContent;
@@ -5261,7 +5261,7 @@ function updateSelectedScheduleDisplay() {
 }
 
 function confirmSchedule() {
-    const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
+    const selectedSlots = document.querySelectorAll('input[name="entry.94464175"]:checked');
     
     if (selectedSlots.length === 0) {
         alert('면접 일정을 하나 이상 선택해주세요.');
@@ -5288,7 +5288,7 @@ function confirmSchedule() {
 
 // 체크박스 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
+    document.querySelectorAll('input[name="entry.94464175"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             if (this.checked && !selectedInterviewSlots.includes(this.value)) {
                 selectedInterviewSlots.push(this.value);
@@ -5337,7 +5337,7 @@ function previewApplication() {
                         <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                             <span>기본 정보</span>
                             ${(() => {
-                                const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
+                                const isAgreed = form.querySelector('input[name="entry.1832572178"]')?.checked;
                                 if (isAgreed) {
                                     return `
                                         <div style="display: flex; align-items: center; gap: 4px;">
@@ -5360,59 +5360,59 @@ function previewApplication() {
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">이름</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="name_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.2070257591"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">생년월일</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="birthdate_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1586698654"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">성별</span>
                                 <div class="mobile-preview-value">
-                                    ${form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked ? '남성' : 
-                                      form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked ? '여성' : ''}
+                                    ${form.querySelector('input[name="entry.261486001"][value="남성"]')?.checked ? '남성' : 
+                                      form.querySelector('input[name="entry.261486001"][value="여성"]')?.checked ? '여성' : ''}
                                 </div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">MBTI</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="mbti_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1336751748"]')?.value || ''}</div>
                             </div>
                         </div>
 
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">연락처</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="phone_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.318044753"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">본가</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="home_address_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1730256600"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">현재 거주지</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="current_address_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1541030146"]')?.value || ''}</div>
                             </div>
                         </div>
 
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학교</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="school_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1216819183"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">전공</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="major_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1360694033"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학번</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="student_id_mobile"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="entry.403858052"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학년</span>
                                 <div class="mobile-preview-value" style="display: flex; justify-content: space-between; align-items: center;">
                                     ${(() => {
-                                        const grade = form.querySelector('[name="grade_mobile"]')?.value;
-                                        const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
+                                        const grade = form.querySelector('[name="entry.1135546838"]')?.value;
+                                        const isLeave = form.querySelector('[name="entry.1511002325"]')?.checked;
                                         const gradeMap = {
                                             '1': '1학년',
                                             '2': '2학년',
@@ -5449,7 +5449,7 @@ function previewApplication() {
                                     <span class="mobile-preview-label">운전가능여부</span>
                                     <div class="mobile-preview-value">
                                         ${(() => {
-                                            const val = form.querySelector('[name="driving_status"]').value;
+                                            const val = form.querySelector('[name="entry.1334231597"]').value;
                                             return {
                                                 'car': '자차 보유',
                                                 'license': '면허만 보유',
@@ -5461,13 +5461,13 @@ function previewApplication() {
                                 <div class="mobile-preview-item">
                                     <span class="mobile-preview-label">여행경비</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
+                                        ${form.querySelectorAll('input[name="entry.1135546838"]')[1].value || '미입력'}
                                     </div>
                                 </div>
                                 <div class="mobile-preview-item full-width">
                                     <span class="mobile-preview-label">SNS</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelector('input[name="sns"]').value || '미입력'}
+                                        ${form.querySelector('input[name="entry.1135546838"]').value || '미입력'}
                                     </div>
                                 </div>
                             </div>
@@ -5486,7 +5486,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="entry.1572736277"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '참석_가능': '참석 가능',
@@ -5505,7 +5505,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="entry.1884558117"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '대부분_참석': '대부분 참여',
@@ -5524,7 +5524,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '전체_동의': '모두 동의',
@@ -5543,7 +5543,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="entry.2052737417"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '적극_참여': '적극 참여',
@@ -5563,11 +5563,11 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">자기소개</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">간단한 자기소개</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="introduction"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1273113780"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">자신과 가장 잘 맞는 유형과 그 이유</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="special_introduction"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1113044219"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5576,18 +5576,18 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">여행 경험 에세이</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">가본 여행지</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="visited_places"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1358351649"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">에세이</span>
                             <div class="mobile-preview-tag">
                                 ${(() => {
-                                    const type = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                                    const type = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
                                     return type === 'memorable_episode' ? '기억에 남는 여행 에피소드' :
                                            type === 'planned_travel' ? '자체 여행 기획 경험' : '주제 미선택';
                                 })()}
                             </div>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="travel_essay"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1511002325"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5596,11 +5596,11 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">지원자의 이야기</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">지원 동기</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="motivation"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.94464175"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">마지막으로 하고 싶은 말</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="final_words"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1054938056"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5611,7 +5611,7 @@ function previewApplication() {
                             ${document.getElementById('selectedSchedule').innerHTML}
                         </div>
                         ${(() => {
-                            const requests = form.querySelector('[name="interview_requests"]')?.value;
+                            const requests = form.querySelector('[name="entry.1309671483"]')?.value;
                             return requests ? `
                                 <div class="mobile-preview-item full-width">
                                     <span class="mobile-preview-label">추가 요청사항</span>
@@ -5629,7 +5629,7 @@ function previewApplication() {
                     <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                         <span>기본 정보</span>
                         ${(() => {
-                            const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
+                            const isAgreed = document.querySelector('input[name="entry.1832572178"]')?.checked;
                             if (isAgreed) {
                                 return `
                                     <div style="display: flex; align-items: center; gap: 4px;">
@@ -5651,24 +5651,24 @@ function previewApplication() {
                     <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
                         <div class="form-group" style="width: 20%">
                             <label class="form-label">이름</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.2070257591"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 25%">
                             <label class="form-label">생년월일</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1586698654"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 30%">
                             <label class="form-label">성별</label>
                             <div style="display: flex; gap: 10px; flex-wrap: nowrap">
                                 <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="entry.261486001"][value="남성"]')?.checked ? 'checked' : ''} disabled>
                                     <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
                                         <i class="fas fa-mars"></i>
                                         남성
                                     </span>
                                 </label>
                                 <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="entry.261486001"][value="여성"]')?.checked ? 'checked' : ''} disabled>
                                     <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
                                         <i class="fas fa-venus"></i>
                                         여성
@@ -5678,41 +5678,41 @@ function previewApplication() {
                         </div>
                         <div class="form-group" style="width: 22%">
                             <label class="form-label">MBTI</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1336751748"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                     </div>
             
                     <div class="form-row three-columns">
                         <div class="form-group">
                             <label class="form-label">연락처</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.318044753"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group">
                             <label class="form-label">본가</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1730256600"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group">
                             <label class="form-label">현재 거주지</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1541030146"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                     </div>
             
                     <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
                         <div class="form-group" style="width: 24%">
                             <label class="form-label">학교</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1216819183"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 30%">
                             <label class="form-label">전공</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1360694033"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 15%">
                             <label class="form-label">학번</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.403858052"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 15%">
                             <div style="position: relative">
-                                ${form.querySelector('[name="is_leave"]').checked ? `
+                                ${form.querySelector('[name="entry.1511002325"]').checked ? `
                                     <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
                                         <label class="checkbox-label">
                                             <input type="checkbox" checked disabled style="cursor: default !important; pointer-events: none;">
@@ -5724,7 +5724,7 @@ function previewApplication() {
                                 <label class="form-label">학년</label>
                                 <input type="text" class="form-control" value="${
                                     (() => {
-                                        const grade = form.querySelector('[name="grade"]').value;
+                                        const grade = form.querySelector('[name="entry.1135546838"]').value;
                                         const gradeMap = {
                                             '1': '1학년',
                                             '2': '2학년',
@@ -5754,7 +5754,7 @@ function previewApplication() {
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
                                 <input type="text" class="form-control" value="${
                                     (() => {
-                                        const val = form.querySelector('[name="driving_status"]').value;
+                                        const val = form.querySelector('[name="entry.1334231597"]').value;
                                         const options = {
                                             'car': '자차 보유',
                                             'license': '면허만 보유',
@@ -5766,11 +5766,11 @@ function previewApplication() {
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
-                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="entry.1135546838"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
-                                <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                                <input type="text" class="form-control" value="${form.querySelector('input[name="entry.1135546838"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
                         </div>
                     </div>
@@ -5782,11 +5782,11 @@ function previewApplication() {
                     <h2 class="section-title">추가 정보</h2>
                     <div class="form-group">
                         <label class="form-label">대외활동 및 동아리 경력</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1358351649"]').value || ''}</textarea>
                     </div>
                     <div class="form-group" style="margin-top: 2rem;">
                         <label class="form-label">주간 고정 일정</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="fixed_schedule"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1309671483"]').value || ''}</textarea>
                     </div>
                 </section>
             
@@ -5801,7 +5801,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="entry.1572736277"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5836,7 +5836,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="entry.1884558117"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5871,7 +5871,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="content_agreement"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5906,7 +5906,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="entry.2052737417"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5943,12 +5943,12 @@ function previewApplication() {
                     
                     <div class="form-group">
                         <label class="form-label">간단한 자기소개</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1273113780"]').value || ''}</textarea>
                     </div>
             
                     <div class="form-group" style="margin-top: 2rem;">
                         <label class="form-label">자신과 가장 잘 맞는 유형과 그 이유</label>
-                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="entry.1113044219"]').value || ''}</textarea>
                     </div>
                 </section>
             
@@ -5958,13 +5958,13 @@ function previewApplication() {
             
                     <div class="form-group" style="margin-bottom: 2rem;">
                         <label class="form-label">지금까지 가본 여행지</label>
-                        <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="entry.1358351649"]').value || ''}</textarea>
                     </div>
             
                     <div class="essay-type-selector">
                         <div class="essay-type-options">
                             ${(() => {
-                                const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                                const selectedType = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
                                 if (!selectedType) {
                                     return `
                                         <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
@@ -5987,7 +5987,7 @@ function previewApplication() {
                             })()}
                         </div>
                     </div>
-                    <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
+                    <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="entry.1511002325"]').value || ''}</textarea>
                 </section>
             `;
                     
@@ -5998,12 +5998,12 @@ function previewApplication() {
             
                    <div class="form-group" style="margin-bottom: 2rem;">
                        <label class="form-label">지원 동기</label>
-                       <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
+                       <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.94464175"]').value || ''}</textarea>
                    </div>
             
                    <div class="form-group">
                        <label class="form-label">마지막으로 하고 싶은 말</label>
-                       <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
+                       <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="entry.1054938056"]').value || ''}</textarea>
                    </div>
                </section>
             
@@ -6020,7 +6020,7 @@ function previewApplication() {
                    <div class="additional-requests" style="margin-top: 2rem;">
                        <div class="form-group">
                            <label class="form-label">추가 요청사항</label>
-                           <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
+                           <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="entry.1309671483"]').value || ''}</textarea>
                        </div>
                    </div>       
                </section>
@@ -6094,8 +6094,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = type;
         option.onclick = function() {
-            document.querySelector('select[name="mbti"]').value = type;
-            document.querySelector('select[name="mbti_mobile"]').value = type;
+            document.querySelector('select[name="entry.1336751748"]').value = type;
+            document.querySelector('select[name="entry.1336751748"]').value = type;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6110,8 +6110,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = grade;
         option.onclick = function() {
-            document.querySelector('select[name="grade"]').value = (index + 1).toString();
-            document.querySelector('select[name="grade_mobile"]').value = (index + 1).toString();
+            document.querySelector('select[name="entry.1135546838"]').value = (index + 1).toString();
+            document.querySelector('select[name="entry.1135546838"]').value = (index + 1).toString();
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6132,8 +6132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="grade"]').value = value;
-            document.querySelector('select[name="grade_mobile"]').value = value;
+            document.querySelector('select[name="entry.1135546838"]').value = value;
+            document.querySelector('select[name="entry.1135546838"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6151,8 +6151,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="grade"]').value = value;
-            document.querySelector('select[name="grade_mobile"]').value = value;
+            document.querySelector('select[name="entry.1135546838"]').value = value;
+            document.querySelector('select[name="entry.1135546838"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6171,7 +6171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="driving_status"]').value = value;
+            document.querySelector('select[name="entry.1334231597"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6181,8 +6181,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (window.innerWidth <= 768) {
     // MBTI select 제어 (PC와 모바일 모두)
-    const mbtiSelectPC = document.querySelector('select[name="mbti"]');
-    const mbtiSelectMobile = document.querySelector('select[name="mbti_mobile"]');
+    const mbtiSelectPC = document.querySelector('select[name="entry.1336751748"]');
+    const mbtiSelectMobile = document.querySelector('select[name="entry.1336751748"]');
     [mbtiSelectPC, mbtiSelectMobile].forEach(select => {
         if (select) {
             select.addEventListener('touchstart', (e) => {
@@ -6204,8 +6204,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 학년 select 제어 (PC와 모바일 모두)
-    const gradeSelectPC = document.querySelector('select[name="grade"]');
-    const gradeSelectMobile = document.querySelector('select[name="grade_mobile"]');
+    const gradeSelectPC = document.querySelector('select[name="entry.1135546838"]');
+    const gradeSelectMobile = document.querySelector('select[name="entry.1135546838"]');
     [gradeSelectPC, gradeSelectMobile].forEach(select => {
         if (select) {
             select.addEventListener('touchstart', (e) => {
@@ -6227,7 +6227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
         // 운전가능여부 select 제어
-        const drivingSelect = document.querySelector('select[name="driving_status"]');
+        const drivingSelect = document.querySelector('select[name="entry.1334231597"]');
         if (drivingSelect) {
             drivingSelect.addEventListener('touchstart', (e) => {
                 e.preventDefault();
@@ -6280,7 +6280,7 @@ function saveFormState() {
     if (!form) return;
 
     // 모든 input, select, textarea 값 저장
-    form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
+    form.querySelectorAll('input:not([name="entry.94464175"]), select, textarea').forEach(element => {
         if (element.type === 'checkbox' || element.type === 'radio') {
             formData[element.name] = element.checked;
         } else {
@@ -6289,8 +6289,8 @@ function saveFormState() {
     });
 
     // 개인정보 동의 상태 명시적으로 저장
-    const pcAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || false;
-    const mobileAgreed = form.querySelector('[name="privacy_agreement_mobile"]')?.checked || false;
+    const pcAgreed = form.querySelector('[name="entry.1832572178"]')?.checked || false;
+    const mobileAgreed = form.querySelector('[name="entry.1832572178"]')?.checked || false;
     formData.privacy_agreement = pcAgreed;
     formData.privacy_agreement_mobile = mobileAgreed;
 
@@ -6305,7 +6305,7 @@ function restoreFormState() {
     // 저장된 값 복원
     for (const [name, value] of Object.entries(formData)) {
         if (name === 'interview_slots') continue;
-        const element = form.querySelector(`[name="${name}"]`);
+        const element = form.querySelector(`[name="${entry.2070257591}"]`);
         if (element) {
             if (element.type === 'checkbox' || element.type === 'radio') {
                 element.checked = value;
@@ -6378,14 +6378,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 개인정보 동의 체크박스 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
-    const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
+    const privacyCheckbox = document.querySelector('input[name="entry.1832572178"]');
     if (privacyCheckbox) {
         privacyCheckbox.addEventListener('change', function() {
             saveFormState(); // 상태만 저장
         });
     }
 
-    const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
+    const privacyCheckboxMobile = document.querySelector('input[name="entry.1832572178"]');
     if (privacyCheckboxMobile) {
         privacyCheckboxMobile.addEventListener('change', function() {
             if (privacyCheckbox) {
@@ -6467,90 +6467,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-<script>
-function submitToGoogleForm(e) {    
-    if(e) e.preventDefault();  // 기본 폼 제출 동작 방지
-    
-    const form = document.getElementById('applicationForm');
-    
-    // 기존의 getData, getCheckedValue, getCheckboxValue 함수들
-    const getData = (name) => {
-        return form.querySelector(`[name="${name}"]`)?.value || 
-               form.querySelector(`[name="${name}_mobile"]`)?.value || '';
-    };
-
-    const getCheckedValue = (name) => {
-        return form.querySelector(`input[name="${name}"]:checked`)?.value || 
-               form.querySelector(`input[name="${name}_mobile"]:checked`)?.value || '';
-    };
-
-    const getCheckboxValue = (name) => {
-        return (form.querySelector(`input[name="${name}"]`)?.checked || 
-                form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
-    };
-
-    // 구글 폼 제출 URL
-    const googleFormUrl = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
-    
-    // 구글 폼에 맞는 필드명으로 데이터 변환
-    const formEntries = new URLSearchParams({
-        'entry.2070257591': getData('name'),               
-        'entry.318044753': getData('phone'),             
-        'entry.1216819183': getData('school'),           
-        'entry.1360694033': getData('major'),            
-        'entry.1541030146': getData('current_address'),  
-        'entry.1730256600': getData('home_address'),     
-        'entry.403858052': getData('student_id'),        
-        'entry.1273113780': getData('introduction'),     
-        'entry.1358351649': getData('visited_places'),   
-        'entry.1113044219': getData('travel_essay'),     
-        'entry.94464175': getData('motivation'),         
-        'entry.1054938056': getData('final_words'),      
-        'entry.1336751748': getData('mbti'),             
-        'entry.1135546838': getData('grade'),            
-        'entry.1334231597': getData('driving_status'),   
-        'entry.1586698654_year': getData('birthdate')?.split('-')[0],   
-        'entry.1586698654_month': getData('birthdate')?.split('-')[1],  
-        'entry.1586698654_day': getData('birthdate')?.split('-')[2],    
-        'entry.1832572178': '동의합니다',                 
-        'entry.261486001': getCheckedValue('gender'),    
-        'entry.1511002325': getCheckboxValue('is_leave'),  
-        'entry.1572736277': getCheckedValue('ot_mt_attendance'),  
-        'entry.1884558117': getCheckedValue('regular_attendance'),  
-        'entry.2052737417': getCheckedValue('participation_agreement'), 
-        'entry.1309671483': getData('interview_requests'), 
-        'fvv': '1',
-        'pageHistory': '0',
-        'fbzx': '-6532230256735099502'
-    });
-
-    // 폼 제출
-    fetch(googleFormUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formEntries.toString()
-    })
-    .then(() => {
-        alert('지원서가 성공적으로 제출되었습니다.');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
-    });
-}
-
-// 폼 제출 이벤트 리스너 추가
-document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
-
-// 미리보기에서 제출하기 함수 수정
-function submitForm() {
-    closePreview();
-    submitToGoogleForm();
-}
-</script>
 
 
 </body>
