@@ -4437,12 +4437,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <!-- PC 버전 -->
 <div class="button-group pc-only">
     <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+    <button type="submit" class="submit-btn">제출하기</button>
 </div>
 
 <!-- 모바일 버전 -->
 <div class="button-group mobile-only">
-    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+    <button type="submit" class="submit-btn">제출하기</button>
 </div>
 
 <!-- 미리보기 모달 추가 -->
@@ -4458,7 +4458,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 <div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
     <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
-    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
+    <button class="modal-bottom-close" type="submit" form="applicationForm" style="background: var(--primary-color);">제출하기</button>
 </div>
 </div>
 </div>
@@ -5261,7 +5261,7 @@ function updateSelectedScheduleDisplay() {
 }
 
 function confirmSchedule() {
-    const selectedSlots = document.querySelectorAll('input[name="entry.94464175"]:checked');
+    const selectedSlots = document.querySelectorAll('input[name="interview_slots[]"]:checked');
     
     if (selectedSlots.length === 0) {
         alert('면접 일정을 하나 이상 선택해주세요.');
@@ -5270,9 +5270,16 @@ function confirmSchedule() {
 
     // 선택된 일정 업데이트
     selectedInterviewSlots = Array.from(selectedSlots).map(slot => slot.value);
-    formData.interview_slots = [...selectedInterviewSlots]; // formData도 함께 업데이트
-    updateSelectedScheduleDisplay();
+    
+    // 실제 폼 필드에 값 설정
+    const interviewField = document.querySelector('input[name="entry.94464175"]');
+    if (interviewField) {
+        interviewField.value = selectedInterviewSlots.join(', ');
+    }
 
+    // 기존 상태 업데이트 및 모달 닫기 관련 코드
+    formData.interview_slots = [...selectedInterviewSlots];
+    updateSelectedScheduleDisplay();
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     const modal = document.getElementById('scheduleModal');
     modal.style.display = 'none';
@@ -5316,6 +5323,19 @@ function previewApplication() {
             console.error('Required elements not found');
             return;
         }
+
+        // name 속성을 entry ID로 업데이트
+        const getFormValue = (entryId) => {
+            return form.querySelector(`[name="${entryId}"]`)?.value || '';
+        };
+        
+        const getCheckedValue = (entryId) => {
+            return form.querySelector(`input[name="${entryId}"]:checked`)?.value || '';
+        };
+
+        const getCheckboxValue = (entryId) => {
+            return form.querySelector(`input[name="${entryId}"]`)?.checked || false;
+        };
 
         // 모바일 환경 체크
         const isMobile = window.innerWidth <= 768;
@@ -6539,88 +6559,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
-function submitToGoogleForm(e) {    
-    if(e) e.preventDefault();  // 기본 폼 제출 동작 방지
-    
-    const form = document.getElementById('applicationForm');
-    
-    // 기존의 getData, getCheckedValue, getCheckboxValue 함수들
-    const getData = (name) => {
-        return form.querySelector(`[name="${name}"]`)?.value || 
-               form.querySelector(`[name="${name}_mobile"]`)?.value || '';
-    };
-
-    const getCheckedValue = (name) => {
-        return form.querySelector(`input[name="${name}"]:checked`)?.value || 
-               form.querySelector(`input[name="${name}_mobile"]:checked`)?.value || '';
-    };
-
-    const getCheckboxValue = (name) => {
-        return (form.querySelector(`input[name="${name}"]`)?.checked || 
-                form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
-    };
-
-    // 구글 폼 제출 URL
-    const googleFormUrl = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
-    
-    // 구글 폼에 맞는 필드명으로 데이터 변환
-    const formEntries = new URLSearchParams({
-        'entry.2070257591': getData('name'),               
-        'entry.318044753': getData('phone'),             
-        'entry.1216819183': getData('school'),           
-        'entry.1360694033': getData('major'),            
-        'entry.1541030146': getData('current_address'),  
-        'entry.1730256600': getData('home_address'),     
-        'entry.403858052': getData('student_id'),        
-        'entry.1273113780': getData('introduction'),     
-        'entry.1358351649': getData('visited_places'),   
-        'entry.1113044219': getData('travel_essay'),     
-        'entry.94464175': getData('motivation'),         
-        'entry.1054938056': getData('final_words'),      
-        'entry.1336751748': getData('mbti'),             
-        'entry.1135546838': getData('grade'),            
-        'entry.1334231597': getData('driving_status'),   
-        'entry.1586698654_year': getData('birthdate')?.split('-')[0],   
-        'entry.1586698654_month': getData('birthdate')?.split('-')[1],  
-        'entry.1586698654_day': getData('birthdate')?.split('-')[2],    
-        'entry.1832572178': '동의합니다',                 
-        'entry.261486001': getCheckedValue('gender'),    
-        'entry.1511002325': getCheckboxValue('is_leave'),  
-        'entry.1572736277': getCheckedValue('ot_mt_attendance'),  
-        'entry.1884558117': getCheckedValue('regular_attendance'),  
-        'entry.2052737417': getCheckedValue('participation_agreement'), 
-        'entry.1309671483': getData('interview_requests'), 
-        'fvv': '1',
-        'pageHistory': '0',
-        'fbzx': '-6532230256735099502'
-    });
-
-    // 폼 제출
-    fetch(googleFormUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formEntries.toString()
-    })
-    .then(() => {
+document.getElementById('applicationForm').addEventListener('submit', function() {
+    setTimeout(function() {
         alert('지원서가 성공적으로 제출되었습니다.');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
-    });
-}
-
-// 폼 제출 이벤트 리스너 추가
-document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
-
-// 미리보기에서 제출하기 함수 수정
-function submitForm() {
-    closePreview();
-    submitToGoogleForm();
-}
+        window.location.href = '/'; // 메인 페이지로 리다이렉트
+    }, 1000);
+});
 </script>
 
 </body>
