@@ -4432,19 +4432,17 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 
 
-<!-- PC 버전 버튼 -->
-<div class="button-group pc-only">
-    <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-    <button type="submit" class="submit-btn">제출하기</button>
-</div>
+<div style="display: flex; justify-content: center; width: 100%;">
+    <!-- PC 버전 -->
+    <div class="button-group pc-only">
+        <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
+        <button type="submit" class="submit-btn">제출하기</button>
+    </div>
 
-<!-- 모바일 버전 버튼 -->
-<div class="button-group mobile-only">
-    <button type="submit" class="submit-btn" style="width: 100%;">제출하기</button>
-    <p style="text-align: center; color: var(--light-text); font-size: 0.75rem; margin-top: 8px;">
-        <i class="fas fa-info-circle"></i>
-        미리보기는 PC 환경에서만 지원됩니다
-    </p>
+    <!-- 모바일 버전 -->
+    <div class="button-group mobile-only">
+        <button type="submit" class="submit-btn">제출하기</button>
+    </div>
 </div>
 
 <!-- 미리보기 모달 추가 -->
