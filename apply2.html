@@ -6470,7 +6470,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function submitToGoogleForm() {    
     const form = document.getElementById('applicationForm');
     
-    // 기존의 getData, getCheckedValue, getCheckboxValue 함수들
+    // 데이터 수집 함수들은 그대로 유지
     const getData = (name) => {
         const pcValue = form.querySelector(`[name="${name}"]`)?.value;
         const mobileValue = form.querySelector(`[name="${name}_mobile"]`)?.value;
@@ -6489,57 +6489,73 @@ function submitToGoogleForm() {
         return (pcChecked || mobileChecked) ? '예' : '아니오';
     };
 
-    // form 생성
-    const formData = new FormData();
-    
-    // 데이터 추가
-    formData.append('entry.1814453632', getData('name'));
-    formData.append('entry.460609193', getData('birthdate'));
-    formData.append('entry.406196489', getCheckedValue('gender'));
-    formData.append('entry.149223827', getData('mbti'));
-    formData.append('entry.1594657278', getData('phone'));
-    formData.append('entry.2091799703', getData('home_address'));
-    formData.append('entry.871520028', getData('current_address'));
-    formData.append('entry.446014347', getData('school'));
-    formData.append('entry.1550372405', getData('major'));
-    formData.append('entry.1594091064', getData('student_id'));
-    formData.append('entry.1551802159', getData('grade'));
-    formData.append('entry.2021647126', getCheckboxValue('is_leave'));
-    formData.append('entry.1347219430', getData('driving_status'));
-    formData.append('entry.277930390', getData('sns'));
-    formData.append('entry.1249346205', getData('extracurricular'));
-    formData.append('entry.1654590831', getData('fixed_schedule'));
-    formData.append('entry.1333559123', getCheckedValue('ot_mt_attendance'));
-    formData.append('entry.712930755', getCheckedValue('regular_attendance'));
-    formData.append('entry.497592474', getCheckedValue('content_agreement'));
-    formData.append('entry.1517799006', getCheckedValue('participation_agreement'));
-    formData.append('entry.2130512362', getData('introduction'));
-    formData.append('entry.361736951', getData('special_introduction'));
-    formData.append('entry.1237870354', getData('visited_places'));
-    formData.append('entry.1005633375', getCheckedValue('travel_essay_type'));
-    formData.append('entry.1009900080', getData('travel_essay'));
-    formData.append('entry.1072259116', getData('motivation'));
-    formData.append('entry.157871574', getData('final_words'));
-    formData.append('entry.1417326377', getData('interview_requests'));
-    formData.append('entry.1164191371', selectedInterviewSlots.join(', '));
+    // iframe을 통한 제출을 위한 임시 폼 생성
+    const tempForm = document.createElement('form');
+    tempForm.method = 'POST';
+    tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
+    tempForm.target = 'hidden_iframe';
+    tempForm.style.display = 'none';
 
-    // XMLHttpRequest를 사용한 제출
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    
-    xhr.onload = function() {
+    // 모든 데이터를 input으로 추가
+    const formFields = {
+        'entry.1814453632': getData('name'),
+        'entry.460609193': getData('birthdate'),
+        'entry.406196489': getCheckedValue('gender'),
+        'entry.149223827': getData('mbti'),
+        'entry.1594657278': getData('phone'),
+        'entry.2091799703': getData('home_address'),
+        'entry.871520028': getData('current_address'),
+        'entry.446014347': getData('school'),
+        'entry.1550372405': getData('major'),
+        'entry.1594091064': getData('student_id'),
+        'entry.1551802159': getData('grade'),
+        'entry.2021647126': getCheckboxValue('is_leave'),
+        'entry.1347219430': getData('driving_status'),
+        'entry.277930390': getData('sns'),
+        'entry.1249346205': getData('extracurricular'),
+        'entry.1654590831': getData('fixed_schedule'),
+        'entry.1333559123': getCheckedValue('ot_mt_attendance'),
+        'entry.712930755': getCheckedValue('regular_attendance'),
+        'entry.497592474': getCheckedValue('content_agreement'),
+        'entry.1517799006': getCheckedValue('participation_agreement'),
+        'entry.2130512362': getData('introduction'),
+        'entry.361736951': getData('special_introduction'),
+        'entry.1237870354': getData('visited_places'),
+        'entry.1005633375': getCheckedValue('travel_essay_type'),
+        'entry.1009900080': getData('travel_essay'),
+        'entry.1072259116': getData('motivation'),
+        'entry.157871574': getData('final_words'),
+        'entry.1417326377': getData('interview_requests'),
+        'entry.1164191371': selectedInterviewSlots.join(', ')
+    };
+
+    Object.entries(formFields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        tempForm.appendChild(input);
+    });
+
+    // hidden iframe 생성
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    // 폼 제출 후 처리
+    iframe.onload = function() {
         alert('지원서가 성공적으로 제출되었습니다.');
+        document.body.removeChild(iframe);
+        document.body.removeChild(tempForm);
     };
-    
-    xhr.onerror = function() {
-        alert('제출이 완료되었습니다.');
-    };
-    
-    xhr.send(new URLSearchParams(formData).toString());
+
+    // 폼 추가 및 제출
+    document.body.appendChild(tempForm);
+    tempForm.submit();
 }
 
-// 미리보기에서 제출하기 함수 수정
+// 미리보기에서 제출하기 함수는 그대로 유지
 function submitForm() {
     closePreview();
     submitToGoogleForm();
