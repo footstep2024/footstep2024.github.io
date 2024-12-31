@@ -3202,7 +3202,7 @@ textarea.form-control[readonly] {
 <div class="section-title">
 <span>개인정보 수집 및 이용 동의</span>
 <label class="checkbox-label">
-<input type="radio" name="privacy_agreement" value="동의함" required>
+<input type="checkbox" name="privacy_agreement" required>
 <span class="check-icon"></span>
 <span class="label-text">동의함</span>
 </label>
@@ -3560,7 +3560,7 @@ textarea.form-control[readonly] {
 <!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
-<input type="text" class="form-control" name="travel_budget" placeholder="여행 경비 입력" style="width: 180px">
+<input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
 <div class="alerts" style="flex-grow: 1; margin-top: -10px">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i> 
@@ -4161,8 +4161,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="additional-requests" style="margin-top: 2rem;">
 <div class="form-group">
 <label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="interview_requests"
-style="height: 75px !important; min-height: 75px; resize: none;"
+<textarea class="form-control" name="interview_requests" style="height: 75px !important; min-height: 75px; resize: none;"
 placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
 </div>
 </div>
@@ -5460,7 +5459,7 @@ function previewApplication() {
                                 <div class="mobile-preview-item">
                                     <span class="mobile-preview-label">여행경비</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="travel_budget"]')[1].value || '미입력'}
+                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
                                     </div>
                                 </div>
                                 <div class="mobile-preview-item full-width">
@@ -5765,7 +5764,7 @@ function previewApplication() {
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
-                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="travel_budget"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
@@ -6359,11 +6358,7 @@ function closeScheduleModal() {
 
 function submitForm() {
     closePreview();
-    submitToGoogleForm().then(() => {
-        // 제출 성공 시 처리
-    }).catch(error => {
-        console.error('Error:', error);
-    });
+    document.getElementById('applicationForm').submit();
 }
 
 // 페이지 로드시 이벤트 리스너 추가
@@ -6469,6 +6464,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
+
 
 <script>
 function submitToGoogleForm() {
