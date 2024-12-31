@@ -6488,7 +6488,7 @@ function submitToGoogleForm(e) {
                 form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
     };
 
-    // 구글 폼 제출 URL
+    // 구글 폼 제출 URL (formResponse로 끝나야 함)
     const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
     
     // 구글 폼에 맞는 필드명으로 데이터 변환
@@ -6524,6 +6524,15 @@ function submitToGoogleForm(e) {
         'entry.1164191371': selectedInterviewSlots.join(', ')   // 선택된 면접 시간들
     });
 
+    // 폼 제출 전 검증
+    const requiredFields = ['name', 'birthdate', 'gender', 'phone', 'school', 'major'];
+    const missingFields = requiredFields.filter(field => !getData(field));
+    
+    if (missingFields.length > 0) {
+        alert('필수 항목을 모두 입력해주세요.');
+        return;
+    }
+
     // 폼 제출
     fetch(googleFormUrl, {
         method: 'POST',
@@ -6535,7 +6544,8 @@ function submitToGoogleForm(e) {
     })
     .then(() => {
         alert('지원서가 성공적으로 제출되었습니다.');
-        // 여기에 감사 페이지로 리다이렉트 추가 가능
+        // 추후 성공 페이지로 리다이렉트하려면 아래 줄 주석 해제
+        // window.location.href = '성공페이지URL';
     })
     .catch(error => {
         console.error('Error:', error);
@@ -6546,7 +6556,7 @@ function submitToGoogleForm(e) {
 // 폼 제출 이벤트 리스너 추가
 document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
 
-// 미리보기에서 제출하기 함수 수정
+// 미리보기에서 제출하기 버튼 클릭 시 호출되는 함수
 function submitForm() {
     closePreview();
     submitToGoogleForm();
