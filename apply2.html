@@ -4433,16 +4433,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 
 <div style="display: flex; justify-content: center; width: 100%;">
-    <!-- PC 버전 -->
-    <div class="button-group pc-only">
-        <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-        <button type="submit" class="submit-btn">제출하기</button>
-    </div>
+<!-- PC 버전 -->
+<div class="button-group pc-only">
+    <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
+    <button type="submit" class="submit-btn">제출하기</button>
+</div>
 
-    <!-- 모바일 버전 -->
-    <div class="button-group mobile-only">
-        <button type="submit" class="submit-btn">제출하기</button>
-    </div>
+<!-- 모바일 버전 -->
+<div class="button-group mobile-only">
+    <button type="submit" class="submit-btn">제출하기</button>
 </div>
 
 <!-- 미리보기 모달 추가 -->
@@ -6468,10 +6467,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
-function submitToGoogleForm() {
+function submitToGoogleForm(e) {
+    if(e) e.preventDefault();  // 기본 폼 제출 동작 방지
+    
     const form = document.getElementById('applicationForm');
     
-    // PC/모바일 버전 통합 데이터 수집
+    // 기존의 getData, getCheckedValue, getCheckboxValue 함수들
     const getData = (name) => {
         return form.querySelector(`[name="${name}"]`)?.value || 
                form.querySelector(`[name="${name}_mobile"]`)?.value || '';
@@ -6482,7 +6483,6 @@ function submitToGoogleForm() {
                form.querySelector(`input[name="${name}_mobile"]:checked`)?.value || '';
     };
 
-    // 체크박스의 경우
     const getCheckboxValue = (name) => {
         return (form.querySelector(`input[name="${name}"]`)?.checked || 
                 form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
@@ -6535,18 +6535,18 @@ function submitToGoogleForm() {
     })
     .then(() => {
         alert('지원서가 성공적으로 제출되었습니다.');
-        // 추가적인 성공 처리 (예: 감사 페이지로 리다이렉트)
-        window.location.href = "감사 페이지 URL"; // URL은 나중에 지정
+        // 여기에 감사 페이지로 리다이렉트 추가 가능
     })
     .catch(error => {
         console.error('Error:', error);
         alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
     });
-
-    return false;
 }
 
-// 제출 함수 수정
+// 폼 제출 이벤트 리스너 추가
+document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
+
+// 미리보기에서 제출하기 함수 수정
 function submitForm() {
     closePreview();
     submitToGoogleForm();
