@@ -6489,7 +6489,7 @@ function submitToGoogleForm(e) {
     };
 
     // 구글 폼 제출 URL (formResponse로 끝나야 함)
-    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
+    const googleFormUrl = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
     
     // 구글 폼에 맞는 필드명으로 데이터 변환
     const formEntries = new URLSearchParams({
@@ -6542,10 +6542,11 @@ function submitToGoogleForm(e) {
         },
         body: formEntries.toString()
     })
-    .then(() => {
+    .then(response => {
+        if (!response.ok && response.type !== 'opaque') {
+            throw new Error('Network response was not ok');
+        }
         alert('지원서가 성공적으로 제출되었습니다.');
-        // 추후 성공 페이지로 리다이렉트하려면 아래 줄 주석 해제
-        // window.location.href = '성공페이지URL';
     })
     .catch(error => {
         console.error('Error:', error);
@@ -6554,7 +6555,16 @@ function submitToGoogleForm(e) {
 }
 
 // 폼 제출 이벤트 리스너 추가
-document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('applicationForm');
+    if(form) {
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            submitToGoogleForm();
+            return false;
+        };
+    }
+});
 
 // 미리보기에서 제출하기 버튼 클릭 시 호출되는 함수
 function submitForm() {
