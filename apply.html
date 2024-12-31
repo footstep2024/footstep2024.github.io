@@ -534,45 +534,45 @@ select.form-control option:checked {
 }
 
 /* 자기소개 textarea의 높이 설정 */
-textarea[name="entry.1273113780"] {
+textarea[name="introduction"] {
 height: 100px !important;
 min-height: 100px;
 resize: none;
 }
 
-textarea[name="entry.1358351649"] {
+textarea[name="visited_places"] {
 resize: none;
 height: 60px !important;
 min-height: 60px;
 }
 
 /* 여행 경험 에세이 섹션 스타일 */
-textarea[name="entry.1113044219"] {
+textarea[name="travel_essay"] {
 height: 200px !important;
 min-height: 200px;
 resize: none;
 }
 
-textarea[name="entry.94464175"] {
+textarea[name="motivation"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
 }
 
-textarea[name="entry.1054938056"] {
+textarea[name="final_words"] {
 resize: none;
 height: 150px !important;
 min-height: 150px;
 }
 
 /* 여기에 새로 추가하는 부분 */
-textarea[name="entry.1358351649"] {
+textarea[name="extracurricular"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
 }
 
-textarea[name="entry.1309671483"] {
+textarea[name="fixed_schedule"] {
 resize: none;
 height: 100px !important;
 min-height: 100px;
@@ -593,8 +593,8 @@ font-size: 0.75rem;
 
 /* 모바일에서 date input 스타일링 */
 @media (max-width: 768px) {
-    input[name="entry.1586698654"].form-control,
-    input[name="entry.1586698654"].form-control {
+    input[name="birthdate"].form-control,
+    input[name="birthdate_mobile"].form-control {
         background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E") no-repeat right 0.7rem center;
         background-size: 1.2rem;
         cursor: pointer;
@@ -1363,7 +1363,7 @@ transform: none;
     }
 
     /* 운전가능여부 선택 드롭다운 */
-    select[name="entry.1334231597"] {
+    select[name="driving_status"] {
         width: 70% !important;
         margin-bottom: 8px;
     }
@@ -3152,7 +3152,6 @@ textarea.form-control[readonly] {
 
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-<iframe name="hidden_iframe" style="display:none;"></iframe>
 
 <div class="progress-container">
 <div class="progress-bar">
@@ -3203,7 +3202,7 @@ textarea.form-control[readonly] {
 <div class="section-title">
 <span>개인정보 수집 및 이용 동의</span>
 <label class="checkbox-label">
-<input type="checkbox" name="entry.1832572178" required>
+<input type="checkbox" name="privacy_agreement" data-entry="entry.1832572178" required>
 <span class="check-icon"></span>
 <span class="label-text">동의함</span>
 </label>
@@ -3265,7 +3264,7 @@ textarea.form-control[readonly] {
     
 <!-- 새로운 개인정보 수집 섹션 끝 -->
 
-<form id="applicationForm" action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse" method="post" target="hidden_iframe">
+<form id="applicationForm">
 <section class="form-section">
     <h2 class="section-title">기본 정보</h2>
 
@@ -3274,24 +3273,24 @@ textarea.form-control[readonly] {
         <div class="form-row first-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
             <div class="form-group" style="width: 20%">
                 <label class="form-label required">이름</label>
-                <input type="text" class="form-control" name="entry.2070257591" required>
+                <input type="text" class="form-control" name="name" data-entry="entry.2070257591" required>
             </div>
             <div class="form-group" style="width: 25%">
                 <label class="form-label required">생년월일</label>
-                <input type="text" class="form-control" name="entry.1586698654" readonly required>
+                <input type="text" class="form-control" name="birthdate" data-entry="entry.1586698654" readonly required placeholder="생년월일 선택">
             </div>
             <div class="form-group" style="width: 25%">
                 <label class="form-label required" style="margin-bottom: 8px">성별</label>
                 <div style="display: flex; gap: 10px">
                     <label class="gender-select">
-                        <input type="radio" name="entry.261486001" value="남성" required>
+                        <input type="radio" name="gender" data-entry="entry.261486001" value="남성" required>
                         <span class="gender-button">
                             <i class="fas fa-mars"></i>
                             남성
                         </span>
                     </label>
                     <label class="gender-select">
-                        <input type="radio" name="entry.261486001" value="여성" required>
+                        <input type="radio" name="gender" data-entry="entry.261486001" value="여성" required>
                         <span class="gender-button">
                             <i class="fas fa-venus"></i>
                             여성
@@ -3301,7 +3300,7 @@ textarea.form-control[readonly] {
             </div>
             <div class="form-group" style="width: 22%">
                 <label class="form-label">&nbsp;</label>
-                <select class="form-control" name="entry.1336751748" required>
+                <select class="form-control" name="mbti" data-entry="entry.1336751748" required>
                     <option value="" disabled selected>MBTI 선택</option>
                     <option value="ISTJ">ISTJ</option>
                     <option value="ISFJ">ISFJ</option>
@@ -3327,17 +3326,17 @@ textarea.form-control[readonly] {
     <div class="form-row three-columns" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
         <div class="form-group">
             <label class="form-label required">연락처</label>
-            <input type="tel" class="form-control" name="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+            <input type="tel" class="form-control" name="phone" data-entry="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
             <div class="error-message">올바른 연락처를 입력해주세요.</div>
         </div>
         <div class="form-group">
             <label class="form-label required">본가</label>
-            <input type="text" class="form-control" name="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
+            <input type="text" class="form-control" name="home_address" data-entry="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
             <div class="error-message">본가 주소를 입력해주세요.</div>
         </div>
         <div class="form-group">
             <label class="form-label required">현재 거주지</label>
-            <input type="text" class="form-control" name="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
+            <input type="text" class="form-control" name="current_address" data-entry="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
             <div class="error-message">현재 거주지를 입력해주세요.</div>
         </div>
     </div>
@@ -3346,27 +3345,27 @@ textarea.form-control[readonly] {
     <div class="form-row fourth-row" style="display: flex; gap: 16px; align-items: flex-start">
         <div class="form-group" style="width: 24%">
             <label class="form-label required">학교</label>
-            <input type="text" class="form-control" name="entry.1216819183" required>
+            <input type="text" class="form-control" name="school" data-entry="entry.1216819183" required>
         </div>
         <div class="form-group" style="width: 30%">
             <label class="form-label required">전공</label>
-            <input type="text" class="form-control" name="entry.1360694033" required>
+            <input type="text" class="form-control" name="major" data-entry="entry.1360694033" required>
         </div>
         <div class="form-group" style="width: 15%">
             <label class="form-label required">학번</label>
-            <input type="text" class="form-control" name="entry.403858052" placeholder="예: 25학번">
+            <input type="text" class="form-control" name="student_id" data-entry="entry.403858052" placeholder="예: 25학번">
         </div>
         <div class="form-group" style="width: 15%">
             <div style="position: relative">
                 <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="entry.1511002325" value="휴학">
+                        <input type="checkbox" name="is_leave" data-entry="entry.1511002325">
                         <span class="check-icon"></span>
                         <span class="label-text">휴학</span>
                     </label>
                 </div>
                 <label class="form-label" style="visibility: hidden">학년</label>
-                <select class="form-control" name="entry.1135546838" required>
+                <select class="form-control" name="grade" data-entry="entry.1135546838" required>
                     <option value="" disabled selected>학년 선택</option>
                     <optgroup label="일반학과">
                         <option value="1">1학년</option>
@@ -3401,14 +3400,14 @@ textarea.form-control[readonly] {
 <div class="mobile-form-row" style="display: grid; grid-template-columns: 27% 41% 32%; gap: 8px;">
     <div class="form-group" style="margin: 0;">
         <label class="form-label required">이름</label>
-        <input type="text" class="form-control" name="entry.2070257591" required>
+        <input type="text" class="form-control" name="name_mobile" data-entry="entry.2070257591" required>
     </div>
     <div class="form-group" style="margin: 0;">
         <label class="form-label required">생년월일</label>
-        <input type="date" class="form-control" name="entry.1586698654" required>
+        <input type="date" class="form-control" name="birthdate_mobile" data-entry="entry.1586698654" required>
     </div>
     <div class="form-group" style="margin-top: 27px">
-        <select class="form-control" name="entry.1336751748" required>
+        <select class="form-control" name="mbti_mobile" data-entry="entry.1336751748" required>
             <option value="" disabled selected>MBTI 선택</option>
                        <option value="ISTJ">ISTJ</option>
                        <option value="ISFJ">ISFJ</option>
@@ -3435,14 +3434,14 @@ textarea.form-control[readonly] {
         <div class="form-group" style="margin-top: 28px">
             <div class="gender-buttons">
                 <label class="gender-select">
-                    <input type="radio" name="entry.261486001" value="남성" required>
+                    <input type="radio" name="gender_mobile" data-entry="entry.261486001" value="남성" required>
                     <span class="gender-button">
                         <i class="fas fa-mars"></i>
                         남성
                     </span>
                 </label>
                 <label class="gender-select">
-                    <input type="radio" name="entry.261486001" value="여성" required>
+                    <input type="radio" name="gender_mobile" data-entry="entry.261486001" value="여성" required>
                     <span class="gender-button">
                         <i class="fas fa-venus"></i>
                         여성
@@ -3452,7 +3451,7 @@ textarea.form-control[readonly] {
         </div>
         <div class="form-group">
             <label class="form-label required">연락처</label>
-            <input type="tel" class="form-control" name="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+            <input type="tel" class="form-control" name="phone_mobile" data-entry="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
         </div>
     </div>
 
@@ -3460,11 +3459,11 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">본가</label>
-            <input type="text" class="form-control" name="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
+            <input type="text" class="form-control" name="home_address_mobile" data-entry="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
         </div>
         <div class="form-group">
             <label class="form-label required">현재 거주지</label>
-            <input type="text" class="form-control" name="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
+            <input type="text" class="form-control" name="current_address_mobile" data-entry="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
         </div>
     </div>
 
@@ -3472,11 +3471,11 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">학교</label>
-            <input type="text" class="form-control" name="entry.1216819183" required>
+            <input type="text" class="form-control" name="school_mobile" data-entry="entry.1216819183" required>
         </div>
         <div class="form-group">
             <label class="form-label required">전공</label>
-            <input type="text" class="form-control" name="entry.1360694033" required>
+            <input type="text" class="form-control" name="major_mobile" data-entry="entry.1360694033" required>
         </div>
     </div>
 
@@ -3484,10 +3483,10 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row three-part" style="display: grid; grid-template-columns: 30% 40% 30%; gap: 8px;">
         <div class="form-group" style="margin: 0;">
             <label class="form-label required">학번</label>
-            <input type="text" class="form-control" name="entry.403858052" placeholder="예: 25학번" required>
+            <input type="text" class="form-control" name="student_id_mobile" data-entry="entry.403858052" placeholder="예: 25학번" required>
         </div>
         <div class="form-group" style="margin-top: 27px">
-            <select class="form-control" name="entry.1135546838" required>
+            <select class="form-control" name="grade_mobile" data-entry="entry.1135546838" required>
                 <option value="" disabled selected>학년 선택</option>
                        <optgroup label="일반학과">
                            <option value="1">1학년</option>
@@ -3513,7 +3512,7 @@ textarea.form-control[readonly] {
         </div>
         <div class="form-group" style="margin: 32px 0px 0px 10px">
             <label class="checkbox-label">
-                <input type="checkbox" name="entry.1511002325" value="휴학">
+                <input type="checkbox" name="is_leave_mobile" data-entry="entry.1511002325">
                 <span class="check-icon"></span>
                 <span class="label-text">휴학</span>
             </label>
@@ -3525,7 +3524,7 @@ textarea.form-control[readonly] {
 <!-- 운전가능여부 섹션 -->
 <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
 <div style="display: flex; gap: 24px">  <!-- 가로 배치를 위한 컨테이너 -->
-<select class="form-control" name="entry.1334231597" style="width: 180px" required>
+<select class="form-control" name="driving_status" data-entry="entry.1334231597" style="width: 180px" required>
 <option value="" disabled selected>운전 가능 여부 선택</option>
 <option value="car">자차 보유</option>
 <option value="license">면허만 보유</option>
@@ -3547,7 +3546,7 @@ textarea.form-control[readonly] {
 <!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
-<input type="text" class="form-control" name="entry.1135546838" placeholder="인스타/블로그 주소를 입력" style="width: 180px">
+<input type="text" class="form-control" name="sns" placeholder="인스타/블로그 주소를 입력" style="width: 180px">
 <div class="alerts" style="flex-grow: 1; margin-top: -10px">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i> 
@@ -3561,7 +3560,7 @@ textarea.form-control[readonly] {
 <!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
-<input type="text" class="form-control" name="entry.1334231597" placeholder="여행 경비 입력" style="width: 180px">
+<input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
 <div class="alerts" style="flex-grow: 1; margin-top: -10px">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i> 
@@ -3579,12 +3578,12 @@ textarea.form-control[readonly] {
 
 <div class="form-group">
 <label class="form-label">동아리 및 대외활동 경력을 자유롭게 적어주세요.</label>
-<textarea class="form-control" name="entry.1358351649" required placeholder="현재 참여 중이거나 대학 생활 이후로 참여했던 의미있는 대외활동과 동아리 활동을 자유롭게 적어주세요."></textarea>
+<textarea class="form-control" name="extracurricular" required placeholder="현재 참여 중이거나 대학 생활 이후로 참여했던 의미있는 대외활동과 동아리 활동을 자유롭게 적어주세요."></textarea>
 </div>
 
 <div class="form-group" style="margin-top: 2rem;">
 <label class="form-label">주간 고정 일정을 적어주세요.</label>
-<textarea class="form-control" name="entry.1309671483" required placeholder="매주 고정적으로 참여해야 하는 일정을 적어주세요. (예: 월요일 저녁 7-10시 과외, 목요일 오후 3-6시 아르바이트) 편하시다면 반대로 말씀해주셔도 좋습니다. (예: 화/목/금요일은 오후 시간대가 자유로움)"></textarea>
+<textarea class="form-control" name="fixed_schedule" required placeholder="매주 고정적으로 참여해야 하는 일정을 적어주세요. (예: 월요일 저녁 7-10시 과외, 목요일 오후 3-6시 아르바이트) 편하시다면 반대로 말씀해주셔도 좋습니다. (예: 화/목/금요일은 오후 시간대가 자유로움)"></textarea>
 </div>
 </section>
 
@@ -3632,17 +3631,17 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="entry.1572736277" value="참석_가능" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="참석_가능" required>
 <span class="check-icon"></span>
 <span class="label-text">참석 가능</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1572736277" value="늦게_참석" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="늦게_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">늦게 참석</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1572736277" value="참석_불가" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="참석_불가" required>
 <span class="check-icon"></span>
 <span class="label-text">참석 불가</span>
 </label>
@@ -3685,17 +3684,17 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="entry.1884558117" value="대부분_참석" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="대부분_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">대부분 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1884558117" value="부분_참석" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="부분_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">부분 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1884558117" value="참여_어려움" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="참여_어려움" required>
 <span class="check-icon"></span>
 <span class="label-text">참여 어려움</span>
 </label>
@@ -3749,17 +3748,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>                    
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="entry.1511002325" value="전체_동의" required>
+<input type="radio" name="content_agreement" value="전체_동의" required>
 <span class="check-icon"></span>
 <span class="label-text">모두 동의</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1511002325" value="클라우드만" required>
+<input type="radio" name="content_agreement" value="클라우드만" required>
 <span class="check-icon"></span>
 <span class="label-text">클라우드만 동의</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.1511002325" value="동의_거부" required>
+<input type="radio" name="content_agreement" value="동의_거부" required>
 <span class="check-icon"></span>
 <span class="label-text">동의 안함</span>
 </label>
@@ -3810,17 +3809,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="entry.2052737417" value="적극_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="적극_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">적극 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.2052737417" value="일반_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="일반_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">최소한으로 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="entry.2052737417" value="소극_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="소극_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">관심 없음</span>
 </label>
@@ -3868,17 +3867,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="entry.1572736277" value="참석_가능" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="참석_가능" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참석 가능</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1572736277" value="늦게_참석" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="늦게_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">늦게 참석</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1572736277" value="참석_불가" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="참석_불가" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참석 불가</span>
             </label>
@@ -3923,17 +3922,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="entry.1884558117" value="대부분_참석" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="대부분_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">대부분 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1884558117" value="부분_참석" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="부분_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">부분 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1884558117" value="참여_어려움" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="참여_어려움" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참여 어려움</span>
             </label>
@@ -3980,17 +3979,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="entry.1511002325" value="전체_동의" required>
+                <input type="radio" name="content_agreement_mobile" value="전체_동의" required>
                 <span class="check-icon"></span>
                 <span class="label-text">모두 동의</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1511002325" value="클라우드만" required>
+                <input type="radio" name="content_agreement_mobile" value="클라우드만" required>
                 <span class="check-icon"></span>
                 <span class="label-text">클라우드만 동의</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.1511002325" value="동의_거부" required>
+                <input type="radio" name="content_agreement_mobile" value="동의_거부" required>
                 <span class="check-icon"></span>
                 <span class="label-text">동의 안함</span>
             </label>
@@ -4037,17 +4036,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="entry.2052737417" value="적극_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="적극_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">적극 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.2052737417" value="일반_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="일반_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">최소한으로 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="entry.2052737417" value="소극_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="소극_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">관심 없음</span>
             </label>
@@ -4062,7 +4061,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
-<textarea class="form-control" name="entry.1273113780" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
+<textarea class="form-control" name="introduction" data-entry="entry.1273113780" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
 </div>
 
 <!-- 특별 자기소개 섹션 -->
@@ -4070,7 +4069,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
 <div class="special-intro-container">
 <div class="special-intro-input">
-<textarea class="form-control" name="entry.1113044219" rows="4" required placeholder="예시 1) '비글미' 이미주 유형입니다. 흥이 많고, 한시도 가만 있지 못하는 성격입니다. 놀리고, 떠들고, 장난치는 것을 좋아해서 여행 갈 때마다 예상치 못한 웃음 포인트를 만들어드릴 수 있습니다.&#13;&#10;&#13;&#10;예시 2) '아이돌 센터' 장원영 유형입니다. 늘 밝고 화사한 표정으로 사진 찍는 걸 좋아해서, 동아리 SNS 홍보대사를 자처하고 싶습니다!&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>    </div>
+<textarea class="form-control" name="special_introduction" rows="4" required placeholder="예시 1) '비글미' 이미주 유형입니다. 흥이 많고, 한시도 가만 있지 못하는 성격입니다. 놀리고, 떠들고, 장난치는 것을 좋아해서 여행 갈 때마다 예상치 못한 웃음 포인트를 만들어드릴 수 있습니다.&#13;&#10;&#13;&#10;예시 2) '아이돌 센터' 장원영 유형입니다. 늘 밝고 화사한 표정으로 사진 찍는 걸 좋아해서, 동아리 SNS 홍보대사를 자처하고 싶습니다!&#13;&#10;&#13;&#10;(예시에 없는 나만의 유형을 만들어도 좋고, 여러 유형을 동시에 선택해도 좋아요!)"></textarea>    </div>
 <div class="special-intro-examples">
 <div class="examples-title">유형 예시</div>
 <ul class="examples-list">
@@ -4096,7 +4095,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <!-- 가본 여행지 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지금까지 가본 여행지를 적어주세요.</label>
-<textarea class="form-control" name="entry.1358351649" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
+<textarea class="form-control" name="visited_places" data-entry="entry.1358351649" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
 </div>
 
 <!-- 에세이 작성 부분 -->
@@ -4106,19 +4105,19 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="essay-type-selector">
 <div class="essay-type-options">
 <label class="checkbox-label">
-<input type="radio" name="entry.1511002325" value="memorable_episode" required onclick="updatePlaceholder('episode')">
+<input type="radio" name="travel_essay_type" data-entry="entry.1511002325" value="memorable_episode" required onclick="updatePlaceholder('episode')">
 <span class="check-icon"></span>
 <span class="label-text">기억에 남는 여행 에피소드</span>
 </label>
 <label class="checkbox-label">
-<input type="radio" name="entry.1511002325" value="planned_travel" required onclick="updatePlaceholder('planned')">
+<input type="radio" name="travel_essay_type" data-entry="entry.1511002325" value="planned_travel" required onclick="updatePlaceholder('planned')">
 <span class="check-icon"></span>
 <span class="label-text">자체 여행 기획 경험</span>
 </label>
 </div>
 </div>
 </div>
-<textarea class="form-control" name="entry.1113044219" rows="6" required placeholder="위의 두 주제 중 하나를 체크 클릭해주세요."></textarea>
+<textarea class="form-control" name="travel_essay" data-entry="entry.1113044219" id="travelEssay" rows="6" required placeholder="위의 두 주제 중 하나를 체크 클릭해주세요."></textarea>
 </div>
 </section>
 
@@ -4128,7 +4127,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <!-- 지원 동기 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지원 동기를 적어주세요.</label>
-<textarea class="form-control" name="entry.94464175" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
+<textarea class="form-control" name="motivation" data-entry="entry.94464175" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
 </div>
 
 <!-- 마지막 한마디 작성 부분 -->
@@ -4136,7 +4135,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="essay-header" style="margin: 0;">
 <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
 </div>
-<textarea class="form-control" name="entry.1054938056" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
+<textarea class="form-control" name="final_words" data-entry="entry.1054938056" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
 </div>
 </section>
 
@@ -4162,7 +4161,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="additional-requests" style="margin-top: 2rem;">
 <div class="form-group">
 <label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="entry.1309671483"
+<textarea class="form-control" name="interview_requests" data-entry="entry.1309671483" 
 style="height: 75px !important; min-height: 75px; resize: none;"
 placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
 </div>
@@ -4199,7 +4198,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
        <i class="fas fa-circle-exclamation"></i>
        <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다. <button class="example-btn" type="button" data-type="records">발자취의 여행 준비</button></p>
        <label class="confirm-check">
-           <input type="checkbox" name="entry.1832572178" required>
+           <input type="checkbox" name="notice_check_1" required>
            <span class="check-text">확인함</span>
        </label>
    </div>
@@ -4210,7 +4209,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="entry.1832572178" required>
+<input type="checkbox" name="notice_check_2" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4221,7 +4220,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation"></i>
         <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="entry.1832572178" required>
+            <input type="checkbox" name="notice_check_1" required>
             <span class="check-text">확인함</span>
         </label>
     </div>
@@ -4232,7 +4231,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="entry.1832572178" required>
+<input type="checkbox" name="notice_check_3" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4243,7 +4242,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="entry.1832572178" required>
+<input type="checkbox" name="notice_check_4" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4254,7 +4253,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation" style="color: #dc3545;"></i>
         <p style="color: #dc3545;">성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="entry.1832572178" required>
+            <input type="checkbox" name="notice_check_5" required>
             <span class="check-text" style="color: #dc3545;">확인함</span>
         </label>
     </div>
@@ -4265,7 +4264,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation"></i>
         <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
         <label class="confirm-check">
-            <input type="checkbox" name="entry.1832572178" required>
+            <input type="checkbox" name="notice_check_7" required>
             <span class="check-text">확인함</span>
         </label>
     </div>
@@ -4276,7 +4275,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="entry.1832572178" required>
+<input type="checkbox" name="notice_check_6" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4300,7 +4299,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>직접 여행을 계획하고 준비하는 과정이 필수적인 동아리입니다. 단순 참여형 여행만을 기대하시는 분들은 지원을 재고해주시기 바랍니다.</p>
                 <label class="mobile-confirm">
                     <div class="confirm-wrapper">
-                        <input type="checkbox" name="entry.1832572178" required>
+                        <input type="checkbox" name="notice_check_mobile_1" required>
                         <span class="check-icon"></span>
                         <span class="confirm-text">확인함</span>
                     </div>
@@ -4320,7 +4319,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-content">
                 <p>여행 동아리 특성상 타 동아리 대비 활동 경비 부담이 있을 수 있으며, 1박 2일 이상의 외박이 필수적입니다.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="entry.1832572178" required>
+                    <input type="checkbox" name="notice_check_mobile_2" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
@@ -4336,7 +4335,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.</p>
                 <label class="mobile-confirm">
                     <div class="confirm-wrapper">
-                        <input type="checkbox" name="entry.1832572178" required>
+                        <input type="checkbox" name="notice_check_mobile_3" required>
                         <span class="check-icon"></span>
                         <span class="confirm-text">확인함</span>
                     </div>
@@ -4356,7 +4355,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-content">
                 <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="entry.1832572178" required>
+                    <input type="checkbox" name="notice_check_mobile_4" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
@@ -4371,7 +4370,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-content">
                 <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="entry.1832572178" required>
+                    <input type="checkbox" name="notice_check_mobile_5" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
@@ -4387,7 +4386,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <p>성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.</p>
                 <label class="mobile-confirm warning">
                     <div class="confirm-wrapper">
-                        <input type="checkbox" name="entry.1832572178" required>
+                        <input type="checkbox" name="notice_check_mobile_6" required>
                         <span class="check-icon"></span>
                         <span class="confirm-text">확인함</span>
                     </div>
@@ -4407,7 +4406,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-content">
                 <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="entry.1832572178" required>
+                    <input type="checkbox" name="notice_check_mobile_7" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
@@ -4422,7 +4421,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             <div class="notice-content">
                 <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="entry.1832572178" required>
+                    <input type="checkbox" name="notice_check_mobile_8" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
@@ -4437,12 +4436,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <!-- PC 버전 -->
 <div class="button-group pc-only">
     <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-    <button type="submit" class="submit-btn">제출하기</button>
+    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
 </div>
 
 <!-- 모바일 버전 -->
 <div class="button-group mobile-only">
-    <button type="submit" class="submit-btn">제출하기</button>
+    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
 </div>
 
 <!-- 미리보기 모달 추가 -->
@@ -4458,7 +4457,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 <div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
     <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
-    <button class="modal-bottom-close" type="submit" form="applicationForm" style="background: var(--primary-color);">제출하기</button>
+    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
 </div>
 </div>
 </div>
@@ -4491,14 +4490,14 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
                 <div class="time-slots">
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0117_am">
+                        <input type="checkbox" name="interview_slots[]" value="0117_am">
                         <span class="time-label">
                             <i class="fas fa-sun"></i>
                             오전
                         </span>
                     </label>
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0117_pm">
+                        <input type="checkbox" name="interview_slots[]" value="0117_pm">
                         <span class="time-label">
                             <i class="fas fa-moon"></i>
                             오후
@@ -4519,14 +4518,14 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
                 <div class="time-slots">
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0118_am">
+                        <input type="checkbox" name="interview_slots[]" value="0118_am">
                         <span class="time-label">
                             <i class="fas fa-sun"></i>
                             오전
                         </span>
                     </label>
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0118_pm">
+                        <input type="checkbox" name="interview_slots[]" value="0118_pm">
                         <span class="time-label">
                             <i class="fas fa-moon"></i>
                             오후
@@ -4547,14 +4546,14 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
                 <div class="time-slots">
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0119_am">
+                        <input type="checkbox" name="interview_slots[]" value="0119_am">
                         <span class="time-label">
                             <i class="fas fa-sun"></i>
                             오전
                         </span>
                     </label>
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0119_pm">
+                        <input type="checkbox" name="interview_slots[]" value="0119_pm">
                         <span class="time-label">
                             <i class="fas fa-moon"></i>
                             오후
@@ -4577,14 +4576,14 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
                 <div class="time-slots">
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0120_am">
+                        <input type="checkbox" name="interview_slots[]" value="0120_am">
                         <span class="time-label">
                             <i class="fas fa-sun"></i>
                             오전
                         </span>
                     </label>
                     <label class="time-slot">
-                        <input type="checkbox" name="entry.94464175" value="0120_pm">
+                        <input type="checkbox" name="interview_slots[]" value="0120_pm">
                         <span class="time-label">
                             <i class="fas fa-moon"></i>
                             오후
@@ -4758,7 +4757,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 // 날짜 선택 모달 관련 요소들
-const dateInput = document.querySelector('input[name="entry.1586698654"]');
+const dateInput = document.querySelector('input[name="birthdate"]');
 const dateModal = document.getElementById('dateModal');
 const confirmBtn = document.querySelector('.confirm-btn');
 const cancelBtn = document.querySelector('.cancel-btn');
@@ -4781,7 +4780,7 @@ if(dateInput) {
     });
     
     // 모바일에서도 동일하게 적용
-    const dateInputMobile = document.querySelector('input[name="entry.1586698654"]');
+    const dateInputMobile = document.querySelector('input[name="birthdate_mobile"]');
     if(dateInputMobile) {
         dateInputMobile.addEventListener('focus', function(e) {
             e.preventDefault();
@@ -4802,11 +4801,11 @@ if(confirmBtn) {
             const formattedDate = `${year}-${month}-${day}`;
             
             // PC 버전 입력칸 업데이트
-            const pcInput = document.querySelector('input[name="entry.1586698654"]');
+            const pcInput = document.querySelector('input[name="birthdate"]');
             if(pcInput) pcInput.value = formattedDate;
             
             // 모바일 버전 입력칸 업데이트
-            const mobileInput = document.querySelector('input[name="entry.1586698654"]');
+            const mobileInput = document.querySelector('input[name="birthdate_mobile"]');
             if(mobileInput) mobileInput.value = formattedDate;
         }
         dateModal.style.display = 'none';
@@ -5177,7 +5176,7 @@ function openScheduleModal() {
     const modalContent = modal.querySelector('.schedule-modal-content');
     
     // 이전에 선택된 일정 복원
-    document.querySelectorAll('input[name="entry.94464175"]').forEach(checkbox => {
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
         checkbox.checked = selectedInterviewSlots.includes(checkbox.value);
     });
 
@@ -5226,7 +5225,7 @@ function updateSelectedScheduleDisplay() {
 
     let scheduleHTML = '<div class="selected-times-container">';
     
-    document.querySelectorAll('input[name="entry.94464175"]').forEach(slot => {
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(slot => {
         if (selectedInterviewSlots.includes(slot.value)) {
             const dateOption = slot.closest('.date-option');
             const date = dateOption.querySelector('.date').textContent;
@@ -5270,16 +5269,9 @@ function confirmSchedule() {
 
     // 선택된 일정 업데이트
     selectedInterviewSlots = Array.from(selectedSlots).map(slot => slot.value);
-    
-    // 실제 폼 필드에 값 설정
-    const interviewField = document.querySelector('input[name="entry.94464175"]');
-    if (interviewField) {
-        interviewField.value = selectedInterviewSlots.join(', ');
-    }
-
-    // 기존 상태 업데이트 및 모달 닫기 관련 코드
-    formData.interview_slots = [...selectedInterviewSlots];
+    formData.interview_slots = [...selectedInterviewSlots]; // formData도 함께 업데이트
     updateSelectedScheduleDisplay();
+
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     const modal = document.getElementById('scheduleModal');
     modal.style.display = 'none';
@@ -5295,7 +5287,7 @@ function confirmSchedule() {
 
 // 체크박스 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('input[name="entry.94464175"]').forEach(checkbox => {
+    document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             if (this.checked && !selectedInterviewSlots.includes(this.value)) {
                 selectedInterviewSlots.push(this.value);
@@ -5324,19 +5316,6 @@ function previewApplication() {
             return;
         }
 
-        // name 속성을 entry ID로 업데이트
-        const getFormValue = (entryId) => {
-            return form.querySelector(`[name="${entryId}"]`)?.value || '';
-        };
-        
-        const getCheckedValue = (entryId) => {
-            return form.querySelector(`input[name="${entryId}"]:checked`)?.value || '';
-        };
-
-        const getCheckboxValue = (entryId) => {
-            return form.querySelector(`input[name="${entryId}"]`)?.checked || false;
-        };
-
         // 모바일 환경 체크
         const isMobile = window.innerWidth <= 768;
         
@@ -5357,7 +5336,7 @@ function previewApplication() {
                         <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                             <span>기본 정보</span>
                             ${(() => {
-                                const isAgreed = form.querySelector('input[name="entry.1832572178"]')?.checked;
+                                const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked;
                                 if (isAgreed) {
                                     return `
                                         <div style="display: flex; align-items: center; gap: 4px;">
@@ -5380,59 +5359,59 @@ function previewApplication() {
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">이름</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.2070257591"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="name_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">생년월일</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1586698654"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="birthdate_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">성별</span>
                                 <div class="mobile-preview-value">
-                                    ${form.querySelector('input[name="entry.261486001"][value="남성"]')?.checked ? '남성' : 
-                                      form.querySelector('input[name="entry.261486001"][value="여성"]')?.checked ? '여성' : ''}
+                                    ${form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked ? '남성' : 
+                                      form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked ? '여성' : ''}
                                 </div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">MBTI</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1336751748"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="mbti_mobile"]')?.value || ''}</div>
                             </div>
                         </div>
 
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">연락처</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.318044753"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="phone_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">본가</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1730256600"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="home_address_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item full-width">
                                 <span class="mobile-preview-label">현재 거주지</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1541030146"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="current_address_mobile"]')?.value || ''}</div>
                             </div>
                         </div>
 
                         <div class="mobile-preview-grid">
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학교</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1216819183"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="school_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">전공</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.1360694033"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="major_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학번</span>
-                                <div class="mobile-preview-value">${form.querySelector('[name="entry.403858052"]')?.value || ''}</div>
+                                <div class="mobile-preview-value">${form.querySelector('[name="student_id_mobile"]')?.value || ''}</div>
                             </div>
                             <div class="mobile-preview-item">
                                 <span class="mobile-preview-label">학년</span>
                                 <div class="mobile-preview-value" style="display: flex; justify-content: space-between; align-items: center;">
                                     ${(() => {
-                                        const grade = form.querySelector('[name="entry.1135546838"]')?.value;
-                                        const isLeave = form.querySelector('[name="entry.1511002325"]')?.checked;
+                                        const grade = form.querySelector('[name="grade_mobile"]')?.value;
+                                        const isLeave = form.querySelector('[name="is_leave_mobile"]')?.checked;
                                         const gradeMap = {
                                             '1': '1학년',
                                             '2': '2학년',
@@ -5469,7 +5448,7 @@ function previewApplication() {
                                     <span class="mobile-preview-label">운전가능여부</span>
                                     <div class="mobile-preview-value">
                                         ${(() => {
-                                            const val = form.querySelector('[name="entry.1334231597"]').value;
+                                            const val = form.querySelector('[name="driving_status"]').value;
                                             return {
                                                 'car': '자차 보유',
                                                 'license': '면허만 보유',
@@ -5481,13 +5460,13 @@ function previewApplication() {
                                 <div class="mobile-preview-item">
                                     <span class="mobile-preview-label">여행경비</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="entry.1135546838"]')[1].value || '미입력'}
+                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
                                     </div>
                                 </div>
                                 <div class="mobile-preview-item full-width">
                                     <span class="mobile-preview-label">SNS</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelector('input[name="entry.1135546838"]').value || '미입력'}
+                                        ${form.querySelector('input[name="sns"]').value || '미입력'}
                                     </div>
                                 </div>
                             </div>
@@ -5506,7 +5485,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="entry.1572736277"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '참석_가능': '참석 가능',
@@ -5525,7 +5504,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="entry.1884558117"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '대부분_참석': '대부분 참여',
@@ -5544,7 +5523,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '전체_동의': '모두 동의',
@@ -5563,7 +5542,7 @@ function previewApplication() {
                               </div>
                               <div class="participation-value">
                                   ${(() => {
-                                      const selected = form.querySelector('input[name="entry.2052737417"]:checked')?.value;
+                                      const selected = form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
                                       if (!selected) return '<span style="color: var(--light-text);">미선택</span>';
                                       const options = {
                                           '적극_참여': '적극 참여',
@@ -5583,11 +5562,11 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">자기소개</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">간단한 자기소개</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1273113780"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="introduction"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">자신과 가장 잘 맞는 유형과 그 이유</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1113044219"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="special_introduction"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5596,18 +5575,18 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">여행 경험 에세이</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">가본 여행지</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1358351649"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="visited_places"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">에세이</span>
                             <div class="mobile-preview-tag">
                                 ${(() => {
-                                    const type = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
+                                    const type = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
                                     return type === 'memorable_episode' ? '기억에 남는 여행 에피소드' :
                                            type === 'planned_travel' ? '자체 여행 기획 경험' : '주제 미선택';
                                 })()}
                             </div>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1511002325"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="travel_essay"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5616,11 +5595,11 @@ function previewApplication() {
                         <h3 class="mobile-preview-title">지원자의 이야기</h3>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">지원 동기</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.94464175"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="motivation"]')?.value || ''}</div>
                         </div>
                         <div class="mobile-preview-item full-width">
                             <span class="mobile-preview-label">마지막으로 하고 싶은 말</span>
-                            <div class="mobile-preview-value text-area">${form.querySelector('[name="entry.1054938056"]')?.value || ''}</div>
+                            <div class="mobile-preview-value text-area">${form.querySelector('[name="final_words"]')?.value || ''}</div>
                         </div>
                     </section>
 
@@ -5631,7 +5610,7 @@ function previewApplication() {
                             ${document.getElementById('selectedSchedule').innerHTML}
                         </div>
                         ${(() => {
-                            const requests = form.querySelector('[name="entry.1309671483"]')?.value;
+                            const requests = form.querySelector('[name="interview_requests"]')?.value;
                             return requests ? `
                                 <div class="mobile-preview-item full-width">
                                     <span class="mobile-preview-label">추가 요청사항</span>
@@ -5649,7 +5628,7 @@ function previewApplication() {
                     <h2 class="section-title" style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color);">
                         <span>기본 정보</span>
                         ${(() => {
-                            const isAgreed = document.querySelector('input[name="entry.1832572178"]')?.checked;
+                            const isAgreed = document.querySelector('input[name="privacy_agreement"]')?.checked;
                             if (isAgreed) {
                                 return `
                                     <div style="display: flex; align-items: center; gap: 4px;">
@@ -5671,24 +5650,24 @@ function previewApplication() {
                     <div class="form-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
                         <div class="form-group" style="width: 20%">
                             <label class="form-label">이름</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.2070257591"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="name"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 25%">
                             <label class="form-label">생년월일</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1586698654"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="birthdate"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 30%">
                             <label class="form-label">성별</label>
                             <div style="display: flex; gap: 10px; flex-wrap: nowrap">
                                 <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="entry.261486001"][value="남성"]')?.checked ? 'checked' : ''} disabled>
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="남성"]')?.checked ? 'checked' : ''} disabled>
                                     <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
                                         <i class="fas fa-mars"></i>
                                         남성
                                     </span>
                                 </label>
                                 <label class="gender-select" style="flex: 1; cursor: default !important; pointer-events: none;">
-                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="entry.261486001"][value="여성"]')?.checked ? 'checked' : ''} disabled>
+                                    <input type="radio" name="gender_preview" ${form.querySelector('input[name="gender"][value="여성"]')?.checked ? 'checked' : ''} disabled>
                                     <span class="gender-button" style="width: 100%; cursor: default !important; pointer-events: none; user-select: none;">
                                         <i class="fas fa-venus"></i>
                                         여성
@@ -5698,41 +5677,41 @@ function previewApplication() {
                         </div>
                         <div class="form-group" style="width: 22%">
                             <label class="form-label">MBTI</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1336751748"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="mbti"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                     </div>
             
                     <div class="form-row three-columns">
                         <div class="form-group">
                             <label class="form-label">연락처</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.318044753"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="phone"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group">
                             <label class="form-label">본가</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1730256600"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="home_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group">
                             <label class="form-label">현재 거주지</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1541030146"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="current_address"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                     </div>
             
                     <div class="form-row" style="display: flex; gap: 16px; align-items: flex-start">
                         <div class="form-group" style="width: 24%">
                             <label class="form-label">학교</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1216819183"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="school"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 30%">
                             <label class="form-label">전공</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.1360694033"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="major"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 15%">
                             <label class="form-label">학번</label>
-                            <input type="text" class="form-control" value="${form.querySelector('[name="entry.403858052"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                            <input type="text" class="form-control" value="${form.querySelector('[name="student_id"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                         </div>
                         <div class="form-group" style="width: 15%">
                             <div style="position: relative">
-                                ${form.querySelector('[name="entry.1511002325"]').checked ? `
+                                ${form.querySelector('[name="is_leave"]').checked ? `
                                     <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
                                         <label class="checkbox-label">
                                             <input type="checkbox" checked disabled style="cursor: default !important; pointer-events: none;">
@@ -5744,7 +5723,7 @@ function previewApplication() {
                                 <label class="form-label">학년</label>
                                 <input type="text" class="form-control" value="${
                                     (() => {
-                                        const grade = form.querySelector('[name="entry.1135546838"]').value;
+                                        const grade = form.querySelector('[name="grade"]').value;
                                         const gradeMap = {
                                             '1': '1학년',
                                             '2': '2학년',
@@ -5774,7 +5753,7 @@ function previewApplication() {
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">운전가능여부</label>
                                 <input type="text" class="form-control" value="${
                                     (() => {
-                                        const val = form.querySelector('[name="entry.1334231597"]').value;
+                                        const val = form.querySelector('[name="driving_status"]').value;
                                         const options = {
                                             'car': '자차 보유',
                                             'license': '면허만 보유',
@@ -5786,11 +5765,11 @@ function previewApplication() {
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">여행경비</label>
-                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="entry.1135546838"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                                <input type="text" class="form-control" value="${form.querySelectorAll('input[name="sns"]')[1].value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
                             <div class="form-group" style="margin: 0">
                                 <label class="form-label" style="font-size: 0.75rem; color: var(--light-text);">SNS</label>
-                                <input type="text" class="form-control" value="${form.querySelector('input[name="entry.1135546838"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
+                                <input type="text" class="form-control" value="${form.querySelector('input[name="sns"]').value || ''}" readonly style="cursor: default !important; pointer-events: none;">
                             </div>
                         </div>
                     </div>
@@ -5802,11 +5781,11 @@ function previewApplication() {
                     <h2 class="section-title">추가 정보</h2>
                     <div class="form-group">
                         <label class="form-label">대외활동 및 동아리 경력</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1358351649"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="extracurricular"]').value || ''}</textarea>
                     </div>
                     <div class="form-group" style="margin-top: 2rem;">
                         <label class="form-label">주간 고정 일정</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1309671483"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="fixed_schedule"]').value || ''}</textarea>
                     </div>
                 </section>
             
@@ -5821,7 +5800,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="entry.1572736277"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5856,7 +5835,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="entry.1884558117"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5891,7 +5870,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="content_agreement"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5926,7 +5905,7 @@ function previewApplication() {
                             </div>
                             <div class="radio-group-container" style="margin: 0; padding-top: 12px;">
                                 ${(() => {
-                                    const selected = form.querySelector('input[name="entry.2052737417"]:checked')?.value;
+                                    const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value;
                                     if (!selected) {
                                         return `
                                             <div style="display: flex; align-items: center;">
@@ -5963,12 +5942,12 @@ function previewApplication() {
                     
                     <div class="form-group">
                         <label class="form-label">간단한 자기소개</label>
-                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.1273113780"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="introduction"]').value || ''}</textarea>
                     </div>
             
                     <div class="form-group" style="margin-top: 2rem;">
                         <label class="form-label">자신과 가장 잘 맞는 유형과 그 이유</label>
-                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="entry.1113044219"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 250px !important; min-height: 250px; resize: none;">${form.querySelector('[name="special_introduction"]').value || ''}</textarea>
                     </div>
                 </section>
             
@@ -5978,13 +5957,13 @@ function previewApplication() {
             
                     <div class="form-group" style="margin-bottom: 2rem;">
                         <label class="form-label">지금까지 가본 여행지</label>
-                        <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="entry.1358351649"]').value || ''}</textarea>
+                        <textarea class="form-control" readonly style="height: 60px !important; min-height: 60px; resize: none;">${form.querySelector('[name="visited_places"]').value || ''}</textarea>
                     </div>
             
                     <div class="essay-type-selector">
                         <div class="essay-type-options">
                             ${(() => {
-                                const selectedType = form.querySelector('input[name="entry.1511002325"]:checked')?.value;
+                                const selectedType = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
                                 if (!selectedType) {
                                     return `
                                         <div style="display: flex; align-items: center; gap: 6px; color: var(--light-text);">
@@ -6007,7 +5986,7 @@ function previewApplication() {
                             })()}
                         </div>
                     </div>
-                    <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="entry.1511002325"]').value || ''}</textarea>
+                    <textarea class="form-control" readonly style="height: 200px !important; min-height: 200px; resize: none;">${form.querySelector('[name="travel_essay"]').value || ''}</textarea>
                 </section>
             `;
                     
@@ -6018,12 +5997,12 @@ function previewApplication() {
             
                    <div class="form-group" style="margin-bottom: 2rem;">
                        <label class="form-label">지원 동기</label>
-                       <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="entry.94464175"]').value || ''}</textarea>
+                       <textarea class="form-control" readonly style="height: 100px !important; min-height: 100px; resize: none;">${form.querySelector('[name="motivation"]').value || ''}</textarea>
                    </div>
             
                    <div class="form-group">
                        <label class="form-label">마지막으로 하고 싶은 말</label>
-                       <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="entry.1054938056"]').value || ''}</textarea>
+                       <textarea class="form-control" readonly style="height: 150px !important; min-height: 150px; resize: none;">${form.querySelector('[name="final_words"]').value || ''}</textarea>
                    </div>
                </section>
             
@@ -6040,7 +6019,7 @@ function previewApplication() {
                    <div class="additional-requests" style="margin-top: 2rem;">
                        <div class="form-group">
                            <label class="form-label">추가 요청사항</label>
-                           <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="entry.1309671483"]').value || ''}</textarea>
+                           <textarea class="form-control" readonly style="height: 75px !important; min-height: 75px; resize: none;">${form.querySelector('[name="interview_requests"]').value || ''}</textarea>
                        </div>
                    </div>       
                </section>
@@ -6114,8 +6093,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = type;
         option.onclick = function() {
-            document.querySelector('select[name="entry.1336751748"]').value = type;
-            document.querySelector('select[name="entry.1336751748"]').value = type;
+            document.querySelector('select[name="mbti"]').value = type;
+            document.querySelector('select[name="mbti_mobile"]').value = type;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6130,8 +6109,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = grade;
         option.onclick = function() {
-            document.querySelector('select[name="entry.1135546838"]').value = (index + 1).toString();
-            document.querySelector('select[name="entry.1135546838"]').value = (index + 1).toString();
+            document.querySelector('select[name="grade"]').value = (index + 1).toString();
+            document.querySelector('select[name="grade_mobile"]').value = (index + 1).toString();
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6152,8 +6131,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="entry.1135546838"]').value = value;
-            document.querySelector('select[name="entry.1135546838"]').value = value;
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6171,8 +6150,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="entry.1135546838"]').value = value;
-            document.querySelector('select[name="entry.1135546838"]').value = value;
+            document.querySelector('select[name="grade"]').value = value;
+            document.querySelector('select[name="grade_mobile"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6191,7 +6170,7 @@ document.addEventListener('DOMContentLoaded', function() {
         option.className = 'select-option';
         option.textContent = label;
         option.onclick = function() {
-            document.querySelector('select[name="entry.1334231597"]').value = value;
+            document.querySelector('select[name="driving_status"]').value = value;
             const modal = this.closest('.select-modal');
             modal.classList.remove('show');
             setTimeout(() => modal.style.display = 'none', 300);
@@ -6201,8 +6180,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (window.innerWidth <= 768) {
     // MBTI select 제어 (PC와 모바일 모두)
-    const mbtiSelectPC = document.querySelector('select[name="entry.1336751748"]');
-    const mbtiSelectMobile = document.querySelector('select[name="entry.1336751748"]');
+    const mbtiSelectPC = document.querySelector('select[name="mbti"]');
+    const mbtiSelectMobile = document.querySelector('select[name="mbti_mobile"]');
     [mbtiSelectPC, mbtiSelectMobile].forEach(select => {
         if (select) {
             select.addEventListener('touchstart', (e) => {
@@ -6224,8 +6203,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 학년 select 제어 (PC와 모바일 모두)
-    const gradeSelectPC = document.querySelector('select[name="entry.1135546838"]');
-    const gradeSelectMobile = document.querySelector('select[name="entry.1135546838"]');
+    const gradeSelectPC = document.querySelector('select[name="grade"]');
+    const gradeSelectMobile = document.querySelector('select[name="grade_mobile"]');
     [gradeSelectPC, gradeSelectMobile].forEach(select => {
         if (select) {
             select.addEventListener('touchstart', (e) => {
@@ -6247,7 +6226,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
         // 운전가능여부 select 제어
-        const drivingSelect = document.querySelector('select[name="entry.1334231597"]');
+        const drivingSelect = document.querySelector('select[name="driving_status"]');
         if (drivingSelect) {
             drivingSelect.addEventListener('touchstart', (e) => {
                 e.preventDefault();
@@ -6300,7 +6279,7 @@ function saveFormState() {
     if (!form) return;
 
     // 모든 input, select, textarea 값 저장
-    form.querySelectorAll('input:not([name="entry.94464175"]), select, textarea').forEach(element => {
+    form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
         if (element.type === 'checkbox' || element.type === 'radio') {
             formData[element.name] = element.checked;
         } else {
@@ -6309,8 +6288,8 @@ function saveFormState() {
     });
 
     // 개인정보 동의 상태 명시적으로 저장
-    const pcAgreed = form.querySelector('[name="entry.1832572178"]')?.checked || false;
-    const mobileAgreed = form.querySelector('[name="entry.1832572178"]')?.checked || false;
+    const pcAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || false;
+    const mobileAgreed = form.querySelector('[name="privacy_agreement_mobile"]')?.checked || false;
     formData.privacy_agreement = pcAgreed;
     formData.privacy_agreement_mobile = mobileAgreed;
 
@@ -6325,7 +6304,7 @@ function restoreFormState() {
     // 저장된 값 복원
     for (const [name, value] of Object.entries(formData)) {
         if (name === 'interview_slots') continue;
-        const element = form.querySelector(`[name="${entry.2070257591}"]`);
+        const element = form.querySelector(`[name="${name}"]`);
         if (element) {
             if (element.type === 'checkbox' || element.type === 'radio') {
                 element.checked = value;
@@ -6398,14 +6377,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 개인정보 동의 체크박스 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
-    const privacyCheckbox = document.querySelector('input[name="entry.1832572178"]');
+    const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
     if (privacyCheckbox) {
         privacyCheckbox.addEventListener('change', function() {
             saveFormState(); // 상태만 저장
         });
     }
 
-    const privacyCheckboxMobile = document.querySelector('input[name="entry.1832572178"]');
+    const privacyCheckboxMobile = document.querySelector('input[name="privacy_agreement_mobile"]');
     if (privacyCheckboxMobile) {
         privacyCheckboxMobile.addEventListener('change', function() {
             if (privacyCheckbox) {
@@ -6487,85 +6466,42 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-</script>
-
-<!-- 모바일 전용 모달들 -->
-<div class="mobile-only">
-    <!-- MBTI 선택 모달 -->
-    <div class="select-modal" id="mbtiModal">
-        <div class="select-modal-content">
-            <div class="modal-header">
-                <h3>MBTI 선택</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="select-options" id="mbtiOptions"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 학년 선택 모달 -->
-    <div class="select-modal" id="gradeModal">
-        <div class="select-modal-content">
-            <div class="modal-header">
-                <h3>학년 선택</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="select-group-label">일반학과</div>
-                <div class="select-options" id="normalGradeOptions"></div>
-                <div class="select-group-label">의학/약학계열</div>
-                <div class="select-options" id="medicalGradeOptions"></div>
-                <div class="select-group-label">졸업관련</div>
-                <div class="select-options" id="graduateOptions"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 운전가능여부 선택 모달 -->
-    <div class="select-modal" id="drivingModal">
-        <div class="select-modal-content">
-            <div class="modal-header">
-                <h3>운전 가능 여부</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="select-options" id="drivingOptions"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="example-modal" id="recordsModal">
-    <div class="example-modal-content">
-        <button class="example-close">&times;</button>
-        <div class="modal-header">
-            <h3 class="modal-title"></h3>
-            <p class="modal-desc"></p>
-        </div>
-        <div class="modal-image-container">
-            <div class="example-image-container">
-                <img id="recordsImage" src="" alt="예시 이미지">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-mouse"></i>
-            스크롤하여 더 보기
-        </div>
-    </div>
-</div>
-
 <script>
-document.getElementById('applicationForm').addEventListener('submit', function() {
-    setTimeout(function() {
-        alert('지원서가 성공적으로 제출되었습니다.');
-        window.location.href = '/'; // 메인 페이지로 리다이렉트
-    }, 1000);
-});
+async function submitToGoogleForm(e) {
+    if(e) e.preventDefault();
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFiBzomonzhWV7924Gei-sDbu3ZB3zAGJco1KhujciPsOKrG68DPu8kLK7mjVWLFP3/exec';
+   
+    const form = document.getElementById('applicationForm');
+    const formData = {};
+
+    form.querySelectorAll('[data-entry]').forEach(element => {
+        const entryKey = element.getAttribute('data-entry');
+        if(element.type === 'checkbox' || element.type === 'radio') {
+            if(element.checked) formData[entryKey] = element.value;
+        } else {
+            formData[entryKey] = element.value;
+        }
+    });
+
+    try {
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        });
+        
+        if(response.ok) {
+            alert('지원서가 성공적으로 제출되었습니다.');
+        } else {
+            throw new Error('제출 실패');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+}
 </script>
+
 
 </body>
 </html>
