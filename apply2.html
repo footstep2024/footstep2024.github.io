@@ -4436,12 +4436,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <!-- PC 버전 -->
 <div class="button-group pc-only">
     <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-    <button type="submit" class="submit-btn">제출하기</button>
+    <button type="submit" class="submit-btn" onclick="submitToGoogleForm(event)">제출하기</button>
 </div>
 
 <!-- 모바일 버전 -->
 <div class="button-group mobile-only">
-    <button type="submit" class="submit-btn">제출하기</button>
+    <button type="submit" class="submit-btn" onclick="submitToGoogleForm(event)">제출하기</button>
 </div>
 
 <!-- 미리보기 모달 추가 -->
@@ -6467,6 +6467,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
+let formData = {
+    // 폼 필드 데이터를 저장할 객체
+    interview_slots: []  // 면접 시간 선택 상태 저장
+};
+
 function submitToGoogleForm(e) {
     if(e) e.preventDefault();  // 기본 폼 제출 동작 방지
     
@@ -6488,7 +6493,7 @@ function submitToGoogleForm(e) {
                 form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
     };
 
-    // 구글 폼 제출 URL (formResponse로 끝나야 함)
+    // 구글 폼 제출 URL
     const googleFormUrl = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
     
     // 구글 폼에 맞는 필드명으로 데이터 변환
@@ -6524,15 +6529,6 @@ function submitToGoogleForm(e) {
         'entry.1164191371': selectedInterviewSlots.join(', ')   // 선택된 면접 시간들
     });
 
-    // 폼 제출 전 검증
-    const requiredFields = ['name', 'birthdate', 'gender', 'phone', 'school', 'major'];
-    const missingFields = requiredFields.filter(field => !getData(field));
-    
-    if (missingFields.length > 0) {
-        alert('필수 항목을 모두 입력해주세요.');
-        return;
-    }
-
     // 폼 제출
     fetch(googleFormUrl, {
         method: 'POST',
@@ -6542,11 +6538,9 @@ function submitToGoogleForm(e) {
         },
         body: formEntries.toString()
     })
-    .then(response => {
-        if (!response.ok && response.type !== 'opaque') {
-            throw new Error('Network response was not ok');
-        }
+    .then(() => {
         alert('지원서가 성공적으로 제출되었습니다.');
+        // 여기에 감사 페이지로 리다이렉트 추가 가능
     })
     .catch(error => {
         console.error('Error:', error);
@@ -6555,18 +6549,9 @@ function submitToGoogleForm(e) {
 }
 
 // 폼 제출 이벤트 리스너 추가
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('applicationForm');
-    if(form) {
-        form.onsubmit = function(e) {
-            e.preventDefault();
-            submitToGoogleForm();
-            return false;
-        };
-    }
-});
+document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
 
-// 미리보기에서 제출하기 버튼 클릭 시 호출되는 함수
+// 미리보기에서 제출하기 함수 수정
 function submitForm() {
     closePreview();
     submitToGoogleForm();
