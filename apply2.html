@@ -6468,36 +6468,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 function submitToGoogleForm() {    
-    const form = document.getElementById('applicationForm');
-    
-    // 데이터 수집 함수들은 그대로 유지
-    const getData = (name) => {
-        const pcValue = form.querySelector(`[name="${name}"]`)?.value;
-        const mobileValue = form.querySelector(`[name="${name}_mobile"]`)?.value;
-        return pcValue || mobileValue || '';
-    };
-
-    const getCheckedValue = (name) => {
-        const pcChecked = form.querySelector(`input[name="${name}"]:checked`)?.value;
-        const mobileChecked = form.querySelector(`input[name="${name}_mobile"]:checked`)?.value;
-        return pcChecked || mobileChecked || '';
-    };
-
-    const getCheckboxValue = (name) => {
-        const pcChecked = form.querySelector(`input[name="${name}"]`)?.checked;
-        const mobileChecked = form.querySelector(`input[name="${name}_mobile"]`)?.checked;
-        return (pcChecked || mobileChecked) ? '예' : '아니오';
-    };
-
-    // iframe을 통한 제출을 위한 임시 폼 생성
+    // 임시 폼 생성
     const tempForm = document.createElement('form');
-    tempForm.method = 'POST';
-    tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
-    tempForm.target = 'hidden_iframe';
-    tempForm.style.display = 'none';
+    tempForm.setAttribute('method', 'POST');
+    tempForm.setAttribute('action', 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse');
+    tempForm.setAttribute('target', 'hidden_frame');
 
-    // 모든 데이터를 input으로 추가
-const formFields = {
+    // 폼 데이터 설정
+    const formData = {
     'entry.2070257591': getData('name'),             // 이름
     'entry.318044753': getData('phone'),             // 연락처
     'entry.1216819183': getData('school'),           // 학교
@@ -6523,43 +6501,46 @@ const formFields = {
     'entry.1884558117': getCheckedValue('regular_attendance'),  // 정기활동 참여
     'entry.2052737417': getCheckedValue('participation_agreement'), // 운영참여
     'entry.1309671483': getData('interview_requests'), // 면접 요청사항
-    'fvv': 1,
-    'pageHistory': 0,
-    'fbzx': '-6532230256735099502' // 이 값은 매 제출마다 다를 수 있습니다
 };
 
-    Object.entries(formFields).forEach(([name, value]) => {
+    // 폼에 입력 필드 추가
+    for (const [key, value] of Object.entries(formData)) {
         const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', key);
+        input.setAttribute('value', value);
         tempForm.appendChild(input);
-    });
+    }
 
-    // hidden iframe 생성
-    const iframe = document.createElement('iframe');
-    iframe.name = 'hidden_iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-
-    // 폼 제출 후 처리
-    iframe.onload = function() {
-        alert('지원서가 성공적으로 제출되었습니다.');
-        document.body.removeChild(iframe);
-        document.body.removeChild(tempForm);
+    // 필수 구글 폼 필드 추가
+    const requiredFields = {
+        'fvv': '1',
+        'draftResponse': '[null,null,"-6532230256735099502"]',
+        'pageHistory': '0',
+        'fbzx': '-6532230256735099502'
     };
 
-    // 폼 추가 및 제출
+    for (const [key, value] of Object.entries(requiredFields)) {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', key);
+        input.setAttribute('value', value);
+        tempForm.appendChild(input);
+    }
+
+    // 폼을 body에 추가하고 제출
     document.body.appendChild(tempForm);
     tempForm.submit();
-}
-
-// 미리보기에서 제출하기 함수는 그대로 유지
-function submitForm() {
-    closePreview();
-    submitToGoogleForm();
+    
+    // 폼 제출 후 처리
+    setTimeout(() => {
+        alert('지원서가 성공적으로 제출되었습니다.');
+        document.body.removeChild(tempForm);
+    }, 1000);
 }
 </script>
+
+<iframe name="hidden_frame" id="hidden_frame" style="display:none;"></iframe>
 
 </body>
 </html>
