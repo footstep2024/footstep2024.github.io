@@ -3202,7 +3202,7 @@ textarea.form-control[readonly] {
 <div class="section-title">
 <span>개인정보 수집 및 이용 동의</span>
 <label class="checkbox-label">
-<input type="checkbox" name="privacy_agreement" required>
+<input type="checkbox" name="privacy_agreement" data-entry="entry.1832572178" required>
 <span class="check-icon"></span>
 <span class="label-text">동의함</span>
 </label>
@@ -3273,24 +3273,24 @@ textarea.form-control[readonly] {
         <div class="form-row first-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
             <div class="form-group" style="width: 20%">
                 <label class="form-label required">이름</label>
-                <input type="text" class="form-control" name="name" required>
+                <input type="text" class="form-control" name="name" data-entry="entry.2070257591" required>
             </div>
             <div class="form-group" style="width: 25%">
                 <label class="form-label required">생년월일</label>
-                <input type="text" class="form-control" name="birthdate" readonly required placeholder="생년월일 선택">
+                <input type="text" class="form-control" name="birthdate" data-entry="entry.1586698654" readonly required placeholder="생년월일 선택">
             </div>
             <div class="form-group" style="width: 25%">
                 <label class="form-label required" style="margin-bottom: 8px">성별</label>
                 <div style="display: flex; gap: 10px">
                     <label class="gender-select">
-                        <input type="radio" name="gender" value="남성" required>
+                        <input type="radio" name="gender" data-entry="entry.261486001" value="남성" required>
                         <span class="gender-button">
                             <i class="fas fa-mars"></i>
                             남성
                         </span>
                     </label>
                     <label class="gender-select">
-                        <input type="radio" name="gender" value="여성" required>
+                        <input type="radio" name="gender" data-entry="entry.261486001" value="여성" required>
                         <span class="gender-button">
                             <i class="fas fa-venus"></i>
                             여성
@@ -3300,7 +3300,7 @@ textarea.form-control[readonly] {
             </div>
             <div class="form-group" style="width: 22%">
                 <label class="form-label">&nbsp;</label>
-                <select class="form-control" name="mbti" required>
+                <select class="form-control" name="mbti" data-entry="entry.1336751748" required>
                     <option value="" disabled selected>MBTI 선택</option>
                     <option value="ISTJ">ISTJ</option>
                     <option value="ISFJ">ISFJ</option>
@@ -3326,17 +3326,17 @@ textarea.form-control[readonly] {
     <div class="form-row three-columns" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
         <div class="form-group">
             <label class="form-label required">연락처</label>
-            <input type="tel" class="form-control" name="phone" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+            <input type="tel" class="form-control" name="phone" data-entry="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
             <div class="error-message">올바른 연락처를 입력해주세요.</div>
         </div>
         <div class="form-group">
             <label class="form-label required">본가</label>
-            <input type="text" class="form-control" name="home_address" placeholder="'시 구 동'까지만 입력" required>
+            <input type="text" class="form-control" name="home_address" data-entry="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
             <div class="error-message">본가 주소를 입력해주세요.</div>
         </div>
         <div class="form-group">
             <label class="form-label required">현재 거주지</label>
-            <input type="text" class="form-control" name="current_address" placeholder="가까운 역 기준으로 입력" required>
+            <input type="text" class="form-control" name="current_address" data-entry="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
             <div class="error-message">현재 거주지를 입력해주세요.</div>
         </div>
     </div>
@@ -3345,27 +3345,27 @@ textarea.form-control[readonly] {
     <div class="form-row fourth-row" style="display: flex; gap: 16px; align-items: flex-start">
         <div class="form-group" style="width: 24%">
             <label class="form-label required">학교</label>
-            <input type="text" class="form-control" name="school" required>
+            <input type="text" class="form-control" name="school" data-entry="entry.1216819183" required>
         </div>
         <div class="form-group" style="width: 30%">
             <label class="form-label required">전공</label>
-            <input type="text" class="form-control" name="major" required>
+            <input type="text" class="form-control" name="major" data-entry="entry.1360694033" required>
         </div>
         <div class="form-group" style="width: 15%">
             <label class="form-label required">학번</label>
-            <input type="text" class="form-control" name="student_id" placeholder="예: 25학번">
+            <input type="text" class="form-control" name="student_id" data-entry="entry.403858052" placeholder="예: 25학번">
         </div>
         <div class="form-group" style="width: 15%">
             <div style="position: relative">
                 <div style="position: absolute; top: 32px; right: -65px; padding-bottom: 4px">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="is_leave">
+                        <input type="checkbox" name="is_leave" data-entry="entry.1511002325">
                         <span class="check-icon"></span>
                         <span class="label-text">휴학</span>
                     </label>
                 </div>
                 <label class="form-label" style="visibility: hidden">학년</label>
-                <select class="form-control" name="grade" required>
+                <select class="form-control" name="grade" data-entry="entry.1135546838" required>
                     <option value="" disabled selected>학년 선택</option>
                     <optgroup label="일반학과">
                         <option value="1">1학년</option>
@@ -3400,14 +3400,14 @@ textarea.form-control[readonly] {
 <div class="mobile-form-row" style="display: grid; grid-template-columns: 27% 41% 32%; gap: 8px;">
     <div class="form-group" style="margin: 0;">
         <label class="form-label required">이름</label>
-        <input type="text" class="form-control" name="name_mobile" required>
+        <input type="text" class="form-control" name="name_mobile" data-entry="entry.2070257591" required>
     </div>
     <div class="form-group" style="margin: 0;">
         <label class="form-label required">생년월일</label>
-        <input type="date" class="form-control" name="birthdate_mobile" required>
+        <input type="date" class="form-control" name="birthdate_mobile" data-entry="entry.1586698654" required>
     </div>
     <div class="form-group" style="margin-top: 27px">
-        <select class="form-control" name="mbti_mobile" required>
+        <select class="form-control" name="mbti_mobile" data-entry="entry.1336751748" required>
             <option value="" disabled selected>MBTI 선택</option>
                        <option value="ISTJ">ISTJ</option>
                        <option value="ISFJ">ISFJ</option>
@@ -3434,14 +3434,14 @@ textarea.form-control[readonly] {
         <div class="form-group" style="margin-top: 28px">
             <div class="gender-buttons">
                 <label class="gender-select">
-                    <input type="radio" name="gender_mobile" value="남성" required>
+                    <input type="radio" name="gender_mobile" data-entry="entry.261486001" value="남성" required>
                     <span class="gender-button">
                         <i class="fas fa-mars"></i>
                         남성
                     </span>
                 </label>
                 <label class="gender-select">
-                    <input type="radio" name="gender_mobile" value="여성" required>
+                    <input type="radio" name="gender_mobile" data-entry="entry.261486001" value="여성" required>
                     <span class="gender-button">
                         <i class="fas fa-venus"></i>
                         여성
@@ -3451,7 +3451,7 @@ textarea.form-control[readonly] {
         </div>
         <div class="form-group">
             <label class="form-label required">연락처</label>
-            <input type="tel" class="form-control" name="phone_mobile" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
+            <input type="tel" class="form-control" name="phone_mobile" data-entry="entry.318044753" pattern="[0-9]{11}" placeholder="'-' 없이 입력해주세요" required>
         </div>
     </div>
 
@@ -3459,11 +3459,11 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">본가</label>
-            <input type="text" class="form-control" name="home_address_mobile" placeholder="'시 구 동'까지만 입력" required>
+            <input type="text" class="form-control" name="home_address_mobile" data-entry="entry.1730256600" placeholder="'시 구 동'까지만 입력" required>
         </div>
         <div class="form-group">
             <label class="form-label required">현재 거주지</label>
-            <input type="text" class="form-control" name="current_address_mobile" placeholder="가까운 역 기준으로 입력" required>
+            <input type="text" class="form-control" name="current_address_mobile" data-entry="entry.1541030146" placeholder="가까운 역 기준으로 입력" required>
         </div>
     </div>
 
@@ -3471,11 +3471,11 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">학교</label>
-            <input type="text" class="form-control" name="school_mobile" required>
+            <input type="text" class="form-control" name="school_mobile" data-entry="entry.1216819183" required>
         </div>
         <div class="form-group">
             <label class="form-label required">전공</label>
-            <input type="text" class="form-control" name="major_mobile" required>
+            <input type="text" class="form-control" name="major_mobile" data-entry="entry.1360694033" required>
         </div>
     </div>
 
@@ -3483,10 +3483,10 @@ textarea.form-control[readonly] {
     <div class="mobile-form-row three-part" style="display: grid; grid-template-columns: 30% 40% 30%; gap: 8px;">
         <div class="form-group" style="margin: 0;">
             <label class="form-label required">학번</label>
-            <input type="text" class="form-control" name="student_id_mobile" placeholder="예: 25학번" required>
+            <input type="text" class="form-control" name="student_id_mobile" data-entry="entry.403858052" placeholder="예: 25학번" required>
         </div>
         <div class="form-group" style="margin-top: 27px">
-            <select class="form-control" name="grade_mobile" required>
+            <select class="form-control" name="grade_mobile" data-entry="entry.1135546838" required>
                 <option value="" disabled selected>학년 선택</option>
                        <optgroup label="일반학과">
                            <option value="1">1학년</option>
@@ -3512,7 +3512,7 @@ textarea.form-control[readonly] {
         </div>
         <div class="form-group" style="margin: 32px 0px 0px 10px">
             <label class="checkbox-label">
-                <input type="checkbox" name="is_leave_mobile">
+                <input type="checkbox" name="is_leave_mobile" data-entry="entry.1511002325">
                 <span class="check-icon"></span>
                 <span class="label-text">휴학</span>
             </label>
@@ -3524,7 +3524,7 @@ textarea.form-control[readonly] {
 <!-- 운전가능여부 섹션 -->
 <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
 <div style="display: flex; gap: 24px">  <!-- 가로 배치를 위한 컨테이너 -->
-<select class="form-control" name="driving_status" style="width: 180px" required>
+<select class="form-control" name="driving_status" data-entry="entry.1334231597" style="width: 180px" required>
 <option value="" disabled selected>운전 가능 여부 선택</option>
 <option value="car">자차 보유</option>
 <option value="license">면허만 보유</option>
@@ -3631,17 +3631,17 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="ot_mt_attendance" value="참석_가능" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="참석_가능" required>
 <span class="check-icon"></span>
 <span class="label-text">참석 가능</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="ot_mt_attendance" value="늦게_참석" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="늦게_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">늦게 참석</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="ot_mt_attendance" value="참석_불가" required>
+<input type="radio" name="ot_mt_attendance" data-entry="entry.1572736277" value="참석_불가" required>
 <span class="check-icon"></span>
 <span class="label-text">참석 불가</span>
 </label>
@@ -3684,17 +3684,17 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="regular_attendance" value="대부분_참석" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="대부분_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">대부분 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="regular_attendance" value="부분_참석" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="부분_참석" required>
 <span class="check-icon"></span>
 <span class="label-text">부분 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="regular_attendance" value="참여_어려움" required>
+<input type="radio" name="regular_attendance" data-entry="entry.1884558117" value="참여_어려움" required>
 <span class="check-icon"></span>
 <span class="label-text">참여 어려움</span>
 </label>
@@ -3809,17 +3809,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="radio-group-container">
 <label class="radio-label">
-<input type="radio" name="participation_agreement" value="적극_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="적극_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">적극 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="participation_agreement" value="일반_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="일반_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">최소한으로 참여</span>
 </label>
 <label class="radio-label">
-<input type="radio" name="participation_agreement" value="소극_참여" required>
+<input type="radio" name="participation_agreement" data-entry="entry.2052737417" value="소극_참여" required>
 <span class="check-icon"></span>
 <span class="label-text">관심 없음</span>
 </label>
@@ -3867,17 +3867,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="ot_mt_attendance_mobile" value="참석_가능" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="참석_가능" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참석 가능</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="ot_mt_attendance_mobile" value="늦게_참석" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="늦게_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">늦게 참석</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="ot_mt_attendance_mobile" value="참석_불가" required>
+                <input type="radio" name="ot_mt_attendance_mobile" data-entry="entry.1572736277" value="참석_불가" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참석 불가</span>
             </label>
@@ -3922,17 +3922,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="regular_attendance_mobile" value="대부분_참석" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="대부분_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">대부분 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="regular_attendance_mobile" value="부분_참석" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="부분_참석" required>
                 <span class="check-icon"></span>
                 <span class="label-text">부분 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="regular_attendance_mobile" value="참여_어려움" required>
+                <input type="radio" name="regular_attendance_mobile" data-entry="entry.1884558117" value="참여_어려움" required>
                 <span class="check-icon"></span>
                 <span class="label-text">참여 어려움</span>
             </label>
@@ -4036,17 +4036,17 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
         <div class="radio-group-container">
             <label class="radio-label">
-                <input type="radio" name="participation_agreement_mobile" value="적극_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="적극_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">적극 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="participation_agreement_mobile" value="일반_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="일반_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">최소한으로 참여</span>
             </label>
             <label class="radio-label">
-                <input type="radio" name="participation_agreement_mobile" value="소극_참여" required>
+                <input type="radio" name="participation_agreement_mobile" data-entry="entry.2052737417" value="소극_참여" required>
                 <span class="check-icon"></span>
                 <span class="label-text">관심 없음</span>
             </label>
@@ -4061,7 +4061,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 
 <div class="form-group">
 <label class="form-label required">간단한 자기소개를 해주세요.</label>
-<textarea class="form-control" name="introduction" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
+<textarea class="form-control" name="introduction" data-entry="entry.1273113780" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
 </div>
 
 <!-- 특별 자기소개 섹션 -->
@@ -4095,7 +4095,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <!-- 가본 여행지 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지금까지 가본 여행지를 적어주세요.</label>
-<textarea class="form-control" name="visited_places" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
+<textarea class="form-control" name="visited_places" data-entry="entry.1358351649" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
 </div>
 
 <!-- 에세이 작성 부분 -->
@@ -4105,19 +4105,19 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="essay-type-selector">
 <div class="essay-type-options">
 <label class="checkbox-label">
-<input type="radio" name="travel_essay_type" value="memorable_episode" required onclick="updatePlaceholder('episode')">
+<input type="radio" name="travel_essay_type" data-entry="entry.1511002325" value="memorable_episode" required onclick="updatePlaceholder('episode')">
 <span class="check-icon"></span>
 <span class="label-text">기억에 남는 여행 에피소드</span>
 </label>
 <label class="checkbox-label">
-<input type="radio" name="travel_essay_type" value="planned_travel" required onclick="updatePlaceholder('planned')">
+<input type="radio" name="travel_essay_type" data-entry="entry.1511002325" value="planned_travel" required onclick="updatePlaceholder('planned')">
 <span class="check-icon"></span>
 <span class="label-text">자체 여행 기획 경험</span>
 </label>
 </div>
 </div>
 </div>
-<textarea class="form-control" name="travel_essay" id="travelEssay" rows="6" required placeholder="위의 두 주제 중 하나를 체크 클릭해주세요."></textarea>
+<textarea class="form-control" name="travel_essay" data-entry="entry.1113044219" id="travelEssay" rows="6" required placeholder="위의 두 주제 중 하나를 체크 클릭해주세요."></textarea>
 </div>
 </section>
 
@@ -4127,7 +4127,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <!-- 지원 동기 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지원 동기를 적어주세요.</label>
-<textarea class="form-control" name="motivation" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
+<textarea class="form-control" name="motivation" data-entry="entry.94464175" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
 </div>
 
 <!-- 마지막 한마디 작성 부분 -->
@@ -4135,7 +4135,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="essay-header" style="margin: 0;">
 <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
 </div>
-<textarea class="form-control" name="final_words" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
+<textarea class="form-control" name="final_words" data-entry="entry.1054938056" id="finalWords" rows="6" required placeholder="발자취에 전하고 싶은 마지막 메시지가 있다면 자유롭게 적어주세요. 어떤 주제도 상관없습니다."></textarea>
 </div>
 </section>
 
@@ -4161,7 +4161,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="additional-requests" style="margin-top: 2rem;">
 <div class="form-group">
 <label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="interview_requests" 
+<textarea class="form-control" name="interview_requests" data-entry="entry.1309671483" 
 style="height: 75px !important; min-height: 75px; resize: none;"
 placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
 </div>
