@@ -6488,10 +6488,38 @@ function submitToGoogleForm() {
 
     // 구글 폼에 맞는 필드명으로 데이터 변환
     const formEntries = {
-        'entry.564864113': '동의함',                                // 개인정보 동의함
-        'entry.481763846': getData('name'),                        // 이름
-        'entry.360260459': getData('birthdate')                   // 생년월일
-    };
+        'entry.564864113': '동의함',                            // 개인정보 동의 여부
+        'entry.481763846': getData('name'),                     // 이름
+        'entry.360260459': getData('birthdate'),                // 생년월일
+        'entry.645127600': getData('gender'),                   // 성별
+        'entry.1242980670': getData('mbti'),                    // MBTI 선택
+        'entry.70617674': getData('phone'),                     // 연락처
+        'entry.323642249': getData('home_address'),             // 본가
+        'entry.1252661984': getData('current_address'),         // 현재거주지
+        'entry.15145808': getData('school'),                    // 학교            
+        'entry.1900790676': getData('major'),                   // 전공
+        'entry.1731389480': getData('student_id'),              // 학번
+        'entry.148899192': getData('grade'),                    // 학년
+        'entry.732787670': getData('is_leave'),                 // 휴학 여부
+        'entry.1079674076': getData('driving_status'),          // 운전 가능 여부    
+        'entry.1456783659': getData('sns'),                     // SNS
+        'entry.1961663393': getData('sns'),                     // 여행경비
+        'entry.916858698': getData('extracurricular'),          // 동아리 및 대외활동
+        'entry.877565818': getData('fixed_schedule'),           // 주간 고정 일정
+        'entry.2098145147': getData('ot_mt_attendance'),        // OT_MT 참석 여부
+        'entry.1156633536': getData('regular_attendance'),      // 정기활동 안내
+        'entry.1400184185': getData('content_agreement'),       // 콘텐츠 활용 동의
+        'entry.1321485012': getData('participation_agreement'), // 여행 운영 참여 안내
+        'entry.455609739': getData('introduction'),             // 간단한 자기소개
+        'entry.1066911244': getData('special_introduction'),    // 특별한 자기소개  
+        'entry.1819863450': getData('visited_places'),          // 가본 여행지
+        'entry.969561245': getData('travel_essay_type'),        // 여행 주제 선택
+        'entry.1776237344': getData('travel_essay'),            // 여행 에세이
+        'entry.1388518072': getData('motivation'),              // 지원 동기
+        'entry.1342219550': getData('final_words'),             // 마지막 하고 싶은 말  
+        'entry.1175077440': getData('interview_slots[]'),       // 면접 일정 선택하기
+        'entry.2024382788': getData('interview_requests')       // 면접 추가요청사항 
+        };
 
    // 각 엔트리를 폼에 추가
    Object.entries(formEntries).forEach(([key, value]) => {
