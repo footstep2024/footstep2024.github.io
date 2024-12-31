@@ -6497,37 +6497,36 @@ function submitToGoogleForm() {
     tempForm.style.display = 'none';
 
     // 모든 데이터를 input으로 추가
-    const formFields = {
-        'entry.1814453632': getData('name'),
-        'entry.460609193': getData('birthdate'),
-        'entry.406196489': getCheckedValue('gender'),
-        'entry.149223827': getData('mbti'),
-        'entry.1594657278': getData('phone'),
-        'entry.2091799703': getData('home_address'),
-        'entry.871520028': getData('current_address'),
-        'entry.446014347': getData('school'),
-        'entry.1550372405': getData('major'),
-        'entry.1594091064': getData('student_id'),
-        'entry.1551802159': getData('grade'),
-        'entry.2021647126': getCheckboxValue('is_leave'),
-        'entry.1347219430': getData('driving_status'),
-        'entry.277930390': getData('sns'),
-        'entry.1249346205': getData('extracurricular'),
-        'entry.1654590831': getData('fixed_schedule'),
-        'entry.1333559123': getCheckedValue('ot_mt_attendance'),
-        'entry.712930755': getCheckedValue('regular_attendance'),
-        'entry.497592474': getCheckedValue('content_agreement'),
-        'entry.1517799006': getCheckedValue('participation_agreement'),
-        'entry.2130512362': getData('introduction'),
-        'entry.361736951': getData('special_introduction'),
-        'entry.1237870354': getData('visited_places'),
-        'entry.1005633375': getCheckedValue('travel_essay_type'),
-        'entry.1009900080': getData('travel_essay'),
-        'entry.1072259116': getData('motivation'),
-        'entry.157871574': getData('final_words'),
-        'entry.1417326377': getData('interview_requests'),
-        'entry.1164191371': selectedInterviewSlots.join(', ')
-    };
+const formFields = {
+    'entry.2070257591': getData('name'),             // 이름
+    'entry.318044753': getData('phone'),             // 연락처
+    'entry.1216819183': getData('school'),           // 학교
+    'entry.1360694033': getData('major'),            // 전공
+    'entry.1541030146': getData('current_address'),  // 현재 거주지
+    'entry.1730256600': getData('home_address'),     // 본가
+    'entry.403858052': getData('student_id'),        // 학번
+    'entry.1273113780': getData('introduction'),     // 자기소개
+    'entry.1358351649': getData('visited_places'),   // 방문한 여행지
+    'entry.1113044219': getData('travel_essay'),     // 여행 에세이
+    'entry.94464175': getData('motivation'),         // 지원동기
+    'entry.1054938056': getData('final_words'),      // 마지막 한마디
+    'entry.1336751748': getData('mbti'),             // MBTI
+    'entry.1135546838': getData('grade'),            // 학년
+    'entry.1334231597': getData('driving_status'),   // 운전가능여부
+    'entry.1586698654_year': getData('birthdate')?.split('-')[0],   // 생년월일 - 연도
+    'entry.1586698654_month': getData('birthdate')?.split('-')[1],  // 생년월일 - 월
+    'entry.1586698654_day': getData('birthdate')?.split('-')[2],    // 생년월일 - 일
+    'entry.1832572178': '동의합니다',                 // 개인정보 동의
+    'entry.261486001': getCheckedValue('gender'),    // 성별
+    'entry.1511002325': getCheckboxValue('is_leave'),  // 휴학여부
+    'entry.1572736277': getCheckedValue('ot_mt_attendance'),  // OT/MT 참석
+    'entry.1884558117': getCheckedValue('regular_attendance'),  // 정기활동 참여
+    'entry.2052737417': getCheckedValue('participation_agreement'), // 운영참여
+    'entry.1309671483': getData('interview_requests'), // 면접 요청사항
+    'fvv': 1,
+    'pageHistory': 0,
+    'fbzx': '-6532230256735099502' // 이 값은 매 제출마다 다를 수 있습니다
+};
 
     Object.entries(formFields).forEach(([name, value]) => {
         const input = document.createElement('input');
