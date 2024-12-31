@@ -4434,17 +4434,17 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 <!-- PC 버전 버튼 -->
 <div class="button-group pc-only">
-<button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-<button type="submit" class="submit-btn">제출하기</button>
+    <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
+    <button type="submit" class="submit-btn">제출하기</button>
 </div>
 
 <!-- 모바일 버전 버튼 -->
 <div class="button-group mobile-only">
-<div style="background: rgba(220, 53, 69, 0.05); padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center;">
-    <i class="fas fa-exclamation-circle" style="color: #dc3545; margin-right: 4px;"></i>
-    <span style="font-size: 0.85rem; color: #dc3545;">미리보기는 PC 환경에서만 지원됩니다.</span>
-</div>
-<button type="submit" class="submit-btn" style="width: 100%;">제출하기</button>
+    <button type="submit" class="submit-btn" style="width: 100%;">제출하기</button>
+    <p style="text-align: center; color: var(--light-text); font-size: 0.75rem; margin-top: 8px;">
+        <i class="fas fa-info-circle"></i>
+        미리보기는 PC 환경에서만 지원됩니다
+    </p>
 </div>
 
 <!-- 미리보기 모달 추가 -->
@@ -6469,50 +6469,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-
-<script>
-function submitToGoogleForm() {
-    const form = document.getElementById('applicationForm');
-    
-    // 모바일/PC 버전 필드 값 통합
-    const name = form.querySelector('[name="name"]')?.value || form.querySelector('[name="name_mobile"]')?.value || '';
-    const birthdate = form.querySelector('[name="birthdate"]')?.value || form.querySelector('[name="birthdate_mobile"]')?.value || '';
-
-    // 구글 폼 제출 URL
-    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
-    
-    // 구글 폼에 맞는 필드명으로 데이터 변환
-    const formEntries = new URLSearchParams({
-        'entry.1814453632': name,
-        'entry.460609193': birthdate
-    });
-
-    // 폼 제출
-    fetch(googleFormUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formEntries.toString()
-    })
-    .then(() => {
-        alert('지원서가 성공적으로 제출되었습니다.');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
-    });
-
-    return false; // 폼 기본 제출 방지
-}
-
-// 기존의 submitForm 함수 수정
-function submitForm() {
-    closePreview();
-    submitToGoogleForm();
-}
-</script>
     
 </body>
 </html>
