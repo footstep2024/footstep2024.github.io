@@ -6467,7 +6467,161 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+</script>
 
+<!-- 모바일 전용 모달들 -->
+<div class="mobile-only">
+    <!-- MBTI 선택 모달 -->
+    <div class="select-modal" id="mbtiModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>MBTI 선택</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-options" id="mbtiOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 학년 선택 모달 -->
+    <div class="select-modal" id="gradeModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>학년 선택</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-group-label">일반학과</div>
+                <div class="select-options" id="normalGradeOptions"></div>
+                <div class="select-group-label">의학/약학계열</div>
+                <div class="select-options" id="medicalGradeOptions"></div>
+                <div class="select-group-label">졸업관련</div>
+                <div class="select-options" id="graduateOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 운전가능여부 선택 모달 -->
+    <div class="select-modal" id="drivingModal">
+        <div class="select-modal-content">
+            <div class="modal-header">
+                <h3>운전 가능 여부</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="select-options" id="drivingOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example-modal" id="recordsModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title"></h3>
+            <p class="modal-desc"></p>
+        </div>
+        <div class="modal-image-container">
+            <div class="example-image-container">
+                <img id="recordsImage" src="" alt="예시 이미지">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-mouse"></i>
+            스크롤하여 더 보기
+        </div>
+    </div>
+</div>
+
+<script>
+function submitToGoogleForm(e) {    
+    if(e) e.preventDefault();  // 기본 폼 제출 동작 방지
+    
+    const form = document.getElementById('applicationForm');
+    
+    // 기존의 getData, getCheckedValue, getCheckboxValue 함수들
+    const getData = (name) => {
+        return form.querySelector(`[name="${name}"]`)?.value || 
+               form.querySelector(`[name="${name}_mobile"]`)?.value || '';
+    };
+
+    const getCheckedValue = (name) => {
+        return form.querySelector(`input[name="${name}"]:checked`)?.value || 
+               form.querySelector(`input[name="${name}_mobile"]:checked`)?.value || '';
+    };
+
+    const getCheckboxValue = (name) => {
+        return (form.querySelector(`input[name="${name}"]`)?.checked || 
+                form.querySelector(`input[name="${name}_mobile"]`)?.checked) ? '예' : '아니오';
+    };
+
+    // 구글 폼 제출 URL
+    const googleFormUrl = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSc6TpLmo9vMWlHXK_lNdcsCm-cahaQoi6VLD7q76_LWr4_LoA/formResponse';
+    
+    // 구글 폼에 맞는 필드명으로 데이터 변환
+    const formEntries = new URLSearchParams({
+        'entry.2070257591': getData('name'),               
+        'entry.318044753': getData('phone'),             
+        'entry.1216819183': getData('school'),           
+        'entry.1360694033': getData('major'),            
+        'entry.1541030146': getData('current_address'),  
+        'entry.1730256600': getData('home_address'),     
+        'entry.403858052': getData('student_id'),        
+        'entry.1273113780': getData('introduction'),     
+        'entry.1358351649': getData('visited_places'),   
+        'entry.1113044219': getData('travel_essay'),     
+        'entry.94464175': getData('motivation'),         
+        'entry.1054938056': getData('final_words'),      
+        'entry.1336751748': getData('mbti'),             
+        'entry.1135546838': getData('grade'),            
+        'entry.1334231597': getData('driving_status'),   
+        'entry.1586698654_year': getData('birthdate')?.split('-')[0],   
+        'entry.1586698654_month': getData('birthdate')?.split('-')[1],  
+        'entry.1586698654_day': getData('birthdate')?.split('-')[2],    
+        'entry.1832572178': '동의합니다',                 
+        'entry.261486001': getCheckedValue('gender'),    
+        'entry.1511002325': getCheckboxValue('is_leave'),  
+        'entry.1572736277': getCheckedValue('ot_mt_attendance'),  
+        'entry.1884558117': getCheckedValue('regular_attendance'),  
+        'entry.2052737417': getCheckedValue('participation_agreement'), 
+        'entry.1309671483': getData('interview_requests'), 
+        'fvv': '1',
+        'pageHistory': '0',
+        'fbzx': '-6532230256735099502'
+    });
+
+    // 폼 제출
+    fetch(googleFormUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formEntries.toString()
+    })
+    .then(() => {
+        alert('지원서가 성공적으로 제출되었습니다.');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+    });
+}
+
+// 폼 제출 이벤트 리스너 추가
+document.getElementById('applicationForm').addEventListener('submit', submitToGoogleForm);
+
+// 미리보기에서 제출하기 함수 수정
+function submitForm() {
+    closePreview();
+    submitToGoogleForm();
+}
+</script>
 
 </body>
 </html>
