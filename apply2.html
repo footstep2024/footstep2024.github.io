@@ -3560,7 +3560,7 @@ textarea.form-control[readonly] {
 <!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
-<input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
+<input type="text" class="form-control" name="travel_budget" placeholder="여행 경비 입력" style="width: 180px"
 <div class="alerts" style="flex-grow: 1; margin-top: -10px">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i> 
@@ -5459,7 +5459,7 @@ function previewApplication() {
                                 <div class="mobile-preview-item">
                                     <span class="mobile-preview-label">여행경비</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelectorAll('input[name="sns"]')[1].value || '미입력'}
+                                        ${form.querySelector('input[name="travel_budget"]')?.value || '미입력'}
                                     </div>
                                 </div>
                                 <div class="mobile-preview-item full-width">
@@ -6503,7 +6503,7 @@ function submitToGoogleForm() {
         'entry.732787670': getData('is_leave'),                 // 휴학 여부
         'entry.1079674076': getData('driving_status'),          // 운전 가능 여부    
         'entry.1456783659': getData('sns'),                     // SNS
-        'entry.1961663393': getData('sns'),                     // 여행경비
+        ''entry.1961663393': getData('travel_budget'),          // 여행경비
         'entry.916858698': getData('extracurricular'),          // 동아리 및 대외활동
         'entry.877565818': getData('fixed_schedule'),           // 주간 고정 일정
         'entry.2098145147': getData('ot_mt_attendance'),        // OT_MT 참석 여부
