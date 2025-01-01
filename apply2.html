@@ -2698,15 +2698,17 @@ transform: translateY(-2px);
         flex-direction: row;
         gap: 0.5rem;
         padding: 0 1rem;
-        margin: 1rem 0;
+        margin: 1rem 0 4rem; 
     }
 
     .btn,
     .preview-btn,
     .submit-btn {
-        flex: 1;
-        padding: 0.875rem;
-        font-size: 0.9rem;
+        width: auto;
+        min-width: 200px; 
+        padding: 1rem 2rem;  
+        font-size: 1rem; 
+        margin: 0 auto; 
     }
 
     /* select 컨트롤 스타일 */
@@ -3147,6 +3149,213 @@ textarea.form-control[readonly] {
     }
 }
 
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #2F5229;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.spinner::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+    height: 35px;
+    background-image: url('logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+}
+
+.custom-alert-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1999;
+}
+
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.98);
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(47, 82, 41, 0.15);
+    z-index: 2000;
+    text-align: center;
+    min-width: 280px;
+    max-width: 360px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(47, 82, 41, 0.1);
+    animation: customAlertIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes customAlertIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.custom-alert::before {
+    content: '✓';
+    display: block;
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    animation: checkmark 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes checkmark {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.custom-alert p {
+    font-family: 'Nanum Brush Script', var(--system-font);
+    font-size: 0.9em;
+    color: var(--primary-color);
+    margin: 0 0 25px;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: textFadeIn 0.5s ease forwards 0.3s;
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-alert button {
+    font-family: 'Noto Serif KR', var(--system-font);
+    padding: 12px 35px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: buttonFadeIn 0.5s ease forwards 0.5s;
+    box-shadow: 0 5px 15px rgba(47, 82, 41, 0.2);
+}
+
+@keyframes buttonFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.custom-alert button:hover {
+    background: #3a6333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(47, 82, 41, 0.3);
+}
+
+@media (max-width: 768px) {
+    .custom-alert {
+        width: 70%;
+        padding: 20px;
+        min-width: auto;
+        max-width: 280px;
+    }
+    
+    .custom-alert::before {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    
+    .custom-alert p {
+        font-size: 0.8em;
+        margin-bottom: 15px;
+    }
+    
+    .custom-alert button {
+        padding: 8px 25px;
+        font-size: 0.9em;
+    }
+
+    .loading-spinner {
+        padding: 25px;
+        width: 85%;
+        max-width: 300px;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 5px;
+    }
+
+    .spinner::after {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .loading-spinner p {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+}
+    
 </style>
 
 
@@ -3157,6 +3366,11 @@ textarea.form-control[readonly] {
 <div class="progress-bar">
 <div class="progress" id="progress"></div>
 </div>
+</div>
+
+<div id="loading-spinner" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>잠시만 기다려주세요...</p>
 </div>
 
 <!-- 날짜 선택 모달 -->
@@ -3560,7 +3774,7 @@ textarea.form-control[readonly] {
 <!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
-<input type="text" class="form-control" name="travel_budget" placeholder="여행 경비 입력" style="width: 180px"
+<input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
 <div class="alerts" style="flex-grow: 1; margin-top: -10px">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i> 
@@ -4161,7 +4375,8 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <div class="additional-requests" style="margin-top: 2rem;">
 <div class="form-group">
 <label class="form-label">추가 요청사항</label>
-<textarea class="form-control" name="interview_requests" style="height: 75px !important; min-height: 75px; resize: none;"
+<textarea class="form-control" name="interview_requests"
+style="height: 75px !important; min-height: 75px; resize: none;"
 placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대나 기타 요청사항이 있다면 자유롭게 작성해주세요. &#10;예시) 17일은 오후 2시 이후로만 가능합니다."></textarea>
 </div>
 </div>
@@ -4219,7 +4434,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation"></i>
         <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="notice_check_1" required>
+            <input type="checkbox" name="notice_check_3" required>
             <span class="check-text">확인함</span>
         </label>
     </div>
@@ -4230,7 +4445,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_3" required>
+<input type="checkbox" name="notice_check_4" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4241,7 +4456,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_4" required>
+<input type="checkbox" name="notice_check_5" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4252,7 +4467,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation" style="color: #dc3545;"></i>
         <p style="color: #dc3545;">성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="notice_check_5" required>
+            <input type="checkbox" name="notice_check_6" required>
             <span class="check-text" style="color: #dc3545;">확인함</span>
         </label>
     </div>
@@ -4272,9 +4487,9 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
 <div class="notice-content">
 <i class="fas fa-circle-exclamation"></i>
-<p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+<p>여행동아리를 미팅동아리로 여기는 분은 지원을 삼가해주시기 바랍니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_6" required>
+<input type="checkbox" name="notice_check_8" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4418,7 +4633,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <i class="fas fa-circle-exclamation"></i>
             </div>
             <div class="notice-content">
-                <p>지원서 접수 확인은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.</p>
+                <p>여행동아리를 미팅동아리로 여기는 분은 지원을 삼가해주시기 바랍니다.</p>
                 <label class="mobile-confirm">
                     <input type="checkbox" name="notice_check_mobile_8" required>
                     <span class="check-icon"></span>
@@ -4432,33 +4647,32 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 
 <div style="display: flex; justify-content: center; width: 100%;">
-<!-- PC 버전 -->
-<div class="button-group pc-only">
-    <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+    <!-- PC 버전 -->
+    <div class="button-group pc-only">
+        <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
+        <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+    </div>
+    <!-- 모바일 버전 -->
+    <div class="button-group mobile-only">
+        <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+    </div>
 </div>
-
-<!-- 모바일 버전 -->
-<div class="button-group mobile-only">
-    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
-</div>
-
-<!-- 미리보기 모달 추가 -->
+<!-- 미리보기 모달 -->
 <div class="preview-modal" id="previewModal">
-<div class="preview-modal-content">
-<button class="example-close" onclick="closePreview()">&times;</button>
-<div class="preview-modal-header">
-<h3 class="preview-modal-title">지원서 미리보기</h3>
-<p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
-</div>
-<div class="preview-content">
-<!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
-</div>
-<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
-    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
-    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
-</div>
-</div>
+    <div class="preview-modal-content">
+        <button class="example-close" onclick="closePreview()">&times;</button>
+        <div class="preview-modal-header">
+            <h3 class="preview-modal-title">지원서 미리보기</h3>
+            <p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
+        </div>
+        <div class="preview-content">
+            <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
+            <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
+            <button class="modal-bottom-close" onclick="submitToGoogleForm()" style="background: var(--primary-color);">제출하기</button>
+        </div>
+    </div>
 </div>
 
 </form>
@@ -5459,7 +5673,7 @@ function previewApplication() {
                                 <div class="mobile-preview-item">
                                     <span class="mobile-preview-label">여행경비</span>
                                     <div class="mobile-preview-value">
-                                        ${form.querySelector('input[name="travel_budget"]')?.value || '미입력'}
+                                        ${form.querySelector('input[name="sns"]')?.value || '미입력'}
                                     </div>
                                 </div>
                                 <div class="mobile-preview-item full-width">
@@ -6358,7 +6572,11 @@ function closeScheduleModal() {
 
 function submitForm() {
     closePreview();
-    document.getElementById('applicationForm').submit();
+    submitToGoogleForm().then(() => {
+        // 제출 성공 시 처리
+    }).catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 // 페이지 로드시 이벤트 리스너 추가
@@ -6465,80 +6683,335 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-
 <script>
+
+function showLoading() {
+    document.getElementById('loading-spinner').style.display = 'block';
+}
+
+function hideLoading() {
+    document.getElementById('loading-spinner').style.display = 'none';
+}
+
+function showCustomAlert(message) {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'custom-alert-backdrop';
+    
+    const alertBox = document.createElement('div');
+    alertBox.className = 'custom-alert';
+    alertBox.innerHTML = `
+        <p>${message}</p>
+        <button onclick="this.parentElement.parentElement.remove()">확인</button>
+    `;
+    
+    backdrop.appendChild(alertBox);
+    document.body.appendChild(backdrop);
+    
+    const removeAlert = () => backdrop.remove();
+    const autoRemoveTimer = setTimeout(removeAlert, 3000);
+    
+    alertBox.querySelector('button').addEventListener('click', () => {
+        clearTimeout(autoRemoveTimer);
+        removeAlert();
+    });
+    
+    backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+            clearTimeout(autoRemoveTimer);
+            removeAlert();
+        }
+    });
+}
+
+
 function submitToGoogleForm() {
-   const form = document.getElementById('applicationForm');
-   
-   // PC/모바일 버전 통합 데이터 수집
-   const getData = (name) => {
-       return form.querySelector(`[name="${name}"]`)?.value || 
-              form.querySelector(`[name="${name}_mobile"]`)?.value || '';
-   };
-   
-    const getCheckedValue = (name) => {
-         return form.querySelector(`input[name="${name}"]`)?.checked || 
-            form.querySelector(`input[name="${name}_mobile"]`)?.checked ? '동의함' : '';
+    console.log('폼 제출 시작'); // 디버깅용 로그
+    
+    const form = document.getElementById('applicationForm');
+    if (!form) {
+        console.log('폼을 찾을 수 없음'); // 디버깅용 로그
+        return false;
+    }
+
+    // 필수 항목 검증 전에 로그 추가
+    console.log('필수 항목 검증 시작');
+
+    // 필수 항목 검증
+    const requiredFields = {
+        'privacy_agreement': '개인정보 수집 동의',
+        'name': '이름',
+        'birthdate': '생년월일',
+        'gender': '성별',
+        'mbti': 'MBTI',
+        'phone': '연락처',
+        'home_address': '본가',
+        'current_address': '현재 거주지',
+        'school': '학교',
+        'major': '전공',
+        'student_id': '학번',
+        'grade': '학년',
+        'driving_status': '운전 가능 여부',
+        'sns_2': '여행 경비',
+        'extracurricular': '동아리 및 대외활동',
+        'fixed_schedule': '주간 고정 일정',
+        'ot_mt_attendance': 'OT/MT 참석 여부',
+        'regular_attendance': '정기 활동 참석 여부',
+        'content_agreement': '콘텐츠 활용 동의',
+        'participation_agreement': '여행 운영 참여',
+        'introduction': '자기소개',
+        'special_introduction': '유형 소개',
+        'visited_places': '방문 여행지',
+        'travel_essay_type': '여행 에세이 유형',
+        'travel_essay': '여행 에세이',
+        'motivation': '지원 동기',
+        'final_words': '마지막 한마디'
     };
 
-   const tempForm = document.createElement('form');
-   tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse';
-   tempForm.method = 'POST';
-   tempForm.target = '_blank';
+    // 필수 항목 검증 함수
+    const validateField = (fieldName) => {
+        console.log(`${fieldName} 필드 검증 중`); // 디버깅용 로그
+        
+        // 일반 입력 필드
+        const inputField = form.querySelector(`[name="${fieldName}"]`) || 
+                          form.querySelector(`[name="${fieldName}_mobile"]`);
+        
+        // 라디오 버튼
+        const radioButtons = form.querySelectorAll(`input[name="${fieldName}"], input[name="${fieldName}_mobile"]`);
+        const isRadioChecked = Array.from(radioButtons).some(radio => radio.checked);
+        
+        // 체크박스
+        const checkbox = form.querySelector(`input[type="checkbox"][name="${fieldName}"], input[type="checkbox"][name="${fieldName}_mobile"]`);
+        const isCheckboxChecked = checkbox?.checked;
 
-    // 구글 폼에 맞는 필드명으로 데이터 변환
+        // select 필드
+        const selectField = form.querySelector(`select[name="${fieldName}"], select[name="${fieldName}_mobile"]`);
+        const isSelectValid = selectField?.value && selectField.value !== '';
+
+        const result = inputField?.value?.trim() !== '' || 
+                      isRadioChecked || 
+                      isCheckboxChecked || 
+                      isSelectValid;
+
+        console.log(`${fieldName} 검증 결과:`, result); // 디버깅용 로그
+        return result;
+    };
+
+    // 모든 필수 필드 검증
+    for (const fieldName of Object.keys(requiredFields)) {
+        if (!validateField(fieldName)) {
+            console.log(`${fieldName} 필드 검증 실패`); // 디버깅용 로그
+            showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
+            return false;
+        }
+    }
+
+    console.log('모든 필드 검증 완료, 제출 시작'); // 디버깅용 로그
+
+    // 로딩 스피너 표시
+    showLoading();
+
+    // 폼 데이터 수집 및 제출
+    const formData = new FormData();
+    
+    // formEntries 객체 정의 및 데이터 수집
     const formEntries = {
-        'entry.564864113': '동의함',                            // 개인정보 동의 여부
-        'entry.481763846': getData('name'),                     // 이름
-        'entry.360260459': getData('birthdate'),                // 생년월일
-        'entry.645127600': getData('gender'),                   // 성별
-        'entry.1242980670': getData('mbti'),                    // MBTI 선택
-        'entry.70617674': getData('phone'),                     // 연락처
-        'entry.323642249': getData('home_address'),             // 본가
-        'entry.1252661984': getData('current_address'),         // 현재거주지
-        'entry.15145808': getData('school'),                    // 학교            
-        'entry.1900790676': getData('major'),                   // 전공
-        'entry.1731389480': getData('student_id'),              // 학번
-        'entry.148899192': getData('grade'),                    // 학년
-        'entry.732787670': getData('is_leave'),                 // 휴학 여부
-        'entry.1079674076': getData('driving_status'),          // 운전 가능 여부    
-        'entry.1456783659': getData('sns'),                     // SNS
-        ''entry.1961663393': getData('travel_budget'),          // 여행경비
-        'entry.916858698': getData('extracurricular'),          // 동아리 및 대외활동
-        'entry.877565818': getData('fixed_schedule'),           // 주간 고정 일정
-        'entry.2098145147': getData('ot_mt_attendance'),        // OT_MT 참석 여부
-        'entry.1156633536': getData('regular_attendance'),      // 정기활동 안내
-        'entry.1400184185': getData('content_agreement'),       // 콘텐츠 활용 동의
-        'entry.1321485012': getData('participation_agreement'), // 여행 운영 참여 안내
-        'entry.455609739': getData('introduction'),             // 간단한 자기소개
-        'entry.1066911244': getData('special_introduction'),    // 특별한 자기소개  
-        'entry.1819863450': getData('visited_places'),          // 가본 여행지
-        'entry.969561245': getData('travel_essay_type'),        // 여행 주제 선택
-        'entry.1776237344': getData('travel_essay'),            // 여행 에세이
-        'entry.1388518072': getData('motivation'),              // 지원 동기
-        'entry.1342219550': getData('final_words'),             // 마지막 하고 싶은 말  
-        'entry.1175077440': getData('interview_slots[]'),       // 면접 일정 선택하기
-        'entry.2024382788': getData('interview_requests')       // 면접 추가요청사항 
-        };
+        'entry.350593245': '동의함',
+        'entry.481763846': getData('name'),
+        'entry.360260459': getData('birthdate'), 
+        'entry.645127600': (() => { 
+            const maleChecked = form.querySelector('input[name="gender"][value="남성"]')?.checked || 
+                               form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked;
+            const femaleChecked = form.querySelector('input[name="gender"][value="여성"]')?.checked || 
+                                 form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked;
+            return maleChecked ? '남성' : femaleChecked ? '여성' : '';
+        })(),
+        'entry.1242980670': getData('mbti'),
+        'entry.70617674': getData('phone'),
+        'entry.323642249': getData('home_address'),
+        'entry.1252661984': getData('current_address'),
+        'entry.15145808': getData('school'),
+        'entry.1900790676': getData('major'),
+        'entry.1731389480': getData('student_id'),
+        'entry.148899192': (() => {
+            const grade = getData('grade');
+            const gradeMap = {
+                '1': '1학년',
+                '2': '2학년',
+                '3': '3학년',
+                '4': '4학년',
+                '5': '5학년',
+                'pre1': '예과 1학년',
+                'pre2': '예과 2학년',
+                'med1': '본과 1학년',
+                'med2': '본과 2학년',
+                'med3': '본과 3학년',
+                'med4': '본과 4학년',
+                'postpone': '졸업유예',
+                'graduating': '졸업예정',
+                'graduated': '졸업'
+                };
+                return gradeMap[grade] || grade;
+            })(), 
+        'entry.732787670': (() => {
+                return form.querySelector('input[name="is_leave"]')?.checked ||
+                form.querySelector('input[name="is_leave_mobile"]')?.checked ? '휴학' : '';
+        })(),
+        'entry.1456783659': form.querySelectorAll('input[name="sns"]')[0].value || '',  // 인스타/블로그
+        'entry.1961663393': form.querySelectorAll('input[name="sns"]')[1].value || '',   // 여행경비
+        'entry.1079674076': (() => {
+            const val = form.querySelector('select[name="driving_status"]')?.value;
+            const options = {
+                'car': '자가 보유',
+                'license': '면허만 보유',
+                'none': '해당사항 없음'
+            };
+            return options[val] || '';
+        })(),
+        'entry.916858698': getData('extracurricular'),
+        'entry.877565818': getData('fixed_schedule'),
+        'entry.2098145147': (() => {
+                const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value || 
+                                form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+                const options = {
+                    '참석_가능': '참석 가능',
+                    '늦게_참석': '늦게 참석',
+                    '참석_불가': '참석 불가'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1156633536': (() => {
+                const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value ||
+                                form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+                const options = {
+                    '대부분_참석': '대부분 참여',
+                    '부분_참석': '부분 참여',
+                    '참여_어려움': '참여 어려움'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1400184185': (() => {
+                const selected = form.querySelector('input[name="content_agreement"]:checked')?.value ||
+                                form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+                const options = {
+                    '전체_동의': '모두 동의',
+                    '클라우드만': '클라우드만 동의',
+                    '동의_거부': '동의 안함'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1321485012': (() => {
+                const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value ||
+                                form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+                const options = {
+                    '적극_참여': '적극 참여',
+                    '일반_참여': '최소한으로 참여',
+                    '소극_참여': '관심 없음'
+                    };
+                    return options[selected] || '';
+                    })(),
+                'entry.455609739': getData('introduction'),
+                'entry.1066911244': getData('special_introduction'),
+                'entry.1819863450': getData('visited_places'),
+                
+                'entry.969561245': (() => {
+                   const selected = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                   const options = {
+                       'memorable_episode': '기억에 남는 여행 에피소드',
+                       'planned_travel': '자체 여행 기획 경험'
+                   };
+                   return options[selected] || '';
+                })(),
+                
+                'entry.1776237344': getData('travel_essay'),
+                'entry.1388518072': getData('motivation'),
+                'entry.1342219550': getData('final_words'),
+                'entry.1175077440': (() => {
+                    const timeMap = {
+                        '0117_am': '17일 오전',
+                        '0117_pm': '17일 오후',
+                        '0118_am': '18일 오전',
+                        '0118_pm': '18일 오후',
+                        '0119_am': '19일 오전',
+                        '0119_pm': '19일 오후',
+                        '0120_am': '20일 오전',
+                        '0120_pm': '20일 오후'
+                    };
+                    return selectedInterviewSlots
+                        .map(slot => timeMap[slot] || slot)
+                        .join(', ');
+                    })(),
+                'entry.2024382788': getData('interview_requests')
+            };
 
-   // 각 엔트리를 폼에 추가
-   Object.entries(formEntries).forEach(([key, value]) => {
-       const input = document.createElement('input');
-       input.type = 'hidden';
-       input.name = key;
-       input.value = value;
-       tempForm.appendChild(input);
-   });
+    Object.entries(formEntries).forEach(([key, value]) => {
+        formData.append(key, value);
+        console.log(`폼 데이터 추가: ${key} = ${value}`); // 디버깩용 로그
+    });
 
-   document.body.appendChild(tempForm);
-   tempForm.submit();
-   document.body.removeChild(tempForm);
+    // 구글 폼으로 데이터 전송
+    fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+    })
+    .then(() => {
+        console.log('폼 제출 성공'); // 디버깅용 로그
+        hideLoading();
+        showCustomAlert('감사합니다.<br>지원서가 성공적으로 접수되었습니다.<br><br>발자취에 관심 가져주셔서 감사합니다.<br><br>정확한 접수 확인을 희망하시는 분들은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.');
+    })
+    .catch((error) => {
+        console.error('폼 제출 실패:', error); // 디버깅용 로그
+        hideLoading();
+        showCustomAlert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    });
 
-   alert('지원서가 성공적으로 제출되었습니다.');
-   return true;
+    return false;
 }
+
 </script>
 
+<div class="page-transition-overlay"></div>
+
+<style>
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.page-loaded .page-transition-overlay {
+    opacity: 0;
+}
+
+.container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.page-loaded .container {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.body.classList.add('page-loaded');
+    }, 500); 
+});
+</script>
 
 </body>
 </html>
