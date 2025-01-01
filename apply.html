@@ -6738,8 +6738,54 @@ function submitToGoogleForm() {
                 document.querySelector('[name="mbti_mobile"]')?.value;
     const phone = document.querySelector('[name="phone"]')?.value || 
                  document.querySelector('[name="phone_mobile"]')?.value;
-
-    if (!name || !mbti) {
+    const birth = document.querySelector('[name="birthdate"]')?.value || 
+              document.querySelector('[name="birthdate_mobile"]')?.value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value ||
+               document.querySelector('input[name="gender_mobile"]:checked')?.value;
+    const homeAddr = document.querySelector('[name="home_address"]')?.value ||
+                    document.querySelector('[name="home_address_mobile"]')?.value;
+    const currAddr = document.querySelector('[name="current_address"]')?.value ||
+                    document.querySelector('[name="current_address_mobile"]')?.value;
+    const school = document.querySelector('[name="school"]')?.value ||
+                  document.querySelector('[name="school_mobile"]')?.value;
+    const major = document.querySelector('[name="major"]')?.value ||
+                 document.querySelector('[name="major_mobile"]')?.value;
+    const studentId = document.querySelector('[name="student_id"]')?.value ||
+                     document.querySelector('[name="student_id_mobile"]')?.value;
+    const grade = document.querySelector('[name="grade"]')?.value ||
+                 document.querySelector('[name="grade_mobile"]')?.value;
+    const driving = document.querySelector('[name="driving_status"]')?.value;
+    const travelCost = document.querySelectorAll('input[name="sns"]')[1]?.value;
+    const extraCurr = document.querySelector('[name="extracurricular"]')?.value;
+    const fixedSched = document.querySelector('[name="fixed_schedule"]')?.value;
+    const otMt = document.querySelector('input[name="ot_mt_attendance"]:checked')?.value ||
+                document.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+    const regAttend = document.querySelector('input[name="regular_attendance"]:checked')?.value ||
+                     document.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+    const contentAgree = document.querySelector('input[name="content_agreement"]:checked')?.value ||
+                        document.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+    const partAgree = document.querySelector('input[name="participation_agreement"]:checked')?.value ||
+                     document.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+    const intro = document.querySelector('[name="introduction"]')?.value;
+    const specialIntro = document.querySelector('[name="special_introduction"]')?.value;
+    const visitedPlaces = document.querySelector('[name="visited_places"]')?.value;
+    const essayType = document.querySelector('input[name="travel_essay_type"]:checked')?.value;
+    const essay = document.querySelector('[name="travel_essay"]')?.value;
+    const motivation = document.querySelector('[name="motivation"]')?.value;
+    const finalWords = document.querySelector('[name="final_words"]')?.value;
+    
+    // 공지사항 체크박스 검증
+    const noticeChecks = Array.from({length: 8}, (_, i) => {
+        const num = i + 1;
+        return document.querySelector(`[name="notice_check_${num}"]`)?.checked ||
+               document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
+    });
+    
+    if (!name || !mbti || !phone || !gender || !homeAddr || !currAddr || !school || 
+        !major || !studentId || !grade || !driving || !extraCurr || !fixedSched || 
+        !otMt || !regAttend || !contentAgree || !partAgree || !intro || !specialIntro || 
+        !visitedPlaces || !essayType || !essay || !motivation || !finalWords || 
+        selectedInterviewSlots.length === 0 || !noticeChecks.every(check => check)) {
         showCustomAlert('모든 체크항목과 필수 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
         return;
     }
