@@ -6734,6 +6734,16 @@ const getData = (name) => {
     return document.querySelector(`[name="${name}"]`)?.value || 
            document.querySelector(`[name="${name}_mobile"]`)?.value || '';
 };
+
+const getRadioData = (name) => {
+    return document.querySelector(`input[name="${name}"]:checked`)?.value || 
+           document.querySelector(`input[name="${name}_mobile"]:checked`)?.value || '';
+};
+
+const getCheckboxData = (name) => {
+    return document.querySelector(`input[name="${name}"]`)?.checked || 
+           document.querySelector(`input[name="${name}_mobile"]`)?.checked || false;
+};
     
 function submitToGoogleForm() {
     const form = document.getElementById('applicationForm');
@@ -6787,11 +6797,18 @@ function submitToGoogleForm() {
                document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
     });
     
-    if (!name || !mbti || !phone || !gender || !homeAddr || !currAddr || !school || 
-        !major || !studentId || !grade || !driving || !extraCurr || !fixedSched || 
-        !otMt || !regAttend || !contentAgree || !partAgree || !intro || !specialIntro || 
-        !visitedPlaces || !essayType || !essay || !motivation || !finalWords || 
-        selectedInterviewSlots.length === 0 || !noticeChecks.every(check => check)) {
+    if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
+        !getData('home_address') || !getData('current_address') || !getData('school') || 
+        !getData('major') || !getData('student_id') || !getData('grade') || 
+        !document.querySelector('[name="driving_status"]')?.value || !getData('extracurricular') || 
+        !getData('fixed_schedule') || !getRadioData('ot_mt_attendance') || 
+        !getRadioData('regular_attendance') || !getRadioData('content_agreement') || 
+        !getRadioData('participation_agreement') || !getData('introduction') || 
+        !getData('special_introduction') || !getData('visited_places') || 
+        !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
+        !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
+        selectedInterviewSlots.length === 0) {
+        
         showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
         return;
     }
