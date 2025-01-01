@@ -1444,7 +1444,7 @@
             <div class="cta">
                 <h2>2025년 1학기 신입 부원 모집</h2>
                 <p>01.01 ~ 01.12</p>
-                <button class="cta-button modal-btn">알림 신청하기</button>
+                <button class="cta-button modal-btn">지금 지원하기</button>
             </div>
 
             <div class="contact">
@@ -1590,29 +1590,24 @@
         const modalBtn = document.querySelector('.modal-btn');
 
         if (modalBtn) {
-               modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
-                   e.preventDefault();
-                   
-                   try {
-                       showNotification('알림 신청 준비 중입니다', 'success');
-                       showLoading();
-                       
-                       setTimeout(() => {
-                           hideLoading();
-                           modal.style.display = 'block';
-                           const modalContent = document.querySelector('.modal-content');
-                           modalContent.style.animation = 'none';
-                           modalContent.offsetHeight;
-                           modalContent.style.animation = null;
-                       }, 1000);
-                       
-                   } catch (error) {
-                       hideLoading();
-                       showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
-                       console.error('Error:', error);
-                   }
-               });
-            }
+            modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
+                e.preventDefault();
+                
+                try {
+                    showNotification('지원 페이지로 이동합니다', 'success');
+                    showLoading();
+                    
+                    setTimeout(() => {
+                        window.location.href = 'https://footstep2024.github.io/apply.html';
+                    }, 1000);
+                    
+                } catch (error) {
+                    hideLoading();
+                    showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
+                    console.error('Error:', error);
+                }
+            });
+        }
 
         
             form.addEventListener('submit', (e) => {
