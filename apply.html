@@ -6699,10 +6699,15 @@ function submitToGoogleForm() {
             form.querySelector(`input[name="${name}_mobile"]`)?.checked ? '동의함' : '';
     };
 
-   const tempForm = document.createElement('form');
-   tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse';
-   tempForm.method = 'POST';
-   tempForm.target = '_blank';
+    const hiddenFrame = document.createElement('iframe');
+    hiddenFrame.style.display = 'none';
+    hiddenFrame.name = 'hidden-submit';
+    document.body.appendChild(hiddenFrame);
+    
+    const tempForm = document.createElement('form');
+    tempForm.action = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse';
+    tempForm.method = 'POST';
+    tempForm.target = 'hidden-submit';
 
     const formEntries = {
         'entry.350593245': '동의함',
@@ -6847,12 +6852,15 @@ function submitToGoogleForm() {
        tempForm.appendChild(input);
    });
 
-   document.body.appendChild(tempForm);
-   tempForm.submit();
-   document.body.removeChild(tempForm);
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    document.body.removeChild(tempForm);
 
-   alert('지원서가 성공적으로 제출되었습니다.');
-   return true;
+    setTimeout(() => {
+    document.body.removeChild(hiddenFrame);
+    }, 3000);
+    
+   return false;
 }
 </script>
 
