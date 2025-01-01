@@ -6535,14 +6535,14 @@ function submitToGoogleForm() {
         'entry.1456783659': form.querySelectorAll('input[name="sns"]')[0].value || '',  // 인스타/블로그
         'entry.1961663393': form.querySelectorAll('input[name="sns"]')[1].value || '',   // 여행경비
         'entry.1079674076': (() => {
-                const val = getData('driving_status');
-                const options = {
-                    'car': '자차 보유',
-                    'license': '면허만 보유',
-                    'none': '해당사항 없음'
-                };
-                return options[val] || '';
-            })(),
+            const val = form.querySelector('select[name="driving_status"]')?.value;
+            const options = {
+                'car': '자가 보유',
+                'license': '면허만 보유',
+                'none': '해당사항 없음'
+            };
+            return options[val] || '';
+        })(),
         'entry.916858698': getData('extracurricular'),
         'entry.877565818': getData('fixed_schedule'),
         'entry.2098145147': (() => {
