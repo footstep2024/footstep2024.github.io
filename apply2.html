@@ -6746,6 +6746,7 @@ const getCheckboxData = (name) => {
 };
     
 function submitToGoogleForm() {
+    
     const form = document.getElementById('applicationForm');
     
     const name = document.querySelector('[name="name"]')?.value || 
@@ -6791,11 +6792,11 @@ function submitToGoogleForm() {
     const finalWords = document.querySelector('[name="final_words"]')?.value;
     
     // 공지사항 체크박스 검증
-    const noticeChecks = Array.from({length: 8}, (_, i) => {
+    const noticeChecksComplete = Array.from({length: 8}, (_, i) => {
         const num = i + 1;
         return document.querySelector(`[name="notice_check_${num}"]`)?.checked ||
                document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
-    });
+    }).every(check => check);
     
     if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
         !getData('home_address') || !getData('current_address') || !getData('school') || 
@@ -6807,7 +6808,7 @@ function submitToGoogleForm() {
         !getData('special_introduction') || !getData('visited_places') || 
         !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
         !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
-        selectedInterviewSlots.length === 0) {
+        selectedInterviewSlots.length === 0 || !noticeChecksComplete) {
         
         showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
         return;
