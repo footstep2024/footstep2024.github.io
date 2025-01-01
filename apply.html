@@ -4434,7 +4434,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation"></i>
         <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="notice_check_1" required>
+            <input type="checkbox" name="notice_check_3" required>
             <span class="check-text">확인함</span>
         </label>
     </div>
@@ -4445,7 +4445,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>신입 기수는 가입비가 없으나, OB전환 및 활동 연장 시부터 일정기간 동아리 발전기금을 납부하게 됩니다. 활동 연장은 최대 2학기까지 가능하며, 연속 또는 중간 OB전환 후 재참여 모두 가능합니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_3" required>
+<input type="checkbox" name="notice_check_4" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4456,7 +4456,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>매달 2, 4째주 정기 활동에 모두 불참하거나, 카카오톡 투표에 2회 연속 무단 미참여 시 활동에 제재가 있을 수 있습니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_4" required>
+<input type="checkbox" name="notice_check_5" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4467,7 +4467,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <i class="fas fa-circle-exclamation" style="color: #dc3545;"></i>
         <p style="color: #dc3545;">성적 자기 결정권 침해 사례 발생 시 가해자는 즉시 제명 및 법적 고발 조치되며, 피해자에 대한 법률 서비스를 적극 지원합니다.<button class="example-btn" type="button" data-type="rules" style="margin-left: 8px">관련 회칙 보기</button></p>
         <label class="confirm-check">
-            <input type="checkbox" name="notice_check_5" required>
+            <input type="checkbox" name="notice_check_6" required>
             <span class="check-text" style="color: #dc3545;">확인함</span>
         </label>
     </div>
@@ -4489,7 +4489,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <i class="fas fa-circle-exclamation"></i>
 <p>여행동아리를 미팅동아리로 여기는 분은 지원을 삼가해주시기 바랍니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_6" required>
+<input type="checkbox" name="notice_check_8" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -6732,11 +6732,12 @@ const getData = (name) => {
 function submitToGoogleForm() {
     const form = document.getElementById('applicationForm');
     
-    // 이름과 MBTI만 검사
     const name = document.querySelector('[name="name"]')?.value || 
                 document.querySelector('[name="name_mobile"]')?.value;
     const mbti = document.querySelector('[name="mbti"]')?.value || 
                 document.querySelector('[name="mbti_mobile"]')?.value;
+    const phone = document.querySelector('[name="phone"]')?.value || 
+                 document.querySelector('[name="phone_mobile"]')?.value;
 
     if (!name || !mbti) {
         showCustomAlert('모든 체크항목과 필수 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
