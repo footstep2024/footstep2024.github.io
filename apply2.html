@@ -6738,32 +6738,22 @@ const getData = (name) => {
 function submitToGoogleForm() {
     const form = document.getElementById('applicationForm');
     
-    const name = document.querySelector('[name="name"]')?.value || 
-                document.querySelector('[name="name_mobile"]')?.value;
-    const mbti = document.querySelector('[name="mbti"]')?.value || 
-                document.querySelector('[name="mbti_mobile"]')?.value;
-    const phone = document.querySelector('[name="phone"]')?.value || 
-                 document.querySelector('[name="phone_mobile"]')?.value;
-    const birth = document.querySelector('[name="birthdate"]')?.value || 
-              document.querySelector('[name="birthdate_mobile"]')?.value;
+    const name = getData('name');
+    const mbti = getData('mbti');
+    const phone = getData('phone');
+    const birth = getData('birthdate');
     const gender = document.querySelector('input[name="gender"]:checked')?.value ||
                document.querySelector('input[name="gender_mobile"]:checked')?.value;
-    const homeAddr = document.querySelector('[name="home_address"]')?.value ||
-                    document.querySelector('[name="home_address_mobile"]')?.value;
-    const currAddr = document.querySelector('[name="current_address"]')?.value ||
-                    document.querySelector('[name="current_address_mobile"]')?.value;
-    const school = document.querySelector('[name="school"]')?.value ||
-                  document.querySelector('[name="school_mobile"]')?.value;
-    const major = document.querySelector('[name="major"]')?.value ||
-                 document.querySelector('[name="major_mobile"]')?.value;
-    const studentId = document.querySelector('[name="student_id"]')?.value ||
-                     document.querySelector('[name="student_id_mobile"]')?.value;
-    const grade = document.querySelector('[name="grade"]')?.value ||
-                 document.querySelector('[name="grade_mobile"]')?.value;
+    const homeAddr = getData('home_address');
+    const currAddr = getData('current_address');
+    const school = getData('school');
+    const major = getData('major');
+    const studentId = getData('student_id');
+    const grade = getData('grade');
     const driving = document.querySelector('[name="driving_status"]')?.value;
     const travelCost = document.querySelectorAll('input[name="sns"]')[1]?.value;
-    const extraCurr = document.querySelector('[name="extracurricular"]')?.value;
-    const fixedSched = document.querySelector('[name="fixed_schedule"]')?.value;
+    const extraCurr = getData('extracurricular');
+    const fixedSched = getData('fixed_schedule');
     const otMt = document.querySelector('input[name="ot_mt_attendance"]:checked')?.value ||
                 document.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
     const regAttend = document.querySelector('input[name="regular_attendance"]:checked')?.value ||
@@ -6772,13 +6762,13 @@ function submitToGoogleForm() {
                         document.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
     const partAgree = document.querySelector('input[name="participation_agreement"]:checked')?.value ||
                      document.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
-    const intro = document.querySelector('[name="introduction"]')?.value;
-    const specialIntro = document.querySelector('[name="special_introduction"]')?.value;
-    const visitedPlaces = document.querySelector('[name="visited_places"]')?.value;
+    const intro = getData('introduction');
+    const specialIntro = getData('special_introduction');
+    const visitedPlaces = getData('visited_places');
     const essayType = document.querySelector('input[name="travel_essay_type"]:checked')?.value;
-    const essay = document.querySelector('[name="travel_essay"]')?.value;
-    const motivation = document.querySelector('[name="motivation"]')?.value;
-    const finalWords = document.querySelector('[name="final_words"]')?.value;
+    const essay = getData('travel_essay');
+    const motivation = getData('motivation');
+    const finalWords = getData('final_words');
     
     // 공지사항 체크박스 검증
     const noticeChecks = Array.from({length: 8}, (_, i) => {
