@@ -6601,7 +6601,25 @@ function submitToGoogleForm() {
                    return options[selected] || '';
                 })(),
                 
-                'entry.1776237344': getData('travel_essay')
+                'entry.1776237344': getData('travel_essay'),
+                'entry.1388518072': getData('motivation'),
+                'entry.1342219550': getData('final_words'),
+                'entry.1175077440': (() => {
+                    const timeMap = {
+                        '0117_am': '17일 오전',
+                        '0117_pm': '17일 오후',
+                        '0118_am': '18일 오전',
+                        '0118_pm': '18일 오후',
+                        '0119_am': '19일 오전',
+                        '0119_pm': '19일 오후',
+                        '0120_am': '20일 오전',
+                        '0120_pm': '20일 오후'
+                    };
+                    return selectedInterviewSlots
+                        .map(slot => timeMap[slot] || slot)
+                        .join(', ');
+                    })(),
+                'entry.2024382788': getData('interview_requests')
             };
 
 
