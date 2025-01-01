@@ -6777,14 +6777,57 @@ function submitToGoogleForm() {
                document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
     });
     
-    if (!name || !mbti || !phone || !gender || !homeAddr || !currAddr || !school || 
-        !major || !studentId || !grade || !driving || !extraCurr || !fixedSched || 
-        !otMt || !regAttend || !contentAgree || !partAgree || !intro || !specialIntro || 
-        !visitedPlaces || !essayType || !essay || !motivation || !finalWords || 
-        selectedInterviewSlots.length === 0 || !noticeChecks.every(check => check)) {
-        showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
-        return;
-    }
+const privacyAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || 
+                      form.querySelector('[name="privacy_agreement_mobile"]')?.checked;
+
+if (!privacyAgreed) {
+    showCustomAlert('개인정보 수집에 동의해주세요.');
+    return;
+}
+
+const requiredFields = [
+    {value: name, msg: '이름'},
+    {value: birth, msg: '생년월일'},
+    {value: gender, msg: '성별'},
+    {value: mbti, msg: 'MBTI'},
+    {value: phone, msg: '연락처'},
+    {value: homeAddr, msg: '본가'},
+    {value: currAddr, msg: '현재 거주지'},
+    {value: school, msg: '학교'},
+    {value: major, msg: '전공'},
+    {value: studentId, msg: '학번'},
+    {value: grade, msg: '학년'},
+    {value: driving, msg: '운전가능여부'},
+    {value: extraCurr, msg: '대외활동 경력'},
+    {value: fixedSched, msg: '고정 일정'},
+    {value: otMt, msg: 'OT/MT 참석 여부'},
+    {value: regAttend, msg: '정기 활동 참여'},
+    {value: contentAgree, msg: '콘텐츠 활용 동의'},
+    {value: partAgree, msg: '여행 운영 참여'},
+    {value: intro, msg: '자기소개'},
+    {value: specialIntro, msg: '특별 자기소개'},
+    {value: visitedPlaces, msg: '방문한 여행지'},
+    {value: essayType, msg: '에세이 주제'},
+    {value: essay, msg: '에세이'},
+    {value: motivation, msg: '지원 동기'},
+    {value: finalWords, msg: '마지막 한마디'}
+];
+
+const missingField = requiredFields.find(field => !field.value);
+if (missingField) {
+    showCustomAlert(`${missingField.msg}을(를) 입력해주세요.`);
+    return;
+}
+
+if (selectedInterviewSlots.length === 0) {
+    showCustomAlert('면접 시간을 선택해주세요.');
+    return;
+}
+
+if (!noticeChecks.every(check => check)) {
+    showCustomAlert('모든 활동 안내사항을 확인해주세요.');
+    return;
+}
 
     showLoading();
 
