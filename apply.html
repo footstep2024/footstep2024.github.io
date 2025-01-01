@@ -6491,21 +6491,17 @@ function submitToGoogleForm() {
    tempForm.target = '_blank';
 
     const formEntries = {
-        'entry.350593245': (() => {
-            const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked ||
-                            form.querySelector('input[name="privacy_agreement_mobile"]')?.checked;
-            return isAgreed ? '동의함' : '';
-        })(),
-        'entry.481763846': getData('name'),                     // 이름
-        'entry.360260459': getData('birthdate'),                // 생년월일
-        'entry.645127600': (() => {                            // 성별
+        'entry.350593245': '동의함',
+        'entry.481763846': getData('name'),
+        'entry.360260459': getData('birthdate'), 
+        'entry.645127600': (() => { 
             const maleChecked = form.querySelector('input[name="gender"][value="남성"]')?.checked || 
                                form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked;
             const femaleChecked = form.querySelector('input[name="gender"][value="여성"]')?.checked || 
                                  form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked;
             return maleChecked ? '남성' : femaleChecked ? '여성' : '';
         })(),
-        'entry.1242980670': getData('mbti')                    // MBTI 선택
+        'entry.1242980670': getData('mbti')
     };
 
    // 각 엔트리를 폼에 추가
