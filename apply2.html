@@ -2080,13 +2080,19 @@ color: var(--primary-color);
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
-.notice-card {
-padding: 1.2rem;
-}
+    .notice-card {
+        padding: 1.5rem;
+        margin: 0.8rem;  /* 좌우 여백 추가 */
+        width: calc(100% - 1.6rem);  /* 여백만큼 너비 조정 */
+        border-radius: 16px;  /* 둥글기 증가 */
+        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.1);
+    }
 
-.notice-item {
-padding: 0.8rem;
-}
+    /* 모달 내부 텍스트 크기 조정 */
+    .notice-content p {
+        font-size: 0.9rem;  /* 텍스트 크기 증가 */
+        line-height: 1.6;   /* 줄간격 증가 */
+    }
 
 .notice-content {
 flex-direction: column;
@@ -4647,32 +4653,33 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 
 <div style="display: flex; justify-content: center; width: 100%;">
-    <!-- PC 버전 -->
-    <div class="button-group pc-only">
-        <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
-        <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
-    </div>
-    <!-- 모바일 버전 -->
-    <div class="button-group mobile-only">
-        <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
-    </div>
+<!-- PC 버전 -->
+<div class="button-group pc-only">
+    <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
+    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
 </div>
-<!-- 미리보기 모달 -->
+
+<!-- 모바일 버전 -->
+<div class="button-group mobile-only">
+    <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
+</div>
+
+<!-- 미리보기 모달 추가 -->
 <div class="preview-modal" id="previewModal">
-    <div class="preview-modal-content">
-        <button class="example-close" onclick="closePreview()">&times;</button>
-        <div class="preview-modal-header">
-            <h3 class="preview-modal-title">지원서 미리보기</h3>
-            <p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
-        </div>
-        <div class="preview-content">
-            <!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
-        </div>
-        <div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
-            <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
-            <button class="modal-bottom-close" onclick="submitToGoogleForm()" style="background: var(--primary-color);">제출하기</button>
-        </div>
-    </div>
+<div class="preview-modal-content">
+<button class="example-close" onclick="closePreview()">&times;</button>
+<div class="preview-modal-header">
+<h3 class="preview-modal-title">지원서 미리보기</h3>
+<p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
+</div>
+<div class="preview-content">
+<!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
+</div>
+<div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
+    <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
+    <button class="modal-bottom-close" onclick="submitForm()" style="background: var(--primary-color);">제출하기</button>
+</div>
+</div>
 </div>
 
 </form>
@@ -6723,97 +6730,74 @@ function showCustomAlert(message) {
     });
 }
 
-
-function submitToGoogleForm() {
-    console.log('폼 제출 시작'); // 디버깅용 로그
+const getData = (name) => {
+    return document.querySelector(`[name="${name}"]`)?.value || 
+           document.querySelector(`[name="${name}_mobile"]`)?.value || '';
+};
     
+function submitToGoogleForm() {
     const form = document.getElementById('applicationForm');
-    if (!form) {
-        console.log('폼을 찾을 수 없음'); // 디버깅용 로그
-        return false;
+    
+    const name = document.querySelector('[name="name"]')?.value || 
+                document.querySelector('[name="name_mobile"]')?.value;
+    const mbti = document.querySelector('[name="mbti"]')?.value || 
+                document.querySelector('[name="mbti_mobile"]')?.value;
+    const phone = document.querySelector('[name="phone"]')?.value || 
+                 document.querySelector('[name="phone_mobile"]')?.value;
+    const birth = document.querySelector('[name="birthdate"]')?.value || 
+              document.querySelector('[name="birthdate_mobile"]')?.value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value ||
+               document.querySelector('input[name="gender_mobile"]:checked')?.value;
+    const homeAddr = document.querySelector('[name="home_address"]')?.value ||
+                    document.querySelector('[name="home_address_mobile"]')?.value;
+    const currAddr = document.querySelector('[name="current_address"]')?.value ||
+                    document.querySelector('[name="current_address_mobile"]')?.value;
+    const school = document.querySelector('[name="school"]')?.value ||
+                  document.querySelector('[name="school_mobile"]')?.value;
+    const major = document.querySelector('[name="major"]')?.value ||
+                 document.querySelector('[name="major_mobile"]')?.value;
+    const studentId = document.querySelector('[name="student_id"]')?.value ||
+                     document.querySelector('[name="student_id_mobile"]')?.value;
+    const grade = document.querySelector('[name="grade"]')?.value ||
+                 document.querySelector('[name="grade_mobile"]')?.value;
+    const driving = document.querySelector('[name="driving_status"]')?.value;
+    const travelCost = document.querySelectorAll('input[name="sns"]')[1]?.value;
+    const extraCurr = document.querySelector('[name="extracurricular"]')?.value;
+    const fixedSched = document.querySelector('[name="fixed_schedule"]')?.value;
+    const otMt = document.querySelector('input[name="ot_mt_attendance"]:checked')?.value ||
+                document.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+    const regAttend = document.querySelector('input[name="regular_attendance"]:checked')?.value ||
+                     document.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+    const contentAgree = document.querySelector('input[name="content_agreement"]:checked')?.value ||
+                        document.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+    const partAgree = document.querySelector('input[name="participation_agreement"]:checked')?.value ||
+                     document.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+    const intro = document.querySelector('[name="introduction"]')?.value;
+    const specialIntro = document.querySelector('[name="special_introduction"]')?.value;
+    const visitedPlaces = document.querySelector('[name="visited_places"]')?.value;
+    const essayType = document.querySelector('input[name="travel_essay_type"]:checked')?.value;
+    const essay = document.querySelector('[name="travel_essay"]')?.value;
+    const motivation = document.querySelector('[name="motivation"]')?.value;
+    const finalWords = document.querySelector('[name="final_words"]')?.value;
+    
+    // 공지사항 체크박스 검증
+    const noticeChecks = Array.from({length: 8}, (_, i) => {
+        const num = i + 1;
+        return document.querySelector(`[name="notice_check_${num}"]`)?.checked ||
+               document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
+    });
+    
+    if (!name || !mbti || !phone || !gender || !homeAddr || !currAddr || !school || 
+        !major || !studentId || !grade || !driving || !extraCurr || !fixedSched || 
+        !otMt || !regAttend || !contentAgree || !partAgree || !intro || !specialIntro || 
+        !visitedPlaces || !essayType || !essay || !motivation || !finalWords || 
+        selectedInterviewSlots.length === 0 || !noticeChecks.every(check => check)) {
+        showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
+        return;
     }
 
-    // 필수 항목 검증 전에 로그 추가
-    console.log('필수 항목 검증 시작');
-
-    // 필수 항목 검증
-    const requiredFields = {
-        'privacy_agreement': '개인정보 수집 동의',
-        'name': '이름',
-        'birthdate': '생년월일',
-        'gender': '성별',
-        'mbti': 'MBTI',
-        'phone': '연락처',
-        'home_address': '본가',
-        'current_address': '현재 거주지',
-        'school': '학교',
-        'major': '전공',
-        'student_id': '학번',
-        'grade': '학년',
-        'driving_status': '운전 가능 여부',
-        'sns_2': '여행 경비',
-        'extracurricular': '동아리 및 대외활동',
-        'fixed_schedule': '주간 고정 일정',
-        'ot_mt_attendance': 'OT/MT 참석 여부',
-        'regular_attendance': '정기 활동 참석 여부',
-        'content_agreement': '콘텐츠 활용 동의',
-        'participation_agreement': '여행 운영 참여',
-        'introduction': '자기소개',
-        'special_introduction': '유형 소개',
-        'visited_places': '방문 여행지',
-        'travel_essay_type': '여행 에세이 유형',
-        'travel_essay': '여행 에세이',
-        'motivation': '지원 동기',
-        'final_words': '마지막 한마디'
-    };
-
-    // 필수 항목 검증 함수
-    const validateField = (fieldName) => {
-        console.log(`${fieldName} 필드 검증 중`); // 디버깅용 로그
-        
-        // 일반 입력 필드
-        const inputField = form.querySelector(`[name="${fieldName}"]`) || 
-                          form.querySelector(`[name="${fieldName}_mobile"]`);
-        
-        // 라디오 버튼
-        const radioButtons = form.querySelectorAll(`input[name="${fieldName}"], input[name="${fieldName}_mobile"]`);
-        const isRadioChecked = Array.from(radioButtons).some(radio => radio.checked);
-        
-        // 체크박스
-        const checkbox = form.querySelector(`input[type="checkbox"][name="${fieldName}"], input[type="checkbox"][name="${fieldName}_mobile"]`);
-        const isCheckboxChecked = checkbox?.checked;
-
-        // select 필드
-        const selectField = form.querySelector(`select[name="${fieldName}"], select[name="${fieldName}_mobile"]`);
-        const isSelectValid = selectField?.value && selectField.value !== '';
-
-        const result = inputField?.value?.trim() !== '' || 
-                      isRadioChecked || 
-                      isCheckboxChecked || 
-                      isSelectValid;
-
-        console.log(`${fieldName} 검증 결과:`, result); // 디버깅용 로그
-        return result;
-    };
-
-    // 모든 필수 필드 검증
-    for (const fieldName of Object.keys(requiredFields)) {
-        if (!validateField(fieldName)) {
-            console.log(`${fieldName} 필드 검증 실패`); // 디버깅용 로그
-            showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
-            return false;
-        }
-    }
-
-    console.log('모든 필드 검증 완료, 제출 시작'); // 디버깅용 로그
-
-    // 로딩 스피너 표시
     showLoading();
 
-    // 폼 데이터 수집 및 제출
-    const formData = new FormData();
-    
-    // formEntries 객체 정의 및 데이터 수집
     const formEntries = {
         'entry.350593245': '동의함',
         'entry.481763846': getData('name'),
@@ -6946,26 +6930,21 @@ function submitToGoogleForm() {
                 'entry.2024382788': getData('interview_requests')
             };
 
+   const formData = new FormData();
     Object.entries(formEntries).forEach(([key, value]) => {
         formData.append(key, value);
-        console.log(`폼 데이터 추가: ${key} = ${value}`); // 디버깩용 로그
     });
 
-    // 구글 폼으로 데이터 전송
+    showLoading();  // 로딩 표시
+
     fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSf01-xrjbZry1dVgFuEvSpEvXb_WHvP-nkPcYnfyd_SJWuXpA/formResponse', {
         method: 'POST',
         mode: 'no-cors',
         body: formData
     })
     .then(() => {
-        console.log('폼 제출 성공'); // 디버깅용 로그
         hideLoading();
-        showCustomAlert('감사합니다.<br>지원서가 성공적으로 접수되었습니다.<br><br>발자취에 관심 가져주셔서 감사합니다.<br><br>정확한 접수 확인을 희망하시는 분들은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.');
-    })
-    .catch((error) => {
-        console.error('폼 제출 실패:', error); // 디버깅용 로그
-        hideLoading();
-        showCustomAlert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        showCustomAlert('감사합니다.<br>지원서가 성공적으로 접수되었습니다.<br><br>발자취에 관심 가져주셔서 감사드리며, 정확한 접수 확인을 희망하시는 분들은 카카오톡 오픈채팅방으로 문의해주시기 바랍니다.');
     });
 
     return false;
@@ -7009,7 +6988,7 @@ function submitToGoogleForm() {
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         document.body.classList.add('page-loaded');
-    }, 500); 
+    }, 100); 
 });
 </script>
 
