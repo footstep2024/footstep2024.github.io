@@ -6504,7 +6504,34 @@ function submitToGoogleForm() {
         'entry.1242980670': getData('mbti'),
         'entry.70617674': getData('phone'),
         'entry.323642249': getData('home_address'),
-        'entry.1252661984': getData('current_address')
+        'entry.1252661984': getData('current_address'),
+        'entry.15145808': getData('school'),
+        'entry.1900790676': getData('major'),
+        'entry.1731389480': getData('student_id'),
+        'entry.148899192': (() => {
+            const grade = getData('grade');
+            const gradeMap = {
+                '1': '1학년',
+                '2': '2학년',
+                '3': '3학년',
+                '4': '4학년',
+                '5': '5학년',
+                'pre1': '예과 1학년',
+                'pre2': '예과 2학년',
+                'med1': '본과 1학년',
+                'med2': '본과 2학년',
+                'med3': '본과 3학년',
+                'med4': '본과 4학년',
+                'postpone': '졸업유예',
+                'graduating': '졸업예정',
+                'graduated': '졸업'
+            };
+            return gradeMap[grade] || grade;
+        })(), 
+        'entry.732787670': (() => {
+            return form.querySelector('input[name="is_leave"]')?.checked ||
+            form.querySelector('input[name="is_leave_mobile"]')?.checked ? '휴학' : '';
+        })()
     };
 
    // 각 엔트리를 폼에 추가
