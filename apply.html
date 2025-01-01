@@ -6525,13 +6525,26 @@ function submitToGoogleForm() {
                 'postpone': '졸업유예',
                 'graduating': '졸업예정',
                 'graduated': '졸업'
-            };
-            return gradeMap[grade] || grade;
-        })(), 
+                };
+                return gradeMap[grade] || grade;
+            })(), 
         'entry.732787670': (() => {
-            return form.querySelector('input[name="is_leave"]')?.checked ||
-            form.querySelector('input[name="is_leave_mobile"]')?.checked ? '휴학' : '';
-        })()
+                return form.querySelector('input[name="is_leave"]')?.checked ||
+                form.querySelector('input[name="is_leave_mobile"]')?.checked ? '휴학' : '';
+        })(),
+        'entry.1456783659': form.querySelectorAll('input[name="sns"]')[0].value || '',  // 인스타/블로그
+        'entry.1961663393': form.querySelectorAll('input[name="sns"]')[1].value || '',   // 여행경비
+        'entry.1079674076': (() => {
+                const val = getData('driving_status');
+                const options = {
+                    'car': '자차 보유',
+                    'license': '면허만 보유',
+                    'none': '해당사항 없음'
+                };
+                return options[val] || '';
+            })(),
+        'entry.916858698': getData('extracurricular'),
+        'entry.877565818': getData('fixed_schedule')
     };
 
    // 각 엔트리를 폼에 추가
