@@ -6544,9 +6544,68 @@ function submitToGoogleForm() {
                 return options[val] || '';
             })(),
         'entry.916858698': getData('extracurricular'),
-        'entry.877565818': getData('fixed_schedule')
-    };
+        'entry.877565818': getData('fixed_schedule'),
+        'entry.2098145147': (() => {
+                const selected = form.querySelector('input[name="ot_mt_attendance"]:checked')?.value || 
+                                form.querySelector('input[name="ot_mt_attendance_mobile"]:checked')?.value;
+                const options = {
+                    '참석_가능': '참석 가능',
+                    '늦게_참석': '늦게 참석',
+                    '참석_불가': '참석 불가'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1156633536': (() => {
+                const selected = form.querySelector('input[name="regular_attendance"]:checked')?.value ||
+                                form.querySelector('input[name="regular_attendance_mobile"]:checked')?.value;
+                const options = {
+                    '대부분_참석': '대부분 참여',
+                    '부분_참석': '부분 참여',
+                    '참여_어려움': '참여 어려움'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1400184185': (() => {
+                const selected = form.querySelector('input[name="content_agreement"]:checked')?.value ||
+                                form.querySelector('input[name="content_agreement_mobile"]:checked')?.value;
+                const options = {
+                    '전체_동의': '모두 동의',
+                    '클라우드만': '클라우드만 동의',
+                    '동의_거부': '동의 안함'
+                    };
+                    return options[selected] || '';
+                    })(),
+            
+            'entry.1321485012': (() => {
+                const selected = form.querySelector('input[name="participation_agreement"]:checked')?.value ||
+                                form.querySelector('input[name="participation_agreement_mobile"]:checked')?.value;
+                const options = {
+                    '적극_참여': '적극 참여',
+                    '일반_참여': '최소한으로 참여',
+                    '소극_참여': '관심 없음'
+                    };
+                    return options[selected] || '';
+                    })(),
+                'entry.455609739': getData('introduction'),
+                'entry.1066911244': getData('special_introduction'),
+                'entry.1819863450': getData('visited_places'),
+                
+                'entry.969561245': (() => {
+                   const selected = form.querySelector('input[name="travel_essay_type"]:checked')?.value;
+                   const options = {
+                       'memorable_episode': '기억에 남는 여행 에피소드',
+                       'planned_travel': '자체 여행 기획 경험'
+                   };
+                   return options[selected] || '';
+                })(),
+                
+                'entry.1776237344': getData('travel_essay')
+            };
 
+
+    
    // 각 엔트리를 폼에 추가
    Object.entries(formEntries).forEach(([key, value]) => {
        const input = document.createElement('input');
