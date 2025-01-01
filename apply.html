@@ -6490,13 +6490,22 @@ function submitToGoogleForm() {
    tempForm.method = 'POST';
    tempForm.target = '_blank';
 
-    // 구글 폼에 맞는 필드명으로 데이터 변환
     const formEntries = {
-        'entry.564864113': '동의함',                            // 개인정보 동의 여부
+        'entry.350593245': (() => {
+            const isAgreed = form.querySelector('input[name="privacy_agreement"]')?.checked ||
+                            form.querySelector('input[name="privacy_agreement_mobile"]')?.checked;
+            return isAgreed ? '동의함' : '';
+        })(),
         'entry.481763846': getData('name'),                     // 이름
         'entry.360260459': getData('birthdate'),                // 생년월일
-        'entry.645127600': getData('gender'),                   // 성별
-        };
+        'entry.645127600': (() => {                            // 성별
+            const maleChecked = form.querySelector('input[name="gender"][value="남성"]')?.checked || 
+                               form.querySelector('input[name="gender_mobile"][value="남성"]')?.checked;
+            const femaleChecked = form.querySelector('input[name="gender"][value="여성"]')?.checked || 
+                                 form.querySelector('input[name="gender_mobile"][value="여성"]')?.checked;
+            return maleChecked ? '남성' : femaleChecked ? '여성' : '';
+        })(),
+    };
 
    // 각 엔트리를 폼에 추가
    Object.entries(formEntries).forEach(([key, value]) => {
