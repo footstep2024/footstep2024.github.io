@@ -6646,8 +6646,9 @@ function submitToGoogleForm() {
 
 <div class="page-transition-overlay"></div>
 
+<div class="page-transition-overlay"></div>
+
 <style>
-/* 페이지 트랜지션 오버레이 */
 .page-transition-overlay {
     position: fixed;
     top: 0;
@@ -6661,12 +6662,10 @@ function submitToGoogleForm() {
     transition: opacity 1s ease;
 }
 
-/* 페이지가 준비되면 오버레이를 페이드아웃 */
 .page-loaded .page-transition-overlay {
     opacity: 0;
 }
 
-/* 초기 로딩시 컨텐츠 페이드인 */
 .container {
     opacity: 0;
     transform: translateY(20px);
@@ -6681,10 +6680,9 @@ function submitToGoogleForm() {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 폰트와 이미지가 로드될 시간을 확보하기 위해 최소 지연시간 설정
     setTimeout(function() {
         document.body.classList.add('page-loaded');
-    }, 500);  // 500ms 후에 페이드인 시작
+    }, 500); 
 });
 </script>
 
