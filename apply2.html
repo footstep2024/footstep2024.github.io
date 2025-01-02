@@ -6751,6 +6751,44 @@ function hideLoading() {
     document.getElementById('loading-spinner').style.display = 'none';
 }
 
+// 구글폼 제출 함수 수정
+function submitToGoogleForm() {
+   // 필수 입력 확인
+   if (!validateForm()) {
+       showCustomAlert('잠시만요!', 'error');
+       return;
+   }
+
+   showLoading();
+
+   // 구글폼 제출 로직
+   const formData = new FormData();
+   // ... formData 설정 ...
+
+   fetch('구글폼URL', {
+       method: 'POST',
+       mode: 'no-cors',
+       body: formData
+   })
+   .then(() => {
+       setTimeout(() => {
+           hideLoading();
+           showCustomAlert('감사합니다', 'success');
+       }, 2000); // 스피너 표시 시간
+   })
+   .catch(error => {
+       hideLoading();
+       console.error('Error:', error);
+       showCustomAlert('잠시만요!', 'error');
+   });
+}
+
+// 폼 검증 함수
+function validateForm() {
+   const required = document.querySelectorAll('[required]');
+   return Array.from(required).every(field => field.value.trim() !== '');
+}
+
 function showCustomAlert(message, type = 'error') {
     const backdrop = document.createElement('div');
     backdrop.className = 'custom-alert-backdrop';
@@ -6778,7 +6816,7 @@ function showCustomAlert(message, type = 'error') {
     document.body.style.overflow = 'hidden';
 }
 
-function handleAlertDismiss(button) {
+function handleAlertConfirm(button) {
     const backdrop = button.closest('.custom-alert-backdrop');
     backdrop.style.opacity = '0';
     backdrop.style.transition = 'opacity 0.3s ease';
@@ -6786,6 +6824,7 @@ function handleAlertDismiss(button) {
     setTimeout(() => {
         backdrop.remove();
         document.body.style.overflow = '';
+        window.location.href = 'index.html';
     }, 300);
 }
 
