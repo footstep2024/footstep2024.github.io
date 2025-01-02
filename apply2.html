@@ -6769,27 +6769,26 @@ function showCustomAlert(message, type = 'error') {
     ` : `
         <h3 class="alert-title">잠시만요!</h3>
         <p class="alert-message">필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다</p>
-        <button class="alert-button" onclick="this.parentElement.parentElement.remove()">확인</button>
+        <button class="alert-button" onclick="handleAlertDismiss(this)">확인</button>
     `;
     
     alertBox.innerHTML = content;
     backdrop.appendChild(alertBox);
     document.body.appendChild(backdrop);
-    
     document.body.style.overflow = 'hidden';
 }
 
-function handleAlertConfirm(button) {
+function handleAlertDismiss(button) {
     const backdrop = button.closest('.custom-alert-backdrop');
     backdrop.style.opacity = '0';
     backdrop.style.transition = 'opacity 0.3s ease';
     
     setTimeout(() => {
         backdrop.remove();
-        document.body.style.overflow = 'auto';
-        window.location.href = 'index.html';
+        document.body.style.overflow = '';
     }, 300);
 }
+
 
 const getData = (name) => {
     return document.querySelector(`[name="${name}"]`)?.value || 
