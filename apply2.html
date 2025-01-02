@@ -6788,10 +6788,7 @@ function submitToGoogleForm() {
     const motivation = getData('motivation');
     const finalWords = getData('final_words');
     
-const noticeChecks = window.innerWidth <= 768 
-    ? document.querySelectorAll('.mobile-only input[name^="notice_check"]')
-    : document.querySelectorAll('.pc-only input[name^="notice_check"]');
-
+const noticeChecks = document.querySelectorAll('.notice-content input[type="checkbox"]');
 alert('찾은 체크박스 개수: ' + noticeChecks.length);
 noticeChecks.forEach((checkbox, index) => {
     alert(`체크박스 ${index + 1}: ${checkbox.checked}`);
