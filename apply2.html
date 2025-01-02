@@ -6789,7 +6789,11 @@ function submitToGoogleForm() {
     const finalWords = getData('final_words');
     
 const noticeChecks = document.querySelectorAll('input[name^="notice_check"]');
-console.log('Found checkboxes:', noticeChecks.length);
+alert('찾은 체크박스 개수: ' + noticeChecks.length);
+noticeChecks.forEach((checkbox, index) => {
+    alert(`체크박스 ${index + 1}: ${checkbox.checked}`);
+});
+alert('모두 체크됨: ' + Array.from(noticeChecks).every(checkbox => checkbox.checked));
 
 noticeChecks.forEach((checkbox, index) => {
    console.log(`Checkbox ${index + 1}:`, checkbox.checked);
