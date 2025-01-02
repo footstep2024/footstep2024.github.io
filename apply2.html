@@ -6787,10 +6787,8 @@ function submitToGoogleForm() {
     const motivation = getData('motivation');
     const finalWords = getData('final_words');
     
-const noticeChecks = Array.from({length: 8}, (_, i) => {
-    const num = i + 1;
-    return getCheckboxData(`notice_check_${num}`);
-}).every(checked => checked === true);
+const noticeChecks = document.querySelectorAll('input[name^="notice_check"]');
+const allChecked = Array.from(noticeChecks).every(checkbox => checkbox.checked);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
     !getData('home_address') || !getData('current_address') || !getData('school') || 
@@ -6802,7 +6800,7 @@ if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('
     !getData('special_introduction') || !getData('visited_places') || 
     !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
     !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
-    !noticeChecks) {
+    !allChecked) {
     showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
     return;
 }
