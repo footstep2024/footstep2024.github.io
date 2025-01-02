@@ -6789,8 +6789,8 @@ function submitToGoogleForm() {
     const finalWords = getData('final_words');
     
 const noticeChecks = [
-    ...document.querySelectorAll('.mobile-notice-item input[type="checkbox"]'),
-    ...document.querySelectorAll('.notice-content input[type="checkbox"]')
+    ...document.querySelectorAll('.notice-content input[type="checkbox"]'),
+    ...document.querySelectorAll('.mobile-notice-item input[type="checkbox"]')
 ].filter((checkbox, index, self) => 
     self.indexOf(checkbox) === index
 );
