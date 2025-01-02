@@ -6789,9 +6789,7 @@ function submitToGoogleForm() {
     
 const noticeChecks = Array.from({length: 8}, (_, i) => {
     const num = i + 1;
-    const pcCheck = document.querySelector(`[name="notice_check_${num}"]`)?.checked;
-    const mobileCheck = document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
-    return pcCheck || mobileCheck;
+    return getCheckboxData(`notice_check_${num}`);
 }).every(checked => checked === true);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
