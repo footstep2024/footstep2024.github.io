@@ -6790,9 +6790,12 @@ function submitToGoogleForm() {
     
 const noticeChecks = window.innerWidth <= 768 
     ? document.querySelectorAll('.mobile-notice-item input[type="checkbox"]')
-    : document.querySelectorAll('.notice-content input[type="checkbox"]');
+    : document.querySelectorAll('.notice-item input[type="checkbox"]'); // .notice-content를 .notice-item으로 변경
 
+alert('체크박스 개수: ' + noticeChecks.length);
+alert('모바일?: ' + (window.innerWidth <= 768));
 const allChecked = Array.from(noticeChecks).every(checkbox => checkbox.checked);
+alert('모두 체크됨?: ' + allChecked);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
    !getData('home_address') || !getData('current_address') || !getData('school') || 
