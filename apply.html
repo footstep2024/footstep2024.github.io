@@ -1159,7 +1159,6 @@ background: rgba(47, 82, 41, 0.1);
 color: var(--primary-color);
 }
 
-/* 스케줄 정보 스타일 */
 .schedule-info {
 display: flex;
 flex-direction: column;
@@ -1180,8 +1179,8 @@ gap: 0.8rem;
 color: var(--primary-color);
 width: 16px;
 text-align: center;
-line-height: 1;  /* 추가: 아이콘의 line-height 조정 */
-vertical-align: middle;  /* 추가: 수직 정렬 조정 */
+line-height: 1;
+vertical-align: middle;
 }
 
 .info-label {
@@ -1202,20 +1201,17 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    /* 카드 레이아웃 조정 */
     .schedule-card {
         padding: 1.2rem;
         margin-bottom: 1rem;
     }
 
-    /* 헤더 부분 정리 */
     .card-header {
         padding-bottom: 0.8rem;
         margin-bottom: 1rem;
         align-items: center;
     }
 
-    /* 정보 박스 스타일링 */
     .schedule-info {
         background: rgba(47, 82, 41, 0.03);
         padding: 1rem;
@@ -1223,7 +1219,6 @@ font-size: 0.9rem;
         margin-bottom: 1rem;
     }
 
-    /* 각 정보 아이템 간격 조정 */
     .info-item {
         display: flex;
         align-items: center;
@@ -1231,25 +1226,22 @@ font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
 
-    /* 아이콘 스타일링 */
     .info-item i {
         width: 20px;
         color: var(--primary-color);
         font-size: 0.9rem;
+        margin-top: 0.3rem;
     }
 
-    /* 레이블 스타일링 */
     .info-label {
         min-width: 40px;
         font-size: 0.85rem;
     }
 
-    /* 값 스타일링 */
     .info-value {
         font-size: 0.85rem;
     }
 
-    /* 서브 텍스트 위치 조정 */
     .info-item:first-child .info-sub {
         position: absolute;
         top: -1rem;
@@ -1261,28 +1253,24 @@ font-size: 0.9rem;
         border-radius: 4px;
     }
 
-    /* 설명 문구 스타일링 */
     .schedule-description {
         font-size: 0.85rem;
         line-height: 1.6;
         margin: 1rem 0;
     }
 
-    /* 알림 메시지 스타일링 */
     .alert-red, .alert-green {
         font-size: 0.8rem;
         margin-bottom: 0.4rem;
         padding-left: 0.5rem;
     }
 
-    /* 체크 아이콘 크기 조정 */
     .check-icon {
         width: 16px;
         height: 16px;
     }
 }
 
-/* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
 color: var(--text-color);
@@ -1290,7 +1278,6 @@ font-size: 0.8rem;
 line-height: 1.6;
 }
 
-/* 라디오 그룹 컨테이너 스타일 */
 .radio-group-container {
 display: flex;
 gap: 2rem;
@@ -1305,9 +1292,6 @@ border-top: 1px solid rgba(47, 82, 41, 0.1);
 padding: 1.2rem;
 }
 }
-
-
-
 
 .example-wrapper {
 display: flex;
