@@ -1597,7 +1597,6 @@
                     showNotification('지원 페이지로 이동합니다', 'success');
                     showLoading();
                     
-                    // 페이지 전환 효과를 위한 오버레이 추가
                     const overlay = document.createElement('div');
                     overlay.style.cssText = `
                         position: fixed;
@@ -1612,7 +1611,6 @@
                     `;
                     document.body.appendChild(overlay);
                     
-                    // 오버레이 페이드인 후 페이지 이동
                     setTimeout(() => {
                         overlay.style.opacity = '1';
                         setTimeout(() => {
@@ -1640,15 +1638,12 @@
                 showNotification('알림 신청을 처리 중입니다', 'success');
                 showLoading();
                 
-                // 폼 제출 처리
                 const formData = new FormData(form);
                 const phoneNumber = phoneInput.value;
                 
-                // hidden iframe을 통한 폼 제출
                 setTimeout(() => {
                     form.submit();
                     
-                    // UI 업데이트
                     setTimeout(() => {
                         hideLoading();
                         modal.style.display = 'none';
@@ -1754,7 +1749,7 @@
                 
                 if (elapsed < duration) {
                     const progress = elapsed / duration;
-                    const easedProgress = 1 - Math.pow(1 - progress, 3); // 큐빅 이징
+                    const easedProgress = 1 - Math.pow(1 - progress, 3);
                     current = start + (range * easedProgress);
                     
                     if (decimals > 0) {
