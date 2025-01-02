@@ -3367,7 +3367,6 @@ textarea.form-control[readonly] {
 </div>
 </div>
 <div class="calendar-grid">
-<!-- JavaScript로 동적 생성됨 -->
 </div>
 </div>
 <div class="date-modal-footer">
@@ -3577,7 +3576,6 @@ textarea.form-control[readonly] {
 
     <div class="basic-info-container mobile-only">
         <div class="mobile-form-grid">
-            <!-- 첫째 줄: 이름, 생년월일, MBTI -->
 <div class="mobile-form-row" style="display: grid; grid-template-columns: 27% 41% 32%; gap: 8px;">
     <div class="form-group" style="margin: 0;">
         <label class="form-label required">이름</label>
@@ -3719,7 +3717,6 @@ textarea.form-control[readonly] {
 </div>
 </div>
 
-<!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
 <input type="text" class="form-control" name="sns" placeholder="인스타/블로그 주소를 입력" style="width: 180px">
@@ -3732,8 +3729,6 @@ textarea.form-control[readonly] {
 </div>
 </div>
 
-
-<!-- SNS -->
 <div style="margin-top: 16px">
 <div style="display: flex; gap: 24px; align-items: center">
 <input type="text" class="form-control" name="sns" placeholder="여행 경비 입력" style="width: 180px">
@@ -3765,10 +3760,8 @@ textarea.form-control[readonly] {
 <section class="form-section">
 <h2 class="section-title">활동 참여 및 동의 여부</h2>
 
-<!-- PC 버전 -->
 <div class="pc-only">
 
-<!-- OT/MT 참석 여부 -->
 <div class="form-group" style="margin-bottom: 2.5rem;">
 <div class="schedule-card">
 <div class="card-header">
@@ -3824,7 +3817,6 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 </div>
 </div>
 
-<!-- 정기 활동 참석 여부 -->
 <div class="form-group">
 <div class="schedule-card">
 <div class="card-header">
@@ -4447,7 +4439,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     <section class="form-section">
         <h2 class="section-title">활동 안내사항 확인</h2>
         <div class="mobile-notice-list">
-        <!-- 준비과정 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -5549,8 +5540,7 @@ function previewApplication() {
                                         })()}
                                     </div>
                                 </div>
-                                
-                        <!-- 추가 정보 -->                                
+                                                            
                         <div class="additional-info">
                             <div class="mobile-preview-grid">
                                 <div class="mobile-preview-item">
@@ -5582,8 +5572,6 @@ function previewApplication() {
                         </div>
                     </section>
 
-
-                    <!-- 활동 참여 및 동의 여부 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">활동 참여 및 동의 여부</h3>
                         <div class="participation-grid">
@@ -5879,7 +5867,6 @@ function previewApplication() {
                     </div>
                 </section>`;
                     
-            // 추가 정보 섹션
             previewHTML += `
                 <section class="form-section">
                     <h2 class="section-title">추가 정보</h2>
@@ -5896,7 +5883,6 @@ function previewApplication() {
                 <section class="form-section">
                     <h2 class="section-title">활동 참여 및 동의 여부</h2>
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                        <!-- OT/MT 안내 카드 -->
                         <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
                             <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
                                 <h3>OT 및 MT 참석</h3>
@@ -5931,7 +5917,6 @@ function previewApplication() {
                             </div>
                         </div>
             
-                        <!-- 정기 활동 안내 카드 -->
                         <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
                             <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
                                 <h3>정기 활동 관련</h3>
@@ -5966,7 +5951,6 @@ function previewApplication() {
                             </div>
                         </div>
             
-                        <!-- 콘텐츠 활용 동의 카드 -->
                         <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
                             <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
                                 <h3>콘텐츠 활용 동의 여부</h3>
@@ -6001,7 +5985,6 @@ function previewApplication() {
                             </div>
                         </div>
             
-                        <!-- 여행 운영 참여 안내 카드 -->
                         <div class="schedule-card" style="margin: 0; border: none; padding: 0.8rem;">
                             <div class="card-header" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
                                 <h3>여행 운영 참여 관련</h3>
@@ -6040,7 +6023,6 @@ function previewApplication() {
             `;
                     
             previewHTML += `
-                <!-- 자기소개 섹션 -->
                 <section class="form-section">
                     <h2 class="section-title">자기소개</h2>
                     
@@ -6055,7 +6037,6 @@ function previewApplication() {
                     </div>
                 </section>
             
-                <!-- 여행 경험 에세이 섹션 -->
                 <section class="form-section">
                     <h2 class="section-title">여행 경험 에세이</h2>
             
@@ -6095,7 +6076,6 @@ function previewApplication() {
             `;
                     
             previewHTML += `
-               <!-- 지원자의 이야기 섹션 -->
                <section class="form-section">
                    <h2 class="section-title">지원자의 이야기</h2>
             
@@ -6110,7 +6090,6 @@ function previewApplication() {
                    </div>
                </section>
             
-               <!-- 면접 일정 섹션 -->
                <section class="form-section">
                    <h2 class="section-title">면접 일정</h2>
                    
@@ -6146,7 +6125,6 @@ previewContent.querySelectorAll('textarea.form-control[readonly]').forEach(texta
 }
 }
 
-// 모달 외부 클릭 시 닫기 이벤트 추가
 document.getElementById('previewModal').addEventListener('click', function(event) {
 if (event.target === this) {
 closePreview();
@@ -6157,7 +6135,6 @@ function closePreview() {
 const modal = document.getElementById('previewModal');
     if (!modal) return;
     
-    // 모든 내용 초기화
     const previewContent = modal.querySelector('.preview-content');
     const modalTitle = modal.querySelector('.preview-modal-title');
     const modalDesc = modal.querySelector('.preview-modal-desc');
@@ -6171,7 +6148,6 @@ modal.style.display = 'none';
 document.body.style.overflow = 'auto';
 }
 
-// ESC 키로 모달 닫기
 document.addEventListener('keydown', function(event) {
 if (event.key === 'Escape') {
 closePreview();
@@ -6181,9 +6157,7 @@ closePreview();
 </script>
 
 <script>
-// 모바일 환경에서만 모달 열기
 document.addEventListener('DOMContentLoaded', function() {
-    // MBTI 옵션 생성
     const mbtiTypes = [
         'ISTJ', 'ISFJ', 'INFJ', 'INTJ',
         'ISTP', 'ISFP', 'INFP', 'INTP',
@@ -6206,7 +6180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mbtiOptions.appendChild(option);
     });
 
-    // 학년 옵션 생성
     const normalGrades = document.getElementById('normalGradeOptions');
     ['1학년', '2학년', '3학년', '4학년', '5학년'].forEach((grade, index) => {
         const option = document.createElement('div');
@@ -6263,7 +6236,6 @@ document.addEventListener('DOMContentLoaded', function() {
         graduateOptions.appendChild(option);
     });
 
-    // 운전가능여부 옵션 생성
     const drivingOptions = document.getElementById('drivingOptions');
     [
         ['자차 보유', 'car'],
@@ -6283,7 +6255,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (window.innerWidth <= 768) {
-    // MBTI select 제어 (PC와 모바일 모두)
     const mbtiSelectPC = document.querySelector('select[name="mbti"]');
     const mbtiSelectMobile = document.querySelector('select[name="mbti_mobile"]');
     [mbtiSelectPC, mbtiSelectMobile].forEach(select => {
@@ -6306,7 +6277,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 학년 select 제어 (PC와 모바일 모두)
     const gradeSelectPC = document.querySelector('select[name="grade"]');
     const gradeSelectMobile = document.querySelector('select[name="grade_mobile"]');
     [gradeSelectPC, gradeSelectMobile].forEach(select => {
@@ -6329,7 +6299,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-        // 운전가능여부 select 제어
         const drivingSelect = document.querySelector('select[name="driving_status"]');
         if (drivingSelect) {
             drivingSelect.addEventListener('touchstart', (e) => {
@@ -6350,7 +6319,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 모달 닫기 버튼 이벤트
     document.querySelectorAll('.select-modal .modal-close').forEach(button => {
         button.addEventListener('click', function() {
             const modal = this.closest('.select-modal');
@@ -6359,7 +6327,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 모달 외부 클릭시 닫기
     document.querySelectorAll('.select-modal').forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === this) {
@@ -6374,15 +6341,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 let formData = {
-    // 폼 필드 데이터를 저장할 객체
-    interview_slots: []  // 면접 시간 선택 상태 저장
+    interview_slots: [] 
 };
 
 function saveFormState() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
-    // 모든 input, select, textarea 값 저장
     form.querySelectorAll('input:not([name="interview_slots[]"]), select, textarea').forEach(element => {
         if (element.type === 'checkbox' || element.type === 'radio') {
             formData[element.name] = element.checked;
@@ -6391,13 +6356,10 @@ function saveFormState() {
         }
     });
 
-    // 개인정보 동의 상태 명시적으로 저장
     const pcAgreed = form.querySelector('[name="privacy_agreement"]')?.checked || false;
     const mobileAgreed = form.querySelector('[name="privacy_agreement_mobile"]')?.checked || false;
     formData.privacy_agreement = pcAgreed;
     formData.privacy_agreement_mobile = mobileAgreed;
-
-    // 면접 시간 선택 상태 저장
     formData.interview_slots = [...selectedInterviewSlots];
 }
 
@@ -6405,7 +6367,6 @@ function restoreFormState() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
-    // 저장된 값 복원
     for (const [name, value] of Object.entries(formData)) {
         if (name === 'interview_slots') continue;
         const element = form.querySelector(`[name="${name}"]`);
@@ -6418,13 +6379,12 @@ function restoreFormState() {
         }
     }
 
-    // 면접 시간 선택 상태 복원
     selectedInterviewSlots = [...formData.interview_slots];
     updateSelectedScheduleDisplay();
 }
 
 function openScheduleModal() {
-    saveFormState();  // 모달 열기 전 폼 상태 저장
+    saveFormState(); 
     const modal = document.getElementById('scheduleModal');
     const modalContent = modal.querySelector('.schedule-modal-content');
 
@@ -6451,7 +6411,7 @@ function closeScheduleModal() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
     
-    restoreFormState();  // 모달 닫을 때 폼 상태 복원
+    restoreFormState(); 
 
     setTimeout(() => {
         window.scrollTo({
@@ -6464,31 +6424,25 @@ function closeScheduleModal() {
 function submitForm() {
     closePreview();
     submitToGoogleForm().then(() => {
-        // 제출 성공 시 처리
     }).catch(error => {
         console.error('Error:', error);
     });
 }
 
-// 페이지 로드시 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('applicationForm');
     if (!form) return;
 
-    // 모든 입력 필드에 change 이벤트 리스너 추가
     form.querySelectorAll('input, select, textarea').forEach(element => {
         element.addEventListener('change', saveFormState);
     });
 });
 
-
-
-// 개인정보 동의 체크박스 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
     const privacyCheckbox = document.querySelector('input[name="privacy_agreement"]');
     if (privacyCheckbox) {
         privacyCheckbox.addEventListener('change', function() {
-            saveFormState(); // 상태만 저장
+            saveFormState();
         });
     }
 
@@ -6498,16 +6452,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (privacyCheckbox) {
                 privacyCheckbox.checked = this.checked;
             }
-            saveFormState(); // 상태만 저장
+            saveFormState();
         });
     }
 });
     
 </script>
 
-<!-- 모바일 전용 모달들 -->
 <div class="mobile-only">
-    <!-- MBTI 선택 모달 -->
     <div class="select-modal" id="mbtiModal">
         <div class="select-modal-content">
             <div class="modal-header">
@@ -6520,7 +6472,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
-    <!-- 학년 선택 모달 -->
     <div class="select-modal" id="gradeModal">
         <div class="select-modal-content">
             <div class="modal-header">
@@ -6538,7 +6489,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
-    <!-- 운전가능여부 선택 모달 -->
     <div class="select-modal" id="drivingModal">
         <div class="select-modal-content">
             <div class="modal-header">
