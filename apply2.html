@@ -6788,22 +6788,23 @@ function submitToGoogleForm() {
     const motivation = getData('motivation');
     const finalWords = getData('final_words');
     
-const noticeChecks = document.querySelectorAll('input[name^="notice_check"]');
 const allChecked = Array.from(noticeChecks).every(checkbox => checkbox.checked);
+console.log('All checked:', allChecked);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
-    !getData('home_address') || !getData('current_address') || !getData('school') || 
-    !getData('major') || !getData('student_id') || !getData('grade') || 
-    !document.querySelector('[name="driving_status"]')?.value || !getData('extracurricular') || 
-    !getData('fixed_schedule') || !getRadioData('ot_mt_attendance') || 
-    !getRadioData('regular_attendance') || !getRadioData('content_agreement') || 
-    !getRadioData('participation_agreement') || !getData('introduction') || 
-    !getData('special_introduction') || !getData('visited_places') || 
-    !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
-    !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
-    !allChecked) {
-    showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
-    return;
+   !getData('home_address') || !getData('current_address') || !getData('school') || 
+   !getData('major') || !getData('student_id') || !getData('grade') || 
+   !document.querySelector('[name="driving_status"]')?.value || !getData('extracurricular') || 
+   !getData('fixed_schedule') || !getRadioData('ot_mt_attendance') || 
+   !getRadioData('regular_attendance') || !getRadioData('content_agreement') || 
+   !getRadioData('participation_agreement') || !getData('introduction') || 
+   !getData('special_introduction') || !getData('visited_places') || 
+   !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
+   !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
+   !allChecked) {
+   console.log('Failed validation. allChecked:', allChecked);
+   showCustomAlert('필수 체크항목과 입력칸을 작성해 주신 후<br>제출을 부탁드립니다.');
+   return;
 }
 
 showLoading();
