@@ -6773,7 +6773,7 @@ function showCustomAlert(message, type = 'error') {
         <button class="alert-button" onclick="handleAlertConfirm(this)">확인</button>
     ` : `
         <h3 class="alert-title">잠시만요!</h3>
-        <p class="alert-message">필수 항목을 체크 및 작성해 주신 후<br>제출을 부탁드립니다.</p>
+        <p class="alert-message">필수 항목을 체크 또는 작성해 주신 후<br>제출을 부탁드립니다.</p>
         <button class="alert-button" onclick="handleAlertDismiss(this)">확인</button>
     `;
     
@@ -6853,7 +6853,7 @@ if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('
   !document.querySelector('input[name="travel_essay_type"]:checked')?.value || 
   !getData('travel_essay') || !getData('motivation') || !getData('final_words') || 
   !allChecked) {
-  showCustomAlert('필수 항목을 체크 및 작성해 주신 후<br>제출을 부탁드립니다.');
+  showCustomAlert('필수 항목을 체크 또는 작성해 주신 후<br>제출을 부탁드립니다.');
   return;
 }
 
