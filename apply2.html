@@ -6788,19 +6788,17 @@ function submitToGoogleForm() {
     const motivation = getData('motivation');
     const finalWords = getData('final_words');
     
-const noticeChecks = [
-   ...document.querySelectorAll('.pc-only input[name^="notice_check"]'),
-   ...document.querySelectorAll('.mobile-only input[name^="notice_check"]'),
-   ...document.querySelectorAll('.notice-item input[name^="notice_check"]'),
-   ...document.querySelectorAll('.mobile-notice-item input[name^="notice_check"]')
-];
+const noticeChecks = window.innerWidth <= 768 
+    ? document.querySelectorAll('.mobile-only input[name^="notice_check"]')
+    : document.querySelectorAll('.pc-only input[name^="notice_check"]');
+
 alert('찾은 체크박스 개수: ' + noticeChecks.length);
 noticeChecks.forEach((checkbox, index) => {
-   alert(`체크박스 ${index + 1}: ${checkbox.checked}`);
+    alert(`체크박스 ${index + 1}: ${checkbox.checked}`);
 });
 alert('모두 체크됨: ' + Array.from(noticeChecks).every(checkbox => checkbox.checked));
 noticeChecks.forEach((checkbox, index) => {
-  console.log(`Checkbox ${index + 1}:`, checkbox.checked);
+   console.log(`Checkbox ${index + 1}:`, checkbox.checked);
 });
 const allChecked = Array.from(noticeChecks).every(checkbox => checkbox.checked);
 console.log('All checked:', allChecked);
