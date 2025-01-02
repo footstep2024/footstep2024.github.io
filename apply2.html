@@ -5003,14 +5003,12 @@ dayEl.style.fontWeight = 'bold';
 calendarGrid.appendChild(dayEl);
 });
 
-// 빈 칸 추가
 for(let i = 0; i < firstDay.getDay(); i++) {
 const emptyDay = document.createElement('div');
 emptyDay.className = 'calendar-day empty';
 calendarGrid.appendChild(emptyDay);
 }
 
-// 날짜 추가
 for(let i = 1; i <= lastDay.getDate(); i++) {
 const dayEl = document.createElement('div');
 dayEl.className = 'calendar-day';
@@ -5253,7 +5251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const type = this.getAttribute('data-type');
-            showExample(type);  // 기존 showExample 함수 재사용
+            showExample(type);
         });
     });
 
