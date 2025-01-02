@@ -6795,7 +6795,13 @@ const noticeChecks = [
     self.indexOf(checkbox) === index
 );
 
+alert('찾은 체크박스 개수: ' + noticeChecks.length);
+noticeChecks.forEach((checkbox, index) => {
+    alert(`체크박스 ${index + 1}: ${checkbox.checked}`);
+});
+
 const allChecked = Array.from(noticeChecks).every(checkbox => checkbox.checked);
+alert('모두 체크됨: ' + allChecked);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
    !getData('home_address') || !getData('current_address') || !getData('school') || 
