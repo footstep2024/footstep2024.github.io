@@ -6787,10 +6787,11 @@ function submitToGoogleForm() {
     const motivation = getData('motivation');
     const finalWords = getData('final_words');
     
-// 공지사항 체크박스 검증
 const noticeChecks = Array.from({length: 8}, (_, i) => {
     const num = i + 1;
-    return document.querySelector(`[name="notice_check_${num}"]`)?.checked;
+    const pcCheck = document.querySelector(`[name="notice_check_${num}"]`)?.checked;
+    const mobileCheck = document.querySelector(`[name="notice_check_${num}_mobile"]`)?.checked;
+    return pcCheck || mobileCheck;
 }).every(checked => checked === true);
 
 if (!getData('name') || !getData('mbti') || !getData('phone') || !getRadioData('gender') || 
