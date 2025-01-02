@@ -143,15 +143,15 @@ min-width: 200px;
 
 .essay-type-options {
 display: flex;
-gap: 0.8rem;  /* 체크박스 사이 간격 */
-justify-content: flex-end;  /* 오른쪽 정렬 */
+gap: 0.8rem;
+justify-content: flex-end;
 }
 
 @media (max-width: 768px) {
     .essay-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;  /* 간격 줄임 */
+        gap: 0.5rem;
     }
 
     .essay-type-selector {
@@ -160,18 +160,18 @@ justify-content: flex-end;  /* 오른쪽 정렬 */
 
     .essay-type-options {
         display: flex;
-        justify-content: space-between;  /* 양쪽 끝으로 정렬 */
-        width: 100%;  /* 전체 너비 사용 */
-        gap: 0.5rem;  /* 간격 축소 */
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.5rem;
     }
 
     .essay-type-options .checkbox-label {
-        font-size: 0.78rem;  /* 글자 크기 축소 */
+        font-size: 0.78rem;
     }
 
     .essay-type-options .checkbox-label .label-text {
-        font-size: 0.78rem;  /* 레이블 텍스트 크기도 축소 */
-        white-space: nowrap;  /* 텍스트 줄바꿈 방지 */
+        font-size: 0.78rem;
+        white-space: nowrap;
     }
 }
 
@@ -187,37 +187,36 @@ justify-content: space-between;
 align-items: baseline;
 }
 
-/* 모바일 대응 추가 */
 @media (max-width: 768px) {
     .section-title {
         font-size: 1.2rem;
         margin-bottom: 1rem;
         padding-bottom: 0.8rem;
-        flex-direction: row;  /* 가로 배치 유지 */
-        align-items: center;  /* 중앙 정렬 */
-        gap: 1rem;           /* 요소 간 간격 */
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
     }
 
     .section-title .checkbox-label {
         margin-left: auto;
-        padding-top: 0;      /* 패딩 제거 */
-        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+        padding-top: 0;
+        white-space: nowrap;
     }
 
     .section-title .checkbox-label .label-text {
-        font-size: 0.8rem;   /* 텍스트 크기 조절 */
+        font-size: 0.8rem;
     }
 }
 
 .form-row {
 display: grid;
-grid-template-columns: repeat(2, 1fr);  /* 기본 2칸 그리드 */
+grid-template-columns: repeat(2, 1fr);
 gap: 1rem;
 margin-bottom: 0rem;
 }
 
 .form-row.three-columns {
-grid-template-columns: repeat(3, 1fr);  /* 3칸 그리드 */
+grid-template-columns: repeat(3, 1fr);
 }
 
 .info-grid {
@@ -233,8 +232,8 @@ overflow: hidden;
 background: var(--white);
 border-radius: 12px;
 box-shadow: var(--box-shadow);
-padding: 0.8rem 1.6rem; /* 상하 패딩 줄이고 좌우 패딩 늘림 */
-min-height: 65px; /* 높이 줄임 */
+padding: 0.8rem 1.6rem;
+min-height: 65px;
 display: flex;
 flex-direction: column;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -249,7 +248,7 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 font-size: 0.88rem;
 font-weight: 700;
 color: var(--primary-color);
-margin-bottom: 0.4rem; /* 상하 간격 줄임 */
+margin-bottom: 0.4rem;
 display: flex;
 align-items: center;
 gap: 0.3rem;
@@ -273,7 +272,7 @@ gap: 0.15rem;
 .info-box:first-child .info-box-content {
 white-space: nowrap;
 text-overflow: clip;
-overflow: visible; /* 텍스트 짤림 방지 */
+overflow: visible;
 }
 
 .info-box-content span {
@@ -281,7 +280,6 @@ white-space: nowrap;
 display: block;
 }
 
-/* 좁은 화면에서도 한줄 유지를 위한 미디어쿼리 */
 @media (min-width: 1024px) {
 .info-box-content {
 font-size: 0.78rem;
@@ -308,35 +306,34 @@ padding: 1rem 0.8rem;
     }
 
     .info-box {
-        padding: 0.8rem 0.8rem;  /* 패딩 줄임 */
+        padding: 0.8rem 0.8rem;
     }
 
     .info-box-title {
-        font-size: 0.82rem;      /* 제목 폰트 크기 조절 */
-        margin-bottom: 0.3rem;   /* 제목과 내용 사이 간격 줄임 */
+        font-size: 0.82rem; 
+        margin-bottom: 0.3rem;  
     }
 
     .info-box-content {
-        font-size: 0.75rem;      /* 내용 폰트 크기 조절 */
-        line-height: 1.4;        /* 줄간격 조절 */
+        font-size: 0.75rem; 
+        line-height: 1.4; 
     }
 
     .info-box-content span {
-        white-space: nowrap;     /* 텍스트 줄바꿈 방지 */
+        white-space: nowrap; 
     }
 
     .info-box-title i {
-        font-size: 0.78rem;      /* 아이콘 크기 조절 */
+        font-size: 0.78rem; 
     }
 }
 
-/* 특정 박스들의 텍스트를 한 줄로 만들기 위한 추가 스타일 */
 .info-box:first-child .info-box-content,
 .info-box:last-child .info-box-content {
 white-space: nowrap;
 text-overflow: ellipsis;
 overflow: hidden;
-font-size: 0.8rem;  /* 한줄 텍스트는 조금 더 크게 */
+font-size: 0.8rem;
 }
 
 .alerts {
@@ -356,7 +353,7 @@ line-height: 1;
 
 
 .driving-alert {
-margin-top: 0.5rem;  /* 운전 관련 알림만 아래로 내림 */
+margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -415,7 +412,6 @@ font-size: 0.8rem;
 }
 }
 
-/* PC/모바일 버전 전환을 위한 기본 스타일 */
 @media (min-width: 769px) {
     .mobile-only {
         display: none !important;
@@ -434,7 +430,6 @@ font-size: 0.8rem;
     }
 }
 
-/* 모바일 버전 기본 정보 스타일 */
 @media (max-width: 768px) {
     .mobile-form-grid {
         display: flex;
@@ -473,7 +468,6 @@ font-size: 0.8rem;
     }
 }
 
-/* 폼 레이블의 크기 줄임 */
 .form-label {
 display: block;
 font-size: 0.85rem; 
@@ -487,7 +481,6 @@ select.form-control {
 height: 38px;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .form-label {
 font-size: 0.8rem;
@@ -509,14 +502,13 @@ font-size: 0.7rem;
 content: '*';
 color: var(--error-color);
 margin-left: 0.25rem;
-display: none;  /* 별표를 숨김 */
+display: none; 
 }
 
-/* 입력 필드의 크기 더 줄임 */
 .form-control {
 width: 100%;
-padding: 0.6rem 0.8rem;  /* 0.75rem 1rem에서 줄임 */
-font-size: 0.75rem;  /* 1rem에서 줄임 */
+padding: 0.6rem 0.8rem; 
+font-size: 0.75rem; 
 border: 1px solid var(--border-color);
 border-radius: 8px;
 transition: all 0.3s ease;
@@ -533,7 +525,6 @@ select.form-control option:checked {
     background-color: transparent !important;
 }
 
-/* 자기소개 textarea의 높이 설정 */
 textarea[name="introduction"] {
 height: 100px !important;
 min-height: 100px;
@@ -546,7 +537,6 @@ height: 60px !important;
 min-height: 60px;
 }
 
-/* 여행 경험 에세이 섹션 스타일 */
 textarea[name="travel_essay"] {
 height: 200px !important;
 min-height: 200px;
@@ -578,7 +568,6 @@ height: 100px !important;
 min-height: 100px;
 }
 
-/* 여기에 date input 스타일 추가 */
 input[type="date"].form-control {
 font-family: 'Noto Sans KR', sans-serif;
 font-size: 0.75rem;
@@ -586,12 +575,10 @@ color: var(--text-color);
 padding: 0.6rem 0.8rem;
 }
 
-/* date input의 placeholder 스타일 */
 input[type="date"].form-control::-webkit-datetime-edit-fields-wrapper {
 font-size: 0.75rem;
 }
 
-/* 모바일에서 date input 스타일링 */
 @media (max-width: 768px) {
     input[name="birthdate"].form-control,
     input[name="birthdate_mobile"].form-control {
@@ -601,7 +588,6 @@ font-size: 0.75rem;
     }
 }
 
-/* style 태그 안에 추가 */
 .gender-select {
 cursor: pointer;
 position: relative;
@@ -622,10 +608,10 @@ color: #666;
 font-size: 0.8rem !important;
 transition: all 0.3s ease;
 border: 1px solid transparent;
-white-space: nowrap;  /* 텍스트 줄바꿈 방지 */
-width: fit-content;  /* 내용에 맞게 너비 조정 */
-min-width: 70px;  /* 최소 너비 설정 */
-justify-content: center;  /* 가운데 정렬 */
+white-space: nowrap;
+width: fit-content; 
+min-width: 70px;  
+justify-content: center; 
 }
 
 .gender-button i {
@@ -667,7 +653,6 @@ select.form-control {
 font-size: 0.75rem;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .form-control::placeholder,
 select.form-control option:first-child,
@@ -688,18 +673,18 @@ padding: 0.3rem 0;
 
 .section-title .checkbox-label {
 margin-left: auto;
-padding-top: 1.4rem;  /* 아래로 살짝 내리기 */
+padding-top: 1.4rem;
 }
 
 .section-title .checkbox-label .label-text {
 font-size: 0.85rem;
 color: var(--light-text);
-font-weight: normal;  /* 처음에는 얇게 */
+font-weight: normal;
 }
 
 .section-title .checkbox-label input[type="checkbox"]:checked ~ .label-text {
 color: var(--primary-color);
-font-weight: 500;  /* 체크되면 굵게 */
+font-weight: 500;
 }
 .check-icon {
 width: 18px;
@@ -711,17 +696,17 @@ justify-content: center;
 }
 
 .check-icon::before {
-content: '\f00c'; /* 단순 체크 표시 '✓' */
+content: '\f00c';
 font-family: 'Font Awesome 5 Free';
 font-weight: 900;
 font-size: 14px;
 color: #ccc;
 transition: all 0.2s ease;
 }
-/* 체크됐을 때의 스타일 */
+
 input[type="checkbox"]:checked + .check-icon::before,
 input[type="radio"]:checked + .check-icon::before {
-content: '\f058';  /* 동그라미 안의 체크 아이콘 */
+content: '\f058'; 
 color: var(--primary-color);
 }
 
@@ -747,7 +732,7 @@ gap: 2rem;
 justify-content: center;
 align-items: center;
 height: 100%;
-margin-top: 0.6rem;  /* margin-top 추가 */
+margin-top: 0.6rem; 
 }
 
 .semester-toggle, .status-checks {
@@ -757,10 +742,9 @@ justify-content: center;
 align-items: center;
 height: 100%;
 padding: 0;
-margin-top: -0.4rem;  /* 양수에서 음수로 변경 */
+margin-top: -0.4rem; 
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .radio-group, .semester-toggle {
 gap: 1.5rem;
@@ -816,14 +800,13 @@ background-size: 1.2rem;
 
 .status-checks {
 display: flex;
-gap: 2rem;  /* 다른 radio-group과 동일한 간격 */
+gap: 2rem; 
 justify-content: center;
 align-items: center;
 height: 100%;
 padding: 0.5rem 0;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .status-checks {
 gap: 1.5rem;
@@ -844,11 +827,11 @@ width: 200px;
 background: rgba(47, 82, 41, 0.03);
 border-radius: 8px;
 padding: 0.8rem;
-height: 250px;  /* 고정 높이 설정 */
+height: 250px; 
 }
 
 .special-intro-input textarea {
-height: 250px !important;  /* 예시 박스와 동일한 높이 */
+height: 250px !important; 
 resize: none;
 }
 
@@ -881,7 +864,6 @@ color: var(--primary-color);
 opacity: 0.6;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .special-intro-container {
 flex-direction: column;
@@ -898,10 +880,10 @@ font-size: 0.8rem;
 margin-top: -12px;
 }
 
-    .examples-list li {
-        padding: 3px 0;
-        line-height: 1.0;
-    }
+.examples-list li {
+padding: 3px 0;
+line-height: 1.0;
+}
 
 .examples-title {
 font-size: 0.85rem;
@@ -949,7 +931,6 @@ gap: 0.75rem;
 }
 }
 
-/* 터치 디바이스에 대한 최적화 */
 @media (hover: none) {
 .form-grid .info-box:hover {
 transform: none;
@@ -960,7 +941,7 @@ box-shadow: var(--box-shadow);
 transform: none;
 }
 }
-/* 날짜 선택 모달 스타일 */
+
 .date-modal {
 display: none;
 position: fixed;
@@ -1027,7 +1008,6 @@ background: var(--primary-color);
 color: var(--white);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .date-selector {
 padding: 0.4rem 0.8rem;
@@ -1117,7 +1097,6 @@ font-size: 0.9rem;
 }
 
 
-/* 스케줄 카드 스타일 */
 .schedule-card {
 background: white;
 border-radius: 12px;
@@ -1159,7 +1138,6 @@ background: rgba(47, 82, 41, 0.1);
 color: var(--primary-color);
 }
 
-/* 스케줄 정보 스타일 */
 .schedule-info {
 display: flex;
 flex-direction: column;
@@ -1180,8 +1158,8 @@ gap: 0.8rem;
 color: var(--primary-color);
 width: 16px;
 text-align: center;
-line-height: 1;  /* 추가: 아이콘의 line-height 조정 */
-vertical-align: middle;  /* 추가: 수직 정렬 조정 */
+line-height: 1; 
+vertical-align: middle;
 }
 
 .info-label {
@@ -1202,20 +1180,17 @@ font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    /* 카드 레이아웃 조정 */
     .schedule-card {
         padding: 1.2rem;
         margin-bottom: 1rem;
     }
 
-    /* 헤더 부분 정리 */
     .card-header {
         padding-bottom: 0.8rem;
         margin-bottom: 1rem;
         align-items: center;
     }
 
-    /* 정보 박스 스타일링 */
     .schedule-info {
         background: rgba(47, 82, 41, 0.03);
         padding: 1rem;
@@ -1223,7 +1198,6 @@ font-size: 0.9rem;
         margin-bottom: 1rem;
     }
 
-    /* 각 정보 아이템 간격 조정 */
     .info-item {
         display: flex;
         align-items: center;
@@ -1231,7 +1205,6 @@ font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
 
-    /* 아이콘 스타일링 */
     .info-item i {
         width: 20px;
         color: var(--primary-color);
@@ -1239,18 +1212,15 @@ font-size: 0.9rem;
         margin-top: 0.3rem;
     }
 
-    /* 레이블 스타일링 */
     .info-label {
         min-width: 40px;
         font-size: 0.85rem;
     }
 
-    /* 값 스타일링 */
     .info-value {
         font-size: 0.85rem;
     }
 
-    /* 서브 텍스트 위치 조정 */
     .info-item:first-child .info-sub {
         position: absolute;
         top: -1rem;
@@ -1262,28 +1232,24 @@ font-size: 0.9rem;
         border-radius: 4px;
     }
 
-    /* 설명 문구 스타일링 */
     .schedule-description {
         font-size: 0.85rem;
         line-height: 1.6;
         margin: 1rem 0;
     }
 
-    /* 알림 메시지 스타일링 */
     .alert-red, .alert-green {
         font-size: 0.8rem;
         margin-bottom: 0.4rem;
         padding-left: 0.5rem;
     }
 
-    /* 체크 아이콘 크기 조정 */
     .check-icon {
         width: 16px;
         height: 16px;
     }
 }
 
-/* 설명 텍스트 스타일 */
 .schedule-description {
 margin: 1rem 0;
 color: var(--text-color);
@@ -1291,7 +1257,6 @@ font-size: 0.8rem;
 line-height: 1.6;
 }
 
-/* 라디오 그룹 컨테이너 스타일 */
 .radio-group-container {
 display: flex;
 gap: 2rem;
@@ -1300,15 +1265,11 @@ padding-top: 1.2rem;
 border-top: 1px solid rgba(47, 82, 41, 0.1);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .schedule-card {
 padding: 1.2rem;
 }
 }
-
-
-
 
 .example-wrapper {
 display: flex;
@@ -1365,19 +1326,17 @@ transform: none;
 @media (max-width: 768px) {
     .info-grid + .alerts .alert-red,
     .info-grid + .alerts .alert-green {
-        margin-top: -30px !important;  /* 이 수치를 원하는 만큼 조정하세요 */
-        margin-bottom: 35px !important;  /* 텍스트 간격 조정 */
+        margin-top: -30px !important; 
+        margin-bottom: 35px !important;
     }
 }
     
-/* 모바일에서 운전가능여부와 SNS 입력 영역 스타일 */
+
 @media (max-width: 768px) {
-    /* 운전가능여부 섹션 스타일링 */
     div[style*="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px"] > div {
         flex-direction: column;
     }
 
-    /* 운전가능여부 선택 드롭다운 */
     select[name="driving_status"] {
         width: 70% !important;
         margin-bottom: 8px;
@@ -1389,26 +1348,22 @@ transform: none;
         margin-bottom: 10px !important;
     }
 
-    /* SNS 및 여행경비 입력 섹션 스타일링 */
     div[style*="margin-top: 16px"] > div[style*="display: flex; gap: 24px; align-items: center"] {
         flex-direction: column;
         align-items: stretch !important;
     }
 
-    /* SNS 및 여행경비 입력 필드 */
     div[style*="margin-top: 16px"] input[type="text"] {
         width: 70% !important;
         margin-bottom: 8px;
     }
 
-    /* 알림 텍스트 영역 조정 */
     div[style*="margin-top: 16px"] .alerts {
         margin-top: -40px !important;
         flex-grow: 1;
         width: 100%;
     }
-    
-    /* 운전 관련 알림 텍스트 조정 */
+
     .driving-alert {
         margin-top: 4px !important;
     }
@@ -1421,7 +1376,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.85); /* 배경 어둡게 조정 */
+background: rgba(0, 0, 0, 0.85);
 z-index: 1000;
 backdrop-filter: blur(5px);
 overflow-y: auto;
@@ -1429,7 +1384,6 @@ scrollbar-width: thin;
 scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
-/* 모바일 타임라인 모달 스타일 */
 @media (max-width: 768px) {
     #scheduleRulesModal .example-modal-content {
         padding: 16px;
@@ -1462,7 +1416,7 @@ scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
     #scheduleRulesModal .timeline-image {
         width: 100%;
         height: auto;
-        aspect-ratio: 16/5;  /* 원본 이미지 비율에 맞게 설정 */
+        aspect-ratio: 16/5; 
         margin: 0;
         border-radius: 8px 8px 0 0;
     }
@@ -1535,9 +1489,8 @@ backdrop-filter: blur(5px);
 overflow-y: auto;
 }
 
-/* 닫기 버튼들 스타일링 */
 .example-close {
-position: fixed; /* fixed로 변경하여 항상 보이게 */
+position: fixed;
 top: 20px;
 right: 20px;
 width: 40px;
@@ -1570,7 +1523,6 @@ background: rgba(0, 0, 0, 0.15);
 transform: rotate(90deg);
 }
 
-/* 하단 닫기 버튼 추가 */
 .modal-bottom-close {
 display: block;
 width: 200px;
@@ -1589,7 +1541,6 @@ transition: all 0.2s ease;
 background: var(--primary-light);
 }
 
-/* 스크롤 인디케이터 */
 .scroll-indicator {
 position: absolute;
 left: 50%;
@@ -1609,7 +1560,6 @@ pointer-events: none;
 z-index: 9999;
 }
 
-/* 모바일 대응을 위한 미디어 쿼리 추가 */
 @media (max-width: 768px) {
 .scroll-indicator {
 font-size: 0.8rem;
@@ -1630,7 +1580,7 @@ animation: bounce 1s infinite;
 .modal-desc {
 font-size: 0.85rem;
 color: var(--light-text);
-margin: 0.5rem 0 2rem 0;  /* 아래 여백을 2rem으로 설정 */
+margin: 0.5rem 0 2rem 0; 
 line-height: 1.6;
 display: flex;
 align-items: center;
@@ -1638,17 +1588,16 @@ gap: 0.2rem;
 }
 
 .modal-desc::before {
-content: '\f05a';  /* 정보 아이콘 */
+content: '\f05a'; 
 font-family: 'Font Awesome 5 Free';
 font-weight: 900;
 color: var(--primary-color);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .modal-desc {
 font-size: 0.7rem;
-margin: 0.4rem 0 1.5rem 0;  /* 모바일에서는 여백 살짝 줄임 */
+margin: 0.4rem 0 1.5rem 0;
 }
 }
 
@@ -1679,7 +1628,6 @@ margin: 0.4rem 0 1.5rem 0;  /* 모바일에서는 여백 살짝 줄임 */
     position: relative;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
 .example-modal-content {
 width: 95%;
@@ -1752,7 +1700,6 @@ font-weight: 500;
     transform: scale(1.05);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
     .timeline-image {
         width: 260px;
@@ -1835,7 +1782,6 @@ font-weight: 500;
         font-size: 0.75rem;
     }
 }
-    
 
 .rules-modal-desc {
 background: rgba(47, 82, 41, 0.05);
@@ -1873,7 +1819,7 @@ font-size: 1.4rem;
 font-weight: 500;
 text-align: center;
 padding-bottom: 1.2rem;
-margin: 0rem 0 2.2rem 0;  /* 상단 여백 추가 */
+margin: 0rem 0 2.2rem 0; 
 border-bottom: 1px solid rgba(47, 82, 41, 0.1);
 }
 
@@ -1965,7 +1911,6 @@ font-size: 0.65rem;
 }
 }
 
-/* 기본 섹션 스타일 */
 .notice-card {
 background: white;
 border-radius: 12px;
@@ -1990,7 +1935,6 @@ font-weight: 500;
 margin: 0;
 }
 
-/* 필수 배지 스타일 */
 .required-badge {
 padding: 0.3rem 0.8rem;
 border-radius: 20px;
@@ -2000,7 +1944,6 @@ background: rgba(220, 53, 69, 0.1);
 color: #dc3545;
 }
 
-/* 공지사항 리스트 스타일 */
 .notice-list {
 display: flex;
 flex-direction: column;
@@ -2020,14 +1963,14 @@ display: flex;
 align-items: flex-start;
 gap: 1rem;
 position: relative;
-padding-right: 100px; /* 확인함 버튼 공간 */
+padding-right: 100px;
 }
 
 .notice-content i {
 color: var(--primary-color);
 font-size: 1rem;
 margin-top: 0.2rem;
-flex-shrink: 0; /* 아이콘 크기 고정 */
+flex-shrink: 0;
 }
 
 .notice-content p {
@@ -2039,7 +1982,6 @@ color: var(--text-color);
 word-break: keep-all;
 }
 
-/* 확인함 버튼 스타일 */
 .confirm-check {
 position: absolute;
 right: 1rem;
@@ -2072,7 +2014,6 @@ color: var(--light-text);
 transition: all 0.2s ease;
 }
 
-/* 체크 상태 스타일 */
 .notice-item .confirm-check input:checked + .check-text {
 color: var(--primary-color);
 font-weight: 500;
@@ -2093,20 +2034,18 @@ margin-right: 4px;
 color: var(--primary-color);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
     .notice-card {
         padding: 1.5rem;
-        margin: 0.8rem;  /* 좌우 여백 추가 */
-        width: calc(100% - 1.6rem);  /* 여백만큼 너비 조정 */
-        border-radius: 16px;  /* 둥글기 증가 */
+        margin: 0.8rem;
+        width: calc(100% - 1.6rem);
+        border-radius: 16px;
         box-shadow: 0 2px 8px rgba(47, 82, 41, 0.1);
     }
 
-    /* 모달 내부 텍스트 크기 조정 */
     .notice-content p {
-        font-size: 0.9rem;  /* 텍스트 크기 증가 */
-        line-height: 1.6;   /* 줄간격 증가 */
+        font-size: 0.9rem; 
+        line-height: 1.6; 
     }
 
 .notice-content {
@@ -2133,7 +2072,6 @@ transform: translateX(50%) translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    /* schedule-info 컴포넌트 스타일링 */
     .schedule-info {
         position: relative;
         padding: 1rem;
@@ -2142,7 +2080,6 @@ transform: translateX(50%) translateY(-2px);
         border-radius: 8px;
     }
 
-    /* info-item 레이아웃 개선 */
     .info-item {
         display: flex;
         align-items: flex-start;
@@ -2150,7 +2087,6 @@ transform: translateX(50%) translateY(-2px);
         margin-bottom: 0.5rem;
     }
 
-    /* info-sub 위치 조정 */
     .info-item:first-child .info-sub {
         position: absolute;
         top: -0.5rem;
@@ -2162,7 +2098,6 @@ transform: translateX(50%) translateY(-2px);
         margin: 0;
     }
 
-    /* 라디오 그룹 컨테이너 한 줄 정렬 */
     .radio-group-container {
         display: flex;
         flex-direction: row;
@@ -2173,13 +2108,11 @@ transform: translateX(50%) translateY(-2px);
         flex-wrap: nowrap;
     }
 
-    /* 라디오 레이블 텍스트 크기 조정 */
     .radio-group-container .label-text {
         font-size: 0.7rem;
         white-space: nowrap;
     }
 
-    /* 알림 텍스트 간격 조정 */
     .alert-red, .alert-green {
         font-size: 0.75rem;
         margin-bottom: 0.3rem;
@@ -2189,14 +2122,12 @@ transform: translateX(50%) translateY(-2px);
         margin-right: 0.3rem;
     }
 
-    /* 설명 문구와 알림 사이 간격 */
     .schedule-description + .alerts {
         margin-top: 1rem;
         padding-top: 1.5rem;
     }
 }
 
-/* 다크 모드 지원 */
 @media (prefers-color-scheme: dark) {
 :root {
 --background-color: #1a1a1a;
@@ -2220,7 +2151,6 @@ color: var(--text-color);
 
 <style>
 
-/* 면접 일정 선택 버튼 스타일 */
 .schedule-select-wrapper {
     text-align: center;
     margin: 2rem 0;
@@ -2384,37 +2314,34 @@ transform: translateY(-2px);
     text-align: right;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
     .selected-times-container {
-        grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
 
-    /* 카드 내부 요소들 크기 조정 */
     .selected-time-item {
-        padding: 8px;  /* 패딩 줄임 */
+        padding: 8px;
     }
 
     .time-badge {
-        width: 28px;  /* 뱃지 크기 줄임 */
+        width: 28px;
         height: 28px;
     }
 
     .time-date {
-        font-size: 0.8rem;  /* 날짜 텍스트 크기 줄임 */
+        font-size: 0.8rem;
     }
 
     .time-period {
-        font-size: 0.7rem;  /* 시간 텍스트 크기 줄임 */
+        font-size: 0.7rem;
     }
 
     .time-type {
-        font-size: 0.65rem;  /* 면접 유형 텍스트 크기 줄임 */
+        font-size: 0.65rem;
     }
 }
 
-/* 면접 일정 선택 모달 스타일 */
 .schedule-modal {
     display: none;
     position: fixed;
@@ -2613,7 +2540,6 @@ transform: translateY(-2px);
     background: #d0d3d4;
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
     .schedule-modal-content {
         width: 95%;
@@ -2712,7 +2638,6 @@ background-color: var(--primary-light);
 transform: translateY(-2px);
 }
 
-/* 모바일 대응 */
 @media (max-width: 768px) {
     .button-group {
         display: flex;
@@ -2732,7 +2657,6 @@ transform: translateY(-2px);
         margin: 0 auto; 
     }
 
-    /* select 컨트롤 스타일 */
     select.form-control {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -2744,7 +2668,6 @@ transform: translateY(-2px);
     }
 }
 
-/* 선택 모달 스타일 - 모바일 전용이므로 미디어쿼리 밖으로 분리 */
 .select-modal {
     display: none;
     position: fixed;
@@ -2803,9 +2726,6 @@ transform: translateY(-2px);
     border-bottom: 1px solid rgba(47, 82, 41, 0.1);
 }
 
-
-
-/* 모바일 공지사항 스타일 */
 @media (max-width: 768px) {
    .mobile-notice-list {
        display: flex;
@@ -2841,7 +2761,6 @@ transform: translateY(-2px);
        word-break: keep-all;
    }
 
-   /* 체크박스 관련 스타일 */
    .mobile-confirm {
        display: flex;
        align-items: center;
@@ -2887,15 +2806,14 @@ transform: translateY(-2px);
 
 
 .mobile-notice-item.warning {
-    background: rgba(220, 53, 69, 0.02);  /* 매우 연한 빨간색 배경 */
-    border: 1px solid rgba(220, 53, 69, 0.1);  /* 연한 빨간색 테두리 */
+    background: rgba(220, 53, 69, 0.02);
+    border: 1px solid rgba(220, 53, 69, 0.1); 
 }
 
 .mobile-notice-item.warning .notice-icon i {
-    color: #dc3545;  /* 아이콘 색상을 빨간색으로 */
+    color: #dc3545; 
 }
 
-   /* 모달 버튼 스타일 */
    .mobile-example-btn {
        margin-left: auto;
        padding: 4px 8px;
@@ -3013,9 +2931,9 @@ textarea.form-control[readonly] {
     .mobile-preview-section {
         background: #fff;
         border-radius: 12px;
-        padding: 20px;  /* 패딩 증가 */
-        margin-bottom: 16px;  /* 섹션 간 간격 증가 */
-        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);  /* 그림자 효과 개선 */
+        padding: 20px; 
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(47, 82, 41, 0.08);
     }
     
     .mobile-preview-title {
@@ -3029,7 +2947,6 @@ textarea.form-control[readonly] {
         align-items: center;
     }
 
-    /* 개인정보 동의 상태 표시 */
     .privacy-status {
         font-size: 0.75rem;
         display: flex;
@@ -3082,7 +2999,6 @@ textarea.form-control[readonly] {
         border: 1px solid rgba(47, 82, 41, 0.1);
     }
 
-    /* 성별, 학년 입력란 크기 조정 */
     .mobile-preview-value {
         background: #f8f9fa;
         padding: 8px 12px;
@@ -3095,7 +3011,6 @@ textarea.form-control[readonly] {
         align-items: center;
     }
 
-    /* 운전/여행경비/SNS 정보 */
     .additional-info {
         border-top: 1px solid rgba(47, 82, 41, 0.1);
         padding-top: 12px;
@@ -3111,7 +3026,6 @@ textarea.form-control[readonly] {
         text-overflow: ellipsis;
     }
 
-    /* 활동 참여 카드 그리드 */
     .mobile-preview-section .participation-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -3238,8 +3152,6 @@ textarea.form-control[readonly] {
         margin-top: 8px;
     }
 }
-    
-
 
 .custom-alert-backdrop {
     position: fixed;
@@ -3435,7 +3347,6 @@ textarea.form-control[readonly] {
     <p>잠시만 기다려주세요...</p>
 </div>
 
-<!-- 날짜 선택 모달 -->
 <div class="date-modal" id="dateModal">
 <div class="date-modal-content">
 <div class="date-modal-header">
@@ -3537,14 +3448,11 @@ textarea.form-control[readonly] {
 </div>
 </div>
 </section>
-    
-<!-- 새로운 개인정보 수집 섹션 끝 -->
 
 <form id="applicationForm">
 <section class="form-section">
     <h2 class="section-title">기본 정보</h2>
 
-    <!-- PC 버전 레이아웃 -->
     <div class="basic-info-container pc-only">
         <div class="form-row first-row" style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px">
             <div class="form-group" style="width: 20%">
@@ -3598,7 +3506,6 @@ textarea.form-control[readonly] {
             </div>
         </div>
 
-    <!-- 두 번째 줄: 연락처, 본가, 현재 거주지 -->
     <div class="form-row three-columns" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
         <div class="form-group">
             <label class="form-label required">연락처</label>
@@ -3617,7 +3524,6 @@ textarea.form-control[readonly] {
         </div>
     </div>
 
-    <!-- 학교, 전공, 학번, 학년 줄 -->
     <div class="form-row fourth-row" style="display: flex; gap: 16px; align-items: flex-start">
         <div class="form-group" style="width: 24%">
             <label class="form-label required">학교</label>
@@ -3669,7 +3575,6 @@ textarea.form-control[readonly] {
     </div>
 </div>
 
-    <!-- 모바일 버전 레이아웃 -->
     <div class="basic-info-container mobile-only">
         <div class="mobile-form-grid">
             <!-- 첫째 줄: 이름, 생년월일, MBTI -->
@@ -3705,7 +3610,6 @@ textarea.form-control[readonly] {
                </div>
            </div>
 
-    <!-- 둘째 줄: 성별, 연락처 -->
     <div class="mobile-form-row">
         <div class="form-group" style="margin-top: 28px">
             <div class="gender-buttons">
@@ -3731,7 +3635,6 @@ textarea.form-control[readonly] {
         </div>
     </div>
 
-    <!-- 셋째 줄: 본가, 현재 거주지 -->
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">본가</label>
@@ -3743,7 +3646,6 @@ textarea.form-control[readonly] {
         </div>
     </div>
 
-    <!-- 넷째 줄: 학교, 전공 -->
     <div class="mobile-form-row">
         <div class="form-group">
             <label class="form-label required">학교</label>
@@ -3755,7 +3657,6 @@ textarea.form-control[readonly] {
         </div>
     </div>
 
-    <!-- 다섯째 줄: 학번, 학년, 휴학여부 -->
     <div class="mobile-form-row three-part" style="display: grid; grid-template-columns: 30% 40% 30%; gap: 8px;">
         <div class="form-group" style="margin: 0;">
             <label class="form-label required">학번</label>
@@ -3797,16 +3698,15 @@ textarea.form-control[readonly] {
 </div>
     </div>
 
-<!-- 운전가능여부 섹션 -->
 <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px">
-<div style="display: flex; gap: 24px">  <!-- 가로 배치를 위한 컨테이너 -->
+<div style="display: flex; gap: 24px"> 
 <select class="form-control" name="driving_status" style="width: 180px" required>
 <option value="" disabled selected>운전 가능 여부 선택</option>
 <option value="car">자차 보유</option>
 <option value="license">면허만 보유</option>
 <option value="none">해당사항 없음</option>
 </select>
-<div style="display: flex; flex-direction: column; margin-top: -4px">  <!-- alert들을 세로로 쌓기 위한 컨테이너 -->
+<div style="display: flex; flex-direction: column; margin-top: -4px"> 
 <div class="alert-red driving-alert" style="margin-bottom: -2px">
 <i class="fas fa-exclamation-circle"></i> 
 실제 운전 가능한 경우에만 면허만 보유를 선택해 주세요.
@@ -3847,8 +3747,7 @@ textarea.form-control[readonly] {
 </div>
     
 </section>
-    
-<!-- 기본 정보 섹션 끝나고, 활동 참여 및 동의 여부 섹션 시작하기 전에 다음 코드를 추가 -->
+
 <section class="form-section">
 <h2 class="section-title">추가 정보</h2>
 
@@ -3978,7 +3877,6 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 </div>
 </div>
 
-<!-- 콘텐츠 활용 동의 섹션 -->
 <div class="form-group">
 <div class="schedule-card">
 <div class="card-header">
@@ -4015,7 +3913,7 @@ MT비 및 세부 일정은 최종 합격자에 한해 추후 안내 예정입니
 SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의를 반드시 구할 예정입니다.
 </div>
 </div>
-<!-- 콘텐츠 활용 동의 예시 버튼 -->
+
 <button class="example-btn" type="button" data-type="content">
 <i class="fas fa-image"></i>
 예시
@@ -4042,7 +3940,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 
-<!-- 여행 운영 참여 안내 섹션 -->
 <div class="form-group">
 <div class="schedule-card">
 <div class="card-header">
@@ -4076,7 +3973,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 적극적인 의견 개진과 피드백 참여를 필요로 하는 동아리입니다.
 </div>
 </div>
-<!-- 여행 운영 참여 안내 예시 버튼 -->
+
 <button class="example-btn" type="button" data-type="feedback">
 <i class="fas fa-image"></i>
 예시
@@ -4103,9 +4000,7 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </div>
 </div>
-    
 
-<!-- 모바일 버전 -->
 <div class="mobile-only">
     <div class="schedule-card">
         <div class="card-header">
@@ -4160,7 +4055,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 
-    <!-- 정기 활동 안내 모바일 -->
     <div class="schedule-card">
         <div class="card-header">
             <h3>정기 활동 안내</h3>
@@ -4215,7 +4109,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 
-    <!-- 콘텐츠 활용 동의 모바일 -->
     <div class="schedule-card">
         <div class="card-header">
             <h3>콘텐츠 활용 동의</h3>
@@ -4272,7 +4165,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
         </div>
     </div>
 
-    <!-- 여행 운영 참여 모바일 -->
     <div class="schedule-card">
         <div class="card-header">
             <h3>여행 운영 참여</h3>
@@ -4340,7 +4232,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <textarea class="form-control" name="introduction" rows="4" required placeholder="본인의 성격 위주로 작성해주세요."></textarea>
 </div>
 
-<!-- 특별 자기소개 섹션 -->
 <div class="form-group" style="margin-top: 2rem;">
 <label class="form-label required">자신과 가장 잘 맞는 유형을 선택하고, 그 이유를 재치있게 설명해주세요.</label>
 <div class="special-intro-container">
@@ -4368,15 +4259,13 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <section class="form-section">
 <h2 class="section-title">여행 경험 에세이</h2>
 
-<!-- 가본 여행지 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지금까지 가본 여행지를 적어주세요.</label>
 <textarea class="form-control" name="visited_places" rows="3" required placeholder="예시) 강릉, 부산, 여수, 제주 (국내 여행지만 적어주세요)"></textarea>
 </div>
 
-<!-- 에세이 작성 부분 -->
 <div class="form-group">
-<div class="essay-header" style="margin: 0;">  <!-- margin을 0으로 초기화 -->
+<div class="essay-header" style="margin: 0;"> 
 <label class="form-label" style="margin-bottom: 0.4rem;">두 주제 중 하나를 선택하여 작성해 주세요.</label>
 <div class="essay-type-selector">
 <div class="essay-type-options">
@@ -4400,13 +4289,11 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 <section class="form-section">
 <h2 class="section-title">지원자의 이야기</h2>
 
-<!-- 지원 동기 입력 칸 -->
 <div class="form-group" style="margin-bottom: 2rem;">
 <label class="form-label required">지원 동기를 적어주세요.</label>
 <textarea class="form-control" name="motivation" rows="3" required placeholder="발자취에 지원하게 된 계기와 이유를 설명해주세요."></textarea>
 </div>
 
-<!-- 마지막 한마디 작성 부분 -->
 <div class="form-group">
 <div class="essay-header" style="margin: 0;">
 <label class="form-label" style="margin-bottom: 0.4rem;">마지막으로 하고 싶은 말을 자유롭게 적어주세요.</label>
@@ -4415,11 +4302,9 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
 </div>
 </section>
 
-<!-- 면접 일정 선택 섹션 -->
 <section class="form-section">
 <h2 class="section-title">면접 일정 선택</h2>
 
-<!-- 일정 선택 버튼 -->
 <div class="schedule-select-wrapper">
     <button type="button" class="schedule-select-btn" onclick="openScheduleModal()">
         <i class="fas fa-calendar-alt"></i>
@@ -4433,7 +4318,6 @@ SNS 게시 전 본인의 얼굴이 나온 자료에 대해서는 사전 동의�
     </div>
 </div>
 
-<!-- 추가 요청사항 입력 -->
 <div class="additional-requests" style="margin-top: 2rem;">
 <div class="form-group">
 <label class="form-label">추가 요청사항</label>
@@ -4443,7 +4327,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 
-<!-- 알림 메시지 -->
 <div class="alerts" style="margin-top: 1rem;">
 <div class="alert-green">
 <i class="fas fa-info-circle"></i>
@@ -4460,7 +4343,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </section>
 
-<!-- 활동 안내사항 섹션 -->
 <section class="form-section pc-only"> 
 <h2 class="section-title">활동 안내사항 확인</h2>
 <div class="notice-card">
@@ -4561,7 +4443,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </section>
 
 
-<!-- 모바일용 활동 안내사항 확인 섹션 -->
 <div class="mobile-only" style="margin: 0 0.5rem;">
     <section class="form-section">
         <h2 class="section-title">활동 안내사항 확인</h2>
@@ -4587,7 +4468,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 여행 경비 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4602,7 +4482,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 단체여행 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4623,7 +4502,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 가입비 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4638,7 +4516,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 활동 제재 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4653,7 +4530,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 성적자기결정권 공지 -->
         <div class="mobile-notice-item warning">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4674,7 +4550,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 허위기재 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4689,7 +4564,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
         </div>
 
-        <!-- 접수확인 공지 -->
         <div class="mobile-notice-item">
             <div class="notice-icon">
                 <i class="fas fa-circle-exclamation"></i>
@@ -4709,18 +4583,15 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 
 <div style="display: flex; justify-content: center; width: 100%;">
-<!-- PC 버전 -->
 <div class="button-group pc-only">
     <button type="button" class="preview-btn" onclick="previewApplication()">미리보기</button>
     <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
 </div>
 
-<!-- 모바일 버전 -->
 <div class="button-group mobile-only">
     <button type="button" class="submit-btn" onclick="submitToGoogleForm()">제출하기</button>
 </div>
 
-<!-- 미리보기 모달 추가 -->
 <div class="preview-modal" id="previewModal">
 <div class="preview-modal-content">
 <button class="example-close" onclick="closePreview()">&times;</button>
@@ -4729,7 +4600,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <p class="preview-modal-desc">제출 전 마지막으로 작성하신 내용을 확인해주세요.</p>
 </div>
 <div class="preview-content">
-<!-- 여기에 JavaScript로 동적으로 내용 삽입 -->
+
 </div>
 <div class="modal-footer" style="display: flex; justify-content: center; gap: 1rem;">
     <button class="modal-bottom-close" onclick="closePreview()" style="background: var(--border-color); color: var(--text-color);">닫기</button>
@@ -4740,7 +4611,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 </form>
 
-<!-- 면접 일정 선택 모달 -->
 <div class="schedule-modal" id="scheduleModal">
 <div class="schedule-modal-content">
     <div class="modal-header">
@@ -4753,7 +4623,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     
     <div class="modal-body">
         <div class="date-selection">
-            <!-- 비대면 면접 일정들 -->
             <div class="date-option">
                 <div class="date-header">
                     <div class="date-main">
@@ -4838,7 +4707,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
             </div>
 
-            <!-- 대면 면접 일정 (특별 스타일링) -->
             <div class="date-option offline">
                 <div class="date-header">
                     <div class="date-main">
@@ -4877,8 +4745,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 
-    
-<!-- 예시 보기 모달 -->
+
 <div class="example-modal" id="exampleModal">
 <div class="example-modal-content">
 <button class="example-close">&times;</button>
@@ -5032,7 +4899,6 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-// 날짜 선택 모달 관련 요소들
 const dateInput = document.querySelector('input[name="birthdate"]');
 const dateModal = document.getElementById('dateModal');
 const confirmBtn = document.querySelector('.confirm-btn');
@@ -5043,19 +4909,17 @@ const nextMonthBtn = document.querySelector('.month-next');
 const yearUpBtn = document.querySelector('.year-up');
 const yearDownBtn = document.querySelector('.year-down');
 
-let currentDate = new Date(2001, 0); // 01년생부터 시작
+let currentDate = new Date(2001, 0);
 let selectedDate = null;
 
 if(dateInput) {
-    // 모바일에서 input을 클릭했을 때 기본 달력이 뜨는 것을 방지
     dateInput.addEventListener('focus', function(e) {
         e.preventDefault();
         this.blur();
         dateModal.style.display = 'block';
         renderCalendar(currentDate);
     });
-    
-    // 모바일에서도 동일하게 적용
+
     const dateInputMobile = document.querySelector('input[name="birthdate_mobile"]');
     if(dateInputMobile) {
         dateInputMobile.addEventListener('focus', function(e) {
@@ -5067,7 +4931,6 @@ if(dateInput) {
     }
 }
 
-// 달력 확인/취소 버튼 이벤트
 if(confirmBtn) {
     confirmBtn.addEventListener('click', function() {
         if(selectedDate) {
@@ -5076,11 +4939,9 @@ if(confirmBtn) {
             const day = String(selectedDate.getDate()).padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}`;
             
-            // PC 버전 입력칸 업데이트
             const pcInput = document.querySelector('input[name="birthdate"]');
             if(pcInput) pcInput.value = formattedDate;
             
-            // 모바일 버전 입력칸 업데이트
             const mobileInput = document.querySelector('input[name="birthdate_mobile"]');
             if(mobileInput) mobileInput.value = formattedDate;
         }
@@ -5094,7 +4955,6 @@ dateModal.style.display = 'none';
 });
 }
 
-// 달력 이전/다음 버튼 이벤트
 if(prevMonthBtn) {
 prevMonthBtn.addEventListener('click', function() {
 currentDate.setMonth(currentDate.getMonth() - 1);
@@ -5109,7 +4969,6 @@ renderCalendar(currentDate);
 });
 }
 
-// 달력 연도 변경 버튼 이벤트
 if(yearUpBtn) {
 yearUpBtn.addEventListener('click', function() {
 currentDate.setFullYear(currentDate.getFullYear() + 1);
@@ -5124,7 +4983,6 @@ renderCalendar(currentDate);
 });
 }
 
-// 달력 렌더링 함수
 function renderCalendar(date) {
 const year = date.getFullYear();
 const month = date.getMonth();
@@ -5137,7 +4995,6 @@ const lastDay = new Date(year, month + 1, 0);
 const calendarGrid = document.querySelector('.calendar-grid');
 calendarGrid.innerHTML = '';
 
-// 요일 헤더 추가
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 days.forEach(day => {
 const dayEl = document.createElement('div');
@@ -5177,7 +5034,6 @@ calendarGrid.appendChild(dayEl);
 }
 }
 
-// 예시 보기 모달 관련 이벤트
 const exampleBtns = document.querySelectorAll('.example-btn');
 exampleBtns.forEach(btn => {
 btn.addEventListener('click', function(e) {
@@ -5187,7 +5043,6 @@ showExample(type);
 });
 });
 
-// ESC 키 이벤트 (모든 모달 닫기)
 document.addEventListener('keydown', function(event) {
 if (event.key === 'Escape') {
 closeExample();
@@ -5195,7 +5050,6 @@ if(dateModal) dateModal.style.display = 'none';
 }
 });
 
-// 모달 외부 클릭 이벤트
 const exampleModal = document.getElementById('exampleModal');
 if (exampleModal) {
 exampleModal.addEventListener('click', function(event) {
@@ -5213,7 +5067,6 @@ dateModal.style.display = 'none';
 });
 }
 
-// 닫기 버튼 이벤트
 const closeButtons = document.querySelectorAll('.example-close, .modal-bottom-close');
 closeButtons.forEach(button => {
 button.addEventListener('click', function(e) {
@@ -5222,12 +5075,10 @@ closeExample();
 });
 });
 
-// 보안 관련 이벤트
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('selectstart', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
 
-// 단축키 방지
 document.addEventListener('keydown', function(e) {
 if ((e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
 (e.ctrlKey && e.keyCode === 85) || 
@@ -5249,18 +5100,15 @@ modal.style.display = 'none';
 document.body.style.overflow = 'auto';
 };
 
-// 닫기 버튼 이벤트
 const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
 closeButtons.forEach(button => {
 button.addEventListener('click', closeModal, { once: true });
 });
 
-// 모달 외부 클릭 시 닫기
 modal.addEventListener('click', (e) => {
 if (e.target === modal) closeModal();
 }, { once: true });
 
-// ESC 키 누르면 닫기
 const escHandler = (e) => {
 if (e.key === 'Escape') {
 closeModal();
@@ -5288,18 +5136,15 @@ showRules();
         document.body.style.overflow = 'auto';
     };
 
-    // 닫기 버튼 이벤트
     const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
     closeButtons.forEach(button => {
         button.addEventListener('click', closeModal, { once: true });
     });
 
-    // 모달 외부 클릭 시 닫기
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     }, { once: true });
 
-    // ESC 키 누르면 닫기
     const escHandler = (e) => {
         if (e.key === 'Escape') {
             closeModal();
@@ -5316,7 +5161,6 @@ function showExample(type) {
     const imageContainer = modal.querySelector('.modal-image-container');
     const scrollIndicator = modal.querySelector('.scroll-indicator');
 
-    // 모달 초기화
     modalTitle.textContent = '';
     modalDesc.textContent = '';
     imageContainer.innerHTML = '';
@@ -5393,7 +5237,6 @@ function closeExample() {
     const rulesModal = document.getElementById('rulesModal');
     const scheduleRulesModal = document.getElementById('scheduleRulesModal');
     
-    // 모든 모달의 컨텐츠 영역 스크롤 초기화
     const containers = document.querySelectorAll('.modal-image-container');
     containers.forEach(container => {
         if(container) container.scrollTop = 0;
@@ -5406,7 +5249,6 @@ function closeExample() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 모바일 예시 버튼 이벤트 리스너
     document.querySelectorAll('.mobile-example-btn, button[data-type="records"], button[data-type="schedule"]').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -5415,7 +5257,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 모바일 확인 체크박스 이벤트 리스너
     document.querySelectorAll('.mobile-confirm input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('click', function() {
             const confirmText = this.nextElementSibling;
@@ -5444,14 +5285,12 @@ textarea.placeholder = placeholders[type];
 </script>
 
 <script>
-// 면접 일정 상태 관리
 let selectedInterviewSlots = [];
 
 function openScheduleModal() {
     const modal = document.getElementById('scheduleModal');
     const modalContent = modal.querySelector('.schedule-modal-content');
     
-    // 이전에 선택된 일정 복원
     document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
         checkbox.checked = selectedInterviewSlots.includes(checkbox.value);
     });
@@ -5543,9 +5382,8 @@ function confirmSchedule() {
         return;
     }
 
-    // 선택된 일정 업데이트
     selectedInterviewSlots = Array.from(selectedSlots).map(slot => slot.value);
-    formData.interview_slots = [...selectedInterviewSlots]; // formData도 함께 업데이트
+    formData.interview_slots = [...selectedInterviewSlots];
     updateSelectedScheduleDisplay();
 
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -5561,7 +5399,6 @@ function confirmSchedule() {
     }, 0);
 }
 
-// 체크박스 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('input[name="interview_slots[]"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
@@ -5592,7 +5429,6 @@ function previewApplication() {
             return;
         }
 
-        // 모바일 환경 체크
         const isMobile = window.innerWidth <= 768;
         
         const previewContent = modal.querySelector('.preview-content');
@@ -5602,7 +5438,6 @@ function previewApplication() {
             return;
         }
 
-        // 모바일일 경우 다른 레이아웃 사용
         if (isMobile) {
 
             let previewHTML = `
@@ -5832,8 +5667,6 @@ function previewApplication() {
                         </div>
                     </section>
                     
-
-                    <!-- 자기소개 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">자기소개</h3>
                         <div class="mobile-preview-item full-width">
@@ -5846,7 +5679,6 @@ function previewApplication() {
                         </div>
                     </section>
 
-                    <!-- 여행 경험 에세이 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">여행 경험 에세이</h3>
                         <div class="mobile-preview-item full-width">
@@ -5866,7 +5698,6 @@ function previewApplication() {
                         </div>
                     </section>
 
-                    <!-- 지원자의 이야기 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">지원자의 이야기</h3>
                         <div class="mobile-preview-item full-width">
@@ -5879,7 +5710,6 @@ function previewApplication() {
                         </div>
                     </section>
 
-                    <!-- 면접 일정 섹션 -->
                     <section class="mobile-preview-section">
                         <h3 class="mobile-preview-title">면접 일정</h3>
                         <div class="mobile-preview-schedule">
