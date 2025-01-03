@@ -3326,6 +3326,46 @@ textarea.form-control[readonly] {
         font-size: 0.95rem;
     }
 }
+
+.notification {
+    position: fixed;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    display: none;
+}
+
+.notification.success {
+    background-color: #2F5229;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .notification {
+        top: auto;
+        bottom: 20px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        padding: 12px 15px;
+        font-size: 14px;
+        margin: 0 10px;
+    }
+}
+
     
 </style>
 
@@ -3334,9 +3374,13 @@ textarea.form-control[readonly] {
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
 <div class="progress-container">
-<div class="progress-bar">
-<div class="progress" id="progress"></div>
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
 </div>
+
+<div id="notification" class="notification">
+    <p class="notification-message"></p>
 </div>
 
 <div id="loading-spinner" class="loading-spinner">
@@ -6767,6 +6811,27 @@ return false;
     
 }
 
+function showNotification(message, type = 'success') {
+    const notification = document.getElementById('notification');
+    const messageElement = notification.querySelector('.notification-message');
+    
+    notification.className = `notification ${type}`;
+    messageElement.textContent = message;
+    notification.style.display = 'block';
+    
+    const duration = isMobile ? 4000 : 3000;
+    
+    if (isMobile) {
+        notification.addEventListener('click', () => {
+            notification.style.display = 'none';
+        });
+    }
+    
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, duration);
+}
+
 function handleAlertConfirm(button) {
     const backdrop = button.closest('.custom-alert-backdrop');
     backdrop.style.opacity = '0';
@@ -6775,7 +6840,30 @@ function handleAlertConfirm(button) {
     setTimeout(() => {
         backdrop.remove();
         document.body.style.overflow = '';
-        window.location.href = 'https://footstep2024.github.io/';
+        
+        showLoading();
+        showNotification('메인 페이지로 이동합니다', 'success');
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        `;
+        document.body.appendChild(overlay);
+        
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+            setTimeout(() => {
+                window.location.href = 'https://footstep2024.github.io/';
+            }, 700);
+        });
     }, 300);
 }
 
