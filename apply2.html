@@ -6841,8 +6841,9 @@ function handleAlertConfirm(button) {
         backdrop.remove();
         document.body.style.overflow = '';
         
-        showLoading();
         showNotification('메인 페이지로 이동합니다', 'success');
+        
+        showLoading();
         
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -6858,15 +6859,12 @@ function handleAlertConfirm(button) {
         `;
         document.body.appendChild(overlay);
         
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             overlay.style.opacity = '1';
             setTimeout(() => {
-                hideLoading();
-                const link = document.createElement('a');
-                link.href = 'https://footstep2024.github.io/';
-                link.click();
+                window.location.href = 'https://footstep2024.github.io/';
             }, 700);
-        }, 100);
+        });
     }, 300);
 }
 
