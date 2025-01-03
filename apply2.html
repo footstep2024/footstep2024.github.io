@@ -6806,69 +6806,65 @@ setTimeout(() => {
         }, 1000);
     });
 }, 100);
-    
-return false;
-    
-}
 
+return false;
+
+}
 function showNotification(message, type = 'success') {
     const notification = document.getElementById('notification');
     const messageElement = notification.querySelector('.notification-message');
-    
-    notification.className = `notification ${type}`;
+
+    notification.className = notification ${type};
     messageElement.textContent = message;
     notification.style.display = 'block';
-    
+
     const duration = isMobile ? 4000 : 3000;
-    
+
     if (isMobile) {
         notification.addEventListener('click', () => {
             notification.style.display = 'none';
         });
     }
-    
+
     setTimeout(() => {
         notification.style.display = 'none';
     }, duration);
 }
-
 function handleAlertConfirm(button) {
     const backdrop = button.closest('.custom-alert-backdrop');
     backdrop.style.opacity = '0';
     backdrop.style.transition = 'opacity 0.3s ease';
-    
+
     setTimeout(() => {
         backdrop.remove();
         document.body.style.overflow = '';
-        
+
         showLoading();
         showNotification('메인 페이지로 이동합니다', 'success');
-        
+
         const overlay = document.createElement('div');
-        overlay.style.cssText = `
+        overlay.style.cssText = 
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: white;
-            z-index: 9999;  // z-index 값을 더 높게 설정
+            z-index: 9998;
             opacity: 0;
             transition: opacity 0.7s ease;
-        `;
+        ;
         document.body.appendChild(overlay);
-        
-        requestAnimationFrame(() => {
+
+        setTimeout(() => {
             overlay.style.opacity = '1';
             setTimeout(() => {
                 hideLoading();
                 const link = document.createElement('a');
                 link.href = 'https://footstep2024.github.io/';
-                document.body.appendChild(link);  // 링크를 DOM에 추가
                 link.click();
-                document.body.removeChild(link);  // 클릭 후 링크 제거
             }, 700);
-        });
+        }, 100);
     }, 300);
 }
 
