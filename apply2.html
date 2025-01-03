@@ -6837,7 +6837,7 @@ function handleAlertConfirm(button) {
     backdrop.style.opacity = '0';
     backdrop.style.transition = 'opacity 0.3s ease';
     
-    setTimeout(() => {  // transition이 끝난 후에 remove 실행
+    setTimeout(() => {
         backdrop.remove();
         document.body.style.overflow = '';
         
@@ -6862,10 +6862,11 @@ function handleAlertConfirm(button) {
             overlay.style.opacity = '1';
             setTimeout(() => {
                 hideLoading();
+                document.documentElement.innerHTML = '';
                 window.location.href = 'https://footstep2024.github.io/';
             }, 700);
         }, 100);
-    }, 300);  // transition 시간만큼 대기
+    }, 300);
 }
 
 </script>
