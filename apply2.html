@@ -6857,14 +6857,13 @@ function handleAlertConfirm(button) {
     `;
     document.body.appendChild(overlay);
     
-    setTimeout(() => {
+setTimeout(() => {
         overlay.style.opacity = '1';
         setTimeout(() => {
             hideLoading();
-            window.location.replace('https://footstep2024.github.io/');
-        }, 1000);
+            window.location.href = 'https://footstep2024.github.io/';
+        }, 700);
     }, 100);
-}
 
 </script>
 
