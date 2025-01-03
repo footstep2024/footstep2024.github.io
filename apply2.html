@@ -6863,7 +6863,9 @@ function handleAlertConfirm(button) {
             setTimeout(() => {
                 hideLoading();
                 document.documentElement.innerHTML = '';
-                window.location.href = 'https://footstep2024.github.io/';
+                setTimeout(() => {
+                    window.location.assign('https://footstep2024.github.io/');
+                }, 100);
             }, 700);
         }, 100);
     }, 300);
