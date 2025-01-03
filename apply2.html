@@ -6837,34 +6837,36 @@ function handleAlertConfirm(button) {
     backdrop.style.opacity = '0';
     backdrop.style.transition = 'opacity 0.3s ease';
     
-    backdrop.remove();
-    document.body.style.overflow = '';
-    
-    showLoading();
-    showNotification('메인 페이지로 이동합니다', 'success');
-    
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        z-index: 9998;
-        opacity: 0;
-        transition: opacity 0.7s ease;
-    `;
-    document.body.appendChild(overlay);
-    
-setTimeout(() => {
-        overlay.style.opacity = '1';
+    setTimeout(() => {  // transition이 끝난 후에 remove 실행
+        backdrop.remove();
+        document.body.style.overflow = '';
+        
+        showLoading();
+        showNotification('메인 페이지로 이동합니다', 'success');
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        `;
+        document.body.appendChild(overlay);
+        
         setTimeout(() => {
-            hideLoading();
-            window.location.href = 'https://footstep2024.github.io/';
-        }, 700);
-    }, 100);
-}    
+            overlay.style.opacity = '1';
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = 'https://footstep2024.github.io/';
+            }, 700);
+        }, 100);
+    }, 300);  // transition 시간만큼 대기
+}
 
 </script>
 
