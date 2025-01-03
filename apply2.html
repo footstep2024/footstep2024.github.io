@@ -6862,11 +6862,8 @@ function handleAlertConfirm(button) {
             overlay.style.opacity = '1';
             setTimeout(() => {
                 hideLoading();
-                const form = document.createElement('form');
-                form.method = 'get';
-                form.action = 'https://footstep2024.github.io/';
-                document.body.appendChild(form);
-                form.submit();
+                window.location.reload();
+                window.location.href = 'https://footstep2024.github.io/';
             }, 700);
         }, 100);
     }, 300);
