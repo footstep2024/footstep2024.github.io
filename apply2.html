@@ -5509,6 +5509,18 @@ function showExample(type) {
         document.body.style.overflow = 'hidden';
         return;
     }
+    if (type === 'meeting') {
+        const meetingModal = document.getElementById('meetingModal'); 
+        if (!meetingModal) return;
+        meetingModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        return;
+    } else if (type === 'accounting') {
+        const accountingModal = document.getElementById('accountingModal'); 
+        if (!accountingModal) return;
+        accountingModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        return;
 
     const contents = {
         feedback: {
