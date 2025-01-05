@@ -4467,7 +4467,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
     <div class="notice-content">
         <i class="fas fa-circle-exclamation"></i>
-        <p>매 학기전환을 앞두고 정기총회를 개최, 부원들의 의견을 수렴하여 회칙과 운영방식을 개선합니다. 부원이 되신다면 누구나 동등한 주체로서 의견을 제시할 수 있습니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">총회 안내 보기</button></p>
+        <p>매 학기전환을 앞두고 정기총회를 개최, 부원들의 의견을 수렴하여 회칙과 운영방식을 개선합니다. 부원이 되신다면 누구나 동등한 주체로서 의견을 제시할 수 있습니다.<button class="example-btn" type="button" data-type="assembly" style="margin-left: 8px">총회 안내 보기</button></p>
         <label class="confirm-check">
             <input type="checkbox" name="notice_check_7" required>
             <span class="check-text">확인함</span>
@@ -4478,7 +4478,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
     <div class="notice-content">
         <i class="fas fa-circle-exclamation"></i>
-        <p>정기총회에선 부원 중 1인이 학기간 전체 회계감사를 진행하며, 모든 수입과 지출 내역은 상시 열람 가능합니다. 부원이라면 누구나 회계 관련 의견을 제시하거나, 감사를 맡을 수 있습니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">회계 운영 보기</button></p>
+        <p>정기총회에선 부원 중 1인이 학기간 전체 회계감사를 진행하며, 모든 수입과 지출 내역은 상시 열람 가능합니다. 부원이라면 누구나 회계 관련 의견을 제시하거나, 감사를 맡을 수 있습니다.<button class="example-btn" type="button" data-type="accounting" style="margin-left: 8px">회계 운영 보기</button></p>
         <label class="confirm-check">
             <input type="checkbox" name="notice_check_8" required>
             <span class="check-text">확인함</span>
@@ -4619,9 +4619,9 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                         <span class="check-icon"></span>
                         <span class="confirm-text">확인함</span>
                     </div>
-                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                    <button type="button" class="mobile-example-btn" data-type="assembly">
                         <i class="fas fa-image"></i>
-                        총회 안내 보
+                        총회 안내 보기
                     </button>
                 </label>
             </div>
@@ -4639,9 +4639,9 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                         <span class="check-icon"></span>
                         <span class="confirm-text">확인함</span>
                     </div>
-                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                    <button type="button" class="mobile-example-btn" data-type="accounting">
                         <i class="fas fa-image"></i>
-                        회계 운영 보기\
+                        회계 운영 보기
                     </button>
                 </label>
             </div>
@@ -4980,6 +4980,100 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     </div>
 </div>
 
+<div class="rules-modal" id="assemblyRulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">정기총회 관련 회칙</h3>
+            <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
+                <i class="fas fa-users"></i> 
+                모든 부원이 동등한 주체로서 참여하는 발자취의 정기총회
+            </p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content">
+                <div class="rules-title">제18조 (정기총회)</div>
+                <ol>
+                    <li>정기총회는 매 학기말 집행부가 소집한다.</li>
+                    <li>정기총회에서는 다음 각 호의 사항을 의결한다.
+                        <ol>
+                            <li>회칙 개정</li>
+                            <li>결산 보고 및 승인</li>
+                            <li>집행부 활동 평가</li>
+                            <li>기타 중요 사항</li>
+                        </ol>
+                    </li>
+                    <li>정기총회의 의결은 재적 부원 과반수의 출석과 출석 부원 과반수의 찬성으로 한다.</li>
+                    <li>불가피한 사유로 참석이 어려운 부원은 위임장을 제출할 수 있다.</li>
+                </ol>
+                <div class="rules-source">발자취 총칙 중 발췌 (최종 개정일: 2024.11.11)</div>
+
+                <!-- 카카오톡 이미지 추가 -->
+                <div class="assembly-image-container" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
+                    <div class="timeline-item">
+                        <div class="timeline-content" style="padding: 1rem;">
+                            <div class="timeline-image">
+                                <img src="카카오톡_캡처_이미지_경로.jpg" alt="정기총회 공지 캡처">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+    </div>
+</div>
+
+<div class="rules-modal" id="accountingRulesModal">
+    <div class="example-modal-content">
+        <button class="example-close">&times;</button>
+        <div class="modal-header">
+            <h3 class="modal-title">회계 운영 관련 회칙</h3>
+            <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
+                <i class="fas fa-calculator"></i> 
+                투명한 회계 운영을 위한 발자취의 노력
+            </p>
+        </div>
+        <div class="modal-image-container">
+            <div class="rules-content">
+                <div class="rules-title">제25조 (회계 운영)</div>
+                <ol>
+                    <li>모든 수입과 지출 내역은 부원들이 상시 열람 가능하도록 공개한다.</li>
+                    <li>매 학기 정기총회에서 1인의 회계감사를 선임한다.</li>
+                    <li>회계감사는 해당 학기의 모든 회계 내역을 검토하고 그 결과를 정기총회에서 보고한다.</li>
+                    <li>회계 관련 의혹이 제기될 경우 임시총회를 소집하여 논의할 수 있다.</li>
+                </ol>
+                <div class="rules-source">발자취 총칙 중 발췌 (최종 개정일: 2024.11.11)</div>
+
+                <!-- 이미지 2개 컨테이너 -->
+                <div class="accounting-images-container" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-color); margin-bottom: 1rem;">회계 운영 방식 안내</h4>
+                            <div class="timeline-image" style="width: 100%; height: auto; margin-bottom: 1rem;">
+                                <img src="카카오톡_캡처_이미지_경로.jpg" alt="회계 운영 안내">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="margin-top: 1rem;">
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-color); margin-bottom: 1rem;">구글 클라우드 회계내역</h4>
+                            <div class="timeline-image" style="width: 100%; height: auto;">
+                                <img src="구글클라우드_캡처_이미지_경로.jpg" alt="회계 내역 클라우드">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
+        </div>
+    </div>
+</div>
+    
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 const dateInput = document.querySelector('input[name="birthdate"]');
@@ -5207,6 +5301,70 @@ showRules();
     document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
     e.preventDefault();
     const modal = document.getElementById('scheduleRulesModal');
+    if (!modal) return;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+});
+
+
+    document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = document.getElementById('assemblyRulesModal');
+    if (!modal) return;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeModal, { once: true });
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    }, { once: true });
+
+    const escHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+});
+
+
+        document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = document.getElementById('accountingRulesModal');
     if (!modal) return;
 
     modal.style.display = 'block';
