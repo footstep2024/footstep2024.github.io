@@ -1565,17 +1565,25 @@ pointer-events: none;
 z-index: 9999;
 }
 
-@media (max-width: 768px) {
-.scroll-indicator {
-font-size: 0.8rem;
-padding: 8px 16px;
-bottom: 15px;
-}
-}
-
 .scroll-indicator i {
 animation: bounce 1s infinite;
 }
+
+@media (max-width: 768px) {
+    .scroll-indicator {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        gap: 4px;
+        background: rgba(0, 0, 0, 0.6);
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+    
+    .scroll-indicator i {
+        font-size: 0.75rem;
+    }
+}
+
+
 
 @keyframes bounce {
 0%, 100% { transform: translateY(0); }
