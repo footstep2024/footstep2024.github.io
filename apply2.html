@@ -2149,6 +2149,61 @@ background-color: #404040;
 color: var(--text-color);
 }
 }
+
+
+.rules-modal .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.rules-section {
+    background: rgba(47, 82, 41, 0.03);
+    border-radius: 8px;
+    padding: 1.4rem;
+}
+
+.rules-section-title {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(47, 82, 41, 0.1);
+}
+
+.image-section {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(47, 82, 41, 0.05);
+    margin-top: 1rem;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-top: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .rules-modal .content-wrapper {
+        gap: 1rem;
+    }
+
+    .image-section {
+        padding: 0.8rem;
+        margin-top: 0.8rem;
+    }
+
+    .image-caption {
+        font-size: 0.8rem;
+        margin-top: 0.6rem;
+    }
+}
+
+    
 </style>
 
 <style>
@@ -4977,6 +5032,32 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         <div class="modal-footer">
             <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
         </div>
+    </div>
+</div>
+
+<div class="example-modal-content">
+    <button class="example-close">&times;</button>
+    <div class="modal-header">
+        <h3 class="modal-title">총회 운영 안내</h3>
+        <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
+            <i class="fas fa-info-circle"></i> 
+            발자취는 부원들과 함께 만들어가는 동아리입니다
+        </p>
+    </div>
+    <div class="modal-image-container">
+        <div class="content-wrapper">
+            <div class="rules-section">
+                <div class="rules-section-title">관련 회칙</div>
+                <!-- 회칙 내용 -->
+            </div>
+            <div class="image-section">
+                <img src="kakaotalk_notice.jpg" alt="총회 공지">
+                <p class="image-caption">24-2학기 정기총회 안내</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
     </div>
 </div>
 
