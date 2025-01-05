@@ -5298,28 +5298,23 @@ e.preventDefault();
 showRules();
 });
 
-    document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
+document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
     e.preventDefault();
     const modal = document.getElementById('scheduleRulesModal');
     if (!modal) return;
-
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-
     const closeModal = () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     };
-
     const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
     closeButtons.forEach(button => {
         button.addEventListener('click', closeModal, { once: true });
     });
-
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     }, { once: true });
-
     const escHandler = (e) => {
         if (e.key === 'Escape') {
             closeModal();
@@ -5330,28 +5325,23 @@ showRules();
 });
 
 
-    document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
+document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
     e.preventDefault();
     const modal = document.getElementById('assemblyRulesModal');
     if (!modal) return;
-
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-
     const closeModal = () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     };
-
     const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
     closeButtons.forEach(button => {
         button.addEventListener('click', closeModal, { once: true });
     });
-
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     }, { once: true });
-
     const escHandler = (e) => {
         if (e.key === 'Escape') {
             closeModal();
@@ -5362,28 +5352,23 @@ showRules();
 });
 
 
-        document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => {
+document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => {
     e.preventDefault();
     const modal = document.getElementById('accountingRulesModal');
     if (!modal) return;
-
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-
     const closeModal = () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     };
-
     const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
     closeButtons.forEach(button => {
         button.addEventListener('click', closeModal, { once: true });
     });
-
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     }, { once: true });
-
     const escHandler = (e) => {
         if (e.key === 'Escape') {
             closeModal();
