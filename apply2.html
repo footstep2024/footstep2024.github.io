@@ -1840,13 +1840,14 @@ list-style: none;
 padding: 0;
 margin: 0;
 counter-reset: rule-counter;
+line-height: 1.4;
 }
 
 .rules-content li {
-margin-bottom: 0.8rem;
-padding-left: 2.5rem;
+margin-bottom: 0.6rem;
+padding-left: 2rem;
 position: relative;
-line-height: 1.5;
+line-height: 1.4;
 color: var(--text-color);
 font-size: 0.9rem;
 }
@@ -1857,15 +1858,15 @@ content: counter(rule-counter);
 position: absolute;
 left: 0;
 top: 0.15em;
-width: 1.5rem;
-height: 1.5rem;
+width: 1.3rem;
+height: 1.3rem;
 background: var(--primary-color);
 color: white;
 border-radius: 50%;
 display: flex;
 align-items: center;
 justify-content: center;
-font-size: 0.7rem;
+font-size: 0.65rem;
 font-weight: 500;
 }
 
@@ -2580,6 +2581,37 @@ transform: translateY(-2px);
         font-size: 0.85rem;
     }
 }
+
+.hangul-list {
+    counter-reset: hangul;
+    list-style: none;
+    padding-left: 0;
+}
+
+.hangul-list li {
+    counter-increment: hangul;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.1rem;
+}
+
+.hangul-list li:before {
+    content: counter(hangul, hangul-consonant);
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: rgba(47, 82, 41, 0.1);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 500;
+}
+    
 
 </style>
 
@@ -4994,7 +5026,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     <div class="example-modal-content">
         <button class="example-close">&times;</button>
         <div class="modal-header">
-            <h3 class="modal-title">정기총회 관련 내용 사례</h3>
+            <h3 class="modal-title">정기총회 관련 내용 모음</h3>
             <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
                 <i class="fas fa-users"></i> 
                 모든 부원이 동등한 주체로서 참여하는 발자취의 정기총회
@@ -5033,7 +5065,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
     <div class="example-modal-content">
         <button class="example-close">&times;</button>
         <div class="modal-header">
-            <h3 class="modal-title">회계 운영 관련 회칙</h3>
+            <h3 class="modal-title">회계 운영 관련 모음</h3>
             <p style="color: var(--primary-color); font-size: 0.9rem; margin: 0.5rem 0 2rem;">
                 <i class="fas fa-calculator"></i> 
                 투명한 회계 운영을 위한 발자취의 노력
@@ -5056,7 +5088,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                     <li>모든 부원은 회계와 관련된 의문사항이나 문제점을 언제든지 제기할 수 있다.</li>
                     <li>회계 관련 문제 제기는 구두 또는 서면으로 총무나 회장에게 직접 전달하거나, 동아리 공식 소통 채널을 통해 할 수 있다.</li>
                     <li>문제 제기를 받은 집행부는 다음과 같이 대응해야 한다:
-                        <ol>
+                        <ol class="hangul-list" style="margin-top: 0.5rem; margin-bottom: 1rem; font-size: 0.6rem;">
                             <li>문제 제기를 받은 즉시 해당 부원에게 접수 확인을 통보한다.</li>
                             <li>48시간 이내에 초기 조사 결과나 대응 계획을 해당 부원에게 알린다.</li>
                             <li>문제의 심각성에 따라 최대 1주일 이내에 상세한 조사 결과와 해결 방안을 제시한다.</li>
