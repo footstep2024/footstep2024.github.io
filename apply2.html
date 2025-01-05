@@ -5513,6 +5513,8 @@ function closeExample() {
     const modal = document.getElementById('exampleModal');
     const rulesModal = document.getElementById('rulesModal');
     const scheduleRulesModal = document.getElementById('scheduleRulesModal');
+    const assemblyRulesModal = document.getElementById('assemblyRulesModal');
+    const accountingRulesModal = document.getElementById('accountingRulesModal');
     
     const containers = document.querySelectorAll('.modal-image-container');
     containers.forEach(container => {
@@ -5522,6 +5524,8 @@ function closeExample() {
     if (modal) modal.style.display = 'none';
     if (rulesModal) rulesModal.style.display = 'none';
     if (scheduleRulesModal) scheduleRulesModal.style.display = 'none';
+    if (assemblyRulesModal) assemblyRulesModal.style.display = 'none';
+    if (accountingRulesModal) accountingRulesModal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
@@ -5531,6 +5535,20 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const type = this.getAttribute('data-type');
             showExample(type);
+        });
+    });
+
+    document.querySelectorAll('button[data-type="assembly"], button[data-type="accounting"]').forEach(btn => {
+        ['click', 'touchstart'].forEach(eventType => {
+            btn.addEventListener(eventType, function(e) {
+                e.preventDefault();
+                const type = this.getAttribute('data-type');
+                const modalId = type === 'assembly' ? 'assemblyRulesModal' : 'accountingRulesModal';
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }, eventType === 'touchstart' ? { passive: false } : undefined);
         });
     });
 
