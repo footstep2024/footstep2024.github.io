@@ -5655,57 +5655,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, eventType === 'touchstart' ? { passive: false } : undefined);
         });
     });
-
-if (window.innerWidth <= 768) {
-    document.querySelector('[data-type="rules"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        const modal = document.getElementById('rulesModal');
-        if (!modal) return;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        const closeModal = () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
-        
-        const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-        closeButtons.forEach(button => {
-            button.addEventListener('click', closeModal, { once: true });
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        }, { once: true });
-        
-        const escHandler = (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                document.removeEventListener('keydown', escHandler);
-            }
-        };
-        document.addEventListener('keydown', escHandler);
-
-        const imageContainer = modal.querySelector('.modal-image-container');
-        const scrollIndicator = modal.querySelector('.scroll-indicator');
-        
-        if (imageContainer && scrollIndicator) {
-            setTimeout(() => {
-                scrollIndicator.style.opacity = '1';
-                scrollIndicator.style.transition = 'opacity 0.5s ease';
-            }, 100);
-            const handleScroll = () => {
-                if (imageContainer.scrollTop > 300) {
-                    scrollIndicator.style.opacity = '0';
-                    scrollIndicator.style.transition = 'opacity 2s ease';
-                    imageContainer.removeEventListener('scroll', handleScroll);
-                }
-            };
-            imageContainer.addEventListener('scroll', handleScroll);
-        }
-    });
-}
-    
+   
     document.querySelectorAll('.mobile-confirm input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('click', function() {
             const confirmText = this.nextElementSibling;
