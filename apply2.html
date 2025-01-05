@@ -3325,11 +3325,12 @@ textarea.form-control[readonly] {
         padding: 10px 30px;
         font-size: 0.95rem;
     }
+}
 
-     .notification {
+    .notification {
         position: fixed;
         right: 20px;
-        padding: 15px 25px;            
+        padding: 30px 25px;            
         border-radius: 5px;
         color: white;
         z-index: 1000;
@@ -6823,17 +6824,20 @@ function handleAlertConfirm(button) {
    const backdrop = button.closest('.custom-alert-backdrop');
    backdrop.style.opacity = '0';
    backdrop.style.transition = 'opacity 0.3s ease';
-
    setTimeout(() => {
        backdrop.remove();
        document.body.style.overflow = '';
        
        const notification = document.getElementById('notification');
-       notification.style.display = 'block';
-       notification.style.zIndex = '10001';
-       const messageElement = notification.querySelector('.notification-message');
-       messageElement.textContent = '메인 페이지로 이동합니다';
-       notification.className = 'notification success';
+       console.log('notification element:', notification);
+
+       if (notification) {
+           notification.style.display = 'block';
+           notification.style.zIndex = '10001';
+           const messageElement = notification.querySelector('.notification-message');
+           messageElement.textContent = '메인 페이지로 이동합니다';
+           notification.className = 'notification success';
+       }
        
        showLoading();
        
@@ -6850,11 +6854,9 @@ function handleAlertConfirm(button) {
            transition: opacity 0.7s ease;
        `;
        document.body.appendChild(overlay);
-
        setTimeout(() => {
            notification.style.display = 'none';
        }, 3000);
-
        setTimeout(() => {
            requestAnimationFrame(() => {
                overlay.style.opacity = '1';
