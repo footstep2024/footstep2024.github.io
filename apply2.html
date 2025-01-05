@@ -6829,15 +6829,11 @@ function handleAlertConfirm(button) {
        document.body.style.overflow = '';
        
        const notification = document.getElementById('notification');
-       console.log('notification element:', notification);
-
-       if (notification) {
-           notification.style.display = 'block';
-           notification.style.zIndex = '10001';
-           const messageElement = notification.querySelector('.notification-message');
-           messageElement.textContent = '메인 페이지로 이동합니다';
-           notification.className = 'notification success';
-       }
+       notification.style.display = 'block';
+       notification.style.zIndex = '9997';
+       const messageElement = notification.querySelector('.notification-message');
+       messageElement.textContent = '메인 페이지로 이동합니다';
+       notification.className = 'notification success';
        
        showLoading();
        
@@ -6854,9 +6850,7 @@ function handleAlertConfirm(button) {
            transition: opacity 0.7s ease;
        `;
        document.body.appendChild(overlay);
-       setTimeout(() => {
-           notification.style.display = 'none';
-       }, 3000);
+       
        setTimeout(() => {
            requestAnimationFrame(() => {
                overlay.style.opacity = '1';
