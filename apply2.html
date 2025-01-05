@@ -5077,6 +5077,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                </div>
            </div>
        </div>
+
+       <div class="scroll-indicator">
+    <i class="fas fa-mouse"></i>
+    스크롤하여 더 보기
+</div>
+       
        <div class="modal-footer">
            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
        </div>
@@ -5142,6 +5148,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                </div>
            </div>
        </div>
+
+<div class="scroll-indicator">
+    <i class="fas fa-mouse"></i>
+    스크롤하여 더 보기
+</div>
+       
        <div class="modal-footer">
            <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
        </div>
@@ -5423,6 +5435,27 @@ document.querySelector('[data-type="assembly"]').addEventListener('click', (e) =
         }
     };
     document.addEventListener('keydown', escHandler);
+
+    const imageContainer = modal.querySelector('.modal-image-container');
+    const scrollIndicator = modal.querySelector('.scroll-indicator');
+    
+    if (imageContainer && scrollIndicator) {
+        setTimeout(() => {
+            scrollIndicator.style.opacity = '1';
+            scrollIndicator.style.transition = 'opacity 0.5s ease';
+        }, 100);
+
+        const handleScroll = () => {
+            if (imageContainer.scrollTop > 300) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.transition = 'opacity 2s ease';
+                imageContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
+
+        imageContainer.addEventListener('scroll', handleScroll);
+    }
+    
 });
 
 
@@ -5450,6 +5483,27 @@ document.querySelector('[data-type="accounting"]').addEventListener('click', (e)
         }
     };
     document.addEventListener('keydown', escHandler);
+
+        const imageContainer = modal.querySelector('.modal-image-container');
+    const scrollIndicator = modal.querySelector('.scroll-indicator');
+    
+    if (imageContainer && scrollIndicator) {
+        setTimeout(() => {
+            scrollIndicator.style.opacity = '1';
+            scrollIndicator.style.transition = 'opacity 0.5s ease';
+        }, 100);
+
+        const handleScroll = () => {
+            if (imageContainer.scrollTop > 300) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.transition = 'opacity 2s ease';
+                imageContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
+
+        imageContainer.addEventListener('scroll', handleScroll);
+    }
+    
 });
 
 function showExample(type) {
@@ -5569,6 +5623,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!modal) return;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+
+                if (type === 'accounting' || type === 'assembly') {
+                    const imageContainer = modal.querySelector('.modal-image-container');
+                    const scrollIndicator = modal.querySelector('.scroll-indicator');
+                
+                if (imageContainer && scrollIndicator) {
+                    setTimeout(() => {
+                        scrollIndicator.style.opacity = '1';
+                        scrollIndicator.style.transition = 'opacity 0.5s ease';
+                    }, 100);
+
+                    const handleScroll = () => {
+                        if (imageContainer.scrollTop > 300) {
+                            scrollIndicator.style.opacity = '0';
+                            scrollIndicator.style.transition = 'opacity 2s ease';
+                            imageContainer.removeEventListener('scroll', handleScroll);
+                        }
+                    };
+
+                    imageContainer.addEventListener('scroll', handleScroll);
+                }
+            }
+                
             }, eventType === 'touchstart' ? { passive: false } : undefined);
         });
     });
