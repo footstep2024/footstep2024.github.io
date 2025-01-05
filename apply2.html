@@ -4467,7 +4467,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
     <div class="notice-content">
         <i class="fas fa-circle-exclamation"></i>
-        <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
+        <p>추가문<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">임시 버튼</button></p>
         <label class="confirm-check">
             <input type="checkbox" name="notice_check_7" required>
             <span class="check-text">확인함</span>
@@ -4476,11 +4476,22 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 
 <div class="notice-item">
+    <div class="notice-content">
+        <i class="fas fa-circle-exclamation"></i>
+        <p>추가문<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">임시 버튼</button></p>
+        <label class="confirm-check">
+            <input type="checkbox" name="notice_check_8" required>
+            <span class="check-text">확인함</span>
+        </label>
+    </div>
+</div>
+
+<div class="notice-item">
 <div class="notice-content">
 <i class="fas fa-circle-exclamation"></i>
-<p>여행동아리를 미팅동아리로 여기는 분은 지원을 삼가해주시기 바랍니다.</p>
+<p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명 됩니다. 또한 여행동아리를 미팅동아리로 여기는 분은 애초에 지원을 삼가해주시기 바랍니다.</p>
 <label class="confirm-check">
-<input type="checkbox" name="notice_check_8" required>
+<input type="checkbox" name="notice_check_9" required>
 <span class="check-text">확인함</span>
 </label>
 </div>
@@ -4601,11 +4612,17 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <i class="fas fa-circle-exclamation"></i>
             </div>
             <div class="notice-content">
-                <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명됩니다.</p>
+                <p>추가문.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_7" required>
-                    <span class="check-icon"></span>
-                    <span class="confirm-text">&nbsp;&nbsp;확인함</span>
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_7" required>
+                        <span class="check-icon"></span>
+                        <span class="confirm-text">확인함</span>
+                    </div>
+                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                        <i class="fas fa-image"></i>
+                        임시 버튼
+                    </button>
                 </label>
             </div>
         </div>
@@ -4615,9 +4632,29 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 <i class="fas fa-circle-exclamation"></i>
             </div>
             <div class="notice-content">
-                <p>여행동아리를 미팅동아리로 여기는 분은 지원을 삼가해주시기 바랍니다.</p>
+                <p>추가문.</p>
                 <label class="mobile-confirm">
-                    <input type="checkbox" name="notice_check_8" required>
+                    <div class="confirm-wrapper">
+                        <input type="checkbox" name="notice_check_8" required>
+                        <span class="check-icon"></span>
+                        <span class="confirm-text">확인함</span>
+                    </div>
+                    <button type="button" class="mobile-example-btn" data-type="schedule">
+                        <i class="fas fa-image"></i>
+                        임시 버튼
+                    </button>
+                </label>
+            </div>
+        </div>
+
+        <div class="mobile-notice-item">
+            <div class="notice-icon">
+                <i class="fas fa-circle-exclamation"></i>
+            </div>
+            <div class="notice-content">
+                <p>지원서나 면접에서의 허위 기재가 추후에라도 발각될 경우 즉시 제명 됩니다. 또한 여행동아리를 미팅동아리로 여기는 분은 애초에 지원을 삼가해주시기 바랍니다.</p>
+                <label class="mobile-confirm">
+                    <input type="checkbox" name="notice_check_9" required>
                     <span class="check-icon"></span>
                     <span class="confirm-text">&nbsp;&nbsp;확인함</span>
                 </label>
