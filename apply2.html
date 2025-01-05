@@ -4944,6 +4944,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="rules-source">발자취 총칙 중 발췌 (최종 개정일: 2024.11.11)</div>
 </div>
 </div>
+
+<div class="scroll-indicator">
+    <i class="fas fa-mouse"></i>
+    스크롤하여 더 보기
+</div>
+    
 <div class="modal-footer">
 <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
 </div>
@@ -5650,6 +5656,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    if (window.innerWidth <= 768) {
+        document.querySelector('[data-type="rules"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            const modal = document.getElementById('rulesModal');
+            if (!modal) return;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            const imageContainer = modal.querySelector('.modal-image-container');
+            const scrollIndicator = modal.querySelector('.scroll-indicator');
+            
+            if (imageContainer && scrollIndicator) {
+                setTimeout(() => {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.transition = 'opacity 0.5s ease';
+                }, 100);
+
+                const handleScroll = () => {
+                    if (imageContainer.scrollTop > 300) {
+                        scrollIndicator.style.opacity = '0';
+                        scrollIndicator.style.transition = 'opacity 2s ease';
+                        imageContainer.removeEventListener('scroll', handleScroll);
+                    }
+                };
+
+                imageContainer.addEventListener('scroll', handleScroll);
+            }
+        });
+    }
+    
     document.querySelectorAll('.mobile-confirm input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('click', function() {
             const confirmText = this.nextElementSibling;
