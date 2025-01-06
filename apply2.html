@@ -1578,17 +1578,19 @@ animation: bounce 1s infinite;
     }
 }
 
-@media (max-width: 768px) {
-    #rulesModal .scroll-indicator,
-    #scheduleRulesModal .scroll-indicator {
-        display: block;
-    }
-}
-
 @media (min-width: 769px) {
     #rulesModal .scroll-indicator,
     #scheduleRulesModal .scroll-indicator {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #rulesModal .scroll-indicator,
+    #scheduleRulesModal .scroll-indicator {
+        opacity: 1;
+        pointer-events: auto;
     }
 }
 
@@ -5376,214 +5378,188 @@ e.preventDefault();
 });
 
 
-function showRules() {
-    const modal = document.getElementById('rulesModal');
-    if (!modal) return;
+
+
+
+
     
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
+function handleModalDisplay(type, e) {
+   e.preventDefault();
+   const modalMap = {
+       'assembly': 'assemblyRulesModal',
+       'accounting': 'accountingRulesModal'
+   };
+   
+   const modal = document.getElementById(modalMap[type]);
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (modal.querySelector('.modal-image-container')) {
+           modal.querySelector('.modal-image-container').scrollTop = 0;
+       }
+   };
+   
+   const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+   closeButtons.forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+   
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+   
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
 
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 30) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-        
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        if (imageContainer) {
-            imageContainer.removeEventListener('scroll', handleScroll);
-        }
-    };
-
-    modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
 }
 
-document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    showRules();
-});
+function showRules() {
+   const modal = document.getElementById('rulesModal');
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
 
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
 
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (imageContainer) imageContainer.scrollTop = 0;
+   };
 
-    
+   modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+}
+
+function showSchedule() {
+   const modal = document.getElementById('scheduleRulesModal');
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
+
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
+
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (imageContainer) imageContainer.scrollTop = 0;
+   };
+
+   modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+}
+
 document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('scheduleRulesModal');
-    if (!modal) return;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
-    
-    const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
-        
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 30) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
+   e.preventDefault();
+   showSchedule();
+});
+document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => handleModalDisplay('assembly', e));
+document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => handleModalDisplay('accounting', e));
+document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
+   e.preventDefault();
+   showRules();
 });
 
 
+
+
+
+
+
+
+
     
-
-document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('assemblyRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
-
-    const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
-
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 50) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-    
-});
-
-
-document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('accountingRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
-
-        const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
-
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 50) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-    
-});
-
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
     const modalTitle = modal.querySelector('.modal-title');
