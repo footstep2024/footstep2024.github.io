@@ -1578,8 +1578,16 @@ animation: bounce 1s infinite;
     }
 }
 
+@media (max-width: 768px) {
+    #rulesModal .scroll-indicator,
+    #scheduleRulesModal .scroll-indicator {
+        display: block;
+    }
+}
+
 @media (min-width: 769px) {
-    #rulesModal .scroll-indicator {
+    #rulesModal .scroll-indicator,
+    #scheduleRulesModal .scroll-indicator {
         display: none;
     }
 }
@@ -5051,6 +5059,12 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
             </div>
             </div>
         </div>
+
+<div class="scroll-indicator">
+    <i class="fas fa-mouse"></i>
+    스크롤하여 더 보기
+</div>        
+        
         <div class="modal-footer">
             <button class="modal-bottom-close" onclick="closeExample()">닫기</button>
         </div>
@@ -5419,34 +5433,69 @@ document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
     showRules();
 });
 
+
+
     
 
+function showScheduleRules() {
+   const modal = document.getElementById('scheduleRulesModal');
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
+
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
+
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (imageContainer) {
+           imageContainer.removeEventListener('scroll', handleScroll);
+       }
+   };
+
+   modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+}
+
 document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('scheduleRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
+   e.preventDefault();
+   showScheduleRules();
 });
 
+
+    
 
 document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
     e.preventDefault();
