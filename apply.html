@@ -1627,6 +1627,7 @@ margin: 0.4rem 0 1.5rem 0;
 }
 }
 
+    
 .example-modal-content {
     position: fixed;
     top: 50%;
@@ -1638,27 +1639,42 @@ margin: 0.4rem 0 1.5rem 0;
     width: 90%;
     max-width: 800px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    height: auto;
-    min-height: auto;
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     z-index: 1001;
+    overflow: hidden;
 }
 
 .modal-image-container {
     flex: 1;
     overflow-y: auto;
-    margin: 0 -15px;
-    padding: 0 15px;
+    margin: 0 auto; 
+    padding: 0;
     position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-image-container img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
 }
 
 @media (max-width: 768px) {
-.example-modal-content {
-width: 95%;
-padding: 20px;
-}
+    .example-modal-content {
+        width: 95%;
+        padding: 20px;
+        max-height: 90vh;
+    }
+    .modal-image-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .modal-image-container img {
+        width: 100%;
+    }
 }
 
 .example-close {
@@ -1813,7 +1829,7 @@ font-weight: 500;
         margin: 0 auto;
     }
     
-    .modal-image-container {
+    .timeline-modal-container {
         padding: 0;
         margin: 0;
     }
@@ -4990,7 +5006,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 발자취와 함께한 우리들의 여정
             </p>
         </div>
-        <div class="modal-image-container">
+        <div class="timeline-modal-container">
             <div class="rules-content" style="background: transparent; padding: 0;">
                 <div class="activity-timeline">
                     <div class="timeline-item">
@@ -5094,7 +5110,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                모든 부원이 동등한 주체로서 참여하는 발자취의 총회
            </p>
        </div>
-       <div class="modal-image-container">
+       <div class="timeline-modal-container">
            <div class="rules-content">
                <div class="rules-title">제21조(총회)</div>
                    <ol>
@@ -5138,7 +5154,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                투명한 회계 운영을 위한 발자취의 노력
            </p>
        </div>
-       <div class="modal-image-container">
+       <div class="timeline-modal-container">
            <div class="rules-content">
                <div class="rules-title">회계 관련 회칙</div>
                <ol><h4 style="color: var(--primary-color); margin-top: 2rem; margin-bottom: 0.5rem;">제26조 (회계 보고)</h4>
