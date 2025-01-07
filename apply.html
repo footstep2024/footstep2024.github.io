@@ -11,7 +11,7 @@
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/09.jpg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/10.jpg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/11.jpg">
-<link rel="preload" as="image" href="httthub.com/footstep2024/footstep2024.github.io/rawps://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/12.jpg">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/12.jpg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/assem-kakao.jpg">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/accounting-kakao.jpg">
@@ -1627,7 +1627,6 @@ margin: 0.4rem 0 1.5rem 0;
 }
 }
 
-    
 .example-modal-content {
     position: fixed;
     top: 50%;
@@ -1639,42 +1638,27 @@ margin: 0.4rem 0 1.5rem 0;
     width: 90%;
     max-width: 800px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    height: auto;
+    min-height: auto;
     max-height: 80vh;
     display: flex;
     flex-direction: column;
     z-index: 1001;
-    overflow: hidden;
 }
 
 .modal-image-container {
     flex: 1;
     overflow-y: auto;
-    margin: 0 auto; 
-    padding: 0;
+    margin: 0 -15px;
+    padding: 0 15px;
     position: relative;
-    width: 100%;
-    text-align: center;
-}
-
-.modal-image-container img {
-    max-width: 100%;
-    height: auto;
-    display: inline-block;
 }
 
 @media (max-width: 768px) {
-    .example-modal-content {
-        width: 95%;
-        padding: 20px;
-        max-height: 90vh;
-    }
-    .modal-image-container {
-        width: 95%;
-        margin: 0 auto;
-    }
-    .modal-image-container img {
-        width: 100%;
-    }
+.example-modal-content {
+width: 95%;
+padding: 20px;
+}
 }
 
 .example-close {
@@ -1829,7 +1813,7 @@ font-weight: 500;
         margin: 0 auto;
     }
     
-    .timeline-modal-container {
+    .modal-image-container {
         padding: 0;
         margin: 0;
     }
@@ -5006,7 +4990,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 발자취와 함께한 우리들의 여정
             </p>
         </div>
-        <div class="timeline-modal-container">
+        <div class="modal-image-container">
             <div class="rules-content" style="background: transparent; padding: 0;">
                 <div class="activity-timeline">
                     <div class="timeline-item">
@@ -5110,7 +5094,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                모든 부원이 동등한 주체로서 참여하는 발자취의 총회
            </p>
        </div>
-       <div class="timeline-modal-container">
+       <div class="modal-image-container">
            <div class="rules-content">
                <div class="rules-title">제21조(총회)</div>
                    <ol>
@@ -5154,7 +5138,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                투명한 회계 운영을 위한 발자취의 노력
            </p>
        </div>
-       <div class="timeline-modal-container">
+       <div class="modal-image-container">
            <div class="rules-content">
                <div class="rules-title">회계 관련 회칙</div>
                <ol><h4 style="color: var(--primary-color); margin-top: 2rem; margin-bottom: 0.5rem;">제26조 (회계 보고)</h4>
@@ -5623,18 +5607,18 @@ function showExample(type) {
     const contents = {
         feedback: {
             src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-            title: '피드백 시스템',
-            desc: '모든 부원의 의견이 다음 여행을 만들어갑니다'
+            title: '피드백 예시',
+            desc: '모두의 소중한 목소리가 발자취의 다음 여행을 만들어가는 밑거름이 됩니다'
         },
         content: {
             src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-            title: '콘텐츠 활용 안내',
-            desc: '발자취가 콘텐츠를 관리하는 방법'
+            title: '콘텐츠 공유 예시',
+            desc: '공유된 콘텐츠는 동아리 클라우드에서 부원들과 공유되며, 외부 유출은 금지됩니다.'
         },
         records: {
             src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
-            title: '발자취만이 여행 준비 방법',
-            desc: '지난 12월 여행계획서에서...',
+            title: '지난 여행계획서 살펴보기',
+            desc: '발자취는 이렇게 여행을 준비합니다. (12월 여행계획서 중 일부)',
         }
     };
 const content = contents[type];
