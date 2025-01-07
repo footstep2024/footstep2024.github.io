@@ -1604,29 +1604,21 @@ animation: bounce 1s infinite;
 }
 
 .modal-desc {
-font-size: 0.85rem;
-color: var(--light-text);
-margin: 0.5rem 0 2rem 0; 
-line-height: 1.6;
-display: flex;
-align-items: center;
-gap: 0.2rem;
+    color: var(--primary-color);
+    font-size: 0.9rem; 
+    margin: 0.5rem 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
 }
 
-.modal-desc::before {
-content: '\f05a'; 
-font-family: 'Font Awesome 5 Free';
-font-weight: 900;
-color: var(--primary-color);
-}
 
 @media (max-width: 768px) {
-.modal-desc {
-font-size: 0.7rem;
-margin: 0.4rem 0 1.5rem 0;
+   .modal-desc {
+       font-size: 0.9rem;
+       margin: 0.5rem 0 1.5rem;
+   }
 }
-}
-
 .example-modal-content {
     position: fixed;
     top: 50%;
@@ -5576,13 +5568,27 @@ document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
 
 
 
+const contents = {
+    feedback: {
+        src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
+        title: '피드백 시스템',
+        desc: '모든 부원의 의견이 다음 여행을 만들어갑니다',
+        icon: 'comments'
+    },
+    content: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
+        title: '콘텐츠 활용 안내',
+        desc: '발자취가 콘텐츠를 관리하는 방법',
+        icon: 'photo-video'
+    },
+    records: {
+        src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
+        title: '발자취만의 특별한 여행 준비 방법',
+        desc: '지난 12월 대관령 여행계획서 중에서...',
+        icon: 'route'
+    }
+};
 
-
-
-
-
-
-    
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
     const modalTitle = modal.querySelector('.modal-title');
@@ -5609,56 +5615,38 @@ function showExample(type) {
         return;
     }
 
-    const contents = {
-        feedback: {
-            src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
-            title: '피드백 시스템',
-            desc: '모든 부원의 의견이 다음 여행을 만들어갑니다'
-        },
-        content: {
-            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/content-share-example.png',
-            title: '콘텐츠 활용 안내',
-            desc: '발자취가 콘텐츠를 관리하는 방법'
-        },
-        records: {
-            src: 'https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/examples/plan.png',
-            title: '발자취만의 특별한 여행 준비 방법',
-            desc: '지난 12월 대관령 여행계획서 중에서...',
-        }
-    };
-const content = contents[type];
-if (!content) return;
+    const content = contents[type];
+    if (!content) return;
 
-imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
-modalTitle.textContent = content.title;
-modalDesc.textContent = content.desc;
-modal.style.display = 'block';
-document.body.style.overflow = 'hidden';
+    imageContainer.innerHTML = `<img id="exampleImage" src="${content.src}" alt="예시 이미지">`;
+    modalTitle.textContent = content.title;
+    modalDesc.innerHTML = `<i class="fas fa-${content.icon}"></i> ${content.desc}`;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-const newImage = imageContainer.querySelector('img');
-if (newImage) {
-newImage.onload = function() {
-if (scrollIndicator) {
-setTimeout(() => {
-scrollIndicator.style.opacity = '1';
-scrollIndicator.style.transition = 'opacity 0.5s ease';
-}, 100);
-}
-if (imageContainer) {
-const handleScroll = () => {
-if (imageContainer.scrollTop > 50) {
-if (scrollIndicator) {
-scrollIndicator.style.opacity = '0';
-scrollIndicator.style.transition = 'opacity 1s ease';
-}
-imageContainer.removeEventListener('scroll', handleScroll);
-}
-};
-
-imageContainer.addEventListener('scroll', handleScroll);
-}
-};
-}
+    const newImage = imageContainer.querySelector('img');
+    if (newImage) {
+        newImage.onload = function() {
+            if (scrollIndicator) {
+                setTimeout(() => {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.transition = 'opacity 0.5s ease';
+                }, 100);
+            }
+            if (imageContainer) {
+                const handleScroll = () => {
+                    if (imageContainer.scrollTop > 30) {
+                        if (scrollIndicator) {
+                            scrollIndicator.style.opacity = '0';
+                            scrollIndicator.style.transition = 'opacity 1s ease';
+                        }
+                        imageContainer.removeEventListener('scroll', handleScroll);
+                    }
+                };
+                imageContainer.addEventListener('scroll', handleScroll);
+            }
+        };
+    }
 }
 
 function closeExample() {
@@ -5712,7 +5700,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 100);
 
                     const handleScroll = () => {
-                        if (imageContainer.scrollTop > 50) {
+                        if (imageContainer.scrollTop > 30) {
                             scrollIndicator.style.opacity = '0';
                             scrollIndicator.style.transition = 'opacity 1s ease';
                             imageContainer.removeEventListener('scroll', handleScroll);
