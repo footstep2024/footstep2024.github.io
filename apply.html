@@ -1579,8 +1579,21 @@ animation: bounce 1s infinite;
 }
 
 @media (min-width: 769px) {
-    #rulesModal .scroll-indicator {
-        display: none;
+    #rulesModal .scroll-indicator,
+    #scheduleRulesModal .scroll-indicator {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+@media (max-width: 768px) {
+    #rulesModal .scroll-indicator,
+    #scheduleRulesModal .scroll-indicator {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    #scheduleRulesModal .scroll-indicator {
+        position: fixed;
     }
 }
 
@@ -4494,7 +4507,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
     <div class="notice-content">
         <i class="fas fa-circle-exclamation"></i>
-        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
+        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" onclick="showSchedule()" style="margin-left: 8px">지난 학기 기록</button></p>
         <label class="confirm-check">
             <input type="checkbox" name="notice_check_3" required>
             <span class="check-text">확인함</span>
@@ -4962,6 +4975,11 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 </div>
 </div>
 
+
+
+
+    
+
 <div class="rules-modal" id="scheduleRulesModal">
     <div class="example-modal-content">
         <button class="example-close">&times;</button>
@@ -4974,81 +4992,85 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         </div>
         <div class="modal-image-container">
             <div class="rules-content" style="background: transparent; padding: 0;">
-            <div class="activity-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">9월</div>
-                    <div class="timeline-content">
-                        <div class="timeline-text">
-                            <h4>OT & MT - 연천 한탄강</h4>
-                            <p>발자취의 시작, 첫 만남과 함께한 1박 2일</p>
-                            <div class="attendance">
-                                <i class="fas fa-users"></i> 참석률 100% (24/24명)
+                <div class="activity-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">9월</div>
+                        <div class="timeline-content">
+                            <div class="timeline-text">
+                                <h4>OT & MT - 연천 한탄강</h4>
+                                <p>발자취의 시작, 첫 만남과 함께한 1박 2일</p>
+                                <div class="attendance">
+                                    <i class="fas fa-users"></i> 참석률 100% (24/24명)
+                                </div>
+                            </div>
+                            <div class="timeline-image">
+                                <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/09.jpg" alt="연천 한탄강 MT 단체사진">
                             </div>
                         </div>
-                        <div class="timeline-image">
-                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/09.jpg" alt="연천 한탄강 MT 단체사진">
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-date">10월</div>
+                        <div class="timeline-content">
+                            <div class="timeline-text">
+                                <h4>단풍 여행 - 남이섬</h4>
+                                <p>가을 정취 가득한 남이섬에서의 이야기</p>
+                                <div class="attendance">
+                                    <i class="fas fa-users"></i> 참석률 75% (18/24명)
+                                </div>
+                            </div>
+                            <div class="timeline-image">
+                                <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/10.jpg" alt="남이섬 단체사진">
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-date">11월</div>
+                        <div class="timeline-content">
+                            <div class="timeline-text">
+                                <h4>바다 여행 - 을왕리</h4>
+                                <p>서해의 노을과 함께한 특별한 시간</p>
+                                <div class="attendance">
+                                    <i class="fas fa-users"></i> 참석률 74% (17/23명)
+                                </div>
+                            </div>
+                            <div class="timeline-image">
+                                <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/11.jpg" alt="을왕리 단체사진">
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-date">12월</div>
+                        <div class="timeline-content">
+                            <div class="timeline-text">
+                                <h4>눈꽃 여행 - 대관령</h4>
+                                <p>종강 다음 날, 우리들의 마지막 여정</p>
+                                <div class="attendance">
+                                    <i class="fas fa-users"></i> 참석률 61% (14/23명)
+                                </div>
+                            </div>
+                            <div class="timeline-image">
+                                <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/12.jpg" alt="대관령 단체사진">
+                            </div>
                         </div>
                     </div>
                 </div>
             
-                <div class="timeline-item">
-                    <div class="timeline-date">10월</div>
-                    <div class="timeline-content">
-                        <div class="timeline-text">
-                            <h4>단풍 여행 - 남이섬</h4>
-                            <p>가을 정취 가득한 남이섬에서의 이야기</p>
-                            <div class="attendance">
-                                <i class="fas fa-users"></i> 참석률 75% (18/24명)
-                            </div>
-                        </div>
-                        <div class="timeline-image">
-                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/10.jpg" alt="남이섬 단체사진">
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="timeline-item">
-                    <div class="timeline-date">11월</div>
-                    <div class="timeline-content">
-                        <div class="timeline-text">
-                            <h4>바다 여행 - 을왕리</h4>
-                            <p>서해의 노을과 함께한 특별한 시간</p>
-                            <div class="attendance">
-                                <i class="fas fa-users"></i> 참석률 74% (17/23명)
-                            </div>
-                        </div>
-                        <div class="timeline-image">
-                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/11.jpg" alt="을왕리 단체사진">
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="timeline-item">
-                    <div class="timeline-date">12월</div>
-                    <div class="timeline-content">
-                        <div class="timeline-text">
-                            <h4>눈꽃 여행 - 대관령</h4>
-                            <p>종강 다음 날, 우리들의 마지막 여정</p>
-                            <div class="attendance">
-                                <i class="fas fa-users"></i> 참석률 61% (14/23명)
-                            </div>
-                        </div>
-                        <div class="timeline-image">
-                            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/assets/images/timeline/12.jpg" alt="대관령 단체사진">
-                        </div>
-                    </div>
+                <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
+                    <p style="color: var(--primary-color); font-size: 0.9rem;">
+                        <i class="fas fa-chart-line"></i>
+                        평균 참석률 77.5%
+                    </p>
+                    <p style="color: var(--light-text); font-size: 0.8rem; margin-top: 0.5rem;">
+                        * 2025년 1학기에도 계속될 발자취의 여정을 함께해주세요.
+                    </p>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(47, 82, 41, 0.1);">
-                <p style="color: var(--primary-color); font-size: 0.9rem;">
-                    <i class="fas fa-chart-line"></i>
-                    평균 참석률 77.5%
-                </p>
-                <p style="color: var(--light-text); font-size: 0.8rem; margin-top: 0.5rem;">
-                    * 2025년 1학기에도 계속될 발자취의 여정을 함께해주세요.
-                </p>
-            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-mouse"></i>
+                스크롤하여 더 보기
             </div>
         </div>
         <div class="modal-footer">
@@ -5056,6 +5078,11 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
         </div>
     </div>
 </div>
+
+
+
+
+    
 
 <div class="rules-modal" id="assemblyRulesModal">
    <div class="example-modal-content">
@@ -5362,187 +5389,195 @@ e.preventDefault();
 });
 
 
-function showRules() {
-    const modal = document.getElementById('rulesModal');
-    if (!modal) return;
+
+
+
+
     
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
+function handleModalDisplay(type, e) {
+   e.preventDefault();
+   const modalMap = {
+       'assembly': 'assemblyRulesModal',
+       'accounting': 'accountingRulesModal'
+   };
+   
+   const modal = document.getElementById(modalMap[type]);
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (modal.querySelector('.modal-image-container')) {
+           modal.querySelector('.modal-image-container').scrollTop = 0;
+       }
+   };
+   
+   const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
+   closeButtons.forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+   
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+   
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
 
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 30) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-        
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        if (imageContainer) {
-            imageContainer.removeEventListener('scroll', handleScroll);
-        }
-    };
-
-    modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
 }
 
-document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    showRules();
-});
+
+
+function showRules() {
+   const modal = document.getElementById('rulesModal');
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
+
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
+
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (imageContainer) imageContainer.scrollTop = 0;
+   };
+
+   modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+}
+
 
     
+function showSchedule() {
+   const modal = document.getElementById('scheduleRulesModal');
+   if (!modal) return;
+   
+   modal.style.display = 'block';
+   document.body.style.overflow = 'hidden';
+   
+   const imageContainer = modal.querySelector('.modal-image-container');
+   const scrollIndicator = modal.querySelector('.scroll-indicator');
+   
+   if (imageContainer && scrollIndicator && window.innerWidth <= 768) {
+       setTimeout(() => {
+           scrollIndicator.style.opacity = '1';
+           scrollIndicator.style.transition = 'opacity 0.5s ease';
+       }, 100);
+       const handleScroll = () => {
+           if (imageContainer.scrollTop > 30) {
+               scrollIndicator.style.opacity = '0';
+               scrollIndicator.style.transition = 'opacity 1s ease';
+               imageContainer.removeEventListener('scroll', handleScroll);
+           }
+       };
+       
+       imageContainer.addEventListener('scroll', handleScroll);
+   }
+   
+   const closeModal = () => {
+       modal.style.display = 'none';
+       document.body.style.overflow = 'auto';
+       if (imageContainer) imageContainer.scrollTop = 0;
+   };
+   
+   modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
+       button.addEventListener('click', closeModal, { once: true });
+   });
+   
+   modal.addEventListener('click', (e) => {
+       if (e.target === modal) closeModal();
+   }, { once: true });
+   
+   const escHandler = (e) => {
+       if (e.key === 'Escape') {
+           closeModal();
+           document.removeEventListener('keydown', escHandler);
+       }
+   };
+   document.addEventListener('keydown', escHandler);
+}
 
+
+
+    
 document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('scheduleRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
+   e.preventDefault();
+   showSchedule();
+});
+document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => handleModalDisplay('assembly', e));
+document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => handleModalDisplay('accounting', e));
+document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
+   e.preventDefault();
+   showRules();
 });
 
 
-document.querySelector('[data-type="assembly"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('assemblyRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
 
-    const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
+
+
+
+
+
+
     
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
-
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 100) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-    
-});
-
-
-document.querySelector('[data-type="accounting"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    const modal = document.getElementById('accountingRulesModal');
-    if (!modal) return;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-    const closeButtons = modal.querySelectorAll('.example-close, .modal-bottom-close');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal, { once: true });
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    }, { once: true });
-    const escHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.removeEventListener('keydown', escHandler);
-        }
-    };
-    document.addEventListener('keydown', escHandler);
-
-        const imageContainer = modal.querySelector('.modal-image-container');
-    const scrollIndicator = modal.querySelector('.scroll-indicator');
-    
-    if (imageContainer && scrollIndicator) {
-        setTimeout(() => {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.style.transition = 'opacity 0.5s ease';
-        }, 100);
-
-        const handleScroll = () => {
-            if (imageContainer.scrollTop > 100) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.transition = 'opacity 1s ease';
-                imageContainer.removeEventListener('scroll', handleScroll);
-            }
-        };
-
-        imageContainer.addEventListener('scroll', handleScroll);
-    }
-    
-});
-
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
     const modalTitle = modal.querySelector('.modal-title');
@@ -5606,7 +5641,7 @@ scrollIndicator.style.transition = 'opacity 0.5s ease';
 }
 if (imageContainer) {
 const handleScroll = () => {
-if (imageContainer.scrollTop > 100) {
+if (imageContainer.scrollTop > 50) {
 if (scrollIndicator) {
 scrollIndicator.style.opacity = '0';
 scrollIndicator.style.transition = 'opacity 1s ease';
@@ -5672,7 +5707,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 100);
 
                     const handleScroll = () => {
-                        if (imageContainer.scrollTop > 100) {
+                        if (imageContainer.scrollTop > 50) {
                             scrollIndicator.style.opacity = '0';
                             scrollIndicator.style.transition = 'opacity 1s ease';
                             imageContainer.removeEventListener('scroll', handleScroll);
