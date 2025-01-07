@@ -1585,12 +1585,15 @@ animation: bounce 1s infinite;
         pointer-events: none;
     }
 }
-
 @media (max-width: 768px) {
     #rulesModal .scroll-indicator,
     #scheduleRulesModal .scroll-indicator {
         opacity: 1;
         pointer-events: auto;
+    }
+    
+    #scheduleRulesModal .scroll-indicator {
+        position: fixed;
     }
 }
 
@@ -4504,7 +4507,7 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
 <div class="notice-item">
     <div class="notice-content">
         <i class="fas fa-circle-exclamation"></i>
-        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" data-type="schedule" style="margin-left: 8px">지난 학기 기록</button></p>
+        <p>소규모 조별여행이 아닌, 단체여행으로 진행되는 동아리입니다. 장거리 여행도 가지만, 최대한 많은 부원들의 참여를 독려하고자 수도권 근교(경기/충청/강원) 여행을 주로 진행합니다.<button class="example-btn" type="button" onclick="showSchedule()" style="margin-left: 8px">지난 학기 기록</button></p>
         <label class="confirm-check">
             <input type="checkbox" name="notice_check_3" required>
             <span class="check-text">확인함</span>
@@ -5449,6 +5452,8 @@ function handleModalDisplay(type, e) {
    }
 }
 
+
+
 function showRules() {
    const modal = document.getElementById('rulesModal');
    if (!modal) return;
@@ -5499,6 +5504,8 @@ function showRules() {
    document.addEventListener('keydown', escHandler);
 }
 
+
+    
 function showSchedule() {
    const modal = document.getElementById('scheduleRulesModal');
    if (!modal) return;
@@ -5514,7 +5521,6 @@ function showSchedule() {
            scrollIndicator.style.opacity = '1';
            scrollIndicator.style.transition = 'opacity 0.5s ease';
        }, 100);
-
        const handleScroll = () => {
            if (imageContainer.scrollTop > 30) {
                scrollIndicator.style.opacity = '0';
@@ -5522,23 +5528,24 @@ function showSchedule() {
                imageContainer.removeEventListener('scroll', handleScroll);
            }
        };
+       
        imageContainer.addEventListener('scroll', handleScroll);
    }
-
+   
    const closeModal = () => {
        modal.style.display = 'none';
        document.body.style.overflow = 'auto';
        if (imageContainer) imageContainer.scrollTop = 0;
    };
-
+   
    modal.querySelectorAll('.example-close, .modal-bottom-close').forEach(button => {
        button.addEventListener('click', closeModal, { once: true });
    });
-
+   
    modal.addEventListener('click', (e) => {
        if (e.target === modal) closeModal();
    }, { once: true });
-
+   
    const escHandler = (e) => {
        if (e.key === 'Escape') {
            closeModal();
@@ -5548,6 +5555,9 @@ function showSchedule() {
    document.addEventListener('keydown', escHandler);
 }
 
+
+
+    
 document.querySelector('[data-type="schedule"]').addEventListener('click', (e) => {
    e.preventDefault();
    showSchedule();
