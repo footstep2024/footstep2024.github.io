@@ -5568,14 +5568,6 @@ document.querySelector('[data-type="rules"]').addEventListener('click', (e) => {
 
 
 
-
-
-
-
-
-
-    
-// 먼저 contents 객체를 함수 외부로 이동
 const contents = {
     feedback: {
         src: 'https://github.com/footstep2024/footstep2024.github.io/raw/fff6f1b92be6438cb63f4a3d6a60f4b8e15f7305/assets/images/examples/feedback-example.png',
@@ -5597,7 +5589,6 @@ const contents = {
     }
 };
 
-// 그리고 showExample 함수를 수정
 function showExample(type) {
     const modal = document.getElementById('exampleModal');
     const modalTitle = modal.querySelector('.modal-title');
@@ -5644,7 +5635,7 @@ function showExample(type) {
             }
             if (imageContainer) {
                 const handleScroll = () => {
-                    if (imageContainer.scrollTop > 50) {
+                    if (imageContainer.scrollTop > 30) {
                         if (scrollIndicator) {
                             scrollIndicator.style.opacity = '0';
                             scrollIndicator.style.transition = 'opacity 1s ease';
@@ -5709,7 +5700,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 100);
 
                     const handleScroll = () => {
-                        if (imageContainer.scrollTop > 50) {
+                        if (imageContainer.scrollTop > 30) {
                             scrollIndicator.style.opacity = '0';
                             scrollIndicator.style.transition = 'opacity 1s ease';
                             imageContainer.removeEventListener('scroll', handleScroll);
