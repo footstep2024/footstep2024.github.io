@@ -213,19 +213,23 @@
         }
 
         /* 회칙 내용 스타일 */
-.rules-content {
-    top: calc(72px + 1rem);
-    height: calc(100vh - 450px);
-    overflow-y: auto;
-    background: var(--white);
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        .rules-content {
+            top: calc(72px + 1rem);
+            height: calc(100vh - 450px);
+            overflow-y: auto;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
 
         .chapter {
-            margin-bottom: 3rem;
-            scroll-margin-top: 100px;
+            display: none;
+        }
+
+        .chapter.active {
+            display: block;
         }
 
         .chapter-title {
@@ -235,6 +239,21 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--border-color);
+        }
+
+        .chapter-header {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 2rem 2rem 1rem 2rem;
+            border-bottom: 2px solid var(--border-color);
+            z-index: 10;
+        }
+
+        .chapter-content {
+            padding: 2rem;
+            height: auto;
+            overflow-y: auto;
         }
 
         .article {
@@ -524,60 +543,64 @@
         </aside>
 
         <!-- 회칙 내용 -->
-        <main class="rules-content">
-            <!-- 제1장 총칙 -->
-            <section id="chapter1" class="chapter active">
-                <h2 class="chapter-title">제1장 총칙</h2>
-                <div class="article">
-                    <h3 class="article-title">제1조 (명칭)</h3>
-                    <div class="article-content">
-                        <p>본 동아리의 명칭은 '발자취'라 한다.</p>
+<main class="rules-content">
+    <!-- 제1장 총칙 -->
+    <section id="chapter1" class="chapter">
+        <div class="chapter-header">
+            <h2 class="chapter-title">제1장 총칙</h2>
+        </div>
+        <div class="chapter-content">
+            <div class="article">
+                <h3 class="article-title">제1조 (명칭)</h3>
+                <div class="article-content">
+                    <p>본 동아리의 명칭은 '발자취'라 한다.</p>
+                </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제2조 (목적)</h3>
+                <div class="article-content">
+                    <p>본 동아리는 여행을 매개로 부원 간의 친목을 도모하고 유대감을 강화하여 건전한 대학 문화 형성에 기여함을 목적으로 한다.</p>
+                </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제3조 (활동)</h3>
+                <div class="article-content">
+                    <p>본 동아리는 다음과 같은 활동을 한다:</p>
+                    <div class="sub-items">
+                        <p class="indent">1. 정기적인 국내외 여행 계획 및 실행</p>
+                        <p class="indent">2. 여행 관련 정보 공유 및 스터디</p>
+                        <p class="indent">3. 동아리원 간의 친목 도모를 위한 모임 및 행사 개최</p>
+                        <p class="indent">4. 기타 동아리의 목적에 부합하는 활동</p>
                     </div>
                 </div>
-                <div class="article">
-                    <h3 class="article-title">제2조 (목적)</h3>
-                    <div class="article-content">
-                        <p>본 동아리는 여행을 매개로 부원 간의 친목을 도모하고 유대감을 강화하여 건전한 대학 문화 형성에 기여함을 목적으로 한다.</p>
-                    </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제4조 (정치적 중립성)</h3>
+                <div class="article-content">
+                    <p>본 동아리는 정치적 중립을 유지하며, 정치 단체와의 교류나 후원을 거부한다.</p>
                 </div>
-                <div class="article">
-                    <h3 class="article-title">제3조 (활동)</h3>
-                    <div class="article-content">
-                        <p>본 동아리는 다음과 같은 활동을 한다:</p>
-                        <div class="sub-items">
-                            <p class="indent">1. 정기적인 국내외 여행 계획 및 실행</p>
-                            <p class="indent">2. 여행 관련 정보 공유 및 스터디</p>
-                            <p class="indent">3. 동아리원 간의 친목 도모를 위한 모임 및 행사 개최</p>
-                            <p class="indent">4. 기타 동아리의 목적에 부합하는 활동</p>
-                        </div>
-                    </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제5조 (회칙)</h3>
+                <div class="article-content">
+                    <p>본 동아리의 모든 결정 사항은 이 회칙을 기반으로 행해진다.</p>
                 </div>
-                <div class="article">
-                    <h3 class="article-title">제4조 (정치적 중립성)</h3>
-                    <div class="article-content">
-                        <p>본 동아리는 정치적 중립을 유지하며, 정치 단체와의 교류나 후원을 거부한다.</p>
-                    </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제6조 (해산)</h3>
+                <div class="article-content">
+                    <p>1. 본 동아리를 해산하려면 총회에서 출석부원 3분의 2 이상의 동의를 얻어야 한다.</p>
+                    <p>2. 해산 시 남은 재산 및 공금의 처리는 총회의 결정을 따른다.</p>
                 </div>
-                <div class="article">
-                    <h3 class="article-title">제5조 (회칙)</h3>
-                    <div class="article-content">
-                        <p>본 동아리의 모든 결정 사항은 이 회칙을 기반으로 행해진다.</p>
-                    </div>
+            </div>
+            <div class="article">
+                <h3 class="article-title">제7조 (창립일)</h3>
+                <div class="article-content">
+                    <p>본 동아리의 창립일은 2024년 9월 24일이다.</p>
                 </div>
-                <div class="article">
-                    <h3 class="article-title">제6조 (해산)</h3>
-                    <div class="article-content">
-                        <p>1. 본 동아리를 해산하려면 총회에서 출석부원 3분의 2 이상의 동의를 얻어야 한다.</p>
-                        <p>2. 해산 시 남은 재산 및 공금의 처리는 총회의 결정을 따른다.</p>
-                    </div>
-                </div>
-                <div class="article">
-                    <h3 class="article-title">제7조 (창립일)</h3>
-                    <div class="article-content">
-                        <p>본 동아리의 창립일은 2024년 9월 24일이다.</p>
-                    </div>
-                </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
             <!-- 제2장 부원 -->
             <section id="chapter2" class="chapter">
@@ -1144,13 +1167,31 @@
        window.scrollTo({ top: 0, behavior: 'smooth' });
    });
 
-   // 사이드바 링크 클릭 이벤트 처리
-   sidebarLinks.forEach(link => {
-       link.addEventListener('click', () => {
-           sidebarLinks.forEach(l => l.classList.remove('active'));
-           link.classList.add('active');
-       });
-   });
+// 사이드바 링크 클릭 이벤트 처리
+sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // 모든 챕터 숨기기
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapter.style.display = 'none';
+        });
+        
+        // 클릭한 링크에 해당하는 챕터만 보이기
+        const targetId = link.getAttribute('href').substring(1);
+        document.getElementById(targetId).style.display = 'block';
+
+        // active 클래스 관리
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// 페이지 로드 시 첫 번째 챕터만 보이도록
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.chapter').forEach(chapter => {
+        chapter.style.display = 'none';
+    });
+    document.getElementById('chapter1').style.display = 'block';
+});
 
    // 모바일 메뉴 링크도 동일하게 처리
    document.querySelectorAll('.mobile-menu a').forEach(link => {
