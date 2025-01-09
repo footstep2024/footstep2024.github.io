@@ -86,6 +86,10 @@
             background: var(--white);
             border-bottom: 1px solid var(--border-color);
             padding: 1rem;
+            position: fixed;
+            top: 95px;     
+            width: 100%;
+            z-index: 98; 
         }
 
         .search-wrapper {
@@ -118,6 +122,11 @@
 
         /* 최근 개정 이력 스타일 */
         .history-section {
+            position: fixed;
+            top: 174px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 2rem);
             background: var(--white);
             margin: 1rem auto;
             max-width: 1200px;
