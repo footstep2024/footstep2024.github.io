@@ -220,21 +220,41 @@
         }
 
         .article {
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
+           margin-bottom: 1.5rem;
+           padding-left: 1rem;
         }
-
+        
         .article-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+           font-weight: bold; 
+           margin-bottom: 0.5rem;
         }
-
+        
         .article-content {
-            padding-left: 1.5rem;
+           margin-left: 1rem;
         }
-
+        
         .article-content p {
-            margin-bottom: 0.5rem;
+           margin-bottom: 0.5rem;
+        }
+        
+        .sub-items {
+           border-left: 2px solid var(--border-color);
+           margin: 0.5rem 0 0.5rem 0.5rem;
+           padding-left: 1rem;
+        }
+        
+        .indent {
+           padding-left: 1.5rem;
+           font-size: 0.95em;
+           margin: 0.2rem 0;
+           color: var(--light-text);
+        }
+        
+        .indent-2 {
+           padding-left: 3rem;
+           font-size: 0.9em;
+           margin: 0.2rem 0;
+           color: var(--light-text);
         }
 
         /* 맨 위로 가기 버튼 */
@@ -488,7 +508,7 @@
         <!-- 회칙 내용 -->
         <main class="rules-content">
             <!-- 제1장 총칙 -->
-            <section id="chapter1" class="chapter">
+            <section id="chapter1" class="chapter active">
                 <h2 class="chapter-title">제1장 총칙</h2>
                 <div class="article">
                     <h3 class="article-title">제1조 (명칭)</h3>
@@ -506,13 +526,15 @@
                     <h3 class="article-title">제3조 (활동)</h3>
                     <div class="article-content">
                         <p>본 동아리는 다음과 같은 활동을 한다:</p>
-                        <p>1. 정기적인 국내외 여행 계획 및 실행</p>
-                        <p>2. 여행 관련 정보 공유 및 스터디</p>
-                        <p>3. 동아리원 간의 친목 도모를 위한 모임 및 행사 개최</p>
-                        <p>4. 기타 동아리의 목적에 부합하는 활동</p>
+                        <div class="sub-items">
+                            <p class="indent">1. 정기적인 국내외 여행 계획 및 실행</p>
+                            <p class="indent">2. 여행 관련 정보 공유 및 스터디</p>
+                            <p class="indent">3. 동아리원 간의 친목 도모를 위한 모임 및 행사 개최</p>
+                            <p class="indent">4. 기타 동아리의 목적에 부합하는 활동</p>
+                        </div>
                     </div>
                 </div>
-                                <div class="article">
+                <div class="article">
                     <h3 class="article-title">제4조 (정치적 중립성)</h3>
                     <div class="article-content">
                         <p>본 동아리는 정치적 중립을 유지하며, 정치 단체와의 교류나 후원을 거부한다.</p>
@@ -1018,16 +1040,6 @@
 <div class="loading">
    <div class="loading-spinner"></div>
 </div>
-
-<style>
-.indent {
-   padding-left: 1.5rem;
-}
-
-.indent-2 {
-   padding-left: 3rem;
-}
-</style>
 
 <script>
    // DOM 요소들
