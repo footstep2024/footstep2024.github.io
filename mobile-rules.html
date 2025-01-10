@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>발자취 - 회칙</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2F5229;
+            --primary-light: #3a6333;
+            --bg-color: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
+            --border: #ddd;
+            --white: #fff;
+            --header-height: 56px;
+            --search-height: 48px;
+            --bottom-nav-height: 56px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg-color);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo h1 {
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 24px;
+            font-weight: normal;
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 24px;
+            padding: 8px;
+        }
+
+        /* 검색바 */
+        .search-bar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            height: var(--search-height);
+            background: var(--white);
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border);
+            z-index: 99;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 32px;
+            padding: 0 32px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            font-size: 14px;
+            background: var(--bg-color);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            margin-top: calc(var(--header-height) + var(--search-height));
+            padding: 16px;
+            padding-bottom: calc(var(--bottom-nav-height) + 32px);
+        }
+
+        /* 최근 개정 이력 */
+        .history {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .history-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 회칙 내용 */
+        .content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px 16px;
+        }
+
+        .chapter-title {
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .article {
+            margin-bottom: 24px;
+        }
+
+        .article:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .article-content p {
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .sub-items {
+            border-left: 2px solid var(--border);
+            margin: 8px 0 8px 12px;
+            padding-left: 12px;
+        }
+
+        .indent {
+            padding-left: 16px;
+            text-indent: -16px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* 하단 네비게이션 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 98;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+        }
+
+        .chapter-indicator {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* 사이드 메뉴 */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: var(--white);
+            z-index: 101;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .side-menu.active {
+            transform: translateX(0);
+        }
+
+        .menu-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .menu-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            padding: 8px;
+        }
+
+        .menu-content {
+            padding: 16px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
+
+        .menu-link {
+            display: block;
+            padding: 12px 16px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 15px;
+            border-radius: 8px;
+        }
+
+        .menu-link.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="발자취 로고">
+            <h1>발자취 회칙</h1>
+        </div>
+        <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- 검색바 -->
+    <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="회칙 내용 검색...">
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="container">
+        <!-- 최근 개정 이력 -->
+        <section class="history">
+            <h2 class="history-title">
+                <i class="fas fa-history"></i>
+                최근 개정 이력
+            </h2>
+            <div class="history-item">
+                <span>2024.11.11</span>
+                <span>-</span>
+                <span>회칙 개정: 정기여행 차량 운전자 지원금 지급에 관한 사항 추가</span>
+            </div>
+            <div class="history-item">
+                <span>2024.09.24</span>
+                <span>-</span>
+                <span>회칙 개정: 탈동 기준의 체계화 및 명확화</span>
+            </div>
+            <div class="history-item">
+                <span>2024.09.01</span>
+                <span>-</span>
+                <span>회칙 제정</span>
+            </div>
+        </section>
+
+        <!-- 회칙 내용 -->
+        <section class="content">
+            <h2 class="chapter-title">제1장 총칙</h2>
+            <div class="article">
+                <h3 class="article-title">제1조 (명칭)</h3>
+                <div class="article-content">
+                    <p>본 동아리의 명칭은 '발자취'라 한다.</p>
+                </div>
+            </div>
+            <!-- 나머지 조항들... -->
+        </section>
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav">
+        <button class="nav-btn" id="prevBtn" disabled>이전</button>
+        <span class="chapter-indicator">제1장</span>
+        <button class="nav-btn" id="nextBtn">다음</button>
+    </nav>
+
+    <!-- 사이드 메뉴 -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2 class="menu-title">목차</h2>
+            <button class="close-btn" id="closeBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="menu-content">
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="#" class="menu-link active">제1장 총칙</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">제2장 부원</a>
+                </li>
+                <!-- 나머지 장... -->
+            </ul>
+        </div>
+    </div>
+    <div class="backdrop" id="backdrop"></div>
+
+    <script>
+        // 사이드 메뉴 제어
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const backdrop = document.getElementById('backdrop');
+
+        function toggleMenu() {
+            sideMenu.classList.toggle('active');
+            backdrop.classList.toggle('active');
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        backdrop.addEventListener('click', toggleMenu);
+
+        // 터치 제스처 처리
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const diff = touchEndX - touchStartX;
+
+            if (Math.abs(diff) < swipeThreshold) return;
+
+            if (diff > 0 && touchStartX < 50) {
+                // 오른쪽으로 스와이프 (메뉴 열기)
+                sideMenu.classList.add('active');
+                backdrop.classList.add('active');
+                document.body
