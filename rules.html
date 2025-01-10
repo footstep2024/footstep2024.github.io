@@ -6,14 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>발자취 - 회칙</title>
     
-    <!-- 폰트 로딩 최적화를 위한 preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- 로고 preload -->
     <link rel="preload" href="logo.png" as="image">
     
-    <!-- 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
     
@@ -44,7 +41,6 @@
             color: var(--text-color);
         }
 
-        /* 헤더 스타일 */
         header {
             background: var(--white);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -81,7 +77,6 @@
             font-weight: normal;
         }
 
-        /* 검색바 스타일 */
         .search-container {
             background: var(--white);
             border-bottom: 1px solid var(--border-color);
@@ -175,9 +170,6 @@
             100% { background-color: transparent; }
         }
 
-        
-
-        /* 최근 개정 이력 스타일 */
         .history-section {
             position: fixed;
             top: 174px;
@@ -209,7 +201,6 @@
             font-size: 0.9rem;
         }
 
-        /* 메인 콘텐츠 레이아웃 */
         .main-content {
             position: fixed;
             margin: 220px auto 0;
@@ -223,7 +214,6 @@
             padding: 0 1rem;
         }
         
-        /* 사이드바 스타일 */
         .sidebar {
             position: relative;
             top: 90px;
@@ -269,7 +259,6 @@
             color: var(--white);
         }
 
-        /* 회칙 내용 스타일 */
         .rules-content {
             top: calc(72px + 1rem);
             height: auto;
@@ -371,7 +360,6 @@
             margin-top: 0.5rem;
         }
 
-        /* 맨 위로 가기 버튼 */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -400,7 +388,6 @@
             visibility: hidden;
         }
 
-        /* 모바일 메뉴 토글 버튼 */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -410,7 +397,6 @@
             cursor: pointer;
         }
 
-        /* 모바일 메뉴 */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -467,14 +453,12 @@
             opacity: 1;
         }
 
-        /* 검색 결과 하이라이트 */
         .highlight {
             background-color: yellow;
             padding: 0.2em;
             border-radius: 2px;
         }
 
-        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -524,7 +508,6 @@
             }
         }
 
-        /* 로딩 인디케이터 */
         .loading {
             position: fixed;
             top: 50%;
@@ -551,7 +534,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* 애니메이션 */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -563,7 +545,7 @@
     </style>
 </head>
 <body>
-    <!-- 헤더 -->
+    
     <header>
         <div class="header-content">
             <div class="logo-section">
@@ -584,7 +566,6 @@
         </div>
     </div>
 
-    <!-- 최근 개정 이력 -->
     <div class="history-section">
         <div class="history-header">
             <i class="fas fa-history"></i>
@@ -607,7 +588,6 @@
         </div>
     </div>
 
-    <!-- 메인 콘텐츠 -->
     <div class="main-content">
         <!-- 사이드바 -->
         <aside class="sidebar">
@@ -624,9 +604,7 @@
             </ul>
         </aside>
 
-        <!-- 회칙 내용 -->
         <main class="rules-content">
-            <!-- 제1장 총칙 -->
             <section id="chapter1" class="chapter">
                 <div class="chapter-header">
                     <h2 class="chapter-title">제1장 총칙</h2>
@@ -685,7 +663,6 @@
                 </div>
             </section>
 
-<!-- 제2장 부원 -->
 <section id="chapter2" class="chapter">
    <div class="chapter-header">
        <h2 class="chapter-title" style="font-family: 'Nanum Brush Script', cursive;">제2장 부원</h2>
@@ -800,7 +777,6 @@
            </div>
         </section>
 
-<!-- 제3장 조직 -->
 <section id="chapter3" class="chapter">
    <div class="chapter-header">
        <h2 class="chapter-title">제3장 조직</h2>
@@ -895,7 +871,6 @@
    </div>
 </section>
 
-<!-- 제4장 활동 -->
 <section id="chapter4" class="chapter">
     <div class="chapter-header">
         <h2 class="chapter-title">제4장 활동</h2>
@@ -986,7 +961,6 @@
     </div>
 </section>
 
-<!-- 제5장 회의 -->
 <section id="chapter5" class="chapter">
     <div class="chapter-header">
         <h2 class="chapter-title">제5장 회의</h2>
@@ -1023,7 +997,6 @@
     </div>
 </section>
 
-<!-- 제6장 재정 -->
 <section id="chapter6" class="chapter">
     <div class="chapter-header">
         <h2 class="chapter-title">제6장 재정</h2>
@@ -1099,7 +1072,6 @@
     </div>
 </section>
             
-<!-- 제7장 징계 및 상벌 -->
 <section id="chapter7" class="chapter">
    <div class="chapter-header">
        <h2 class="chapter-title">제7장 징계 및 상벌</h2>
@@ -1196,7 +1168,6 @@
    </div>
 </section>
 
-<!-- 제8장 부칙 -->
 <section id="chapter8" class="chapter">
    <div class="chapter-header">
        <h2 class="chapter-title">제8장 부칙</h2>
@@ -1230,7 +1201,14 @@
    </div>
 </div>
 
-<!-- 모바일 메뉴 -->
+
+
+
+
+
+
+
+    
 <div class="mobile-menu">
    <div class="mobile-menu-header">
        <h2>목차</h2>
@@ -1253,18 +1231,15 @@
 </div>
 <div class="mobile-menu-backdrop"></div>
 
-<!-- 맨 위로 가기 버튼 -->
 <button class="scroll-top">
    <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- 로딩 인디케이터 -->
 <div class="loading">
    <div class="loading-spinner"></div>
 </div>
 
 <script>
-   // DOM 요소들
    const searchInput = document.querySelector('.search-input');
    const menuToggle = document.querySelector('.mobile-menu-toggle');
    const mobileMenu = document.querySelector('.mobile-menu');
@@ -1280,13 +1255,11 @@ searchInput.addEventListener('input', (e) => {
     searchTimeout = setTimeout(() => {
         const searchTerm = e.target.value.toLowerCase();
         
-        // 기존 결과 컨테이너 제거
         const oldContainer = document.querySelector('.search-results-container');
         if (oldContainer) oldContainer.remove();
         
         if (searchTerm.length < 2) return;
         
-        // 새 결과 컨테이너 생성
         const resultsContainer = document.createElement('div');
         resultsContainer.className = 'search-results-container';
         document.querySelector('.search-wrapper').appendChild(resultsContainer);
@@ -1298,23 +1271,19 @@ searchInput.addEventListener('input', (e) => {
             const text = articleContent.toLowerCase();
             
             if (text.includes(searchTerm)) {
-                // 컨텍스트 추출
                 const index = text.indexOf(searchTerm);
                 const start = Math.max(0, index - 30);
                 const end = Math.min(text.length, index + searchTerm.length + 30);
                 let preview = text.slice(start, end);
                 
-                // 시작과 끝 부분 처리
                 if (start > 0) preview = '...' + preview;
                 if (end < text.length) preview = preview + '...';
                 
-                // 검색어 하이라이트
                 preview = preview.replace(
                     new RegExp(searchTerm, 'gi'),
                     match => `<mark class="highlight">${match}</mark>`
                 );
                 
-                // 미리보기 요소 생성
                 const previewEl = document.createElement('div');
                 previewEl.className = 'search-preview';
                 previewEl.innerHTML = `
@@ -1322,46 +1291,37 @@ searchInput.addEventListener('input', (e) => {
                     <div class="preview-content">${preview}</div>
                 `;
                 
-                // 클릭 이벤트 추가
                 previewEl.addEventListener('click', () => {
-                    // 해당 article이 있는 chapter의 ID 찾기
                     const parentChapter = article.closest('.chapter');
                     const chapterId = parentChapter.id;
                     
-                    // 사이드바에서 해당 챕터 링크 찾아서 active 설정
                     const sidebarLink = document.querySelector(`.sidebar a[href="#${chapterId}"]`);
                     if (sidebarLink) {
                         sidebarLinks.forEach(l => l.classList.remove('active'));
                         sidebarLink.classList.add('active');
                     }
                     
-                    // 모든 챕터 숨기고 해당 챕터만 보이기
                     document.querySelectorAll('.chapter').forEach(ch => {
                         ch.style.display = 'none';
                     });
                     parentChapter.style.display = 'block';
                     
-                    // 해당 위치로 스크롤
                     article.scrollIntoView({ behavior: 'smooth' });
                     
-                    // 검색 결과 컨테이너 제거
                     const resultsContainer = document.querySelector('.search-results-container');
                     if (resultsContainer) {
                         resultsContainer.remove();
                     }
                     
-                    // 검색창 비우기
                     searchInput.value = '';
                 });
                 
-                // 결과 컨테이너에 추가
                 resultsContainer.appendChild(previewEl);
             }
         });
     }, 300);
 });
 
-   // 모바일 메뉴 토글
    function toggleMobileMenu() {
        mobileMenu.classList.toggle('active');
        mobileMenuBackdrop.classList.toggle('active');
@@ -1372,11 +1332,9 @@ searchInput.addEventListener('input', (e) => {
    mobileMenuClose.addEventListener('click', toggleMobileMenu);
    mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
 
-   // 모바일 메뉴 링크 클릭 시 메뉴 닫기
    document.querySelectorAll('.mobile-menu a').forEach(link => {
        link.addEventListener('click', () => {
            toggleMobileMenu();
-           // 부드러운 스크롤
            const targetId = link.getAttribute('href');
            const targetElement = document.querySelector(targetId);
            if (targetElement) {
@@ -1394,7 +1352,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 단순하게 수정
 document.querySelector('.scroll-top').addEventListener('click', () => {
     const rulesContent = document.querySelector('.rules-content');
     const visibleChapter = document.querySelector('.chapter[style="display: block"]');
@@ -1403,25 +1360,20 @@ document.querySelector('.scroll-top').addEventListener('click', () => {
     }
 });
 
-// 사이드바 링크 클릭 이벤트 처리
 sidebarLinks.forEach(link => {
     link.addEventListener('click', () => {
-        // 모든 챕터 숨기기
         document.querySelectorAll('.chapter').forEach(chapter => {
             chapter.style.display = 'none';
         });
         
-        // 클릭한 링크에 해당하는 챕터만 보이기
         const targetId = link.getAttribute('href').substring(1);
         document.getElementById(targetId).style.display = 'block';
 
-        // active 클래스 관리
         sidebarLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
     });
 });
 
-// 페이지 로드 시 첫 번째 챕터만 보이도록
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.chapter').forEach(chapter => {
         chapter.style.display = 'none';
@@ -1429,7 +1381,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('chapter1').style.display = 'block';
 });
 
-   // 모바일 메뉴 링크도 동일하게 처리
    document.querySelectorAll('.mobile-menu a').forEach(link => {
        link.addEventListener('click', () => {
            const targetId = link.getAttribute('href');
@@ -1441,17 +1392,14 @@ document.addEventListener('DOMContentLoaded', () => {
        });
    });
 
-   // 페이지 로드 시 애니메이션
    document.addEventListener('DOMContentLoaded', () => {
        document.body.classList.add('fade-in');
    });
 
-// 오른쪽 마우스 버튼 비활성화
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 });
 
-// 드래그 금지
 document.addEventListener('selectstart', (e) => {
     e.preventDefault();
 });
