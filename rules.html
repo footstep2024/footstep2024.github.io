@@ -120,6 +120,63 @@
             color: var(--light-text);
         }
 
+        .search-preview {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-preview:last-child {
+            border-bottom: none;
+        }
+        
+        .search-preview:hover {
+            background-color: rgba(47, 82, 41, 0.1);
+        }
+        
+        .preview-title {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .preview-content {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            line-height: 1.4;
+        }
+        
+        .highlight {
+            background-color: rgba(47, 82, 41, 0.2);
+            padding: 0.1em 0.2em;
+            border-radius: 2px;
+        }
+        
+        .highlight-article {
+            animation: highlight-fade 2s ease;
+        }
+
+        .search-results-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 99;
+        }
+        
+        @keyframes highlight-fade {
+            0%, 50% { background-color: rgba(47, 82, 41, 0.1); }
+            100% { background-color: transparent; }
+        }
+
+        
+
         /* 최근 개정 이력 스타일 */
         .history-section {
             position: fixed;
@@ -1217,42 +1274,92 @@
    const sidebarLinks = document.querySelectorAll('.sidebar a');
    const loading = document.querySelector('.loading');
 
-   // 검색 기능
    let searchTimeout;
-   searchInput.addEventListener('input', (e) => {
-       clearTimeout(searchTimeout);
-       searchTimeout = setTimeout(() => {
-           const searchTerm = e.target.value.toLowerCase();
-           const articles = document.querySelectorAll('.article');
-           
-           articles.forEach(article => {
-               const text = article.textContent.toLowerCase();
-               const parent = article.closest('.chapter');
-               
-               if (searchTerm && text.includes(searchTerm)) {
-                   article.style.display = 'block';
-                   parent.style.display = 'block';
-                   
-                   // 검색어 하이라이트
-                   const regex = new RegExp(searchTerm, 'gi');
-                   const originalText = article.innerHTML;
-                   article.innerHTML = originalText.replace(regex, match => `<span class="highlight">${match}</span>`);
-               } else if (searchTerm) {
-                   article.style.display = 'none';
-                   // 챕터 내 모든 article이 숨겨져 있으면 챕터도 숨김
-                   const visibleArticles = parent.querySelectorAll('.article[style="display: block"]');
-                   if (visibleArticles.length === 0) {
-                       parent.style.display = 'none';
-                   }
-               } else {
-                   article.style.display = 'block';
-                   parent.style.display = 'block';
-                   // 하이라이트 제거
-                   article.innerHTML = article.innerHTML.replace(/<span class="highlight">([^<]+)<\/span>/g, '$1');
-               }
-           });
-       }, 300);
-   });
+searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        // 기존 결과 컨테이너 제거
+        const oldContainer = document.querySelector('.search-results-container');
+        if (oldContainer) oldContainer.remove();
+        
+        if (searchTerm.length < 2) return;
+        
+        // 새 결과 컨테이너 생성
+        const resultsContainer = document.createElement('div');
+        resultsContainer.className = 'search-results-container';
+        document.querySelector('.search-wrapper').appendChild(resultsContainer);
+
+        const articles = document.querySelectorAll('.article');
+        articles.forEach(article => {
+            const articleTitle = article.querySelector('.article-title').textContent;
+            const articleContent = article.querySelector('.article-content').textContent;
+            const text = articleContent.toLowerCase();
+            
+            if (text.includes(searchTerm)) {
+                // 컨텍스트 추출
+                const index = text.indexOf(searchTerm);
+                const start = Math.max(0, index - 30);
+                const end = Math.min(text.length, index + searchTerm.length + 30);
+                let preview = text.slice(start, end);
+                
+                // 시작과 끝 부분 처리
+                if (start > 0) preview = '...' + preview;
+                if (end < text.length) preview = preview + '...';
+                
+                // 검색어 하이라이트
+                preview = preview.replace(
+                    new RegExp(searchTerm, 'gi'),
+                    match => `<mark class="highlight">${match}</mark>`
+                );
+                
+                // 미리보기 요소 생성
+                const previewEl = document.createElement('div');
+                previewEl.className = 'search-preview';
+                previewEl.innerHTML = `
+                    <div class="preview-title">${articleTitle}</div>
+                    <div class="preview-content">${preview}</div>
+                `;
+                
+                // 클릭 이벤트 추가
+                previewEl.addEventListener('click', () => {
+                    // 해당 article이 있는 chapter의 ID 찾기
+                    const parentChapter = article.closest('.chapter');
+                    const chapterId = parentChapter.id;
+                    
+                    // 사이드바에서 해당 챕터 링크 찾아서 active 설정
+                    const sidebarLink = document.querySelector(`.sidebar a[href="#${chapterId}"]`);
+                    if (sidebarLink) {
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        sidebarLink.classList.add('active');
+                    }
+                    
+                    // 모든 챕터 숨기고 해당 챕터만 보이기
+                    document.querySelectorAll('.chapter').forEach(ch => {
+                        ch.style.display = 'none';
+                    });
+                    parentChapter.style.display = 'block';
+                    
+                    // 해당 위치로 스크롤
+                    article.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // 검색 결과 컨테이너 제거
+                    const resultsContainer = document.querySelector('.search-results-container');
+                    if (resultsContainer) {
+                        resultsContainer.remove();
+                    }
+                    
+                    // 검색창 비우기
+                    searchInput.value = '';
+                });
+                
+                // 결과 컨테이너에 추가
+                resultsContainer.appendChild(previewEl);
+            }
+        });
+    }, 300);
+});
 
    // 모바일 메뉴 토글
    function toggleMobileMenu() {
@@ -1278,18 +1385,23 @@
        });
    });
 
-// 스크롤 탑 버튼
-   window.addEventListener('scroll', () => {
-       if (window.pageYOffset > 100) {
-           scrollTopButton.style.display = 'flex';
-       } else {
-           scrollTopButton.style.display = 'none';
-       }
-   });
 
-   scrollTopButton.addEventListener('click', () => {
-       window.scrollTo({ top: 0, behavior: 'smooth' });
-   });
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        scrollTopButton.style.display = 'flex';
+    } else {
+        scrollTopButton.style.display = 'none';
+    }
+});
+
+// 단순하게 수정
+document.querySelector('.scroll-top').addEventListener('click', () => {
+    const rulesContent = document.querySelector('.rules-content');
+    const visibleChapter = document.querySelector('.chapter[style="display: block"]');
+    if (rulesContent && visibleChapter) {
+        rulesContent.scrollTop = 0;
+    }
+});
 
 // 사이드바 링크 클릭 이벤트 처리
 sidebarLinks.forEach(link => {
@@ -1333,6 +1445,17 @@ document.addEventListener('DOMContentLoaded', () => {
    document.addEventListener('DOMContentLoaded', () => {
        document.body.classList.add('fade-in');
    });
+
+// 오른쪽 마우스 버튼 비활성화
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+// 드래그 금지
+document.addEventListener('selectstart', (e) => {
+    e.preventDefault();
+});
+    
 </script>
 </body>
 </html>
