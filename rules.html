@@ -498,36 +498,48 @@
 @media (max-width: 768px) {
     /* 헤더 최적화 */
     .header-content {
-        padding: 0.75rem;
+        padding: 0.75rem 1rem;
+        height: 60px;
     }
 
     .logo-section img {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
     }
 
     .logo-section h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-left: 0.5rem;
     }
 
     /* 검색바 최적화 */
     .search-container {
-        top: 65px;
+        top: 60px;
+        padding: 0.75rem;
+        position: fixed;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .search-input {
+        height: 40px;
+        font-size: 1rem;
     }
 
     /* 개정 이력 최적화 */
     .history-section {
-        top: 120px;
-        width: calc(100% - 1rem);
-        margin: 0.5rem;
+        top: 115px;
+        margin: 0;
         padding: 1rem;
+        border-radius: 0;
+        width: 100%;
     }
 
-    /* 메인 콘텐츠 레이아웃 수정 */
+    /* 메인 콘텐츠 레이아웃 */
     .main-content {
-        margin: 180px 0.5rem 0;
-        display: block;
+        margin-top: 220px;
         padding: 0;
+        display: block;
     }
 
     /* 사이드바 모바일 최적화 */
@@ -538,46 +550,77 @@
     /* 본문 영역 최적화 */
     .rules-content {
         width: 100%;
-        top: 0;
-        margin-top: 1rem;
-        max-height: calc(100vh - 200px);
+        margin: 0;
+        border-radius: 0;
+        max-height: calc(100vh - 220px);
     }
 
     /* 챕터 내용 최적화 */
-    .chapter-header {
+    .chapter-title {
+        font-size: 2rem;
         padding: 1rem;
-    }
-
-    .chapter-content {
-        padding: 1rem;
-    }
-
-    .article {
-        margin-bottom: 2rem;
     }
 
     .article-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
     }
 
     .article-content {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
-    /* 모바일 메뉴 최적화 */
+    /* 모바일 메뉴 개선 */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.active {
+        transform: translateX(0);
+    }
+
+    .mobile-menu-content {
+        padding: 1rem;
+    }
+
+    .mobile-menu-content a {
+        display: block;
+        padding: 1rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .mobile-menu-content a:hover {
+        background: rgba(47, 82, 41, 0.1);
+    }
+
+    .mobile-menu-backdrop.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* 모바일 메뉴 토글 버튼 */
     .mobile-menu-toggle {
         display: block;
-    }
-
-    .mobile-menu {
-        width: 85%;
-        max-width: 300px;
-    }
-
-    /* 스크롤 버튼 위치 조정 */
-    .scroll-top {
-        right: 1rem;
-        bottom: 1rem;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        background: none;
+        border: none;
+        cursor: pointer;
     }
 }
         
