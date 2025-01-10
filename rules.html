@@ -512,6 +512,28 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    .search-container {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        padding: 12px 16px;
+        background: var(--white);
+        z-index: 999;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .search-wrapper {
+        max-width: 100%;
+    }
+
+    .chapter-header {
+        padding: 12px 0;
+        margin-bottom: 16px;
+        position: relative;
+        background: var(--white);
+    }
+
     .header-content {
         height: 60px;
         padding: 0 16px;
@@ -544,12 +566,54 @@
 
     .main-content {
         position: relative;
-        margin-top: 120px;
-        padding: 16px;
+        margin-top: 124px;
+        padding: 0 16px;
         width: 100%;
         display: block;
         transform: none;
         left: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .rules-content {
+        position: relative;
+        top: auto;
+        max-height: none;
+        background: var(--white);
+        border-radius: 8px;
+        padding: 20px 16px;
+        margin-bottom: 80px;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .chapter-content {
+        padding: 0;
+        overflow-y: visible;
+    }
+
+    .article {
+        padding: 0 0 0 8px;
+    }
+
+    .sub-items {
+        margin: 8px 0 8px 12px;
+        padding-left: 12px;
+    }
+
+    .indent {
+        padding-left: 16px;
+        text-indent: -16px;
+        margin-bottom: 4px;
+    }
+
+    .history-section {
+        position: static;
+        transform: none;
+        margin: 0 0 16px 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .history-section {
