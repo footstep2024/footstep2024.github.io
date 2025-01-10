@@ -459,54 +459,6 @@
             border-radius: 2px;
         }
 
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .mobile-menu,
-            .mobile-menu-backdrop {
-                display: block;
-            }
-
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .rules-content {
-                padding: 1rem;
-            }
-
-            .chapter-title {
-                font-size: 1.5rem;
-            }
-
-            .header-content {
-                padding: 0.5rem 1rem;
-            }
-
-            .logo-section h1 {
-                font-size: 2rem;
-            }
-
-            .logo-section img {
-                width: 40px;
-                height: 40px;
-            }
-
-            .search-container {
-                padding: 0.5rem 1rem;
-            }
-
-            .history-section {
-                margin: 1rem;
-                padding: 1rem;
-            }
-        }
 
         .loading {
             position: fixed;
@@ -542,6 +494,94 @@
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
         }
+
+@media (max-width: 768px) {
+    /* 헤더 최적화 */
+    .header-content {
+        padding: 0.75rem;
+    }
+
+    .logo-section img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo-section h1 {
+        font-size: 1.8rem;
+    }
+
+    /* 검색바 최적화 */
+    .search-container {
+        top: 65px;
+    }
+
+    /* 개정 이력 최적화 */
+    .history-section {
+        top: 120px;
+        width: calc(100% - 1rem);
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+
+    /* 메인 콘텐츠 레이아웃 수정 */
+    .main-content {
+        margin: 180px 0.5rem 0;
+        display: block;
+        padding: 0;
+    }
+
+    /* 사이드바 모바일 최적화 */
+    .sidebar {
+        display: none;
+    }
+
+    /* 본문 영역 최적화 */
+    .rules-content {
+        width: 100%;
+        top: 0;
+        margin-top: 1rem;
+        max-height: calc(100vh - 200px);
+    }
+
+    /* 챕터 내용 최적화 */
+    .chapter-header {
+        padding: 1rem;
+    }
+
+    .chapter-content {
+        padding: 1rem;
+    }
+
+    .article {
+        margin-bottom: 2rem;
+    }
+
+    .article-title {
+        font-size: 1.1rem;
+    }
+
+    .article-content {
+        font-size: 0.95rem;
+    }
+
+    /* 모바일 메뉴 최적화 */
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .mobile-menu {
+        width: 85%;
+        max-width: 300px;
+    }
+
+    /* 스크롤 버튼 위치 조정 */
+    .scroll-top {
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+        
+        
     </style>
 </head>
 <body>
