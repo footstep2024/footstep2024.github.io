@@ -1342,6 +1342,14 @@
    </div>
 </div>
 
+    
+    <div class="chapter-navigation">  <!-- 또는 여기에 추가 -->
+        <button id="prevChapter">이전</button>
+        <span id="currentChapter">제1장</span>
+        <button id="nextChapter">다음</button>
+    </div>
+    <div class="mobile-menu">
+
 
 
 
@@ -1381,6 +1389,8 @@
 </div>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
    const searchInput = document.querySelector('.search-input');
    const menuToggle = document.querySelector('.mobile-menu-toggle');
    const mobileMenu = document.querySelector('.mobile-menu');
@@ -1388,201 +1398,142 @@
    const mobileMenuClose = document.querySelector('.mobile-menu-close');
    const scrollTopButton = document.querySelector('.scroll-top');
    const sidebarLinks = document.querySelectorAll('.sidebar a');
-   const loading = document.querySelector('.loading');
+   const chapters = document.querySelectorAll('.chapter');
+   const prevButton = document.getElementById('prevChapter');
+   const nextButton = document.getElementById('nextChapter');
+   const currentChapterText = document.getElementById('currentChapter');
+   let currentIndex = 0;
 
+   // 검색 기능
    let searchTimeout;
-searchInput.addEventListener('input', (e) => {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-        const searchTerm = e.target.value.toLowerCase();
+   searchInput.addEventListener('input', (e) => {
+       clearTimeout(searchTimeout);
+       searchTimeout = setTimeout(() => {
+           const searchTerm = e.target.value.toLowerCase();
+           const oldContainer = document.querySelector('.search-results-container');
+           if (oldContainer) oldContainer.remove();
+           if (searchTerm.length < 2) return;
 
-        const oldContainer = document.querySelector('.search-results-container');
-        if (oldContainer) oldContainer.remove();
+           const resultsContainer = document.createElement('div');
+           resultsContainer.className = 'search-results-container';
+           document.querySelector('.search-wrapper').appendChild(resultsContainer);
 
-        if (searchTerm.length < 2) return;
+           const articles = document.querySelectorAll('.article');
+           articles.forEach(article => {
+               const articleTitle = article.querySelector('.article-title').textContent;
+               const articleContent = article.querySelector('.article-content').textContent;
+               const text = articleContent.toLowerCase();
 
-        const resultsContainer = document.createElement('div');
-        resultsContainer.className = 'search-results-container';
-        document.querySelector('.search-wrapper').appendChild(resultsContainer);
+               if (text.includes(searchTerm)) {
+                   const index = text.indexOf(searchTerm);
+                   const start = Math.max(0, index - 30);
+                   const end = Math.min(text.length, index + searchTerm.length + 30);
+                   let preview = text.slice(start, end);
 
-        const articles = document.querySelectorAll('.article');
-        articles.forEach(article => {
-            const articleTitle = article.querySelector('.article-title').textContent;
-            const articleContent = article.querySelector('.article-content').textContent;
-            const text = articleContent.toLowerCase();
+                   if (start > 0) preview = '...' + preview;
+                   if (end < text.length) preview = preview + '...';
 
-            if (text.includes(searchTerm)) {
-                const index = text.indexOf(searchTerm);
-                const start = Math.max(0, index - 30);
-                const end = Math.min(text.length, index + searchTerm.length + 30);
-                let preview = text.slice(start, end);
+                   preview = preview.replace(
+                       new RegExp(searchTerm, 'gi'),
+                       match => `<mark class="highlight">${match}</mark>`
+                   );
 
-                if (start > 0) preview = '...' + preview;
-                if (end < text.length) preview = preview + '...';
+                   const previewEl = document.createElement('div');
+                   previewEl.className = 'search-preview';
+                   previewEl.innerHTML = `
+                       <div class="preview-title">${articleTitle}</div>
+                       <div class="preview-content">${preview}</div>
+                   `;
 
-                preview = preview.replace(
-                    new RegExp(searchTerm, 'gi'),
-                    match => `<mark class="highlight">${match}</mark>`
-                );
+                   previewEl.addEventListener('click', () => {
+                       const parentChapter = article.closest('.chapter');
+                       showChapter(parentChapter.id.replace('chapter', '') - 1);
+                       article.scrollIntoView({ behavior: 'smooth' });
+                       resultsContainer.remove();
+                       searchInput.value = '';
+                   });
 
-                const previewEl = document.createElement('div');
-                previewEl.className = 'search-preview';
-                previewEl.innerHTML = `
-                    <div class="preview-title">${articleTitle}</div>
-                    <div class="preview-content">${preview}</div>
-                `;
+                   resultsContainer.appendChild(previewEl);
+               }
+           });
+       }, 300);
+   });
 
-                previewEl.addEventListener('click', () => {
-                    const parentChapter = article.closest('.chapter');
-                    const chapterId = parentChapter.id;
+   // 챕터 네비게이션
+   function showChapter(index) {
+       currentIndex = index;
+       chapters.forEach((chapter, idx) => {
+           chapter.style.display = idx === currentIndex ? 'block' : 'none';
+       });
+       currentChapterText.textContent = `제${currentIndex + 1}장`;
+       prevButton.disabled = currentIndex === 0;
+       nextButton.disabled = currentIndex === chapters.length - 1;
 
-                    const sidebarLink = document.querySelector(`.sidebar a[href="#${chapterId}"]`);
-                    if (sidebarLink) {
-                        sidebarLinks.forEach(l => l.classList.remove('active'));
-                        sidebarLink.classList.add('active');
-                    }
+       // 사이드바 링크 활성화
+       sidebarLinks.forEach((link, idx) => {
+           link.classList.toggle('active', idx === currentIndex);
+       });
+   }
 
-                    document.querySelectorAll('.chapter').forEach(ch => {
-                        ch.style.display = 'none';
-                    });
-                    parentChapter.style.display = 'block';
+   prevButton.addEventListener('click', () => {
+       if (currentIndex > 0) {
+           showChapter(currentIndex - 1);
+           window.scrollTo(0, 0);
+       }
+   });
 
-                    article.scrollIntoView({ behavior: 'smooth' });
+   nextButton.addEventListener('click', () => {
+       if (currentIndex < chapters.length - 1) {
+           showChapter(currentIndex + 1);
+           window.scrollTo(0, 0);
+       }
+   });
 
-                    const resultsContainer = document.querySelector('.search-results-container');
-                    if (resultsContainer) {
-                        resultsContainer.remove();
-                    }
+   // 모바일 메뉴
+   function toggleMobileMenu() {
+       mobileMenu.classList.toggle('active');
+       mobileMenuBackdrop.classList.toggle('active');
+       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+   }
 
-                    searchInput.value = '';
-                });
+   menuToggle.addEventListener('click', toggleMobileMenu);
+   mobileMenuClose.addEventListener('click', toggleMobileMenu);
+   mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
 
-                resultsContainer.appendChild(previewEl);
-            }
-        });
-    }, 300);
-});
-
-// 모바일 메뉴 관련 기능
-function toggleMobileMenu() {
-    mobileMenu.classList.toggle('active');
-    mobileMenuBackdrop.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-}
-
-// 기본 이벤트 리스너
-menuToggle.addEventListener('click', toggleMobileMenu);
-mobileMenuClose.addEventListener('click', toggleMobileMenu);
-mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
-
-// 모바일 메뉴 링크 클릭 처리
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        toggleMobileMenu();
-        
-        // 현재 활성 링크 표시
-        document.querySelectorAll('.mobile-menu a').forEach(a => a.classList.remove('active'));
-        link.classList.add('active');
-        
-        const targetId = link.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            // 헤더 높이를 고려한 스크롤 위치 조정
-            const headerOffset = 120; // 헤더 + 검색바 높이
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-            
-            // 챕터 표시 처리
-            document.querySelectorAll('.chapter').forEach(chapter => {
-                chapter.style.display = 'none';
-            });
-            targetElement.style.display = 'block';
-        }
-    });
-});
-
-// 뒤로가기 버튼 처리
-window.addEventListener('popstate', () => {
-    if(mobileMenu.classList.contains('active')) {
-        toggleMobileMenu();
-    }
-});
-
-// 모바일 메뉴 외부 영역 터치시 닫기
-document.addEventListener('touchstart', (e) => {
-    if (mobileMenu.classList.contains('active') && 
-        !mobileMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
-        toggleMobileMenu();
-    }
-});
-
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 100) {
-        scrollTopButton.style.display = 'flex';
-    } else {
-        scrollTopButton.style.display = 'none';
-    }
-});
-
-document.querySelector('.scroll-top').addEventListener('click', () => {
-    const rulesContent = document.querySelector('.rules-content');
-    const visibleChapter = document.querySelector('.chapter[style="display: block"]');
-    if (rulesContent && visibleChapter) {
-        rulesContent.scrollTop = 0;
-    }
-});
-
-sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        document.querySelectorAll('.chapter').forEach(chapter => {
-            chapter.style.display = 'none';
-        });
-
-        const targetId = link.getAttribute('href').substring(1);
-        document.getElementById(targetId).style.display = 'block';
-
-        sidebarLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.chapter').forEach(chapter => {
-        chapter.style.display = 'none';
-    });
-    document.getElementById('chapter1').style.display = 'block';
-});
-
-   document.querySelectorAll('.mobile-menu a').forEach(link => {
+   // 모바일 메뉴 링크
+   document.querySelectorAll('.mobile-menu a').forEach((link, index) => {
        link.addEventListener('click', () => {
-           const targetId = link.getAttribute('href');
-           const correspondingSidebarLink = document.querySelector(`.sidebar a[href="${targetId}"]`);
-           if (correspondingSidebarLink) {
-               sidebarLinks.forEach(l => l.classList.remove('active'));
-               correspondingSidebarLink.classList.add('active');
-           }
+           toggleMobileMenu();
+           showChapter(index);
+           window.scrollTo(0, 0);
        });
    });
 
-   document.addEventListener('DOMContentLoaded', () => {
-       document.body.classList.add('fade-in');
+   // 사이드바 링크
+   sidebarLinks.forEach((link, index) => {
+       link.addEventListener('click', () => {
+           showChapter(index);
+       });
    });
 
-document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+   // 스크롤 탑 버튼
+   window.addEventListener('scroll', () => {
+       scrollTopButton.style.display = window.pageYOffset > 100 ? 'flex' : 'none';
+   });
 
-document.addEventListener('selectstart', (e) => {
-    e.preventDefault();
+   scrollTopButton.addEventListener('click', () => {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+   });
+
+   // 초기화
+   showChapter(0);
+   document.body.classList.add('fade-in');
+
+   // 우클릭 방지
+   document.addEventListener('contextmenu', e => e.preventDefault());
+   document.addEventListener('selectstart', e => e.preventDefault());
 });
+    
 
 </script>
 </body>
