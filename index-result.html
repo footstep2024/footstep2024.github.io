@@ -1330,7 +1330,7 @@
             }
         }
 
-    .result-modal {
+.result-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -1359,19 +1359,19 @@
 }
 
 .result-title {
-    font-family: 'Nanum Brush Script', var(--system-font);
-    font-size: clamp(2em, 6vw, 2.5em);
+    font-family: 'Noto Sans KR', var(--system-font);
+    font-size: 2em;
     color: var(--primary-color);
     margin-bottom: 15px;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .result-subtitle {
-    font-family: 'Gowun Batang', var(--system-font);
-    font-size: clamp(0.9em, 3vw, 1em);
+    font-family: 'Noto Sans KR', var(--system-font);
+    font-size: 1em;
     color: var(--light-text);
     margin-bottom: 25px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .result-form {
@@ -1386,7 +1386,7 @@
     border: 2px solid rgba(47, 82, 41, 0.2);
     border-radius: 8px;
     font-size: 16px;
-    font-family: 'Noto Serif KR', var(--system-font);
+    font-family: 'Noto Sans KR', var(--system-font);
     transition: border-color 0.3s ease;
 }
 
@@ -1401,7 +1401,7 @@
     padding: 12px 25px;
     border: none;
     border-radius: 8px;
-    font-family: 'Noto Serif KR', var(--system-font);
+    font-family: 'Noto Sans KR', var(--system-font);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -1422,7 +1422,7 @@
     margin-top: 20px;
     padding: 15px;
     border-radius: 8px;
-    font-family: 'Noto Serif KR', var(--system-font);
+    font-family: 'Noto Sans KR', var(--system-font);
 }
 
 .result-message.success {
@@ -1492,7 +1492,7 @@
         <div class="result-form">
             <input type="tel" 
                    class="result-input" 
-                   placeholder="휴대폰 번호 입력 (예: 01012345678)" 
+                   placeholder="휴대폰 번호 입력 (예: 010-1234-5678)" 
                    maxlength="11">
             <button class="result-check-btn">확인</button>
         </div>
@@ -1612,342 +1612,342 @@
 
     
 <script>
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    function showLoading() {
-        document.getElementById('loading-spinner').style.display = 'block';
-    }
+   function showLoading() {
+       document.getElementById('loading-spinner').style.display = 'block';
+   }
 
-    function hideLoading() {
-        document.getElementById('loading-spinner').style.display = 'none';
-    }
+   function hideLoading() {
+       document.getElementById('loading-spinner').style.display = 'none';
+   }
 
-    function showNotification(message, type = 'success') {
-        const notification = document.getElementById('notification');
-        const messageElement = notification.querySelector('.notification-message');
-        
-        notification.className = `notification ${type}`;
-        messageElement.textContent = message;
-        notification.style.display = 'block';
-        
-        const duration = isMobile ? 4000 : 3000;
-        
-        if (isMobile) {
-            notification.addEventListener('click', () => {
-                notification.style.display = 'none';
-            });
-        }
-        
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, duration);
-    }
+   function showNotification(message, type = 'success') {
+       const notification = document.getElementById('notification');
+       const messageElement = notification.querySelector('.notification-message');
+       
+       notification.className = `notification ${type}`;
+       messageElement.textContent = message;
+       notification.style.display = 'block';
+       
+       const duration = isMobile ? 4000 : 3000;
+       
+       if (isMobile) {
+           notification.addEventListener('click', () => {
+               notification.style.display = 'none';
+           });
+       }
+       
+       setTimeout(() => {
+           notification.style.display = 'none';
+       }, duration);
+   }
 
-    function escapeHtml(unsafe) {
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
+   function escapeHtml(unsafe) {
+       return unsafe
+           .replace(/&/g, "&amp;")
+           .replace(/</g, "&lt;")
+           .replace(/>/g, "&gt;")
+           .replace(/"/g, "&quot;")
+           .replace(/'/g, "&#039;");
+   }
 
-    function validateUrl(url) {
-        try {
-            new URL(url);
-            if (url.startsWith('mailto:')) {
-                return url.includes('footstep1024@gmail.com');
-            }
-            return (url.startsWith('https://') || url.startsWith('http://')) && (
-                url.includes('forms.gle') || 
-                url.includes('footstep2024.github.io') ||
-                url.includes('open.kakao.com') ||
-                url.includes('instagram.com') ||
-                url.includes('campuspick.com')
-            );
-        } catch {
-            return false;
-        }
-    }
+   function validateUrl(url) {
+       try {
+           new URL(url);
+           if (url.startsWith('mailto:')) {
+               return url.includes('footstep1024@gmail.com');
+           }
+           return (url.startsWith('https://') || url.startsWith('http://')) && (
+               url.includes('forms.gle') || 
+               url.includes('footstep2024.github.io') ||
+               url.includes('open.kakao.com') ||
+               url.includes('instagram.com') ||
+               url.includes('campuspick.com')
+           );
+       } catch {
+           return false;
+       }
+   }
 
-    function sanitizeInput(input) {
-        let clean = input.replace(/[<>{}]/g, '');
-        if (isMobile) {
-            clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
-        }
-        return clean.trim();
-    }
+   function sanitizeInput(input) {
+       let clean = input.replace(/[<>{}]/g, '');
+       if (isMobile) {
+           clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+       }
+       return clean.trim();
+   }
 
-    function showCustomAlert(message) {
-        const backdrop = document.createElement('div');
-        backdrop.className = 'custom-alert-backdrop';
-        
-        const alertBox = document.createElement('div');
-        alertBox.className = 'custom-alert';
-        alertBox.innerHTML = `
-            <p>${message}</p>
-            <button onclick="this.parentElement.parentElement.remove()">확인</button>
-        `;
-        
-        backdrop.appendChild(alertBox);
-        document.body.appendChild(backdrop);
-        
-        const removeAlert = () => backdrop.remove();
-        const autoRemoveTimer = setTimeout(removeAlert, 3000);
-        
-        alertBox.querySelector('button').addEventListener('click', () => {
-            clearTimeout(autoRemoveTimer);
-            removeAlert();
-        });
-        
-        backdrop.addEventListener('click', (e) => {
-            if (e.target === backdrop) {
-                clearTimeout(autoRemoveTimer);
-                removeAlert();
-            }
-        });
-    }
-        
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.location.protocol !== 'https:') {
-            showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
-        }
-    
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
-                const href = this.getAttribute('href');
-                if (!validateUrl(href) && !href.startsWith('mailto:')) {
-                    e.preventDefault();
-                    showNotification('유효하지 않은 링크입니다.', 'error');
-                }
-            });
-        });
+   function showResultMessage(message, type) {
+       const resultMessage = document.querySelector('.result-message');
+       resultMessage.textContent = message;
+       resultMessage.className = `result-message ${type}`;
+       resultMessage.style.display = 'block';
+   }
 
-        // 변수 선언
-        const resultModal = document.querySelector('.result-modal');
-        const resultCloseBtn = document.querySelector('.result-close-btn');
-        const resultCheckBtn = document.querySelector('.result-check-btn');
-        const resultInput = document.querySelector('.result-input');
-        const resultMessage = document.querySelector('.result-message');
-        const modalBtn = document.querySelector('.modal-btn');
+   function checkResult() {
+       const resultInput = document.querySelector('.result-input');
+       const phone = resultInput.value.replace(/-/g, '');
+       
+       if (!phone.match(/^010\d{8}$/)) {
+           showNotification('올바른 휴대폰 번호를 입력해주세요.', 'error');
+           return;
+       }
 
-        // 합격자 데이터 (실제 데이터로 교체 필요)
-        const passedApplicants = {
-            '01012345678': true,
-            '01087654321': false
-        };
+       // 합격자 데이터 (실제 데이터로 교체 필요)
+       const passedApplicants = {
+           '01012345678': true,
+           '01087654321': false
+       };
 
-        function checkResult() {
-            const phone = resultInput.value.replace(/-/g, '');
-            if (!phone.match(/^010\d{8}$/)) {
-                showNotification('올바른 휴대폰 번호를 입력해주세요.', 'error');
-                return;
-            }
+       const result = passedApplicants[phone];
+       if (result === undefined) {
+           showResultMessage('지원 내역을 찾을 수 없습니다.', 'error');
+       } else if (result) {
+           showResultMessage('축하합니다! 면접 대상자로 선발되셨습니다.', 'success');
+       } else {
+           showResultMessage('아쉽게도 이번에는 선발되지 않았습니다.', 'error');
+       }
+   }
 
-            const result = passedApplicants[phone];
-            if (result === undefined) {
-                showResultMessage('지원 내역을 찾을 수 없습니다.', 'error');
-            } else if (result) {
-                showResultMessage('축하드립니다! 면접 대상자로 선발되셨습니다.', 'success');
-            } else {
-                showResultMessage('아쉽게도 이번에는 선발되지 않았습니다.', 'error');
-            }
-        }
+   function showCustomAlert(message) {
+       const backdrop = document.createElement('div');
+       backdrop.className = 'custom-alert-backdrop';
+       
+       const alertBox = document.createElement('div');
+       alertBox.className = 'custom-alert';
+       alertBox.innerHTML = `
+           <p>${message}</p>
+           <button onclick="this.parentElement.parentElement.remove()">확인</button>
+       `;
+       
+       backdrop.appendChild(alertBox);
+       document.body.appendChild(backdrop);
+       
+       const removeAlert = () => backdrop.remove();
+       const autoRemoveTimer = setTimeout(removeAlert, 3000);
+       
+       alertBox.querySelector('button').addEventListener('click', () => {
+           clearTimeout(autoRemoveTimer);
+           removeAlert();
+       });
+       
+       backdrop.addEventListener('click', (e) => {
+           if (e.target === backdrop) {
+               clearTimeout(autoRemoveTimer);
+               removeAlert();
+           }
+       });
+   }
+   
+   document.addEventListener('DOMContentLoaded', function() {
+       if (window.location.protocol !== 'https:') {
+           showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
+       }
+   
+       document.querySelectorAll('a').forEach(link => {
+           link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
+               const href = this.getAttribute('href');
+               if (!validateUrl(href) && !href.startsWith('mailto:')) {
+                   e.preventDefault();
+                   showNotification('유효하지 않은 링크입니다.', 'error');
+               }
+           });
+       });
 
-        function showResultMessage(message, type) {
-            resultMessage.textContent = message;
-            resultMessage.className = `result-message ${type}`;
-            resultMessage.style.display = 'block';
-        }
+       const resultModal = document.querySelector('.result-modal');
+       const resultCloseBtn = document.querySelector('.result-close-btn');
+       const resultCheckBtn = document.querySelector('.result-check-btn');
+       const modalBtn = document.querySelector('.modal-btn');
 
-        if (modalBtn) {
-            modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
-                e.preventDefault();
-                
-                try {
-                    showNotification('결과를 확인하는 중입니다', 'success');
-                    showLoading();
-                    
-                    setTimeout(() => {
-                        hideLoading();
-                        resultModal.style.display = 'block';
-                    }, 1000);
-                    
-                } catch (error) {
-                    hideLoading();
-                    showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
-                    console.error('Error:', error);
-                }
-            });
-        }
+       if (modalBtn) {
+           modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
+               e.preventDefault();
+               
+               try {
+                   showNotification('결과를 확인하는 중입니다', 'success');
+                   showLoading();
+                   
+                   setTimeout(() => {
+                       hideLoading();
+                       resultModal.style.display = 'block';
+                   }, 1000);
+                   
+               } catch (error) {
+                   hideLoading();
+                   showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
+                   console.error('Error:', error);
+               }
+           });
+       }
 
-        if (resultCheckBtn) {
-            resultCheckBtn.addEventListener('click', checkResult);
-        }
+       if (resultCheckBtn) {
+           resultCheckBtn.addEventListener('click', checkResult);
+       }
 
-        if (resultCloseBtn) {
-            resultCloseBtn.addEventListener('click', () => {
-                resultModal.style.display = 'none';
-                resultInput.value = '';
-                resultMessage.style.display = 'none';
-            });
-        }
+       if (resultCloseBtn) {
+           resultCloseBtn.addEventListener('click', () => {
+               resultModal.style.display = 'none';
+               document.querySelector('.result-input').value = '';
+               document.querySelector('.result-message').style.display = 'none';
+           });
+       }
 
-        if (resultModal) {
-            resultModal.addEventListener('click', (e) => {
-                if (e.target === resultModal) {
-                    resultModal.style.display = 'none';
-                    resultInput.value = '';
-                    resultMessage.style.display = 'none';
-                }
-            });
-        }
+       if (resultModal) {
+           resultModal.addEventListener('click', (e) => {
+               if (e.target === resultModal) {
+                   resultModal.style.display = 'none';
+                   document.querySelector('.result-input').value = '';
+                   document.querySelector('.result-message').style.display = 'none';
+               }
+           });
+       }
 
-        if (isMobile) {
-            document.addEventListener('touchstart', function(event) {
-                if (event.touches.length > 1) {
-                    event.preventDefault();
-                }
-            }, { passive: false });
-        }
+       if (isMobile) {
+           document.addEventListener('touchstart', function(event) {
+               if (event.touches.length > 1) {
+                   event.preventDefault();
+               }
+           }, { passive: false });
+       }
 
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        if ('ontouchstart' in window) {
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const wasActive = this.classList.contains('active');
-                    cards.forEach(c => c.classList.remove('active'));
-                    if (!wasActive) {
-                        this.classList.add('active');
-                    }
-                });
-            });
-        }
+       document.addEventListener('contextmenu', function(e) {
+           e.preventDefault();
+       });
+       
+       if ('ontouchstart' in window) {
+           const cards = document.querySelectorAll('.feature-card');
+           cards.forEach(card => {
+               card.addEventListener('click', function() {
+                   const wasActive = this.classList.contains('active');
+                   cards.forEach(c => c.classList.remove('active'));
+                   if (!wasActive) {
+                       this.classList.add('active');
+                   }
+               });
+           });
+       }
 
-        document.querySelector('.instagram').addEventListener('click', function(e) {
-            e.preventDefault();
-            const username = 'footstep2024_official';
-            const appUrl = `instagram://user?username=${username}`;
-            const webUrl = `https://www.instagram.com/${username}`;
-            
-            if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
-                const startTime = Date.now();
-                window.location.href = appUrl;
-                window.onblur = function() {
-                    window.onblur = null;
-                };
-                setTimeout(function() {
-                    if (!document.hidden && (Date.now() - startTime < 2000)) {
-                        window.location.href = webUrl;
-                    }
-                }, 1000);
-            } else {
-                window.open(webUrl, '_blank');
-            }
-        });
+       document.querySelector('.instagram').addEventListener('click', function(e) {
+           e.preventDefault();
+           const username = 'footstep2024_official';
+           const appUrl = `instagram://user?username=${username}`;
+           const webUrl = `https://www.instagram.com/${username}`;
+           
+           if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
+               const startTime = Date.now();
+               window.location.href = appUrl;
+               window.onblur = function() {
+                   window.onblur = null;
+               };
+               setTimeout(function() {
+                   if (!document.hidden && (Date.now() - startTime < 2000)) {
+                       window.location.href = webUrl;
+                   }
+               }, 1000);
+           } else {
+               window.open(webUrl, '_blank');
+           }
+       });
 
-        // Stats Animation
-        const durationModifier = isMobile ? 0.8 : 1;
-        
-        const stats = [
-            {
-                element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
-                start: 1,
-                end: 3,
-                duration: 2500 * durationModifier,
-                suffix: '개월'
-            },
-            {
-                element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
-                start: 1,
-                end: 100,
-                duration: 2000 * durationModifier,
-                suffix: '%'
-            },
-            {
-                element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
-                start: 1,
-                end: 80,
-                duration: 2200 * durationModifier,
-                suffix: '%+'
-            },
-            {
-                element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
-                start: 1,
-                end: 3,
-                duration: 2500 * durationModifier,
-                suffix: '+'
-            }
-        ];
-        
-        stats.forEach(stat => {
-            animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
-        });
-    });
+       // Stats Animation
+       const durationModifier = isMobile ? 0.8 : 1;
+       
+       const stats = [
+           {
+               element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
+               start: 1,
+               end: 3,
+               duration: 2500 * durationModifier,
+               suffix: '개월'
+           },
+           {
+               element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
+               start: 1,
+               end: 100,
+               duration: 2000 * durationModifier,
+               suffix: '%'
+           },
+           {
+               element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
+               start: 1,
+               end: 80,
+               duration: 2200 * durationModifier,
+               suffix: '%+'
+           },
+           {
+               element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
+               start: 1,
+               end: 3,
+               duration: 2500 * durationModifier,
+               suffix: '+'
+           }
+       ];
+       
+       stats.forEach(stat => {
+           animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
+       });
+   });
 
-    function animateValue(element, start, end, duration, suffix = '') {
-        const frameRate = isMobile ? 30 : 60;
-        const frameInterval = 1000 / frameRate;
-        
-        const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
-        
-        let current = start;
-        const range = end - start;
-        const increment = range / (duration / frameInterval);
-        const startTime = performance.now();
-        let lastFrameTime = startTime;
-        
-        let isPaused = false;
-        document.addEventListener('visibilitychange', () => {
-            isPaused = document.hidden;
-        });
-        
-        function updateNumber(currentTime) {
-            if (isPaused) {
-                requestAnimationFrame(updateNumber);
-                return;
-            }
-    
-            if (currentTime - lastFrameTime < frameInterval) {
-                requestAnimationFrame(updateNumber);
-                return;
-            }
-            
-            const elapsed = currentTime - startTime;
-            lastFrameTime = currentTime;
-            
-            if (elapsed < duration) {
-                const progress = elapsed / duration;
-                const easedProgress = 1 - Math.pow(1 - progress, 3);
-                current = start + (range * easedProgress);
-                
-                if (decimals > 0) {
-                    element.textContent = current.toFixed(decimals) + suffix;
-                } else {
-                    element.textContent = Math.floor(current) + suffix;
-                }
-                
-                requestAnimationFrame(updateNumber);
-            } else {
-                element.textContent = end + suffix;
-            }
-        }
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    requestAnimationFrame(updateNumber);
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        observer.observe(element);
-    }
+   function animateValue(element, start, end, duration, suffix = '') {
+       const frameRate = isMobile ? 30 : 60;
+       const frameInterval = 1000 / frameRate;
+       
+       const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
+       
+       let current = start;
+       const range = end - start;
+       const increment = range / (duration / frameInterval);
+       const startTime = performance.now();
+       let lastFrameTime = startTime;
+       
+       let isPaused = false;
+       document.addEventListener('visibilitychange', () => {
+           isPaused = document.hidden;
+       });
+       
+       function updateNumber(currentTime) {
+           if (isPaused) {
+               requestAnimationFrame(updateNumber);
+               return;
+           }
+   
+           if (currentTime - lastFrameTime < frameInterval) {
+               requestAnimationFrame(updateNumber);
+               return;
+           }
+           
+           const elapsed = currentTime - startTime;
+           lastFrameTime = currentTime;
+           
+           if (elapsed < duration) {
+               const progress = elapsed / duration;
+               const easedProgress = 1 - Math.pow(1 - progress, 3);
+               current = start + (range * easedProgress);
+               
+               if (decimals > 0) {
+                   element.textContent = current.toFixed(decimals) + suffix;
+               } else {
+                   element.textContent = Math.floor(current) + suffix;
+               }
+               
+               requestAnimationFrame(updateNumber);
+           } else {
+               element.textContent = end + suffix;
+           }
+       }
+       
+       const observer = new IntersectionObserver((entries) => {
+           entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                   requestAnimationFrame(updateNumber);
+                   observer.disconnect();
+               }
+           });
+       }, { threshold: 0.1 });
+       
+       observer.observe(element);
+   }
 </script>
 
     
