@@ -1504,6 +1504,21 @@
     white-space: pre-line;
 }    
 
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+        
 .detail-section {
     background: #f8f9fa;
     border-radius: 8px;
@@ -1827,7 +1842,7 @@ function sanitizeInput(input) {
 
 const messages = {
    success: function(data) {
-       return `<div class="announcement-container">
+       return `<div class="announcement-container animate-fade-in">
            <div class="announcement-header">
                <div>🎉 축하합니다! 👣</div>
                <div class="announcement-subheader">면접 대상자로 선발되셨습니다</div>
@@ -1860,7 +1875,7 @@ const messages = {
        </div>`;
    },
    fail: function() {
-       return `<div class="announcement-container">
+       return `<div class="announcement-container animate-fade-in">
            <div class="announcement-header">
                안녕하세요 👋
                <div class="announcement-subheader">발자취에 관심을 가져주셔서 감사합니다</div>
