@@ -1329,6 +1329,448 @@
                 font-size: 0.9em;
             }
         }
+
+/* 공지사항 모달 스타일 */
+.announcement {
+    max-width: 600px !important;
+    width: 90% !important;
+    padding: 0 !important;
+    font-family: 'Noto Sans KR', var(--system-font);
+}
+
+.announcement-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+
+
+        
+.announcement-close {
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.announcement-close:hover {
+    opacity: 1;
+}
+
+.notice-image-container {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    overflow: hidden;
+}
+
+.notice-header-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    object-fit: contain; 
+}
+
+.greeting-text {
+    font-family: 'Nanum Brush Script', var(--system-font);
+    color: var(--primary-color);
+    font-size: 2.2em; 
+    font-weight: 600; 
+    margin: 15px 0 25px;
+    text-align: center;
+}
+
+.main-text {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.announcement-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 90%;
+    max-width: 640px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+}
+
+.announcement-banner {
+    background: var(--primary-color);
+    height: 48px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 15px;
+}
+
+.announcement-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.announcement-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.announcement-title-group h2 {
+    font-size: 1.4em;
+    margin: 0;
+    font-weight: 500;
+}
+
+.announcement-title-group p {
+    font-size: 0.9em;
+    margin: 5px 0 0;
+    opacity: 0.9;
+}
+
+.stats-section {
+    background: #f8faf9;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2em;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.stats-image {
+    max-width: 60%;
+}
+
+.stats-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.announcement-content {
+    padding: 0 25px 25px;
+}
+        
+.schedule-box {
+    background: #f5f7f5;
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: inline-block;  
+    position: relative;
+    left: 50%;  
+    transform: translateX(-50%);
+}
+
+.info-box {
+    background: rgba(47, 82, 41, 0.08);
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: 0.92em;
+    line-height: 1.6;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin: 20px 0;
+}
+
+.schedule-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.schedule-arrow {
+    color: var(--primary-color);
+    font-size: 0.9em;
+}
+
+.schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.schedule-content {
+    color: #444;
+}
+
+.schedule-note {
+    color: #666;
+    font-size: 0.92em;
+    margin-left: 4px;
+}
+
+.schedule-item {
+    margin-bottom: 6px; 
+    line-height: 1.6;   
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; 
+}
+
+.schedule-item:last-child {
+    margin-bottom: 0;
+}
+
+
+
+.schedule-label {
+    width: 100px;
+    font-weight: 500;
+}
+
+.notice-box {
+    background: #edf7ed;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    color: var(--primary-color);
+}
+
+.signature {
+    text-align: center;
+    color: #666;
+    margin-top: 30px;
+    font-size: 0.92em;
+    line-height: 1.8;
+}
+
+
+
+
+
+
+
+
+        
+
+
+@media (max-width: 768px) {
+    .announcement-modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
+        height: 100%;
+    }
+    
+    .announcement-wrapper {
+        max-height: 85vh;
+        width: 90%;
+        position: relative;
+        transform: none;
+        left: auto;
+        top: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow-y: auto;
+    }
+
+    .notice-image-container {
+        padding: 12px 12px 0;
+    }
+
+    .notice-header-image {
+       max-width: 95%; 
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .announcement-banner {
+        height: 40px;
+        padding: 0 10px;
+    }
+
+    .announcement-close {
+        font-size: 20px;
+        padding: 8px;
+    }
+
+    .notice-image-container {
+        padding: 12px;
+    }
+
+    .notice-header-image {
+        border-radius: 8px;
+    }
+
+    .announcement-content {
+        padding: 0 20px 20px !important;
+    }
+
+    .greeting-text {
+        font-size: min(5vw, 1.5em);
+        margin: 12px 0 20px;
+        white-space: nowrap;
+        line-height: 1.2;
+    }
+    
+    /* 더 작은 화면에서의 greeting-text 크기 조정 */
+    @media (max-width: 380px) {
+        .greeting-text {
+            font-size: min(4.8vw, 1.4em);
+        }
+    }
+
+    .notice-text {
+        font-size: 0.8em;
+        line-height: 1.6;
+    }
+
+    .schedule-box {
+        padding: 15px;
+        margin: 15px auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .schedule-item {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .schedule-title {
+        min-width: 60px;
+        font-size: 0.9em;
+    }
+
+    .schedule-content {
+        font-size: 0.9em;
+    }
+
+    .schedule-note {
+        font-size: 0.8em;
+    }
+
+    .info-box {
+        padding: 10px 15px;
+        margin: 15px auto;
+        font-size: 0.85em;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: normal;
+    }
+
+    .signature {
+        font-size: 0.85em;
+        margin-top: 20px;
+    }
+
+    /* 스크롤바 스타일링 */
+    .announcement-wrapper::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .announcement-wrapper::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
+
+    .announcement-wrapper::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 3px;
+    }
+
+    /* 모달 진입/이탈 애니메이션 개선 */
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -45%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    /* 터치 디바이스 최적화 */
+    .announcement-close {
+        -webkit-tap-highlight-color: transparent;
+        padding: 15px;
+    }
+
+
+
+    /* 안전 영역 대응 */
+    .announcement-modal {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+}
+
+/* 작은 모바일 기기 대응 */
+@media (max-width: 360px) {
+    .announcement-wrapper {
+        width: 98%;
+    }
+
+    .greeting-text {
+        font-size: 1.6em;
+    }
+
+    .notice-text {
+        font-size: 0.85em;
+    }
+
+    .schedule-box {
+        padding: 12px;
+    }
+
+    .info-box {
+        padding: 8px 12px;
+        font-size: 0.8em;
+    }
+}
+        
+
+        
+        
+        
     </style>
 </head>
 
@@ -1338,27 +1780,64 @@
         <p>잠시만 기다려주세요...</p>
     </div>
 
-        <div class="modal">
-        <div class="modal-content">
-            <button class="close-btn">&times;</button>
-            <h2 class="modal-title">모집 알림 신청</h2>
-            <p class="modal-subtitle">모집 기간이 되면 문자로 알려드립니다.</p>
-            <form class="phone-form" 
-                action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSd7ReHEs6lSxH9BS3skvYVkV8KXYKIhZ3U91JkzFEQt--J8TQ/formResponse" 
-                method="post" 
-                target="hidden_iframe">
-                <input type="tel" 
-                       inputmode="numeric"
-                       name="entry.1871526898" 
-                       class="phone-input" 
-                       placeholder="휴대폰 번호 (- 없이 입력)" 
-                       pattern="010[0-9]{8}"
-                       maxlength="11"
-                       required>
-                <button type="submit" class="submit-btn">알림 신청하기</button>
-            </form>
+
+<div id="announcement-modal" class="announcement-modal">
+    <div class="announcement-wrapper">
+        <!-- 상단 초록색 바 -->
+        <div class="announcement-banner">
+            <button class="announcement-close">&times;</button>
+        </div>
+        
+        <!-- 이미지 컨테이너 -->
+        <div class="notice-image-container">
+            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/notice.png" 
+                 alt="모집 공지 이미지" class="notice-header-image">
+        </div>
+
+        <div class="announcement-content" style="padding: 0 35px 25px;">
+            <p class="greeting-text">안녕하세요, 여행하는 사람들 '발자취'입니다</p>
+            
+            <p class="notice-text">25-1학기 모집에 보내주신 관심에 진심으로 감사드립니다. 막 여행길에 오른 동아리임에도 145명이나 되는 분들께서 함께하고 싶다는 마음을 전달해주셔서 정말 큰 힘이 되었습니다. 다만 마감 이후에도 계속되는 문의를 고려하여, 기존 일정에 차질이 없는 선에서 다음과 같이 일정이 조정되었음을 알려드립니다.</p>
+
+        <div class="schedule-box" style="margin-top: 8px;">
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">기한 연장</span>
+                <span class="schedule-content">14일까지</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">면접자 발표</span>
+                <span class="schedule-content">15일</span>
+                <span class="schedule-note">(기존 14일에서 연기)</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">면접 일정</span>
+                <span class="schedule-content">17일부터</span>
+                <span class="schedule-note">(변동 없음)</span>
+            </div>
+        </div>
+
+            <p class="notice-text">
+                면접 일정은 변함 없습니다. 기존 접수된 지원서에 대한 검토도 예정대로 오늘(13일)부터 진행됩니다. 14일까지는 어플라이 페이지를 열어두어, 그 안에 제출된 건까지 모두 반영 및 검토하여 발표토록 하겠습니다.
+            </p>
+
+            <div class="info-box">
+                면접 대상자는 당일 본 웹페이지에서 휴대폰 번호로 확인 가능합니다.
+            </div>
+
+            <p class="signature" style="margin-top: 10px;">
+                지원해주신 모든 분들께 다시 한 번 감사드리며,<br>
+                발자취와 함께할 소중한 인연을 기다리고 있겠습니다.<br><br>
+                발자취 집행부 드림
+            </p>
         </div>
     </div>
+</div>
+
+    
+
     
     <iframe name="hidden_iframe" style="display:none;"></iframe>
     
@@ -1443,7 +1922,7 @@
 
             <div class="cta">
                 <h2>2025년 1학기 신입 부원 모집</h2>
-                <p>01.01 ~ 01.13(오전 9시)</p>
+                <p>01.01 ~ 01.14</p>
                 <button class="cta-button modal-btn">지금 지원하기</button>
             </div>
 
@@ -1818,7 +2297,33 @@
         
      </script>   
 
+     <script>   
 
+document.addEventListener('DOMContentLoaded', function() {
+    const announcementModal = document.getElementById('announcement-modal');
+    const closeButton = document.querySelector('.announcement-close');
+    
+    // 페이지 로드 시 모달 표시
+    setTimeout(() => {
+        announcementModal.style.display = 'block';
+    }, 500);
+
+    // 닫기 버튼 클릭 이벤트
+    closeButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        announcementModal.style.display = 'none';
+    });
+
+    // 모달 외부 클릭 시 닫기
+    window.addEventListener('click', function(e) {
+        if (e.target === announcementModal) {
+            announcementModal.style.display = 'none';
+        }
+    });
+});
+
+     </script>   
     
     
 </body>
