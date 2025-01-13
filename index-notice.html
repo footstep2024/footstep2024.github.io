@@ -1577,12 +1577,24 @@
 }
 
 @media (max-width: 768px) {
+    .announcement-modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
     .announcement-wrapper {
-        width: 95%;
+        width: 92%;
         max-width: none;
-        margin: 10px;
+        position: relative;
+        transform: none;
+        left: auto;
+        top: auto;
+        margin: 0;
         border-radius: 12px;
-        max-height: 90vh;
+        max-height: 85vh;
         overflow-y: auto;
     }
 
@@ -1609,8 +1621,17 @@
     }
 
     .greeting-text {
-        font-size: 1.8em;
+        font-size: min(5vw, 1.8em);
         margin: 12px 0 20px;
+        white-space: nowrap;
+        line-height: 1.2;
+    }
+    
+    /* 더 작은 화면에서의 greeting-text 크기 조정 */
+    @media (max-width: 380px) {
+        .greeting-text {
+            font-size: min(4.8vw, 1.6em);
+        }
     }
 
     .notice-text {
