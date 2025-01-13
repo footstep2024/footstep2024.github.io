@@ -1339,34 +1339,62 @@
 }
 
 .announcement-modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
 }
 
 
 .announcement-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
     color: white;
+    background: transparent;
+    border: none;
     font-size: 24px;
     cursor: pointer;
-    padding: 5px;
-    z-index: 1001;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
 }
 
 .announcement-close:hover {
-    color: rgba(255, 255, 255, 0.8);
+    opacity: 1;
+}
+
+.notice-image-container {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    overflow: hidden;
+}
+
+.notice-header-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    object-fit: contain; 
+}
+
+.greeting-text {
+    font-family: 'Nanum Brush Script', var(--system-font);
+    color: var(--primary-color);
+    font-size: 2.2em; 
+    font-weight: 600; 
+    margin: 15px 0 25px;
+    text-align: center;
+}
+
+.main-text {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .announcement-wrapper {
@@ -1376,9 +1404,21 @@
     transform: translate(-50%, -50%);
     background: white;
     width: 90%;
-    max-width: 600px;
+    max-width: 640px;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+}
+
+.announcement-banner {
+    background: var(--primary-color);
+    height: 48px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 15px;
 }
 
 .announcement-header {
@@ -1444,20 +1484,39 @@
 }
 
 .announcement-content {
-    padding: 20px;
+    padding: 0 25px 25px;
 }
         
 .schedule-box {
-    background: #f8faf9;
-    padding: 15px;
+    background: #f5f7f5;
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: inline-block;  
+    position: relative;
+    left: 50%;  
+    transform: translateX(-50%);
+}
+
+.info-box {
+    background: rgba(47, 82, 41, 0.08);
+    padding: 15px 20px;
     border-radius: 8px;
-    margin: 15px 0;
+    margin: 20px 0;
+    color: var(--primary-color);
+    font-size: 0.92em;
+    line-height: 1.6;
 }
 
 .schedule-title {
     color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 10px;
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.schedule-arrow {
+    color: var(--primary-color);
+    font-size: 0.9em;
 }
 
 .schedule-list {
@@ -1466,10 +1525,30 @@
     margin: 0;
 }
 
-.schedule-item {
-    display: flex;
-    margin-bottom: 8px;
+.schedule-content {
+    color: #444;
 }
+
+.schedule-note {
+    color: #666;
+    font-size: 0.92em;
+    margin-left: 4px;
+}
+
+.schedule-item {
+    margin-bottom: 6px; 
+    line-height: 1.6;   
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; 
+}
+
+.schedule-item:last-child {
+    margin-bottom: 0;
+}
+
+
 
 .schedule-label {
     width: 100px;
@@ -1486,10 +1565,11 @@
 
 .signature {
     text-align: center;
-    margin-top: 20px;
-    color: var(--primary-color);
+    color: #666;
+    margin-top: 30px;
+    font-size: 0.92em;
+    line-height: 1.8;
 }
-
 @media (max-width: 768px) {
     .announcement-header {
         flex-direction: column;
@@ -1531,41 +1611,53 @@
 
 <div id="announcement-modal" class="announcement-modal">
     <div class="announcement-wrapper">
-        <div class="announcement-header">
-            <img src="logo.png" alt="발자취 로고" class="announcement-logo">
-            <div class="announcement-title-group">
-                <h2>여행하는 사람들 '발자취'</h2>
-                <p>25-2학기 모집 안내</p>
-            </div>
+        <!-- 상단 초록색 바 -->
+        <div class="announcement-banner">
             <button class="announcement-close">&times;</button>
+        </div>
+        
+        <!-- 이미지 컨테이너 -->
+        <div class="notice-image-container">
+            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/notice.png" 
+                 alt="모집 공지 이미지" class="notice-header-image">
         </div>
 
         <div class="announcement-content">
-            <p class="main-text">
-                먼저 25-2학기 모집에 보내주신 관심에 진심으로 감사드립니다. 막 여행길에 오른 동아리임에도 145명이나 되는 분들께서 함께하고 싶다는 마음을 전해주셔서 큰 힘이 되었습니다.
-            </p>
+            <p class="greeting-text">안녕하세요, 여행하는 사람들 '발자취'입니다.</p>
+            
+            <p class="main-text">먼저 25-2학기 모집에 보내주신 관심에 진심으로 감사드립니다. 막 여행길에 오른 동아리임에도 145명이나 되는 분들께서 함께하고 싶다는 마음을 전해주셔서 큰 힘이 되었습니다.</p>
 
-            <div class="schedule-box">
-                <h3 class="schedule-title">【일정 안내】</h3>
-                <ul class="schedule-list">
-                    <li>• 기한 연장: 1월 14일까지</li>
-                    <li>• 면접자 발표: 1월 15일 (기존 14일에서 연기)</li>
-                    <li>• 면접 일정: 1월 17일부터 (변동 없음)</li>
-                </ul>
+        <div class="schedule-box">
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">기한 연장</span>
+                <span class="schedule-content">1월 14일까지</span>
             </div>
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">면접자 발표</span>
+                <span class="schedule-content">1월 15일</span>
+                <span class="schedule-note">(기존 14일에서 연기)</span>
+            </div>
+            <div class="schedule-item">
+                <span class="schedule-arrow">▸</span>
+                <span class="schedule-title">면접 일정</span>
+                <span class="schedule-content">1월 17일부터</span>
+                <span class="schedule-note">(변동 없음)</span>
+            </div>
+        </div>
 
             <p class="notice-text">
                 면접 일정은 변함 없습니다. 기존 접수된 지원서에 대한 검토도 예정대로 오늘(13일)부터 진행됩니다. 14일까지는 어플라이 페이지를 열어두어, 그 안에 제출된 건까지 모두 반영 및 검토하여 발표토록 하겠습니다.
             </p>
 
-            <div class="notice-box">
-                ※ 면접 대상자는 발표 당일 본 웹사이트에서 휴대폰 번호 입력으로 바로 확인하실 수 있습니다.
+            <div class="info-box">
+                ※ 면접 대상자는 당일 본 웹페이지에서 휴대폰 번호로 확인 가능합니다.
             </div>
 
             <p class="signature">
                 지원해주신 모든 분들께 다시 한 번 감사드리며,<br>
-                발자취와 함께할 소중한 인연을 기다리고 있겠습니다.<br>
-                <br>
+                발자취와 함께할 소중한 인연을 기다리고 있겠습니다.<br><br>
                 발자취 집행부 드림
             </p>
         </div>
