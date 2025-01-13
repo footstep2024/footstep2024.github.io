@@ -1575,32 +1575,155 @@
     font-size: 0.92em;
     line-height: 1.8;
 }
+
 @media (max-width: 768px) {
-    .announcement-header {
-        flex-direction: column;
-        text-align: center;
+    .announcement-wrapper {
+        width: 95%;
+        max-width: none;
+        margin: 10px;
+        border-radius: 12px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .announcement-banner {
+        height: 40px;
+        padding: 0 10px;
+    }
+
+    .announcement-close {
+        font-size: 20px;
+        padding: 8px;
+    }
+
+    .notice-image-container {
+        padding: 12px;
+    }
+
+    .notice-header-image {
+        border-radius: 8px;
+    }
+
+    .announcement-content {
+        padding: 0 20px 20px !important;
+    }
+
+    .greeting-text {
+        font-size: 1.8em;
+        margin: 12px 0 20px;
+    }
+
+    .notice-text {
+        font-size: 0.9em;
+        line-height: 1.6;
+    }
+
+    .schedule-box {
         padding: 15px;
-    }
-
-    .stats-section {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .stats-image {
-        max-width: 100%;
+        margin: 15px auto;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .schedule-item {
-        flex-direction: column;
-        margin-bottom: 12px;
+        gap: 6px;
+        margin-bottom: 8px;
     }
 
-    .schedule-label {
+    .schedule-title {
+        min-width: 60px;
+        font-size: 0.9em;
+    }
+
+    .schedule-content {
+        font-size: 0.9em;
+    }
+
+    .schedule-note {
+        font-size: 0.8em;
+    }
+
+    .info-box {
+        padding: 10px 15px;
+        margin: 15px auto;
+        font-size: 0.85em;
         width: 100%;
-        margin-bottom: 4px;
+        box-sizing: border-box;
+        white-space: normal;
+    }
+
+    .signature {
+        font-size: 0.85em;
+        margin-top: 20px;
+    }
+
+    /* 스크롤바 스타일링 */
+    .announcement-wrapper::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .announcement-wrapper::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
+
+    .announcement-wrapper::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 3px;
+    }
+
+    /* 모달 진입/이탈 애니메이션 개선 */
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -45%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    /* 터치 디바이스 최적화 */
+    .announcement-close {
+        -webkit-tap-highlight-color: transparent;
+        padding: 15px;
+    }
+
+    .announcement-wrapper {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 안전 영역 대응 */
+    .announcement-modal {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 }
+
+/* 작은 모바일 기기 대응 */
+@media (max-width: 360px) {
+    .announcement-wrapper {
+        width: 98%;
+    }
+
+    .greeting-text {
+        font-size: 1.6em;
+    }
+
+    .notice-text {
+        font-size: 0.85em;
+    }
+
+    .schedule-box {
+        padding: 12px;
+    }
+
+    .info-box {
+        padding: 8px 12px;
+        font-size: 0.8em;
+    }
+}
+        
 
         
         
