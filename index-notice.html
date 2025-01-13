@@ -1350,6 +1350,8 @@
 }
 
 
+
+        
 .announcement-close {
     color: white;
     background: transparent;
@@ -1599,7 +1601,7 @@
         top: auto;
         margin: 0 auto;
         border-radius: 12px;
-        max-height: 90vh;
+        max-height: 70vh;
         overflow-y: auto;
     }
 
@@ -1608,13 +1610,11 @@
     }
 
     .notice-header-image {
-        max-width: 100%;
+       max-width: 85%; 
         width: auto;
         height: auto;
-        max-height: 180px;
-        object-fit: contain;
-        display: block;
         margin: 0 auto;
+        display: block;
     }
 
     .announcement-banner {
@@ -1640,7 +1640,7 @@
     }
 
     .greeting-text {
-        font-size: min(5vw, 1.8em);
+        font-size: min(5vw, 1.5em);
         margin: 12px 0 20px;
         white-space: nowrap;
         line-height: 1.2;
@@ -1649,12 +1649,12 @@
     /* 더 작은 화면에서의 greeting-text 크기 조정 */
     @media (max-width: 380px) {
         .greeting-text {
-            font-size: min(4.8vw, 1.6em);
+            font-size: min(4.8vw, 1.4em);
         }
     }
 
     .notice-text {
-        font-size: 0.9em;
+        font-size: 0.8em;
         line-height: 1.6;
     }
 
@@ -1730,9 +1730,7 @@
         padding: 15px;
     }
 
-    .announcement-wrapper {
-        -webkit-overflow-scrolling: touch;
-    }
+
 
     /* 안전 영역 대응 */
     .announcement-modal {
