@@ -1408,17 +1408,23 @@
     transform: translate(-50%, -50%);
     background: white;
     width: 90%;
+    max-height: 85vh;
     max-width: 640px;
+    margin: 0 auto;
     border-radius: 15px;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+    -webkit-overflow-scrolling: touch
 }
 
 .announcement-banner {
     background: var(--primary-color);
     height: 48px;
     width: 100%;
-    position: relative;
+    osition: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -1488,7 +1494,10 @@
 }
 
 .announcement-content {
-    padding: 0 25px 25px;
+    height: auto;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
         
 .schedule-box {
@@ -1547,6 +1556,7 @@
 .schedule-item {
     margin-bottom: 6px; 
     line-height: 1.6;   
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1638,9 +1648,21 @@
         padding: 12px;
     }
 
-    .notice-header-image {
-        border-radius: 8px;
-    }
+.notice-header-image {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+}
+
+.greeting-text,
+.notice-text,
+.schedule-box,
+.info-box {
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
 
     .announcement-content {
         padding: 0 20px 20px !important;
