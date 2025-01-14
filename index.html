@@ -1620,7 +1620,7 @@
     }
     
     .announcement-wrapper {
-        max-height: 85vh;
+        max-height: 75vh;
         width: 90%;
         position: relative;
         transform: none;
@@ -1636,7 +1636,7 @@
     }
 
     .notice-header-image {
-       max-width: 95%; 
+        max-width: 95%; 
         width: auto;
         height: auto;
         margin: 0 auto;
@@ -1653,25 +1653,21 @@
         padding: 8px;
     }
 
-    .notice-image-container {
-        padding: 12px;
+    .notice-header-image {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        object-fit: contain;
     }
 
-.notice-header-image {
-    max-width: 100%;
-    height: auto;
-    width: auto;
-    object-fit: contain;
-}
-
-.greeting-text,
-.notice-text,
-.schedule-box,
-.info-box {
-    width: 100%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-}
+    .greeting-text,
+    .notice-text,
+    .schedule-box,
+    .info-box {
+        width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
 
     .announcement-content {
         padding: 0 20px 20px !important;
@@ -1679,33 +1675,32 @@
 
     .greeting-text {
         font-size: min(5vw, 1.5em);
-        margin: 12px 0 20px;
+        margin: 12px 0 15px;
         white-space: nowrap;
         line-height: 1.2;
     }
-    
-    /* 더 작은 화면에서의 greeting-text 크기 조정 */
-    @media (max-width: 380px) {
-        .greeting-text {
-            font-size: min(4.8vw, 1.4em);
-        }
-    }
 
     .notice-text {
-        font-size: 0.65em;
+        font-size: 0.75em;
         line-height: 1.6;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        width: 95%;
+        box-sizing: border-box;
     }
 
     .schedule-box {
-        padding: 15px;
+        width: auto;
         margin: 15px auto;
-        width: 100%;
-        box-sizing: border-box;
+        padding: 15px;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .schedule-item {
         gap: 6px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     .schedule-title {
@@ -1735,7 +1730,6 @@
         margin-top: 20px;
     }
 
-    /* 스크롤바 스타일링 */
     .announcement-wrapper::-webkit-scrollbar {
         width: 6px;
     }
@@ -1750,7 +1744,6 @@
         border-radius: 3px;
     }
 
-    /* 모달 진입/이탈 애니메이션 개선 */
     @keyframes modalFadeIn {
         from {
             opacity: 0;
@@ -1762,41 +1755,13 @@
         }
     }
 
-    /* 터치 디바이스 최적화 */
     .announcement-close {
         -webkit-tap-highlight-color: transparent;
         padding: 15px;
     }
 
-
-
-    /* 안전 영역 대응 */
     .announcement-modal {
         padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    }
-}
-
-/* 작은 모바일 기기 대응 */
-@media (max-width: 360px) {
-    .announcement-wrapper {
-        width: 98%;
-    }
-
-    .greeting-text {
-        font-size: 1.6em;
-    }
-
-    .notice-text {
-        font-size: 0.75em;
-    }
-
-    .schedule-box {
-        padding: 12px;
-    }
-
-    .info-box {
-        padding: 8px 12px;
-        font-size: 0.8em;
     }
 }
         
