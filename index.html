@@ -1679,18 +1679,19 @@ document.addEventListener('contextmenu', function(e) {
    e.preventDefault();
 });
 
-if ('ontouchstart' in window) {
-   const cards = document.querySelectorAll('.feature-card');
-   cards.forEach(card => {
-       card.addEventListener('click', function() {
-           const wasActive = this.classList.contains('active');
-           cards.forEach(c => c.classList.remove('active'));
-           if (!wasActive) {
-               this.classList.add('active');
-           }
-       });
-   });
-}
+const cards = document.querySelectorAll('.feature-card');
+cards.forEach(card => {
+    ['click', 'touchend'].forEach(eventType => {
+        card.addEventListener(eventType, function(e) {
+            e.preventDefault();
+            const wasActive = this.classList.contains('active');
+            cards.forEach(c => c.classList.remove('active'));
+            if (!wasActive) {
+                this.classList.add('active');
+            }
+        }, { passive: false });
+    });
+});
 
 document.querySelector('.instagram').addEventListener('click', function(e) {
    e.preventDefault();
@@ -1817,6 +1818,39 @@ document.addEventListener('DOMContentLoaded', function() {
    stats.forEach(stat => {
        animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
    });
+
+   // 카드 터치 이벤트 처리
+   const cards = document.querySelectorAll('.feature-card');
+    
+   if (isMobile) {
+       cards.forEach(card => {
+           card.addEventListener('touchstart', handleTouch, { passive: false });
+       });
+   } else {
+       cards.forEach(card => {
+           card.addEventListener('click', handleClick);
+       });
+   }
+
+   function handleTouch(e) {
+       e.preventDefault();
+       e.stopPropagation();
+       const card = e.currentTarget;
+       const wasActive = card.classList.contains('active');
+       cards.forEach(c => c.classList.remove('active'));
+       if (!wasActive) {
+           card.classList.add('active');
+       }
+   }
+
+   function handleClick(e) {
+       const card = e.currentTarget;
+       const wasActive = card.classList.contains('active');
+       cards.forEach(c => c.classList.remove('active'));
+       if (!wasActive) {
+           card.classList.add('active');
+       }
+   }
 });
 </script>
         
