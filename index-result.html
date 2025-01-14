@@ -2006,124 +2006,142 @@ function showCustomAlert(message) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const resultModal = document.querySelector('.result-modal');
-    const resultCloseBtn = document.querySelector('.result-close-btn');
-    const resultCheckBtn = document.querySelector('.result-check-btn');
-    const modalBtn = document.querySelector('.modal-btn');
-    
-    // 모달 열기
-    if (modalBtn) {
-        modalBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            showLoading();
-            
-            setTimeout(() => {
-                hideLoading();
-                if (resultModal) {
-                    resultModal.style.display = 'flex';
-                    document.querySelector('.result-input').value = '';
-                    document.querySelector('.result-message').style.display = 'none';
-                }
-            }, 500);
-        });
-    }
+   const resultModal = document.querySelector('.result-modal');
+   const resultCloseBtn = document.querySelector('.result-close-btn');
+   const resultCheckBtn = document.querySelector('.result-check-btn');
+   const modalBtn = document.querySelector('.modal-btn');
+   
+   const cards = document.querySelectorAll('.feature-card');
+   
+   if (isMobile) {
+       cards.forEach(card => {
+           card.addEventListener('touchstart', handleTouch, { passive: false });
+       });
+   } else {
+       cards.forEach(card => {
+           card.addEventListener('click', handleClick);
+       });
+   }
 
-    // 결과 확인
-    if (resultCheckBtn) {
-        resultCheckBtn.addEventListener('click', checkResult);
-    }
+   function handleTouch(e) {
+       e.preventDefault();
+       e.stopPropagation();
+       const card = e.currentTarget;
+       const wasActive = card.classList.contains('active');
+       cards.forEach(c => c.classList.remove('active'));
+       if (!wasActive) {
+           card.classList.add('active');
+       }
+   }
 
-    // 모달 닫기 함수
-    function closeModal() {
-        if (resultModal) {
-            resultModal.style.display = 'none';
-            document.querySelector('.result-input').value = '';
-            document.querySelector('.result-message').style.display = 'none';
-        }
-    }
-
-    // 닫기 버튼
-    if (resultCloseBtn) {
-        resultCloseBtn.addEventListener('click', closeModal);
-    }
-
-    // 모달 외부 클릭
-    if (resultModal) {
-        resultModal.addEventListener('click', function(e) {
-            if (e.target === resultModal) {
-                closeModal();
-            }
-        });
-    }
-
-    // ESC 키 처리
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && resultModal.style.display === 'flex') {
-            closeModal();
-        }
-    });
-
-    // HTTPS 체크
-    if (window.location.protocol !== 'https:') {
-        showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
-    }
-
-    // 링크 검증
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
-            const href = this.getAttribute('href');
-            if (!validateUrl(href) && !href.startsWith('mailto:')) {
-                e.preventDefault();
-                showNotification('유효하지 않은 링크입니다.', 'error');
-            }
-        });
-    });
-
-    // 모바일 터치 이벤트
-    if (isMobile) {
-        document.addEventListener('touchstart', function(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-    }
+   function handleClick(e) {
+       const card = e.currentTarget;
+       const wasActive = card.classList.contains('active');
+       cards.forEach(c => c.classList.remove('active'));
+       if (!wasActive) {
+           card.classList.add('active');
+       }
+   }
+   
+   // 모달 열기
+   if (modalBtn) {
+       modalBtn.addEventListener('click', function(e) {
+           e.preventDefault();
+           e.stopPropagation();
+           showLoading();
+           
+           setTimeout(() => {
+               hideLoading();
+               if (resultModal) {
+                   resultModal.style.display = 'flex';
+                   document.querySelector('.result-input').value = '';
+                   document.querySelector('.result-message').style.display = 'none';
+               }
+           }, 500);
+       });
+   }
+   // 결과 확인
+   if (resultCheckBtn) {
+       resultCheckBtn.addEventListener('click', checkResult);
+   }
+   // 모달 닫기 함수
+   function closeModal() {
+       if (resultModal) {
+           resultModal.style.display = 'none';
+           document.querySelector('.result-input').value = '';
+           document.querySelector('.result-message').style.display = 'none';
+       }
+   }
+   // 닫기 버튼
+   if (resultCloseBtn) {
+       resultCloseBtn.addEventListener('click', closeModal);
+   }
+   // 모달 외부 클릭
+   if (resultModal) {
+       resultModal.addEventListener('click', function(e) {
+           if (e.target === resultModal) {
+               closeModal();
+           }
+       });
+   }
+   // ESC 키 처리
+   document.addEventListener('keydown', function(e) {
+       if (e.key === 'Escape' && resultModal.style.display === 'flex') {
+           closeModal();
+       }
+   });
+   // HTTPS 체크
+   if (window.location.protocol !== 'https:') {
+       showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
+   }
+   // 링크 검증
+   document.querySelectorAll('a').forEach(link => {
+       link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
+           const href = this.getAttribute('href');
+           if (!validateUrl(href) && !href.startsWith('mailto:')) {
+               e.preventDefault();
+               showNotification('유효하지 않은 링크입니다.', 'error');
+           }
+       });
+   });
+   // 모바일 터치 이벤트
+   if (isMobile) {
+       document.addEventListener('touchstart', function(event) {
+           if (event.touches.length > 1) {
+               event.preventDefault();
+           }
+       }, { passive: false });
+   }
 });
-
 // Disable right-click context menu
 document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
+   e.preventDefault();
 });
-
 // Prevent copy/paste and other context menu actions
 document.addEventListener('copy', function(e) {
-    e.preventDefault();
+   e.preventDefault();
 });
-
 document.addEventListener('cut', function(e) {
-    e.preventDefault();
+   e.preventDefault();
 });
-
 document.addEventListener('paste', function(e) {
-    e.preventDefault();
+   e.preventDefault();
 });
-
 // For mobile devices, prevent text selection
 if (isMobile) {
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-    });
+   document.addEventListener('selectstart', function(e) {
+       e.preventDefault();
+   });
 }
-
 // Close modal and cleanup when clicking outside
 if (resultModal) {
-    window.addEventListener('click', function(e) {
-        if (e.target === resultModal) {
-            resultModal.style.display = 'none';
-            document.querySelector('.result-input').value = '';
-            document.querySelector('.result-message').style.display = 'none';
-        }
-    });
+   window.addEventListener('click', function(e) {
+       if (e.target === resultModal) {
+           resultModal.style.display = 'none';
+           document.querySelector('.result-input').value = '';
+           document.querySelector('.result-message').style.display = 'none';
+       }
+   });
 }
 </script>
 
