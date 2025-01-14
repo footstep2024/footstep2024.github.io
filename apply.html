@@ -3702,7 +3702,6 @@ textarea.form-control[readonly] {
                     <optgroup label="졸업관련">
                         <option value="postpone">졸업유예</option>
                         <option value="graduating">졸업예정</option>
-                        <option value="graduated">졸업</option>
                     </optgroup>
                 </select>
             </div>
@@ -3817,7 +3816,6 @@ textarea.form-control[readonly] {
                        <optgroup label="졸업관련">
                            <option value="postpone">졸업유예</option>
                            <option value="graduating">졸업예정</option>
-                           <option value="graduated">졸업</option>
                        </optgroup>
             </select>
         </div>
@@ -5994,8 +5992,7 @@ function previewApplication() {
                                             'med3': '본과 3학년',
                                             'med4': '본과 4학년',
                                             'postpone': '졸업유예',
-                                            'graduating': '졸업예정',
-                                            'graduated': '졸업'
+                                            'graduating': '졸업예정'
                                             };
                                             return `
                                                 <span>${gradeMap[grade] || grade}</span>
@@ -6298,8 +6295,7 @@ function previewApplication() {
                                             'med3': '본과 3학년',
                                             'med4': '본과 4학년',
                                             'postpone': '졸업유예',
-                                            'graduating': '졸업예정',
-                                            'graduated': '졸업'
+                                            'graduating': '졸업예정'
                                         };
                                         return gradeMap[grade] || grade;
                                     })()
@@ -6689,8 +6685,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const graduateOptions = document.getElementById('graduateOptions');
     [
         ['졸업유예', 'postpone'],
-        ['졸업예정', 'graduating'],
-        ['졸업', 'graduated']
+        ['졸업예정', 'graduating']
     ].forEach(([label, value]) => {
         const option = document.createElement('div');
         option.className = 'select-option';
@@ -7132,8 +7127,7 @@ showLoading();
                 'med3': '본과 3학년',
                 'med4': '본과 4학년',
                 'postpone': '졸업유예',
-                'graduating': '졸업예정',
-                'graduated': '졸업'
+                'graduating': '졸업예정'
             };
             return gradeMap[grade] || grade;
         })(),
