@@ -2553,6 +2553,40 @@ transform: translateY(-2px);
     border-color: var(--primary-color);
 }
 
+.time-slot.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.time-slot.disabled .time-label {
+    background: #e9ecef;
+    cursor: not-allowed;
+    border-color: #dee2e6;
+}
+
+.time-slot-closed {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #dc3545;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .time-slot-closed {
+        top: -4px;
+        right: -4px;
+        font-size: 0.65rem;
+        padding: 1px 4px;
+    }
+}
+
 .date-option.offline {
     background: rgba(47, 82, 41, 0.05);
 }
@@ -4813,33 +4847,34 @@ placeholder="개인사정 등으로 희망하는 특정 면접 가능 시간대�
                 </div>
             </div>
 
-            <div class="date-option">
-                <div class="date-header">
-                    <div class="date-main">
-                        <span class="date">18일 (토)</span>
-                        <span class="interview-type">
-                            <i class="fas fa-video"></i>
-                            비대면 면접
-                        </span>
-                    </div>
-                </div>
-                <div class="time-slots">
-                    <label class="time-slot">
-                        <input type="checkbox" name="interview_slots[]" value="0118_am">
-                        <span class="time-label">
-                            <i class="fas fa-sun"></i>
-                            오전
-                        </span>
-                    </label>
-                    <label class="time-slot">
-                        <input type="checkbox" name="interview_slots[]" value="0118_pm">
-                        <span class="time-label">
-                            <i class="fas fa-moon"></i>
-                            오후
-                        </span>
-                    </label>
-                </div>
-            </div>
+<div class="date-option">
+    <div class="date-header">
+        <div class="date-main">
+            <span class="date">18일 (토)</span>
+            <span class="interview-type">
+                <i class="fas fa-video"></i>
+                비대면 면접
+            </span>
+        </div>
+    </div>
+    <div class="time-slots">
+        <label class="time-slot">
+            <input type="checkbox" name="interview_slots[]" value="0118_am">
+            <span class="time-label">
+                <i class="fas fa-sun"></i>
+                오전
+            </span>
+        </label>
+        <label class="time-slot disabled">
+            <input type="checkbox" name="interview_slots[]" value="0118_pm" disabled>
+            <span class="time-label">
+                <i class="fas fa-moon"></i>
+                오후
+                <span class="time-slot-closed">마감됨</span>
+            </span>
+        </label>
+    </div>
+</div>
 
             <div class="date-option">
                 <div class="date-header">
