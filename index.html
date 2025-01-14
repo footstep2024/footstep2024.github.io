@@ -1332,441 +1332,6 @@
             }
         }
 
-/* 공지사항 모달 스타일 */
-.announcement {
-    max-width: 600px !important;
-    width: 90% !important;
-    padding: 0 !important;
-    font-family: 'Noto Sans KR', var(--system-font);
-}
-
-.announcement-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
-    backdrop-filter: blur(5px);
-}
-
-
-
-        
-.announcement-close {
-    color: white;
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-
-.announcement-close:hover {
-    opacity: 1;
-}
-
-.notice-image-container {
-    width: 100%;
-    padding: 20px;
-    background: white;
-    overflow: hidden;
-}
-
-.notice-header-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    object-fit: contain; 
-}
-
-.greeting-text {
-    font-family: 'Nanum Brush Script', var(--system-font);
-    color: var(--primary-color);
-    font-size: 2.2em; 
-    font-weight: 600; 
-    margin: 15px 0 25px;
-    text-align: center;
-}
-
-.main-text {
-    font-size: 0.95em;
-    line-height: 1.7;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.announcement-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    width: 90%;
-    max-height: 85vh;
-    max-width: 640px;
-    margin: 0 auto;
-    border-radius: 15px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
-    -webkit-overflow-scrolling: touch
-}
-
-.announcement-banner {
-    background: var(--primary-color);
-    height: 48px;
-    width: 100%;
-    osition: sticky;
-    top: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 15px;
-}
-
-.announcement-header {
-    background: var(--primary-color);
-    color: white;
-    padding: 20px;
-    position: relative;
-}
-
-.announcement-logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-}
-
-.announcement-title-group h2 {
-    font-size: 1.4em;
-    margin: 0;
-    font-weight: 500;
-}
-
-.announcement-title-group p {
-    font-size: 0.9em;
-    margin: 5px 0 0;
-    opacity: 0.9;
-}
-
-.stats-section {
-    background: #f8faf9;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px;
-    border-radius: 10px;
-}
-
-.stat-box {
-    text-align: center;
-}
-
-.stat-number {
-    display: block;
-    font-size: 2em;
-    color: var(--primary-color);
-    font-weight: bold;
-}
-
-.stat-label {
-    font-size: 0.9em;
-    color: #666;
-}
-
-.stats-image {
-    max-width: 60%;
-}
-
-.stats-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.announcement-content {
-    height: auto;
-    overflow-y: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
-        
-.schedule-box {
-    background: #f5f7f5;
-    padding: 20px 25px;
-    border-radius: 10px;
-    font-size: 0.85em;
-    margin: 20px auto;
-    display: inline-block;  
-    position: relative;
-    left: 50%;  
-    transform: translateX(-50%);
-}
-
-.info-box {
-    background: rgba(47, 82, 41, 0.08);
-    padding: 12px 20px;
-    border-radius: 8px;
-    color: var(--primary-color);
-    font-size: 0.85em;
-    line-height: 1.6;
-    display: inline-block;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    margin: 20px 0;
-}
-
-.notice-text {
-    font-size: 0.85em;
-}
-
-.main-text {
-    font-size: 0.85em;
-}
-
-.schedule-title {
-    color: var(--primary-color);
-    font-weight: 600;
-    min-width: 70px;
-}
-
-.schedule-arrow {
-    color: var(--primary-color);
-    font-size: 0.9em;
-}
-
-.schedule-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.schedule-content {
-    color: #444;
-}
-
-.schedule-note {
-    color: #666;
-    font-size: 0.92em;
-    margin-left: 4px;
-}
-
-.schedule-item {
-    margin-bottom: 6px; 
-    line-height: 1.6;   
-    flex-wrap: wrap;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap; 
-}
-
-.schedule-item:last-child {
-    margin-bottom: 0;
-}
-
-
-
-.schedule-label {
-    width: 100px;
-    font-weight: 500;
-}
-
-.notice-box {
-    background: #edf7ed;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
-    color: var(--primary-color);
-}
-
-.signature {
-    text-align: center;
-    color: #666;
-    margin-top: 30px;
-    font-size: 0.88em;
-    line-height: 1.8;
-}
-
-
-
-
-
-
-
-
-        
-
-
-@media (max-width: 768px) {
-    .announcement-modal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box;
-        height: 100%;
-    }
-    
-    .announcement-wrapper {
-        max-height: 75vh;
-        width: 90%;
-        position: relative;
-        transform: none;
-        left: auto;
-        top: auto;
-        margin: 0 auto;
-        border-radius: 12px;
-        overflow-y: auto;
-    }
-
-    .notice-image-container {
-        padding: 12px 12px 0;
-    }
-
-    .notice-header-image {
-        max-width: 95%; 
-        width: auto;
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .announcement-banner {
-        height: 40px;
-        padding: 0 10px;
-    }
-
-    .announcement-close {
-        font-size: 20px;
-        padding: 8px;
-    }
-
-    .notice-header-image {
-        max-width: 100%;
-        height: auto;
-        width: auto;
-        object-fit: contain;
-    }
-
-    .greeting-text,
-    .notice-text,
-    .schedule-box,
-    .info-box {
-        width: 100%;
-        box-sizing: border-box;
-        word-wrap: break-word;
-    }
-
-    .announcement-content {
-        padding: 0 20px 20px !important;
-    }
-
-    .greeting-text {
-        font-size: min(5vw, 1.5em);
-        margin: 12px 0 15px;
-        white-space: nowrap;
-        line-height: 1.2;
-    }
-
-    .notice-text {
-        font-size: 0.75em;
-        line-height: 1.6;
-        margin: 0 auto;
-        margin-bottom: 15px;
-        width: 95%;
-        box-sizing: border-box;
-    }
-
-    .schedule-box {
-        width: auto;
-        margin: 15px auto;
-        padding: 15px;
-        display: inline-block;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .schedule-item {
-        gap: 6px;
-        margin-bottom: 6px;
-    }
-
-    .schedule-title {
-        min-width: 60px;
-        font-size: 0.9em;
-    }
-
-    .schedule-content {
-        font-size: 0.9em;
-    }
-
-    .schedule-note {
-        font-size: 0.8em;
-    }
-
-    .info-box {
-        padding: 10px 15px;
-        margin: 15px auto;
-        font-size: 0.85em;
-        width: 100%;
-        box-sizing: border-box;
-        white-space: normal;
-    }
-
-    .signature {
-        font-size: 0.8em;
-        margin-top: 20px;
-    }
-
-    .announcement-wrapper::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .announcement-wrapper::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 3px;
-    }
-
-    .announcement-wrapper::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 3px;
-    }
-
-    @keyframes modalFadeIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -45%);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-    }
-
-    .announcement-close {
-        -webkit-tap-highlight-color: transparent;
-        padding: 15px;
-    }
-
-    .announcement-modal {
-        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    }
-}
-        
-
-        
         
         
     </style>
@@ -1779,59 +1344,6 @@
     </div>
 
 
-<div id="announcement-modal" class="announcement-modal">
-    <div class="announcement-wrapper">
-        <!-- 상단 초록색 바 -->
-        <div class="announcement-banner">
-            <button class="announcement-close">&times;</button>
-        </div>
-        
-        <!-- 이미지 컨테이너 -->
-        <div class="notice-image-container">
-            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/notice.png" 
-                 alt="모집 공지 이미지" class="notice-header-image">
-        </div>
-
-        <div class="announcement-content" style="padding: 0 35px 25px;">
-            <p class="greeting-text">안녕하세요, 여행하는 사람들 '발자취'입니다</p>
-            
-            <p class="notice-text">25-1학기 모집에 보내주신 관심에 진심으로 감사드립니다. 막 여행길에 오른 동아리임에도 145명이나 되는 분들께서 함께하고 싶다는 마음을 전달해주셔서 정말 큰 힘이 되었습니다.</br></br>
-            한편, 기존 모집 공고와 관련하여 중요한 안내 말씀 드립니다. 캠퍼스픽 측의 오해로 인해 기존 모집 공고가 임의 삭제되는 상황이 발생했습니다. 다행히 신속한 소통으로 오해는 잘 해결되었으나, 삭제된 게시물은 복구가 불가능한 상황입니다. 그간 올린 게시물이 하나뿐이어서 이로 인해 발자취 채널(댓글 문의 등) 자체가 노출되지 않는 문제가 발생했습니다. 이에 캠픽 측이 임시로 새로운 공고물을 게시해 주셨으나, 해당 공고물에는 모집 마감일이 1월 15일로 표기되어 있는 상황입니다.</br></br>
-            갑자기 모집이 연장된 것과 마찬가지가 되어버린 점 양해 부탁드리며, 혼란을 최소화하고자 최종 일정을 다음과 같이 안내드립니다:</p>
-        </div>
-
-<div class="schedule-box" style="margin-top: -25px;">
-    <div class="schedule-item">
-        <span class="schedule-arrow">▸</span>
-        <span class="schedule-title">기한 연장</span>
-        <span class="schedule-content">15일까지</span>
-    </div>
-    <div class="schedule-item">
-        <span class="schedule-arrow">▸</span>
-        <span class="schedule-title">면접자 발표</span>
-        <span class="schedule-content">16일 오전 8시</span>
-        <span class="schedule-note">(기존 14일에서 연기)</span>
-    </div>
-        <div class="schedule-item">
-        <span class="schedule-arrow">▸</span>
-        <span class="schedule-title">면접자 확인</span>
-        <span class="schedule-content">휴대폰 번호로 본 웹페이지에서 확인</span>
-    </div>
-    <div class="schedule-item">
-        <span class="schedule-arrow">▸</span>
-        <span class="schedule-title">면접 일정</span>
-        <span class="schedule-content">17일부터</span>
-        <span class="schedule-note">(변동 없음)</span>
-    </div>
-</div>
-            <p class="signature" style="margin-top: -10px;">
-                지원해주신 모든 분들께 다시 한 번 감사드리며,<br>
-                발자취와 함께할 소중한 인연을 기다리고 있겠습니다.<br><br>
-                발자취 집행부 드림
-            </p>
-        </div>
-    </div>
-</div>
 
     
 
@@ -1945,382 +1457,360 @@
             </div>
         </div>
     </div>
-    <script>
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-        function showLoading() {
-            document.getElementById('loading-spinner').style.display = 'block';
-        }
-
-        function hideLoading() {
-            document.getElementById('loading-spinner').style.display = 'none';
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            const messageElement = notification.querySelector('.notification-message');
-            
-            notification.className = `notification ${type}`;
-            messageElement.textContent = message;
-            notification.style.display = 'block';
-            
-            const duration = isMobile ? 4000 : 3000;
-            
-            if (isMobile) {
-                notification.addEventListener('click', () => {
-                    notification.style.display = 'none';
-                });
-            }
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, duration);
-        }
-
-        function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        function validateUrl(url) {
-            try {
-                new URL(url);
-                if (url.startsWith('mailto:')) {
-                    return url.includes('footstep1024@gmail.com');
-                }
-                return (url.startsWith('https://') || url.startsWith('http://')) && (
-                    url.includes('forms.gle') || 
-                    url.includes('footstep2024.github.io') ||
-                    url.includes('open.kakao.com') ||
-                    url.includes('instagram.com') ||
-                    url.includes('campuspick.com')
-                );
-            } catch {
-                return false;
-            }
-        }
-
-        function sanitizeInput(input) {
-            let clean = input.replace(/[<>{}]/g, '');
-            if (isMobile) {
-                clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
-            }
-            return clean.trim();
-        }
 
 
-        function showCustomAlert(message) {
-            const backdrop = document.createElement('div');
-            backdrop.className = 'custom-alert-backdrop';
-            
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert';
-            alertBox.innerHTML = `
-                <p>${message}</p>
-                <button onclick="this.parentElement.parentElement.remove()">확인</button>
-            `;
-            
-            backdrop.appendChild(alertBox);
-            document.body.appendChild(backdrop);
-            
-            const removeAlert = () => backdrop.remove();
-            const autoRemoveTimer = setTimeout(removeAlert, 3000);
-            
-            alertBox.querySelector('button').addEventListener('click', () => {
-                clearTimeout(autoRemoveTimer);
-                removeAlert();
-            });
-            
-            backdrop.addEventListener('click', (e) => {
-                if (e.target === backdrop) {
-                    clearTimeout(autoRemoveTimer);
-                    removeAlert();
-                }
-            });
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.location.protocol !== 'https:') {
-                showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
-            }
-        
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (!validateUrl(href) && !href.startsWith('mailto:')) {
-                        e.preventDefault();
-                        showNotification('유효하지 않은 링크입니다.', 'error');
-                    }
-                });
-            });
-        });
-        
-        const modal = document.querySelector('.modal');
-        const closeBtn = document.querySelector('.close-btn');
-        const form = document.querySelector('.phone-form');
-        const phoneInput = document.querySelector('.phone-input');
-        const modalBtn = document.querySelector('.modal-btn');
-
-        if (modalBtn) {
-            modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
-                e.preventDefault();
-                
-                try {
-                    showNotification('지원 페이지로 이동합니다', 'success');
-                    showLoading();
-                    
-                    const overlay = document.createElement('div');
-                    overlay.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: white;
-                        z-index: 9998;
-                        opacity: 0;
-                        transition: opacity 0.5s ease;
-                    `;
-                    document.body.appendChild(overlay);
-                    
-                    setTimeout(() => {
-                        overlay.style.opacity = '1';
-                        setTimeout(() => {
-                            window.location.href = 'https://footstep2024.github.io/apply.html';
-                        }, 500);
-                    }, 1000);
-                    
-                } catch (error) {
-                    hideLoading();
-                    showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
-                    console.error('Error:', error);
-                }
-            });
-        }
-
-        
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
-                    showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
-                    return;
-                }
-            
-                showNotification('알림 신청을 처리 중입니다', 'success');
-                showLoading();
-                
-                const formData = new FormData(form);
-                const phoneNumber = phoneInput.value;
-                
-                setTimeout(() => {
-                    form.submit();
-                    
-                    setTimeout(() => {
-                        hideLoading();
-                        modal.style.display = 'none';
-                        showCustomAlert('알림 신청이 완료되었습니다.');
-                        phoneInput.value = '';
-                    }, 500);
-                }, 1000);
-            });
-        
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            phoneInput.value = '';
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                phoneInput.value = '';
-            }
-        });
-        
-        if (isMobile) {
-            document.addEventListener('touchstart', function(event) {
-                if (event.touches.length > 1) {
-                    event.preventDefault();
-                }
-            }, { passive: false });
-        }
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        if ('ontouchstart' in window) {
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const wasActive = this.classList.contains('active');
-                    cards.forEach(c => c.classList.remove('active'));
-                    if (!wasActive) {
-                        this.classList.add('active');
-                    }
-                });
-            });
-        }
- 
-        document.querySelector('.instagram').addEventListener('click', function(e) {
-            e.preventDefault();
-            const username = 'footstep2024_official';
-            const appUrl = `instagram://user?username=${username}`;
-            const webUrl = `https://www.instagram.com/${username}`;
-            
-            if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
-                const startTime = Date.now();
-                window.location.href = appUrl;
-                window.onblur = function() {
-                    window.onblur = null;
-                };
-                setTimeout(function() {
-                    if (!document.hidden && (Date.now() - startTime < 2000)) {
-                        window.location.href = webUrl;
-                    }
-                }, 1000);
-            } else {
-                window.open(webUrl, '_blank');
-            }
-        });
-    </script>
     
-    <script>
-        function animateValue(element, start, end, duration, suffix = '') {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            const frameRate = isMobile ? 30 : 60;
-            const frameInterval = 1000 / frameRate;
-            
-            const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
-            
-            let current = start;
-            const range = end - start;
-            const increment = range / (duration / frameInterval);
-            const startTime = performance.now();
-            let lastFrameTime = startTime;
-            
-            let isPaused = false;
-            document.addEventListener('visibilitychange', () => {
-                isPaused = document.hidden;
-            });
-            
-            function updateNumber(currentTime) {
-                if (isPaused) {
-                    requestAnimationFrame(updateNumber);
-                    return;
-                }
-        
-                if (currentTime - lastFrameTime < frameInterval) {
-                    requestAnimationFrame(updateNumber);
-                    return;
-                }
-                
-                const elapsed = currentTime - startTime;
-                lastFrameTime = currentTime;
-                
-                if (elapsed < duration) {
-                    const progress = elapsed / duration;
-                    const easedProgress = 1 - Math.pow(1 - progress, 3);
-                    current = start + (range * easedProgress);
-                    
-                    if (decimals > 0) {
-                        element.textContent = current.toFixed(decimals) + suffix;
-                    } else {
-                        element.textContent = Math.floor(current) + suffix;
-                    }
-                    
-                    requestAnimationFrame(updateNumber);
-                } else {
-                    element.textContent = end + suffix;
-                }
-            }
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        requestAnimationFrame(updateNumber);
-                        observer.disconnect();
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            observer.observe(element);
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const durationModifier = isMobile ? 0.8 : 1;
-            
-            const stats = [
-                {
-                    element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
-                    start: 1,
-                    end: 3,
-                    duration: 1700 * durationModifier,
-                    suffix: '개월+'
-                },
-                {
-                    element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
-                    start: 1,
-                    end: 100,
-                    duration: 2000 * durationModifier,
-                    suffix: '%'
-                },
-                {
-                    element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
-                    start: 1,
-                    end: 80,
-                    duration: 2200 * durationModifier,
-                    suffix: '%+'
-                },
-                {
-                    element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
-                    start: 1,
-                    end: 3,
-                    duration: 2500 * durationModifier,
-                    suffix: '+'
-                }
-            ];
-            
-            stats.forEach(stat => {
-                animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
-            });
-        });
-        
-     </script>   
+<script>
 
-     <script>   
+
+<script>
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+function showLoading() {
+   document.getElementById('loading-spinner').style.display = 'block';
+}
+
+function hideLoading() {
+   document.getElementById('loading-spinner').style.display = 'none';
+}
+
+function showNotification(message, type = 'success') {
+   const notification = document.getElementById('notification');
+   const messageElement = notification.querySelector('.notification-message');
+   
+   notification.className = `notification ${type}`;
+   messageElement.textContent = message;
+   notification.style.display = 'block';
+   
+   const duration = isMobile ? 4000 : 3000;
+   
+   if (isMobile) {
+       notification.addEventListener('click', () => {
+           notification.style.display = 'none';
+       });
+   }
+   
+   setTimeout(() => {
+       notification.style.display = 'none';
+   }, duration);
+}
+
+function escapeHtml(unsafe) {
+   return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
+}
+
+function validateUrl(url) {
+   try {
+       new URL(url);
+       if (url.startsWith('mailto:')) {
+           return url.includes('footstep1024@gmail.com');
+       }
+       return (url.startsWith('https://') || url.startsWith('http://')) && (
+           url.includes('forms.gle') || 
+           url.includes('footstep2024.github.io') ||
+           url.includes('open.kakao.com') ||
+           url.includes('instagram.com') ||
+           url.includes('campuspick.com')
+       );
+   } catch {
+       return false;
+   }
+}
+
+function sanitizeInput(input) {
+   let clean = input.replace(/[<>{}]/g, '');
+   if (isMobile) {
+       clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+   }
+   return clean.trim();
+}
+
+function showCustomAlert(message) {
+   const backdrop = document.createElement('div');
+   backdrop.className = 'custom-alert-backdrop';
+   
+   const alertBox = document.createElement('div');
+   alertBox.className = 'custom-alert';
+   alertBox.innerHTML = `
+       <p>${message}</p>
+       <button onclick="this.parentElement.parentElement.remove()">확인</button>
+   `;
+   
+   backdrop.appendChild(alertBox);
+   document.body.appendChild(backdrop);
+   
+   const removeAlert = () => backdrop.remove();
+   const autoRemoveTimer = setTimeout(removeAlert, 3000);
+   
+   alertBox.querySelector('button').addEventListener('click', () => {
+       clearTimeout(autoRemoveTimer);
+       removeAlert();
+   });
+   
+   backdrop.addEventListener('click', (e) => {
+       if (e.target === backdrop) {
+           clearTimeout(autoRemoveTimer);
+           removeAlert();
+       }
+   });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    const announcementModal = document.getElementById('announcement-modal');
-    const closeButton = document.querySelector('.announcement-close');
-    
-    // 페이지 로드 시 모달 표시
-    setTimeout(() => {
-        announcementModal.style.display = 'block';
-    }, 500);
+   if (window.location.protocol !== 'https:') {
+       showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
+   }
 
-    // 닫기 버튼 클릭 이벤트
-    closeButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        announcementModal.style.display = 'none';
-    });
+   document.querySelectorAll('a').forEach(link => {
+       link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
+           const href = this.getAttribute('href');
+           if (!validateUrl(href) && !href.startsWith('mailto:')) {
+               e.preventDefault();
+               showNotification('유효하지 않은 링크입니다.', 'error');
+           }
+       });
+   });
 
-    // 모달 외부 클릭 시 닫기
-    window.addEventListener('click', function(e) {
-        if (e.target === announcementModal) {
-            announcementModal.style.display = 'none';
-        }
-    });
+const modal = document.querySelector('.modal');
+const closeBtn = document.querySelector('.close-btn');
+const form = document.querySelector('.phone-form');
+const phoneInput = document.querySelector('.phone-input');
+const modalBtn = document.querySelector('.modal-btn');
+
+if (modalBtn) {
+   modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
+       e.preventDefault();
+       
+       try {
+           showNotification('지원 페이지로 이동합니다', 'success');
+           showLoading();
+           
+           const overlay = document.createElement('div');
+           overlay.style.cssText = `
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               background-color: white;
+               z-index: 9998;
+               opacity: 0;
+               transition: opacity 0.5s ease;
+           `;
+           document.body.appendChild(overlay);
+           
+           setTimeout(() => {
+               overlay.style.opacity = '1';
+               setTimeout(() => {
+                   window.location.href = 'https://footstep2024.github.io/apply.html';
+               }, 500);
+           }, 1000);
+           
+       } catch (error) {
+           hideLoading();
+           showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
+           console.error('Error:', error);
+       }
+   });
+}
+
+form.addEventListener('submit', (e) => {
+   e.preventDefault();
+   
+   if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
+       showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
+       return;
+   }
+
+   showNotification('알림 신청을 처리 중입니다', 'success');
+   showLoading();
+   
+   const formData = new FormData(form);
+   const phoneNumber = phoneInput.value;
+   
+   setTimeout(() => {
+       form.submit();
+       
+       setTimeout(() => {
+           hideLoading();
+           modal.style.display = 'none';
+           showCustomAlert('알림 신청이 완료되었습니다.');
+           phoneInput.value = '';
+       }, 500);
+   }, 1000);
 });
 
-     </script>   
+closeBtn.addEventListener('click', () => {
+   modal.style.display = 'none';
+   phoneInput.value = '';
+});
+
+modal.addEventListener('click', (e) => {
+   if (e.target === modal) {
+       modal.style.display = 'none';
+       phoneInput.value = '';
+   }
+});
+
+if (isMobile) {
+   document.addEventListener('touchstart', function(event) {
+       if (event.touches.length > 1) {
+           event.preventDefault();
+       }
+   }, { passive: false });
+}
+
+document.addEventListener('contextmenu', function(e) {
+   e.preventDefault();
+});
+
+if ('ontouchstart' in window) {
+   const cards = document.querySelectorAll('.feature-card');
+   cards.forEach(card => {
+       card.addEventListener('click', function() {
+           const wasActive = this.classList.contains('active');
+           cards.forEach(c => c.classList.remove('active'));
+           if (!wasActive) {
+               this.classList.add('active');
+           }
+       });
+   });
+}
+
+document.querySelector('.instagram').addEventListener('click', function(e) {
+   e.preventDefault();
+   const username = 'footstep2024_official';
+   const appUrl = `instagram://user?username=${username}`;
+   const webUrl = `https://www.instagram.com/${username}`;
+   
+   if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
+       const startTime = Date.now();
+       window.location.href = appUrl;
+       window.onblur = function() {
+           window.onblur = null;
+       };
+       setTimeout(function() {
+           if (!document.hidden && (Date.now() - startTime < 2000)) {
+               window.location.href = webUrl;
+           }
+       }, 1000);
+   } else {
+       window.open(webUrl, '_blank');
+   }
+});
+});
+</script>
+
+<script>
+function animateValue(element, start, end, duration, suffix = '') {
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   
+   const frameRate = isMobile ? 30 : 60;
+   const frameInterval = 1000 / frameRate;
+   
+   const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
+   
+   let current = start;
+   const range = end - start;
+   const increment = range / (duration / frameInterval);
+   const startTime = performance.now();
+   let lastFrameTime = startTime;
+   
+   let isPaused = false;
+   document.addEventListener('visibilitychange', () => {
+       isPaused = document.hidden;
+   });
+   
+   function updateNumber(currentTime) {
+       if (isPaused) {
+           requestAnimationFrame(updateNumber);
+           return;
+       }
+
+       if (currentTime - lastFrameTime < frameInterval) {
+           requestAnimationFrame(updateNumber);
+           return;
+       }
+       
+       const elapsed = currentTime - startTime;
+       lastFrameTime = currentTime;
+       
+       if (elapsed < duration) {
+           const progress = elapsed / duration;
+           const easedProgress = 1 - Math.pow(1 - progress, 3);
+           current = start + (range * easedProgress);
+           
+           if (decimals > 0) {
+               element.textContent = current.toFixed(decimals) + suffix;
+           } else {
+               element.textContent = Math.floor(current) + suffix;
+           }
+           
+           requestAnimationFrame(updateNumber);
+       } else {
+           element.textContent = end + suffix;
+       }
+   }
+   
+   const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+           if (entry.isIntersecting) {
+               requestAnimationFrame(updateNumber);
+               observer.disconnect();
+           }
+       });
+   }, { threshold: 0.1 });
+   
+   observer.observe(element);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   const durationModifier = isMobile ? 0.8 : 1;
+   
+   const stats = [
+       {
+           element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
+           start: 1,
+           end: 3,
+           duration: 1700 * durationModifier,
+           suffix: '개월+'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
+           start: 1,
+           end: 100,
+           duration: 2000 * durationModifier,
+           suffix: '%'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
+           start: 1,
+           end: 80,
+           duration: 2200 * durationModifier,
+           suffix: '%+'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
+           start: 1,
+           end: 3,
+           duration: 2500 * durationModifier,
+           suffix: '+'
+       }
+   ];
+   
+   stats.forEach(stat => {
+       animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
+   });
+});
+</script>
+    
+    
+</script>           
     
     
 </body>
