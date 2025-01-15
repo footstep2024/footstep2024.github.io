@@ -1842,6 +1842,38 @@ function sanitizeInput(input) {
 
 const messages = {
   success: function(data) {
+      const isOfflineInterview = data.isOffline;
+
+      // 면접 정보 섹션 - 대면/비대면 구분
+      const interviewInfo = isOfflineInterview ? `
+          <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
+          <div class="detail-item">• 장소: <span class="detail-highlight">서울시 종로구 새문안로 43-3 지그재그빌딩 2층</span></div>
+          <div class="detail-item">• 방식: <span class="detail-highlight">대면면접</span></div>
+          <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>` 
+      : `
+          <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
+          <div class="detail-item">• 방식: <span class="detail-highlight">ZOOM 화상면접</span></div>
+          <div class="detail-item">• ZOOM 링크: <span class="detail-highlight">면접 당일 문자로 전송 예정</span></div>
+          <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>`;
+
+      // 준비사항 섹션 - 대면/비대면 구분
+      const prepRequirements = isOfflineInterview ? `
+          <div class="detail-item">• 신분증 지참</div>
+          <div class="detail-item">• 면접 10분 전 도착</div>
+          <div class="detail-item">• 정장 착용 불필요</div>` 
+      : `
+          <div class="detail-item">• 카메라 ON 필수</div>
+          <div class="detail-item">• 조용한 장소에서 참여</div>
+          <div class="detail-item">• 면접 5분 전 입장</div>`;
+
+      // 주의사항 - 대면/비대면 구분
+      const noticeSection = isOfflineInterview ? `
+          <div class="announcement-notice" style="font-size: 0.75em;">
+          도착하시면 1층 로비에서 연락 주시기 바랍니다. 빌딩 입구에서 안내해드리겠습니다.</div>`
+      : `
+          <div class="announcement-notice" style="font-size: 0.75em;">
+          카메라, 조용한 면접 장소 등 비대면 면접 진행이 어려우신 분들은 20일 대면 면접을 권장드립니다. 일정 조정이 필요하신 분들은 연락 부탁드립니다.</div>`;
+
       return `<div class="announcement-container animate-fade-in">
           <!-- 헤더 섹션 -->
           <div class="announcement-header" style="font-size: 1em;">
@@ -1857,10 +1889,7 @@ const messages = {
           <div class="detail-section">
               <div class="detail-title" style="font-size: 0.85em;">📅 면접 안내</div>
               <div class="detail-content" style="font-size: 0.8em;">
-                  <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
-                  <div class="detail-item">• 방식: <span class="detail-highlight">ZOOM 화상면접</span></div>
-                  <div class="detail-item">• ZOOM 링크: <span class="detail-highlight">면접 당일 문자로 전송 예정</span></div>
-                  <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>
+                  ${interviewInfo}
               </div>
           </div>
 
@@ -1868,23 +1897,20 @@ const messages = {
           <div class="detail-section">
               <div class="detail-title" style="font-size: 0.85em;">⚠️ 필수 준비사항</div>
               <div class="detail-content" style="font-size: 0.8em;">
-                  <div class="detail-item">• 카메라 ON 필수</div>
-                  <div class="detail-item">• 조용한 장소에서 참여</div>
-                  <div class="detail-item">• 면접 5분 전 입장</div>
+                  ${prepRequirements}
               </div>
           </div>
 
           <!-- 필수 연락 사항 -->
-        <div class="detail-section">
-           <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
-           <div class="detail-content" style="font-size: 0.8em;">
-               <div class="detail-item">면접 시간을 확인하신 후, 아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'면접시간 확인'</span> 메시지를 보내주시기 바랍니다. 원활한 진행을 위해 <span style="color: #dc3545">오후 3시까지 회신이 없을 경우</span> 다음 순번 대기자에게 <span style="color: #dc3545">면접 순서가 넘어감</span>을 양해 부탁드립니다.</div>
-           </div>
-        </div>
+          <div class="detail-section">
+             <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
+             <div class="detail-content" style="font-size: 0.8em;">
+                 <div class="detail-item">면접 시간을 확인하신 후, 아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'면접시간 확인'</span> 메시지를 보내주시기 바랍니다. 원활한 진행을 위해 <span style="color: #dc3545">오후 3시까지 회신이 없을 경우</span> 다음 순번 대기자에게 <span style="color: #dc3545">면접 순서가 넘어감</span>을 양해 부탁드립니다.</div>
+             </div>
+          </div>
 
           <!-- 주의사항 -->
-          <div class="announcement-notice" style="font-size: 0.75em;">
-          카메라, 조용한 면접 장소 등 비대면 면접 진행이 어려우신 분들은 20일 대면 면접을 권장드립니다. 일정 조정이 필요하신 분들은 연락 부탁드립니다.</div>
+          ${noticeSection}
 
           <!-- 연락처 -->
           <div class="announcement-contact" style="font-size: 0.9em;">
@@ -1940,11 +1966,12 @@ const passedApplicants = {
 '01089021953': { passed: true, interviewTime: "17:00", interviewDate: "1월 19일 (일)" },   // 신중엽
 '01054552617': { passed: true, interviewTime: "17:30", interviewDate: "1월 19일 (일)" },   // 주혜빈
 '01083663623': { passed: true, interviewTime: "18:00", interviewDate: "1월 19일 (일)" },   // 강수아
-'01063269385': { passed: true, interviewTime: "11;30", interviewDate: "1월 20일 (월)" },   // 손승민
-'01058012713': { passed: true, interviewTime: "13:00", interviewDate: "1월 20일 (월)" },   // 김리원
-'01089856458': { passed: true, interviewTime: "13:30", interviewDate: "1월 20일 (월)" },   // 이태미
+    
+'01063269385': { passed: true, interviewTime: "11:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 손승민
+'01058012713': { passed: true, interviewTime: "13:00", interviewDate: "1월 20일 (월)", isOffline: true },   // 김리원
+'01089856458': { passed: true, interviewTime: "13:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 이태미
 
-‘01038140409': { passed: false },   // 임태경
+'01038140409': { passed: false },   // 임태경
 '01047768273': { passed: false },   // 최재윤
 '01055011362': { passed: false },   // 황기택
 '01087350619': { passed: false },   // 정민수
