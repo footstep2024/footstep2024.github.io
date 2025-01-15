@@ -1611,7 +1611,21 @@
         font-size: 1.2em;
     }
 }
-    
+
+.subway-6 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #CD7C2F;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 2px;
+    line-height: 1;
+}
         
     </style>
 </head>
@@ -1847,8 +1861,8 @@ const messages = {
       // 면접 정보 섹션 - 대면/비대면 구분
       const interviewInfo = isOfflineInterview ? `
           <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
-          <div class="detail-item">• 장소: <span class="detail-highlight">서울시 종로구 새문안로 43-3 지그재그빌딩 2층</span></div>
           <div class="detail-item">• 방식: <span class="detail-highlight">대면면접</span></div>
+          <div class="detail-item">• 장소: <span class="detail-highlight"><span class="subway-6">6</span> 안암역 (구체적인 장소는 당일 문자로 전송 예정)</span></div>
           <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>` 
       : `
           <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
@@ -1858,9 +1872,7 @@ const messages = {
 
       // 준비사항 섹션 - 대면/비대면 구분
       const prepRequirements = isOfflineInterview ? `
-          <div class="detail-item">• 신분증 지참</div>
-          <div class="detail-item">• 면접 10분 전 도착</div>
-          <div class="detail-item">• 정장 착용 불필요</div>` 
+          <div class="detail-item">• 면접 5분 전 도착</div>` 
       : `
           <div class="detail-item">• 카메라 ON 필수</div>
           <div class="detail-item">• 조용한 장소에서 참여</div>
@@ -1868,8 +1880,8 @@ const messages = {
 
       // 주의사항 - 대면/비대면 구분
       const noticeSection = isOfflineInterview ? `
-          <div class="announcement-notice" style="font-size: 0.75em;">
-          도착하시면 1층 로비에서 연락 주시기 바랍니다. 빌딩 입구에서 안내해드리겠습니다.</div>`
+          <div class="announcement-notice" style="font-size: 0.75em; text-align: center; white-space: nowrap;">
+          도착 시 1층에서 연락주시면 안내해드리겠습니다.</div>`
       : `
           <div class="announcement-notice" style="font-size: 0.75em;">
           카메라, 조용한 면접 장소 등 비대면 면접 진행이 어려우신 분들은 20일 대면 면접을 권장드립니다. 일정 조정이 필요하신 분들은 연락 부탁드립니다.</div>`;
