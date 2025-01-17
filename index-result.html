@@ -1650,6 +1650,8 @@
     line-height: 1;
 }
 
+
+
 .notice-modal {
     display: none;
     position: fixed;
@@ -1672,9 +1674,6 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    max-height: 90vh;
-    overflow: hidden;
 }
 
 .notice-close-btn {
@@ -1696,12 +1695,12 @@
 }
 
 .notice-image-container {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
 }
 
 .notice-image {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
 }
@@ -1709,8 +1708,8 @@
 /* PC 버전 */
 @media (min-width: 769px) {
     .notice-content {
-        width: 700px;
-        height: 450px;
+        max-width: 90vw;
+        max-height: 90vh;
     }
     
     .mobile-only {
@@ -1722,7 +1721,6 @@
 @media (max-width: 768px) {
     .notice-content {
         width: 85%;
-        height: auto;
         max-height: 80vh;
     }
     
@@ -1735,7 +1733,9 @@
         width: 25px;
         height: 25px;
     }
-}
+}        
+
+        
         
     </style>
 </head>
