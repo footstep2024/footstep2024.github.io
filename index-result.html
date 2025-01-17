@@ -940,7 +940,7 @@
             }
 
             .cta p {
-                font-size: 1em;
+                font-size: 1.1em;
                 text-align: center;
             }
         }
@@ -1102,11 +1102,6 @@
                 font-size: 20px;
                 top: 12px;
                 right: 12px;
-            }
-            .announcement-body {
-                text-align: left;
-                white-space: normal;
-                padding: 0 10px;
             }
             .result-title {
                 font-size: 1.4em !important;
@@ -1620,6 +1615,26 @@
     }
 }
 
+@media (max-width: 768px) {
+    .announcement-body {
+        text-align: left !important;
+        padding: 0 20px !important;
+        word-break: break-all !important;
+    }
+        .announcement-subheader {
+        font-size: 1em !important;
+    }
+    
+    .result-subtitle {
+        font-size: 0.8em !important;
+    }
+    .result-input::placeholder {
+        font-size: 0.82em !important;
+        color: #999 !important;
+        font-family: 'Noto Serif KR', var(--system-font) !important;
+    }    
+}
+
 .subway-6 {
     display: inline-flex;
     align-items: center;
@@ -1634,6 +1649,93 @@
     margin: 0 2px;
     line-height: 1;
 }
+
+.notice-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.notice-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.notice-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2001;
+}
+
+.notice-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.notice-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PC 버전 */
+@media (min-width: 769px) {
+    .notice-content {
+        width: 700px;
+        height: 450px;
+    }
+    
+    .mobile-only {
+        display: none;
+    }
+}
+
+/* 모바일 버전 */
+@media (max-width: 768px) {
+    .notice-content {
+        width: 85%;
+        height: auto;
+        max-height: 80vh;
+    }
+    
+    .pc-only {
+        display: none;
+    }
+    
+    .notice-close-btn {
+        font-size: 20px;
+        width: 25px;
+        height: 25px;
+    }
+}
         
     </style>
 </head>
@@ -1643,6 +1745,19 @@
         <div class="spinner"></div>
         <p>잠시만 기다려주세요...</p>
     </div>
+
+<div id="notice-modal" class="notice-modal">
+    <div class="notice-content">
+        <button class="notice-close-btn">&times;</button>
+        <div class="notice-image-container">
+            <!-- PC 이미지 -->
+            <img src="notice-pc.jpg" alt="발자취 공지사항" class="notice-image pc-only">
+            <!-- 모바일 이미지 -->
+            <img src="notice-mobile.jpg" alt="발자취 공지사항" class="notice-image mobile-only">
+        </div>
+    </div>
+</div>
+    
 
         <div class="modal">
         <div class="modal-content">
@@ -1902,8 +2017,7 @@ const messages = {
           </div>
 
           <!-- 인사말 -->
-          <div class="announcement-body" style="font-size: 0.85em;">지원서에서 보여주신 진정성과 열정에 감사드립니다.
-              면접에서 더 자세히 이야기 나눌 수 있기를 기대합니다.</div>
+          <div class="announcement-body" style="font-size: 0.85em; padding: 0 50px;">지원서에서 보여주신 진정성과 열정에 감사드립니다. 면접에서 더 자세히 이야기 나눌 수 있기를 기대합니다.</div>
 
           <!-- 면접 기본 정보 -->
           <div class="detail-section">
@@ -1925,7 +2039,7 @@ const messages = {
           <div class="detail-section">
              <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
              <div class="detail-content" style="font-size: 0.8em;">
-                 <div class="detail-item">면접 시간을 확인하신 후, 아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'면접시간 확인'</span> 메시지를 보내주시기 바랍니다. 원활한 진행을 위해 <span style="color: #dc3545">오후 3시까지 회신이 없을 경우</span> 다음 순번 대기자에게 <span style="color: #dc3545">면접 순서가 넘어감</span>을 양해 부탁드립니다.</div>
+                 <div class="detail-item">면접 시간을 확인하신 후, 아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'면접시간 확인'</span> 메시지를 보내주시기 바랍니다.</div>
              </div>
           </div>
 
@@ -1939,15 +2053,12 @@ const messages = {
   },
   fail: function() {
       return `<div class="announcement-container animate-fade-in">
-          <div class="announcement-header">
-              안녕하세요 👋
-              <div class="announcement-subheader">발자취에 관심을 가져주셔서 감사합니다</div>
+          <div class="announcement-header" style="font-size: 1em;">
+              <div>안녕하세요 👋</div>
+              <div class="announcement-subheader" style="font-size: 0.95em;">발자취에 관심 가져주셔서 감사합니다</div>
           </div>
-          <div class="announcement-body">아쉽게도 이번에는 함께하지 못하게 되었습니다. 앞으로의 여정에서 더 멋진 발자취를 남기시길 진심으로 응원하겠습니다.</div>
-          <div class="announcement-footer">다음에 더 좋은 인연으로 만나뵙길 희망합니다.
-              
-              감사합니다. 🙏
-          </div>
+        <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">아쉽게도 이번에는 함께하지 못하게 되었습니다. 앞으로의 여정에서 더 멋진 발자취를 남기시길 진심으로 응원하겠습니다. 다음에 더 좋은 인연으로 만나뵙길 희망합니다.</div>
+        <div class="announcement-footer">감사합니다. 🙏</div>
       </div>`;
   },
   notFound: function() {
@@ -1960,37 +2071,39 @@ const messages = {
 };
 
 const passedApplicants = {
-'01022274399': { passed: true, interviewTime: "10:30", interviewDate: "1월 17일 (금)" },   // 문혜연
-'01088041159': { passed: true, interviewTime: "11:00", interviewDate: "1월 17일 (금)" },   // 김시우
-'01025537729': { passed: true, interviewTime: "11:30", interviewDate: "1월 17일 (금)" },   // 권민수
-'01025700760': { passed: true, interviewTime: "12:30", interviewDate: "1월 17일 (금)" },   // 윤성혜
-'01067912591': { passed: true, interviewTime: "13:00", interviewDate: "1월 17일 (금)" },   // 김수홍
+'01088041159': { passed: true, interviewTime: "11:00", interviewDate: "1월 17일 (금)" },   // 김시우 
+'01025537729': { passed: true, interviewTime: "11:30", interviewDate: "1월 17일 (금)" },   // 권민수 
+'01025700760': { passed: true, interviewTime: "12:30", interviewDate: "1월 17일 (금)" },   // 윤성혜 
+'01067912591': { passed: true, interviewTime: "13:00", interviewDate: "1월 17일 (금)" },   // 김수홍 
 '01096573710': { passed: true, interviewTime: "13:30", interviewDate: "1월 17일 (금)" },   // 김진우(교대)
 '01058790262': { passed: true, interviewTime: "14:00", interviewDate: "1월 17일 (금)" },   // 김민규(성대)
-'01064319326': { passed: true, interviewTime: "14:30", interviewDate: "1월 17일 (금)" },   // 조은흑
-'01075017034': { passed: true, interviewTime: "15:00", interviewDate: "1월 17일 (금)" },   // 이지은
+'01075017034': { passed: true, interviewTime: "14:30", interviewDate: "1월 17일 (금)" },   // 이지은
+'01022274399': { passed: true, interviewTime: "15:00", interviewDate: "1월 17일 (금)" },   // 문혜연
 '01025079042': { passed: true, interviewTime: "15:30", interviewDate: "1월 17일 (금)" },   // 강지은
 '01062924532': { passed: true, interviewTime: "16:00", interviewDate: "1월 17일 (금)" },   // 김민서
+    
 '01046026249': { passed: true, interviewTime: "10:00", interviewDate: "1월 18일 (토)" },   // 이승혁
-'01051991766': { passed: true, interviewTime: "10:30", interviewDate: "1월 19일 (일)" },   // 유나림
+
+'01089021953': { passed: true, interviewTime: "10:00", interviewDate: "1월 19일 (일)" },   // 신중엽
+'01051991766': { passed: true, interviewTime: "10:30", interviewDate: "1월 19일 (일)" },   // 유나림 
 '01039512310': { passed: true, interviewTime: "11:00", interviewDate: "1월 19일 (일)" },   // 오준석
 '01091205583': { passed: true, interviewTime: "11:30", interviewDate: "1월 19일 (일)" },   // 김혜림
 '01093457621': { passed: true, interviewTime: "12:30", interviewDate: "1월 19일 (일)" },   // 서현
 '01096965800': { passed: true, interviewTime: "13:00", interviewDate: "1월 19일 (일)" },   // 권예찬
-'01046972136': { passed: true, interviewTime: "13:30", interviewDate: "1월 19일 (일)" },   // 기동현
+'01041700843': { passed: true, interviewTime: "13:30", interviewDate: "1월 19일 (일)" },   // 김수미
 '01040755109': { passed: true, interviewTime: "14:00", interviewDate: "1월 19일 (일)" },   // 윤동원
 '01086942070': { passed: true, interviewTime: "14:30", interviewDate: "1월 19일 (일)" },   // 서지윤
 '01044202616': { passed: true, interviewTime: "15:00", interviewDate: "1월 19일 (일)" },   // 구민준
 '01050346059': { passed: true, interviewTime: "15:30", interviewDate: "1월 19일 (일)" },   // 곽호현
-'01064412110': { passed: true, interviewTime: "16:00", interviewDate: "1월 19일 (일)" },   // 김민주
+'01064319326': { passed: true, interviewTime: "16:00", interviewDate: "1월 19일 (일)" },   // 김민주
 '01099744982': { passed: true, interviewTime: "16:30", interviewDate: "1월 19일 (일)" },   // 이강언
-'01089021953': { passed: true, interviewTime: "17:00", interviewDate: "1월 19일 (일)" },   // 신중엽
 '01054552617': { passed: true, interviewTime: "17:30", interviewDate: "1월 19일 (일)" },   // 주혜빈
-'01083663623': { passed: true, interviewTime: "18:00", interviewDate: "1월 19일 (일)" },   // 강수아
-    
-'01063269385': { passed: true, interviewTime: "11:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 손승민
-'01058012713': { passed: true, interviewTime: "13:00", interviewDate: "1월 20일 (월)", isOffline: true },   // 김리원
-'01089856458': { passed: true, interviewTime: "13:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 이태미
+'01083663643': { passed: true, interviewTime: "18:00", interviewDate: "1월 19일 (일)" },   // 강수아
+'01064412110': { passed: true, interviewTime: "18:30", interviewDate: "1월 19일 (일)" },   // 조은희
+'01058012713': { passed: true, interviewTime: "21:00", interviewDate: "1월 19일 (일)" },   // 김리원
+
+'01063269385': { passed: true, interviewTime: "11:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 손승민 
+'01089856458': { passed: true, interviewTime: "13:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 이태미 
 
 '01038140409': { passed: false },   // 임태경
 '01047768273': { passed: false },   // 최재윤
@@ -2015,7 +2128,6 @@ const passedApplicants = {
 '01059604403': { passed: false },   // 이창규
 '01092783305': { passed: false },   // 김민재
 '01033610886': { passed: false },   // 양동헌
-'01092783305': { passed: false },   // 김민재
 '01099305783': { passed: false },   // 남태우
 '01020168776': { passed: false },   // 최진산
 '01040147164': { passed: false },   // 윤태환
@@ -2220,6 +2332,31 @@ if (resultModal) {
        }
    });
 }
+</script>
+
+<script>
+// 페이지 로드 시 모달 표시
+document.addEventListener('DOMContentLoaded', function() {
+    const noticeModal = document.getElementById('notice-modal');
+    const closeBtn = document.querySelector('.notice-close-btn');
+    
+    // 모달 표시
+    setTimeout(() => {
+        noticeModal.style.display = 'block';
+    }, 500);
+    
+    // 닫기 버튼 클릭
+    closeBtn.addEventListener('click', () => {
+        noticeModal.style.display = 'none';
+    });
+    
+    // 모달 외부 클릭
+    noticeModal.addEventListener('click', (e) => {
+        if (e.target === noticeModal) {
+            noticeModal.style.display = 'none';
+        }
+    });
+});
 </script>
 
 
