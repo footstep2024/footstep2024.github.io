@@ -1705,17 +1705,14 @@
 }
 
 .notice-image {
-    max-width: 100%;
+    width: auto;
     height: auto;
+    max-width: none;
+    max-height: none;
     display: block;
 }
 
 @media (min-width: 769px) {
-    .notice-content {
-        max-width: 90vw;
-        max-height: 90vh;
-    }
-    
     .mobile-only {
         display: none;
     }
@@ -1723,8 +1720,8 @@
 
 @media (max-width: 768px) {
     .notice-content {
-        width: 85%;
-        max-height: 80vh;
+        width: auto;
+        max-height: none;
     }
     
     .pc-only {
@@ -1736,7 +1733,7 @@
         width: 25px;
         height: 25px;
     }
-}        
+}      
 
         
         
