@@ -1679,6 +1679,9 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 .notice-close-btn {
@@ -1759,9 +1762,7 @@
     <div class="notice-content">
         <button class="notice-close-btn">&times;</button>
         <div class="notice-image-container">
-            <!-- PC 이미지 -->
             <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_pc.png" class="notice-image pc-only">
-            <!-- 모바일 이미지 -->
             <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_mobile.png" class="notice-image mobile-only">
         </div>
     </div>
@@ -1790,7 +1791,6 @@
         </div>
     </div>
 
-    <!-- 발표 확인 모달 -->
 <div class="result-modal">
     <div class="result-content">
         <button class="result-close-btn">&times;</button>
@@ -2061,42 +2061,36 @@ accepted: function() {
 };
 
 const passedApplicants = {
-    // 최종 합격자 (20명)
-    '01022274399': { status: "accepted" },   // 이혜연 1 한양여대
-    '01025079042': { status: "accepted" },   // 강지은 2 한림대
-    '01041700843': { status: "accepted" },   // 김수미 3 성신여대
-    '01091205583': { status: "accepted" },   // 김혜림 4 대림대
-    '01062924532': { status: "accepted" },   // 김민서 5 동덕여대
-    '01064319326': { status: "accepted" },   // 김민주 6 숙명여대
-    '01089856458': { status: "accepted" },   // 이태미 7 강원대
-    '01054552617': { status: "accepted" },   // 주혜빈 8 서울여자보건대
-    '01025700760': { status: "accepted" },   // 윤성혜 9 홍익대(세종)
-    '01075017034': { status: "accepted" },   // 이지은 10 가톨릭대
-    
-    '01044202616': { status: "accepted" },   // 구민준 1 고려대
-    '01088041159': { status: "accepted" },   // 김시우 2 동국대?
-    '01025537729': { status: "accepted" },   // 권민수 3 국민대
-    '01063269385': { status: "accepted" },   // 손승민 4 숭실대
-    '01089021953': { status: "accepted" },   // 신중엽 5 시립대
-    '01086942070': { status: "accepted" },   // 서지윤 6 원광대
-    '01058790262': { status: "accepted" },   // 김민규 7 성균관대
-    '01096865800': { status: "accepted" },   // 권예찬 8 홍익대
-    '01040755109': { status: "accepted" },   // 윤동원 9 항공대
-
-    // 예비 합격자
-    '01096573710': { status: "waiting" },   // 김진우 서울교대
-    '01050346059': { status: "waiting" },   // 곽호현 (웃은 사람)
-    '01099744982': { status: "waiting" },   // 이강언 (릴스)
-    '01039512310': { status: "waiting" },   // 오준석 (헤드셋)
-    '01046026249': { status: "waiting" },   // 이승혁 (아주대 알바생)
-
-    // 불합격자
-    '01051991766': { status: "rejected" },   // 유나림
-    '01083663643': { status: "rejected" },   // 강수아
-    '01064412110': { status: "rejected" },   // 조은희
-    '01058012713': { status: "rejected" },   // 김리원
-    '01093457621': { status: "rejected" },   // 서현 
-    '01067912591': { status: "rejected" }   // 김수홍
+    '01022274399': { status: "accepted" }, 
+    '01025079042': { status: "accepted" }, 
+    '01041700843': { status: "accepted" },
+    '01091205583': { status: "accepted" },
+    '01062924532': { status: "accepted" }, 
+    '01064319326': { status: "accepted" }, 
+    '01089856458': { status: "accepted" }, 
+    '01054552617': { status: "accepted" }, 
+    '01025700760': { status: "accepted" },
+    '01075017034': { status: "accepted" }, 
+    '01044202616': { status: "accepted" }, 
+    '01088041159': { status: "accepted" }, 
+    '01025537729': { status: "accepted" },
+    '01063269385': { status: "accepted" },
+    '01089021953': { status: "accepted" },
+    '01086942070': { status: "accepted" },
+    '01058790262': { status: "accepted" }, 
+    '01096865800': { status: "accepted" },
+    '01040755109': { status: "accepted" },
+    '01096573710': { status: "waiting" }, 
+    '01050346059': { status: "waiting" }, 
+    '01099744982': { status: "waiting" },  
+    '01039512310': { status: "waiting" },
+    '01046026249': { status: "waiting" },  
+    '01051991766': { status: "rejected" }, 
+    '01083663643': { status: "rejected" },
+    '01064412110': { status: "rejected" }, 
+    '01058012713': { status: "rejected" },  
+    '01093457621': { status: "rejected" },   
+    '01067912591': { status: "rejected" }
 };
     
 
