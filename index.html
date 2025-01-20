@@ -1492,6 +1492,12 @@
     color: #4A4A4A;
 }
 
+.announcement-subheader2 {
+    font-size: 0.9em;
+    margin-top: 8px;
+    color: #4A4A4A;
+}
+
 .announcement-body {
     text-align: center;
     margin: 25px 0;
@@ -1609,19 +1615,18 @@
     .announcement-container {
         padding: 15px;
     }
-    
     .announcement-header {
-        font-size: 1.2em;
+        font-size: 1.05em;
     }
-}
-
-@media (max-width: 768px) {
     .announcement-body {
         text-align: left !important;
         padding: 0 20px !important;
         word-break: break-all !important;
     }
         .announcement-subheader {
+        font-size: 0.7em !important;
+    }
+        .announcement-subheader2 {
         font-size: 1em !important;
     }
     
@@ -1649,6 +1654,100 @@
     margin: 0 2px;
     line-height: 1;
 }
+
+
+
+.notice-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.notice-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.notice-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2001;
+}
+
+.notice-image-container {
+    width: auto;
+    height: auto;
+}
+
+.notice-image {
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    display: block;
+}
+
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .notice-content {
+        width: 85%; 
+        margin: 0 auto;
+    }
+    
+    .pc-only {
+        display: none;
+    }
+
+    .notice-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .notice-image-container {
+         width: 100%;
+    }
+    
+    .notice-close-btn {
+        font-size: 20px;
+        width: 25px;
+        height: 25px;
+    }
+}      
+
+        
         
     </style>
 </head>
@@ -1658,6 +1757,17 @@
         <div class="spinner"></div>
         <p>잠시만 기다려주세요...</p>
     </div>
+
+<div id="notice-modal" class="notice-modal">
+    <div class="notice-content">
+        <button class="notice-close-btn">&times;</button>
+        <div class="notice-image-container">
+            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_pc.png" class="notice-image pc-only">
+            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_mobile.png" class="notice-image mobile-only">
+        </div>
+    </div>
+</div>
+    
 
         <div class="modal">
         <div class="modal-content">
@@ -1681,11 +1791,10 @@
         </div>
     </div>
 
-    <!-- 발표 확인 모달 -->
 <div class="result-modal">
     <div class="result-content">
         <button class="result-close-btn">&times;</button>
-        <h2 class="result-title">면접 대상자 확인</h2>
+        <h2 class="result-title">동행 여부 확인</h2>
         <p class="result-subtitle">지원 시 입력한 휴대폰 번호를 입력해주세요</p>
         <div class="result-form">
             <input type="tel" 
@@ -1781,8 +1890,8 @@
 
             <div class="cta">
                 <h2>2025년 1학기 신입 부원 모집</h2>
-                <p>면접 대상자가 확정됐습니다.<br>확인해주세요.</p>
-                <button class="cta-button modal-btn">면접자 확인하기</button>
+                <p>발자취의 새로운 동행이 시작됩니다</p>
+                <button class="cta-button modal-btn">동행여부 확인하기</button>
             </div>
 
             <div class="contact">
@@ -1878,89 +1987,70 @@ function sanitizeInput(input) {
 }
 
 const messages = {
-  success: function(data) {
-      const isOfflineInterview = data.isOffline;
+accepted: function() {
+    return `<div class="announcement-container animate-fade-in">
+        <div class="announcement-header" style="font-size: 1em;">
+            <div>🎉 최종 합격을 축하드립니다! 👣</div>
+            <div class="announcement-subheader" style="font-size: 0.95em;">발자취의 새로운 동행자가 되어주셔서 감사합니다</div>
+        </div>
+        <div class="announcement-body" style="font-size: 0.85em; padding: 0 50px; word-break: break-all; text-align: left;">인터뷰에서 나눈 대화 속에서 다가왔던 열정이 저희에게도 새로운 자극이 되었습니다. 발자취와 함께 앞으로 펼쳐질 특별한 여정에 동참해주시길 부탁드립니다.
+        </div>
 
-      // 면접 정보 섹션 - 대면/비대면 구분
-      const interviewInfo = isOfflineInterview ? `
-          <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
-          <div class="detail-item">• 방식: <span class="detail-highlight">대면면접</span></div>
-          <div class="detail-item">• 장소: <span class="detail-highlight"><span class="subway-6">6</span> 안암역 (구체적인 장소는 당일 문자로 전송 예정)</span></div>
-          <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>` 
-      : `
-          <div class="detail-item">• 일시: <span class="detail-highlight">${data.interviewDate} ${data.interviewTime}</span></div>
-          <div class="detail-item">• 방식: <span class="detail-highlight">ZOOM 화상면접</span></div>
-          <div class="detail-item">• ZOOM 링크: <span class="detail-highlight">면접 당일 문자로 전송 예정</span></div>
-          <div class="detail-item">• 소요시간: <span class="detail-highlight">약 20분</span></div>`;
+        <div class="detail-section">
+            <div class="detail-title" style="font-size: 0.85em;">📅 OT 안내</div>
+            <div class="detail-content" style="font-size: 0.8em;">
+                <div class="detail-item">• 일시: 1월 25일(토) ~ 26일(일)</div>
+                <div class="detail-item">• 장소: 대성리</div>
+                <div class="detail-item">• OT 참가비: 46,000원</div>
+                <div class="detail-item">• 카카오뱅크 79420648084 / 이소연</div>
+            </div>
+        </div>
 
-      // 준비사항 섹션 - 대면/비대면 구분
-      const prepRequirements = isOfflineInterview ? `
-          <div class="detail-item">• 면접 5분 전 도착</div>` 
-      : `
-          <div class="detail-item">• 카메라 ON 필수</div>
-          <div class="detail-item">• 조용한 장소에서 참여</div>
-          <div class="detail-item">• 면접 5분 전 입장</div>`;
+        <div class="detail-section">
+            <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
+            <div class="detail-content" style="font-size: 0.8em;">
+                <div class="detail-item">아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'최종합격 등록'</span> 메시지를 보내주시기 바랍니다.</div>
+            </div>
+        </div>
 
-      // 주의사항 - 대면/비대면 구분
-      const noticeSection = isOfflineInterview ? `
-          <div class="announcement-notice" style="font-size: 0.75em; text-align: center; white-space: nowrap;">
-          도착 시 1층에서 연락주시면 안내해드리겠습니다.</div>`
-      : `
-          <div class="announcement-notice" style="font-size: 0.75em;">
-          카메라, 조용한 면접 장소 등 비대면 면접 진행이 어려우신 분들은 20일 대면 면접을 권장드립니다. 일정 조정이 필요하신 분들은 연락 부탁드립니다.</div>`;
+        <div class="announcement-notice" style="font-size: 0.75em;">
+            오늘(21일) 오후 1시까지 참가비 미입금 시 합격이 취소되며, 예비 합격자에게 순서가 양도됩니다.
+        </div>
 
+        <div class="announcement-contact" style="font-size: 0.9em;">
+            <span class="detail-highlight">010-5397-1581</span> (회장 강현서)
+        </div>
+    </div>`;
+},
+  
+  waiting: function() {
       return `<div class="announcement-container animate-fade-in">
-          <!-- 헤더 섹션 -->
           <div class="announcement-header" style="font-size: 1em;">
-              <div>🎉 축하합니다! 👣</div>
-              <div class="announcement-subheader" style="font-size: 0.95em;">면접 대상자로 선발되셨습니다</div>
+              <div>⌛️ 조금만 더……</div>
+              <div class="announcement-subheader2" style="font-size: 0.95em;">기다려 주실 수 있으신가요?</div>
           </div>
-
-          <!-- 인사말 -->
-          <div class="announcement-body" style="font-size: 0.85em; padding: 0 50px;">지원서에서 보여주신 진정성과 열정에 감사드립니다. 면접에서 더 자세히 이야기 나눌 수 있기를 기대합니다.</div>
-
-          <!-- 면접 기본 정보 -->
-          <div class="detail-section">
-              <div class="detail-title" style="font-size: 0.85em;">📅 면접 안내</div>
-              <div class="detail-content" style="font-size: 0.8em;">
-                  ${interviewInfo}
-              </div>
+          <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">면접에서의 진솔한 대화가 아직도 기억에 남습니다. 다른 동행자 분들의 등록 상황에 따라 합류하실 수 있음을 알려드립니다.
           </div>
-
-          <!-- 필수 준비사항 -->
-          <div class="detail-section">
-              <div class="detail-title" style="font-size: 0.85em;">⚠️ 필수 준비사항</div>
-              <div class="detail-content" style="font-size: 0.8em;">
-                  ${prepRequirements}
-              </div>
+          <div class="announcement-notice" style="font-size: 0.75em; text-align: left;">
+             오후 6시까지 순번에 따라 연락드리겠습니다. 연락을 받지 못하신 경우 앞 순번의 등록이 완료된 것으로 양해 부탁드립니다.
           </div>
-
-          <!-- 필수 연락 사항 -->
-          <div class="detail-section">
-             <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
-             <div class="detail-content" style="font-size: 0.8em;">
-                 <div class="detail-item">면접 시간을 확인하신 후, 아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'면접시간 확인'</span> 메시지를 보내주시기 바랍니다.</div>
-             </div>
-          </div>
-
-          <!-- 주의사항 -->
-          ${noticeSection}
-
-          <!-- 연락처 -->
-          <div class="announcement-contact" style="font-size: 0.9em;">
-              <span class="detail-highlight">010-5397-1581</span> (회장 강현서)</div>
       </div>`;
   },
-  fail: function() {
+  
+  rejected: function() {
       return `<div class="announcement-container animate-fade-in">
           <div class="announcement-header" style="font-size: 1em;">
               <div>안녕하세요 👋</div>
-              <div class="announcement-subheader" style="font-size: 0.95em;">발자취에 관심 가져주셔서 감사합니다</div>
+              <div class="announcement-subheader" style="font-size: 0.95em;">발자취에 보내주신 관심에 진심으로 감사드립니다</div>
           </div>
-        <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">아쉽게도 이번에는 함께하지 못하게 되었습니다. 앞으로의 여정에서 더 멋진 발자취를 남기시길 진심으로 응원하겠습니다. 다음에 더 좋은 인연으로 만나뵙길 희망합니다.</div>
-        <div class="announcement-footer">감사합니다. 🙏</div>
+          <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">함께하지 못하여 아쉬움 뿐입니다. 하지만 면접에서 보여주신 진정성과 열정은 저희에게 큰 감동이었습니다.
+          
+              앞으로의 여정에서 더욱 아름다운 발자취를 남기시길 진심으로 응원하겠습니다.
+          </div>
+          <div class="announcement-footer">감사합니다 🙏</div>
       </div>`;
   },
+  
   notFound: function() {
       return `<div class="announcement-container">
           <div class="announcement-error">
@@ -1971,71 +2061,38 @@ const messages = {
 };
 
 const passedApplicants = {
-'01088041159': { passed: true, interviewTime: "11:00", interviewDate: "1월 17일 (금)" },   // 김시우 
-'01025537729': { passed: true, interviewTime: "11:30", interviewDate: "1월 17일 (금)" },   // 권민수 
-'01025700760': { passed: true, interviewTime: "12:30", interviewDate: "1월 17일 (금)" },   // 윤성혜 
-'01067912591': { passed: true, interviewTime: "13:00", interviewDate: "1월 17일 (금)" },   // 김수홍 
-'01096573710': { passed: true, interviewTime: "13:30", interviewDate: "1월 17일 (금)" },   // 김진우(교대)
-'01058790262': { passed: true, interviewTime: "14:00", interviewDate: "1월 17일 (금)" },   // 김민규(성대)
-'01075017034': { passed: true, interviewTime: "14:30", interviewDate: "1월 17일 (금)" },   // 이지은
-'01022274399': { passed: true, interviewTime: "15:00", interviewDate: "1월 17일 (금)" },   // 문혜연
-'01025079042': { passed: true, interviewTime: "15:30", interviewDate: "1월 17일 (금)" },   // 강지은
-'01062924532': { passed: true, interviewTime: "16:00", interviewDate: "1월 17일 (금)" },   // 김민서
-    
-'01046026249': { passed: true, interviewTime: "10:00", interviewDate: "1월 18일 (토)" },   // 이승혁
-
-'01089021953': { passed: true, interviewTime: "10:00", interviewDate: "1월 19일 (일)" },   // 신중엽
-'01051991766': { passed: true, interviewTime: "10:30", interviewDate: "1월 19일 (일)" },   // 유나림 
-'01039512310': { passed: true, interviewTime: "11:00", interviewDate: "1월 19일 (일)" },   // 오준석
-'01091205583': { passed: true, interviewTime: "11:30", interviewDate: "1월 19일 (일)" },   // 김혜림
-'01093457621': { passed: true, interviewTime: "12:30", interviewDate: "1월 19일 (일)" },   // 서현
-'01096965800': { passed: true, interviewTime: "13:00", interviewDate: "1월 19일 (일)" },   // 권예찬
-'01041700843': { passed: true, interviewTime: "13:30", interviewDate: "1월 19일 (일)" },   // 김수미
-'01040755109': { passed: true, interviewTime: "14:00", interviewDate: "1월 19일 (일)" },   // 윤동원
-'01086942070': { passed: true, interviewTime: "14:30", interviewDate: "1월 19일 (일)" },   // 서지윤
-'01044202616': { passed: true, interviewTime: "15:00", interviewDate: "1월 19일 (일)" },   // 구민준
-'01050346059': { passed: true, interviewTime: "15:30", interviewDate: "1월 19일 (일)" },   // 곽호현
-'01064319326': { passed: true, interviewTime: "16:00", interviewDate: "1월 19일 (일)" },   // 김민주
-'01099744982': { passed: true, interviewTime: "16:30", interviewDate: "1월 19일 (일)" },   // 이강언
-'01054552617': { passed: true, interviewTime: "17:30", interviewDate: "1월 19일 (일)" },   // 주혜빈
-'01083663643': { passed: true, interviewTime: "18:00", interviewDate: "1월 19일 (일)" },   // 강수아
-'01064412110': { passed: true, interviewTime: "18:30", interviewDate: "1월 19일 (일)" },   // 조은희
-'01058012713': { passed: true, interviewTime: "21:00", interviewDate: "1월 19일 (일)" },   // 김리원
-
-'01063269385': { passed: true, interviewTime: "11:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 손승민 
-'01089856458': { passed: true, interviewTime: "13:30", interviewDate: "1월 20일 (월)", isOffline: true },   // 이태미 
-
-'01038140409': { passed: false },   // 임태경
-'01047768273': { passed: false },   // 최재윤
-'01055011362': { passed: false },   // 황기택
-'01087350619': { passed: false },   // 정민수
-'01029125646': { passed: false },   // 이정호
-'01023389507': { passed: false },   // 김진우(단국대)
-'01056953153': { passed: false },   // 부성환
-'01051599247': { passed: false },   // 이준재
-'01040636311': { passed: false },   // 문형인
-'01056169096': { passed: false },   // 김민규(중앙대)
-'01038246812': { passed: false },   // 이종석
-'01035699813': { passed: false },   // 김선빈
-'01059662443': { passed: false },   // 구본영
-'01066847524': { passed: false },   // 도중민
-'01024697250': { passed: false },   // 엄준현
-'01031041206': { passed: false },   // 이현석
-'01073391701': { passed: false },   // 천승현
-'01062195160': { passed: false },   // 임형묵
-'01058558174': { passed: false },   // 양재승
-'01020544406': { passed: false },   // 김기한
-'01059604403': { passed: false },   // 이창규
-'01092783305': { passed: false },   // 김민재
-'01033610886': { passed: false },   // 양동헌
-'01099305783': { passed: false },   // 남태우
-'01020168776': { passed: false },   // 최진산
-'01040147164': { passed: false },   // 윤태환
-'01067849300': { passed: false },   // 원성현
-'01085996430': { passed: false }   // 강현구
-
-
+    '01022274399': { status: "accepted" }, 
+    '01025079042': { status: "accepted" }, 
+    '01041700843': { status: "accepted" },
+    '01091205583': { status: "accepted" },
+    '01062924532': { status: "accepted" }, 
+    '01064319326': { status: "accepted" }, 
+    '01089856458': { status: "accepted" }, 
+    '01054552617': { status: "accepted" }, 
+    '01025700760': { status: "accepted" },
+    '01075017034': { status: "accepted" }, 
+    '01044202616': { status: "accepted" }, 
+    '01088041159': { status: "accepted" }, 
+    '01025537729': { status: "accepted" },
+    '01063269385': { status: "accepted" },
+    '01089021953': { status: "accepted" },
+    '01086942070': { status: "accepted" },
+    '01058790262': { status: "accepted" }, 
+    '01096865800': { status: "accepted" },
+    '01040755109': { status: "accepted" },
+    '01096573710': { status: "waiting" }, 
+    '01050346059': { status: "waiting" }, 
+    '01099744982': { status: "waiting" },  
+    '01039512310': { status: "waiting" },
+    '01046026249': { status: "waiting" },  
+    '01051991766': { status: "rejected" }, 
+    '01083663643': { status: "rejected" },
+    '01064412110': { status: "rejected" }, 
+    '01058012713': { status: "rejected" },  
+    '01093457621': { status: "rejected" },   
+    '01067912591': { status: "rejected" }
 };
+    
 
 function showResultMessage(message, type) {
     const resultDiv = document.querySelector('.result-message');
@@ -2043,6 +2100,7 @@ function showResultMessage(message, type) {
     resultDiv.className = `result-message ${type}`;
     resultDiv.style.display = 'block';
 }
+
 
 function checkResult() {
     const resultInput = document.querySelector('.result-input');
@@ -2053,16 +2111,29 @@ function checkResult() {
         return;
     }
 
-    const data = passedApplicants[phone];
+    const applicant = passedApplicants[phone];
     
-    if (!data) {
+    if (!applicant) {
         showResultMessage(messages.notFound, 'error');
-    } else if (data.passed) {
-        showResultMessage(messages.success(data), 'success');
     } else {
-        showResultMessage(messages.fail, 'error');
+        switch(applicant.status) {
+            case "accepted":
+                showResultMessage(messages.accepted, 'success');
+                break;
+            case "waiting":
+                showResultMessage(messages.waiting, 'success');
+                break;
+            case "rejected":
+                showResultMessage(messages.rejected, 'error');
+                break;
+            default:
+                showResultMessage(messages.notFound, 'error');
+        }
     }
 }
+
+
+
 
 function showCustomAlert(message) {
     const backdrop = document.createElement('div');
@@ -2232,6 +2303,31 @@ if (resultModal) {
        }
    });
 }
+</script>
+
+<script>
+// 페이지 로드 시 모달 표시
+document.addEventListener('DOMContentLoaded', function() {
+    const noticeModal = document.getElementById('notice-modal');
+    const closeBtn = document.querySelector('.notice-close-btn');
+    
+    // 모달 표시
+    setTimeout(() => {
+        noticeModal.style.display = 'block';
+    }, 500);
+    
+    // 닫기 버튼 클릭
+    closeBtn.addEventListener('click', () => {
+        noticeModal.style.display = 'none';
+    });
+    
+    // 모달 외부 클릭
+    noticeModal.addEventListener('click', (e) => {
+        if (e.target === noticeModal) {
+            noticeModal.style.display = 'none';
+        }
+    });
+});
 </script>
 
 
