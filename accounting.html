@@ -528,9 +528,16 @@
             };
 
             transactions.push(transaction);
-            saveTransactions();
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            
+            // 즉시 UI 업데이트
+            updateTransactionTable('adminTransactions', transactions, true);
+            updateMonthlyView();
+            updateCategoryView();
+            
+            // 폼 초기화
             document.getElementById('transactionForm').reset();
-            updateAllTabs();
+        }
         }
 
         // 거래 삭제
