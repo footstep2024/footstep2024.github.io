@@ -580,25 +580,35 @@
         // 카테고리별 보기 업데이트
         function updateCategoryView() {
             const monthlyTrans = getMonthlyTransactions();
-            const categories = [...new Set(monthlyTrans.map(t => t.category || '미분류'))];
             
-            // 수입 데이터
-            const incomeData = categories.map(cat => {
-                return monthlyTrans
-                    .filter(t => t.type === 'income' && (t.category || '미분류') === cat)
+            // 수입과 지출 분리
+            const incomeTrans = monthlyTrans.filter(t => t.type === 'income');
+            const expenseTrans = monthlyTrans.filter(t => t.type === 'expense');
+            
+            // 수입 카테고리와 데이터
+            const incomeCategories = [...new Set(incomeTrans.map(t => t.category || '미분류'))];
+            const incomeData = incomeCategories.map(cat => {
+                return incomeTrans
+                    .filter(t => (t.category || '미분류') === cat)
+                    .reduce((sum, t) => sum + t.amount, 0);
+            });
+            
+            // 지출 카테고리와 데이터
+            const expenseCategories = [...new Set(expenseTrans.map(t => t.category || '미분류'))];
+            const expenseData = expenseCategories.map(cat => {
+                return expenseTrans
+                    .filter(t => (t.category || '미분류') === cat)
                     .reduce((sum, t) => sum + t.amount, 0);
             });
 
-            // 지출 데이터
-            const expenseData = categories.map(cat => {
-                return monthlyTrans
-                    .filter(t => t.type === 'expense' && (t.category || '미분류') === cat)
-                    .reduce((sum, t) => sum + t.amount, 0);
-            });
+            console.log('Income Categories:', incomeCategories);
+            console.log('Income Data:', incomeData);
+            console.log('Expense Categories:', expenseCategories);
+            console.log('Expense Data:', expenseData);
 
             // 차트 업데이트
-            updateChart('incomeChart', '수입 분석', categories, incomeData);
-            updateChart('expenseChart', '지출 분석', categories, expenseData);
+            updateChart('incomeChart', '수입 분석', incomeCategories, incomeData);
+            updateChart('expenseChart', '지출 분석', expenseCategories, expenseData);
         }
 
         // 차트 업데이트
