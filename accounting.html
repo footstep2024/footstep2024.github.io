@@ -31,38 +31,33 @@
             line-height: 1.6;
         }
 
-        .dashboard {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-            min-height: 100vh;
         }
 
-        /* 사이드바 스타일 */
-        .sidebar {
+        /* 헤더 스타일 */
+        .header {
             background: white;
-            border-radius: 20px;
             padding: 2rem;
+            border-radius: 20px;
             box-shadow: var(--card-shadow);
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .logo-container {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
         }
 
         .brand-title {
@@ -72,72 +67,130 @@
             margin: 0;
         }
 
-        .brand-subtitle {
-            font-family: 'Gowun Batang', serif;
-            color: var(--light-text);
-            font-size: 0.9em;
-        }
-
-        /* 메인 컨텐츠 스타일 */
-        .main-content {
+        /* 탭 네비게이션 스타일 */
+        .tab-nav {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
+        .tab-button {
+            padding: 1rem 2rem;
+            border: none;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(47, 82, 41, 0.15);
+        .tab-button:hover {
+            background: var(--hover-gradient);
+            color: white;
         }
 
-        .stat-card .icon {
-            color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 1rem;
+        .tab-button.active {
+            background: var(--hover-gradient);
+            color: white;
         }
 
-        .stat-value {
-            font-family: 'Gowun Batang', serif;
-            font-size: 2em;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 0.5rem 0;
+        /* 탭 컨텐츠 스타일 */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
         }
 
-        .stat-label {
-            color: var(--light-text);
-            font-size: 0.9em;
+        .tab-content.active {
+            display: block;
         }
 
-        /* 입력 폼 스타일 */
-        .input-form {
+        /* 월별 보기 스타일 */
+        .monthly-view {
             background: white;
             padding: 2rem;
             border-radius: 20px;
             box-shadow: var(--card-shadow);
         }
 
-        .form-title {
-            font-family: 'Gowun Batang', serif;
+        .month-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .month-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--primary-light);
             color: var(--primary-color);
-            font-size: 1.5em;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-light);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .month-button:hover {
+            background: var(--hover-gradient);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-family: 'Gowun Batang', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+
+        /* 카테고리별 보기 스타일 */
+        .category-view {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .category-chart {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* 관리자 탭 스타일 */
+        .admin-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
         }
 
         .form-grid {
@@ -154,23 +207,15 @@
             display: block;
             margin-bottom: 0.5rem;
             color: var(--light-text);
-            font-size: 0.9em;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem;
             border: 2px solid var(--primary-light);
             border-radius: 8px;
             font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
         }
 
         .submit-btn {
@@ -180,101 +225,51 @@
             border: none;
             border-radius: 8px;
             font-family: inherit;
-            font-size: 1em;
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
-            margin-top: 1rem;
         }
 
         .submit-btn:hover {
             background: var(--hover-gradient);
-            transform: translateY(-2px);
         }
 
-        /* 거래내역 테이블 스타일 */
-        .transactions {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            overflow-x: auto;
-        }
-
-        .table {
+        /* 테이블 스타일 */
+        .transaction-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
         }
 
-        .table th,
-        .table td {
+        .transaction-table th,
+        .transaction-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--primary-light);
         }
 
-        .table th {
-            font-family: 'Gowun Batang', serif;
+        .transaction-table th {
+            background: var(--primary-light);
             color: var(--primary-color);
-            font-weight: 700;
-            background: var(--primary-light);
+            font-family: 'Gowun Batang', serif;
         }
 
-        .table tr:hover {
-            background: var(--primary-light);
-        }
-
-        .receipt-thumbnail {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .receipt-thumbnail:hover {
-            transform: scale(1.1);
-        }
-
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .delete-btn:hover {
-            background: #c82333;
-        }
-
-        @media (max-width: 1200px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: static;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* 반응형 스타일 */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 1rem;
             }
 
             .form-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-view {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .dashboard {
-                padding: 1rem;
-            }
-
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -283,8 +278,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .table {
-                font-size: 0.9em;
+            .tab-nav {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
             }
         }
 
@@ -306,43 +305,107 @@
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <!-- 사이드바 -->
-        <aside class="sidebar">
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
             <div class="logo-container">
                 <img src="logo.png" alt="발자취 로고" class="logo">
-                <h1 class="brand-title">발자취</h1>
-                <p class="brand-subtitle">우리가 함께한 여정의 기록</p>
-            </div>
-            <div class="quick-stats">
-                <!-- 추가적인 요약 정보나 네비게이션 메뉴를 위한 공간 -->
-            </div>
-        </aside>
-
-        <!-- 메인 컨텐츠 -->
-        <main class="main-content">
-            <!-- 통계 카드 -->
-            <div class="stats-grid">
-                <div class="stat-card fade-in">
-                    <i class="fas fa-wallet icon"></i>
-                    <div class="stat-value" id="totalIncome">0원</div>
-                    <div class="stat-label">이번 달 수입</div>
-                </div>
-                <div class="stat-card fade-in">
-                    <i class="fas fa-shopping-cart icon"></i>
-                    <div class="stat-value" id="totalExpense">0원</div>
-                    <div class="stat-label">이번 달 지출</div>
-                </div>
-                <div class="stat-card fade-in">
-                    <i class="fas fa-coins icon"></i>
-                    <div class="stat-value" id="balance">0원</div>
-                    <div class="stat-label">현재 잔액</div>
-                </div>
+                <h1 class="brand-title">발자취 회계관리</h1>
+                <button id="adminToggle" class="admin-toggle-btn">
+                    <i class="fas fa-user-cog"></i> 관리자 모드 전환
+                </button>
             </div>
 
-            <!-- 입력 폼 -->
-            <form class="input-form fade-in" id="transactionForm">
-                <h2 class="form-title">새로운 내역 등록</h2>
+            <style>
+                .admin-toggle-btn {
+                    margin-top: 10px;
+                    padding: 8px 15px;
+                    background: var(--primary-light);
+                    color: var(--primary-color);
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-family: 'Noto Sans KR', sans-serif;
+                    font-size: 0.9em;
+                    transition: all 0.3s ease;
+                }
+
+                .admin-toggle-btn:hover {
+                    background: var(--hover-gradient);
+                    color: white;
+                }
+
+                .admin-toggle-btn i {
+                    margin-right: 5px;
+                }
+            </style>
+            <!-- 탭 네비게이션 -->
+            <nav class="tab-nav">
+                <button class="tab-button active" data-tab="monthly">월별 보기</button>
+                <button class="tab-button" data-tab="category">카테고리별 보기</button>
+                <button class="tab-button admin-only" data-tab="admin">관리하기</button>
+            </nav>
+        </header>
+
+        <!-- 월별 보기 탭 -->
+        <div id="monthly" class="tab-content active">
+            <div class="monthly-view">
+                <div class="month-selector">
+                    <button class="month-button" onclick="changeMonth(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h2 id="currentMonth">2024년 1월</h2>
+                    <button class="month-button" onclick="changeMonth(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthlyIncome">0원</div>
+                        <div class="stat-label">총 수입</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthlyExpense">0원</div>
+                        <div class="stat-label">총 지출</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthlyBalance">0원</div>
+                        <div class="stat-label">잔액</div>
+                    </div>
+                </div>
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>구분</th>
+                            <th>카테고리</th>
+                            <th>금액</th>
+                            <th>설명</th>
+                            <th>영수증</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monthlyTransactions"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 카테고리별 보기 탭 -->
+        <div id="category" class="tab-content">
+            <div class="category-view">
+                <div class="category-chart">
+                    <h2>수입 카테고리 분석</h2>
+                    <canvas id="incomeChart"></canvas>
+                </div>
+                <div class="category-chart">
+                    <h2>지출 카테고리 분석</h2>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 관리하기 탭 (관리자 전용) -->
+        <div id="admin" class="tab-content">
+            <form class="admin-form" id="transactionForm">
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="date">날짜</label>
@@ -379,11 +442,9 @@
                 </div>
                 <button type="submit" class="submit-btn">등록하기</button>
             </form>
-
-            <!-- 거래 내역 테이블 -->
-            <div class="transactions fade-in">
-                <h2 class="form-title">거래 내역</h2>
-                <table class="table">
+            <div class="monthly-view">
+                <h2>전체 거래 내역</h2>
+                <table class="transaction-table">
                     <thead>
                         <tr>
                             <th>날짜</th>
@@ -395,18 +456,78 @@
                             <th>관리</th>
                         </tr>
                     </thead>
-                    <tbody id="transactionList"></tbody>
+                    <tbody id="adminTransactions"></tbody>
                 </table>
             </div>
-        </main>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // localStorage에서 데이터 가져오기
+        // 전역 변수
+        let currentDate = new Date();
         let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        let isAdmin = false; // 관리자 권한 (기본값: 일반 사용자)
 
-        // 폼 제출 처리
-        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+        // 초기화 함수
+        function init() {
+            checkAdminStatus();
+            setupEventListeners();
+            updateAllTabs();
+            showTab('monthly'); // 기본 탭: 월별 보기
+        }
+
+        // 관리자 상태 확인
+        function checkAdminStatus() {
+            // 실제 구현 시에는 서버에서 권한 확인
+            // 임시로 localStorage에서 확인
+            isAdmin = localStorage.getItem('isAdmin') === 'true';
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.style.display = isAdmin ? 'block' : 'none';
+            });
+        }
+
+        // 이벤트 리스너 설정
+        function setupEventListeners() {
+            // 탭 전환
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    showTab(tabId);
+                });
+            });
+
+            // 관리자 모드 전환 버튼
+            document.getElementById('adminToggle').addEventListener('click', function() {
+                toggleAdmin();
+                this.innerHTML = isAdmin ? 
+                    '<i class="fas fa-user-cog"></i> 일반 모드로 전환' : 
+                    '<i class="fas fa-user-cog"></i> 관리자 모드 전환';
+            });
+
+            // 거래 등록 폼
+            if (isAdmin) {
+                document.getElementById('transactionForm').addEventListener('submit', handleTransactionSubmit);
+            }
+        }
+
+        // 탭 표시 함수
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            updateTabContent(tabId);
+        }
+
+        // 거래 등록 처리
+        function handleTransactionSubmit(e) {
             e.preventDefault();
             
             const fileInput = document.getElementById('receipt');
@@ -421,7 +542,7 @@
             } else {
                 addTransaction(null);
             }
-        });
+        }
 
         // 거래 추가
         function addTransaction(receiptData) {
@@ -438,48 +559,168 @@
             transactions.push(transaction);
             saveTransactions();
             document.getElementById('transactionForm').reset();
-            updateUI();
-        }
-
-        // localStorage에 저장
-        function saveTransactions() {
-            localStorage.setItem('transactions', JSON.stringify(transactions));
+            updateAllTabs();
         }
 
         // 거래 삭제
         function deleteTransaction(id) {
-            if(confirm('정말 삭제하시겠습니까?')) {
+            if (!isAdmin) return;
+            if (confirm('정말 삭제하시겠습니까?')) {
                 transactions = transactions.filter(t => t.id !== id);
                 saveTransactions();
-                updateUI();
+                updateAllTabs();
             }
         }
 
-        // 숫자 포맷팅 (천단위 콤마)
+        // 월 변경
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            updateMonthlyView();
+        }
+
+        // 숫자 포맷팅
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        // UI 업데이트
-        function updateUI() {
-            const tbody = document.getElementById('transactionList');
-            tbody.innerHTML = '';
+        // 월별 데이터 필터링
+        function getMonthlyTransactions() {
+            return transactions.filter(t => {
+                const transDate = new Date(t.date);
+                return transDate.getMonth() === currentDate.getMonth() &&
+                       transDate.getFullYear() === currentDate.getFullYear();
+            });
+        }
 
+        // 월별 보기 업데이트
+        function updateMonthlyView() {
+            const monthlyTrans = getMonthlyTransactions();
             let totalIncome = 0;
             let totalExpense = 0;
 
-            // 날짜 기준 내림차순 정렬
-            transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+            monthlyTrans.forEach(t => {
+                if (t.type === 'income') totalIncome += t.amount;
+                else totalExpense += t.amount;
+            });
 
-            transactions.forEach(transaction => {
-                if (transaction.type === 'income') {
-                    totalIncome += transaction.amount;
-                } else {
-                    totalExpense += transaction.amount;
+            // 통계 업데이트
+            document.getElementById('monthlyIncome').textContent = formatNumber(totalIncome) + '원';
+            document.getElementById('monthlyExpense').textContent = formatNumber(totalExpense) + '원';
+            document.getElementById('monthlyBalance').textContent = formatNumber(totalIncome - totalExpense) + '원';
+            document.getElementById('currentMonth').textContent = 
+                `${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`;
+
+            // 거래 내역 테이블 업데이트
+            updateTransactionTable('monthlyTransactions', monthlyTrans, false);
+        }
+
+        // 카테고리별 보기 업데이트
+        function updateCategoryView() {
+            const monthlyTrans = getMonthlyTransactions();
+            const categories = [...new Set(transactions.map(t => t.category))];
+            
+            // 수입/지출 데이터 준비
+            const incomeData = categories.map(cat => {
+                return monthlyTrans
+                    .filter(t => t.type === 'income' && t.category === cat)
+                    .reduce((sum, t) => sum + t.amount, 0);
+            });
+
+            const expenseData = categories.map(cat => {
+                return monthlyTrans
+                    .filter(t => t.type === 'expense' && t.category === cat)
+                    .reduce((sum, t) => sum + t.amount, 0);
+            });
+
+            // 차트 업데이트
+            updateChart('incomeChart', '수입 분석', categories, incomeData);
+            updateChart('expenseChart', '지출 분석', categories, expenseData);
+        }
+
+        // 차트 업데이트
+        function updateChart(canvasId, label, labels, data) {
+            const ctx = document.getElementById(canvasId);
+            
+            // 데이터가 모두 0인지 확인
+            const hasData = data.some(value => value > 0);
+            
+            // 기존 차트 제거
+            if (window[canvasId]) {
+                window[canvasId].destroy();
+            }
+
+            // 데이터가 없는 경우 처리
+            if (!hasData) {
+                window[canvasId] = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['데이터 없음'],
+                        datasets: [{
+                            data: [1],
+                            backgroundColor: ['rgba(200, 200, 200, 0.5)']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function() {
+                                        return '아직 데이터가 없습니다';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                return;
+            }
+
+            // 새 차트 생성
+            window[canvasId] = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: [
+                            'rgba(47, 82, 41, 0.8)',
+                            'rgba(58, 99, 51, 0.8)',
+                            'rgba(69, 116, 61, 0.8)',
+                            'rgba(80, 133, 71, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    return `${context.label}: ${value.toLocaleString()}원`;
+                                }
+                            }
+                        }
+                    }
                 }
+            });
+        }
 
+        // 거래 내역 테이블 업데이트
+        function updateTransactionTable(tableId, data, showActions = true) {
+            const tbody = document.getElementById(tableId);
+            tbody.innerHTML = '';
+
+            data.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(transaction => {
                 const row = document.createElement('tr');
-                row.className = 'fade-in';
                 row.innerHTML = `
                     <td>${transaction.date}</td>
                     <td>${transaction.type === 'income' ? '수입' : '지출'}</td>
@@ -489,60 +730,48 @@
                     <td>
                         ${transaction.receipt ? 
                             `<img src="${transaction.receipt}" 
-                                 class="receipt-thumbnail" 
+                                 style="width: 50px; cursor: pointer;" 
                                  onclick="window.open(this.src)" 
                                  alt="영수증">` : 
                             '-'}
                     </td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteTransaction(${transaction.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+                    ${showActions && isAdmin ? 
+                        `<td>
+                            <button onclick="deleteTransaction(${transaction.id})" 
+                                    class="delete-btn">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>` : 
+                        ''}
                 `;
                 tbody.appendChild(row);
             });
-
-            // 통계 업데이트
-            document.getElementById('totalIncome').textContent = formatNumber(totalIncome) + '원';
-            document.getElementById('totalExpense').textContent = formatNumber(totalExpense) + '원';
-            document.getElementById('balance').textContent = formatNumber(totalIncome - totalExpense) + '원';
         }
 
-        // 초기 UI 업데이트
-        updateUI();
-
-        // 이미지 미리보기
-        document.getElementById('receipt').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // 이미지 미리보기 로직 추가 가능
-                }
-                reader.readAsDataURL(file);
+        // 모든 탭 업데이트
+        function updateAllTabs() {
+            updateMonthlyView();
+            updateCategoryView();
+            if (isAdmin) {
+                updateTransactionTable('adminTransactions', transactions, true);
             }
-        });
-
-        // 모바일 대응
-        function checkMobile() {
-            const mediaQuery = window.matchMedia('(max-width: 768px)');
-            const dashboard = document.querySelector('.dashboard');
-            
-            function handleMobileChange(e) {
-                if (e.matches) {
-                    // 모바일 화면에서의 추가 조정
-                    document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
-                        el.style.fontSize = '16px'; // iOS에서 자동 확대 방지
-                    });
-                }
-            }
-
-            mediaQuery.addListener(handleMobileChange);
-            handleMobileChange(mediaQuery);
         }
 
-        checkMobile();
+        // localStorage 저장
+        function saveTransactions() {
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', init);
+
+        // 테스트용: 관리자 권한 토글
+        function toggleAdmin() {
+            isAdmin = !isAdmin;
+            localStorage.setItem('isAdmin', isAdmin);
+            checkAdminStatus();
+            updateAllTabs();
+        }
     </script>
 </body>
 </html>
