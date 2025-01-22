@@ -540,10 +540,16 @@ setupEventListeners();
             localStorage.setItem('transactions', JSON.stringify(transactions));
             
             // 즉시 UI 업데이트
-            updateAllTabs();
+            updateMonthlyView();
+            updateCategoryView();
+            updateTransactionTable('adminTransactions', transactions, true);
             
             // 폼 초기화
             document.getElementById('transactionForm').reset();
+            
+            // 현재 탭 다시 렌더링
+            const currentTab = document.querySelector('.tab-content.active').id;
+            updateTabContent(currentTab);
         }
 
         // 거래 삭제
@@ -552,7 +558,15 @@ setupEventListeners();
             if (confirm('정말 삭제하시겠습니까?')) {
                 transactions = transactions.filter(t => t.id !== id);
                 localStorage.setItem('transactions', JSON.stringify(transactions));
-                updateAllTabs();
+                
+                // 즉시 UI 업데이트
+                updateMonthlyView();
+                updateCategoryView();
+                updateTransactionTable('adminTransactions', transactions, true);
+                
+                // 현재 탭 다시 렌더링
+                const currentTab = document.querySelector('.tab-content.active').id;
+                updateTabContent(currentTab);
             }
         }
 
@@ -620,8 +634,10 @@ setupEventListeners();
             });
 
             // 차트 업데이트
-            updateChart('incomeChart', '수입 분석', incomeCategories, incomeData);
-            updateChart('expenseChart', '지출 분석', expenseCategories, expenseData);
+            if (document.getElementById('category').classList.contains('active')) {
+                updateChart('incomeChart', '수입 분석', incomeCategories, incomeData);
+                updateChart('expenseChart', '지출 분석', expenseCategories, expenseData);
+            }
         }
 
         // 차트 업데이트
