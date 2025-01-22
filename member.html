@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>발자취 - 부원 출석 관리</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="logo.png" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2F5229;
+            --primary-hover: #3a6333;
+            --background-color: #ecf0f1;
+            --text-color: #333333;
+            --light-text: #666666;
+            --border-color: #e1e2e3;
+            --white: #ffffff;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo-section h1 {
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: normal;
+        }
+
+        .control-section {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 탭 네비게이션 스타일 */
+        .tabs {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tab-list {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            color: var(--light-text);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .tab-button:hover {
+            background: rgba(47, 82, 41, 0.1);
+            color: var(--primary-color);
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        /* 테이블 스타일 */
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .attendance-table th,
+        .attendance-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .attendance-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .attendance-table tr:hover {
+            background: rgba(47, 82, 41, 0.05);
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* 상태 뱃지 스타일 */
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge-present {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+        }
+
+        .badge-absent {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+        }
+
+        .badge-excuse {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .badge-yb {
+            background: rgba(47, 82, 41, 0.1);
+            color: var(--primary-color);
+        }
+
+        .badge-ob {
+            background: rgba(0, 123, 255, 0.1);
+            color: #0056b3;
+        }
+
+        .badge-og {
+            background: rgba(108, 117, 125, 0.1);
+            color: #495057;
+        }
+
+        /* 관리자 모드 전용 요소 */
+        .admin-only {
+            display: none;
+        }
+
+        .admin-mode .admin-only {
+            display: revert;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .logo-section h1 {
+                font-size: 2rem;
+            }
+
+            .tab-list {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .attendance-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="logo.png" alt="발자취 로고">
+                <h1>발자취 부원관리</h1>
+            </div>
+            <div class="control-section">
+                <button id="adminToggle" class="btn btn-outline">
+                    <i class="fas fa-user-cog"></i> 관리자 모드
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="tabs">
+            <div class="tab-list">
+                <button class="tab-button active" data-tab="attendance">출석 현황</button>
+                <button class="tab-button" data-tab="members">부원 관리</button>
+                <button class="tab-button" data-tab="statistics">통계</button>
+                <button class="tab-button admin-only" data-tab="settings">설정</button>
+            </div>
+
+            <!-- 출석 현황 탭 -->
+            <div class="tab-content active" id="attendanceTab">
+                <div class="controls" style="margin-bottom: 1rem;">
+                    <div class="date-selector" style="display: flex; align-items: center; gap: 1rem;">
+                        <button class="btn btn-outline" id="prevMonth">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2 id="currentMonth" style="margin: 0;">2024년 1월</h2>
+                        <button class="btn btn-outline" id="nextMonth">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>구분</th>
+                            <th>정기모임 (2주차)</th>
+                            <th>정기여행 (4주차)</th>
+                            <th>연속 불참</th>
+                            <th>누적 참석</th>
+                            <th class="admin-only">사유서</th>
+                            <th class="admin-only">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceList">
+                        <!-- JavaScript로 동적 생성됨 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 부원 관리 탭 -->
+            <div class="tab-content" id="membersTab" style="display: none;">
+                <div class="contro
+        </div>
+    </main>
+
+    <!-- 모달 템플릿 -->
+    <div id="excuseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">사유서 관리</h3>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="excuseForm">
+                    <div class="form-group">
+                        <label>불참 사유</label>
+                        <textarea class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>증빙자료 첨부</label>
+                        <input type="file" class="form-control">
+                    </div>
+                    <div style="text-align: right; margin-top: 1rem;">
+                        <button type="submit" class="btn btn-primary">제출하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isAdmin = false;
+        let currentDate = new Date();
+        
+        // 임시 데이터 (나중에 서버에서 가져올 예정)
+        let members = [
+            {
+                id: 1,
+                name: '구민준',
+                type: 'YB',
+                attendances: {},
+                consecutiveAbsences: 0,
+                totalAttendances: 0,
+                excuses: []
+            },
+            {
+                id: 2,
+                name: '김민주',
+                type: 'YB',
+                attendances: {},
+                consecutiveAbsences: 0,
+                totalAttendances: 0,
+                excuses: []
+            }
+        ];
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            updateAttendanceTable();
+            updateMonthDisplay();
+        });
+
+        // 이벤트 리스너 초기화
+        function initializeEventListeners() {
+            // 관리자 모드 토글
+            document.getElementById('adminToggle').addEventListener('click', toggleAdminMode);
+            
+            // 월 이동 버튼
+            document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1));
+            document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1));
+            
+            // 탭 전환
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => switchTab(button.dataset.tab));
+            });
+
+            // 모달 닫기 버튼
+            document.querySelectorAll('.close-button').forEach(button => {
+                button.addEventListener('click', () => closeModal(button.closest('.modal').id));
+            });
+        }
+
+        // 관리자 모드 토글
+        function toggleAdminMode() {
+            isAdmin = !isAdmin;
+            document.body.classList.toggle('admin-mode');
+            const button = document.getElementById('adminToggle');
+            button.innerHTML = isAdmin ? 
+                '<i class="fas fa-user"></i> 일반 모드' : 
+                '<i class="fas fa-user-cog"></i> 관리자 모드';
+            updateAttendanceTable();
+        }
+
+        // 월 변경
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            updateMonthDisplay();
+            updateAttendanceTable();
+        }
+
+        // 현재 월 표시 업데이트
+        function updateMonthDisplay() {
+            const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+            document.getElementById('currentMonth').textContent = 
+                `${currentDate.getFullYear()}년 ${months[currentDate.getMonth()]}`;
+        }
+
+        // 출석 테이블 업데이트
+        function updateAttendanceTable() {
+            const tbody = document.getElementById('attendanceList');
+            tbody.innerHTML = '';
+
+            members.forEach(member => {
+                const row = document.createElement('tr');
+                
+                // 해당 월의 출석 데이터
+                const monthKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+                const meetingAttendance = member.attendances[monthKey + '-meeting'];
+                const tripAttendance = member.attendances[monthKey + '-trip'];
+
+                row.innerHTML = `
+                    <td>${member.name}</td>
+                    <td><span class="badge badge-${member.type.toLowerCase()}">${member.type}</span></td>
+                    <td>
+                        ${isAdmin ? `
+                            <button class="btn btn-outline attendance-toggle" 
+                                    data-member="${member.id}" 
+                                    data-type="meeting">
+                                ${getAttendanceDisplay(meetingAttendance)}
+                            </button>
+                        ` : getAttendanceDisplay(meetingAttendance)}
+                    </td>
+                    <td>
+                        ${isAdmin ? `
+                            <button class="btn btn-outline attendance-toggle" 
+                                    data-member="${member.id}" 
+                                    data-type="trip">
+                                ${getAttendanceDisplay(tripAttendance)}
+                            </button>
+                        ` : getAttendanceDisplay(tripAttendance)}
+                    </td>
+                    <td>${member.consecutiveAbsences}회</td>
+                    <td>${member.totalAttendances}회</td>
+                    ${isAdmin ? `
+                        <td>
+                            <button class="btn btn-outline" onclick="openExcuseModal(${member.id})">
+                                관리
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline" onclick="editMember(${member.id})">
+                                수정
+                            </button>
+                        </td>
+                    ` : ''}
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            // 출석 토글 버튼 이벤트 리스너 추가
+            if (isAdmin) {
+                document.querySelectorAll('.attendance-toggle').forEach(button => {
+                    button.addEventListener('click', function() {
+                        toggleAttendance(
+                            this.dataset.member,
+                            this.dataset.type
+                        );
+                    });
+                });
+            }
+        }
+
+        // 출석 상태 표시
+        function getAttendanceDisplay(status) {
+            if (status === undefined) return '<span class="badge">미정</span>';
+            if (status === 'excused') return '<span class="badge badge-excuse">사유</span>';
+            return status ? 
+                '<span class="badge badge-present">참석</span>' : 
+                '<span class="badge badge-absent">불참</span>';
+        }
+
+        // 출석 상태 토글
+        function toggleAttendance(memberId, type) {
+            const member = members.find(m => m.id === parseInt(memberId));
+            if (!member) return;
+
+            const monthKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+            const attendanceKey = `${monthKey}-${type}`;
+
+            if (!member.attendances[attendanceKey]) {
+                member.attendances[attendanceKey] = true;
+            } else if (member.attendances[attendanceKey] === true) {
+                member.attendances[attendanceKey] = false;
+            } else {
+                member.attendances[attendanceKey] = undefined;
+            }
+
+            updateAttendanceStatistics(member);
+            updateAttendanceTable();
+        }
+
+        // 출석 통계 업데이트
+        function updateAttendanceStatistics(member) {
+            // 연속 불참 계산
+            let consecutive = 0;
+            const sortedDates = Object.keys(member.attendances).sort();
+            for (let i = sortedDates.length - 1; i >= 0; i--) {
+                if (!member.attendances[sortedDates[i]]) consecutive++;
+                else break;
+            }
+            member.consecutiveAbsences = consecutive;
+
+            // 총 참석 횟수 계산
+            member.totalAttendances = Object.values(member.attendances)
+                .filter(status => status === true).length;
+        }
+
+        // 사유서 모달 열기
+        function openExcuseModal(memberId) {
+            const modal = document.getElementById('excuseModal');
+            modal.style.display = 'block';
+            modal.dataset.memberId = memberId;
+        }
+
+        // 모달 닫기
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // 탭 전환
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.toggle('active', button.dataset.tab === tabId);
+            });
+            // 여기에 탭 컨텐츠 전환 로직 추가
+        }
+
+        // 부원 정보 수정
+        function editMember(memberId) {
+            // 수정 모달 구현
+            alert('부원 정보 수정 기능은 추후 구현 예정입니다.');
+        }
+
+        // 클릭 외 영역 모달 닫기
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
