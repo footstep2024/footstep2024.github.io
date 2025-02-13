@@ -39,6 +39,8 @@
     <link rel="canonical" href="https://footstep2024.github.io">
     
     <title>발자취 - 대학생연합여행동아리</title>
+
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/notice.png">
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
@@ -940,7 +942,7 @@
             }
 
             .cta p {
-                font-size: 1.1em;
+                font-size: 1.6em;
                 text-align: center;
             }
         }
@@ -1103,9 +1105,6 @@
                 top: 12px;
                 right: 12px;
             }
-            .result-title {
-                font-size: 1.4em !important;
-            }            
         }
         
         @keyframes customAlertIn {
@@ -1333,419 +1332,18 @@
             }
         }
 
-.result-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
 
-.result-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 20px 30px;
-    border-radius: 15px;
-    width: 95%;
-    max-width: 500px;
-    max-height: 80vh; 
-    overflow-y: auto; 
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    animation: modalFadeIn 0.3s ease-out;
-}
 
-.result-title {
-    font-family: 'Noto Sans KR', var(--system-font);
-    font-size: 2em;
-    color: var(--primary-color);
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
 
-.result-subtitle {
-    font-family: 'Noto Sans KR', var(--system-font);
-    font-size: 1em;
-    color: var(--light-text);
-    margin-bottom: 20px;
-    font-weight: 400;
-}
-
-.result-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.result-input {
-    flex: 1;
-    padding: 12px 15px;
-    border: 2px solid rgba(47, 82, 41, 0.2);
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: 'Noto Sans KR', var(--system-font);
-    transition: border-color 0.3s ease;
-}
-
-.result-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
-
-.result-check-btn {
-    background: var(--primary-color);
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Noto Sans KR', var(--system-font);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.result-close-btn {
-    position: sticky;
-    top: 0;
-    float: right;
-    margin-top: -20px;
-    margin-right: -20px;
-    background: #fff;
-    border: 2px solid #eee;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
-    line-height: 28px;
-    cursor: pointer;
-    color: #666;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.result-close-btn:hover {
-    background: #f8f8f8;
-    color: #333;
-}
-        
-.result-message {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    font-family: 'Noto Sans KR', var(--system-font);
-}
-
-.result-message.success {
-    background-color: rgba(47, 82, 41, 0.1);
-    color: var(--primary-color);
-    border: 1px solid rgba(47, 82, 41, 0.2);
-}
-
-.result-message.error {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
-    border: 1px solid rgba(220, 53, 69, 0.2);
-}
-
-@media (max-width: 768px) {
-    .result-content {
-        width: 85%;
-        padding: 25px 20px;
-    }
-    
-    .result-form {
-        flex-direction: column;
-    }
-    
-    .result-check-btn {
-        width: 100%;
-    }
-}
-
-.announcement-container {
-    text-align: left;
-    padding: 15px;
-    line-height: 1.6;
-    background-color: #fff;
-    border-radius: 12px;
-}
-
-.announcement-header {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #2B5329;
+.interview-text {
     font-size: 1.3em;
-    font-weight: bold;
-}
-
-.announcement-subheader {
-    font-size: 0.9em;
-    margin-top: 8px;
-    color: #4A4A4A;
-}
-
-.announcement-subheader2 {
-    font-size: 0.9em;
-    margin-top: 8px;
-    color: #4A4A4A;
-}
-
-.announcement-body {
-    text-align: center;
-    margin: 25px 0;
-    color: #333;
-    line-height: 1.6;
-    font-size: clamp(14px, 2vw, 16px);
-    white-space: nowrap;
-}
-
-.announcement-body, .announcement-footer {
-    word-break: keep-all;
-    word-wrap: break-word;
-    white-space: pre-line;
-}    
-
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
-}
-        
-.detail-section {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 12px;
-    margin: 12px 0;
-}
-
-.detail-title {
-    font-weight: bold;
-    color: #2B5329;
-    margin-bottom: 12px;
-    font-size: 1.1em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.detail-content {
-    padding-left: 3px;
-}
-
-.detail-item {
-    margin: 2px 0;
-    color: #333;
-}
-
-.detail-highlight {
-    color: #2B5329;
-    font-weight: bold;
-}
-
-.announcement-notice {
-    background: #fff3cd;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 8px 0;
-    font-size: 0.95em;
-    line-height: 1.5;
-    text-indent: 0;
-    padding-left: 10px;
-}
-
-.announcement-contact {
-    margin-top: 24px;
-    text-align: center;
-    color: #666;
-    padding: 12px;
-    border-top: 1px solid #eee;
-}
-
-.announcement-error {
-    color: #721c24;
-    background-color: #f8d7da;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.announcement-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #666;
-}
-
-.result-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.result-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.result-content::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.result-content::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
 
 @media (max-width: 768px) {
-    .announcement-container {
-        padding: 15px;
-    }
-    .announcement-header {
-        font-size: 1.05em;
-    }
-    .announcement-body {
-        text-align: left !important;
-        padding: 0 20px !important;
-        word-break: break-all !important;
-    }
-        .announcement-subheader {
-        font-size: 0.7em !important;
-    }
-        .announcement-subheader2 {
+    .interview-text {
         font-size: 1em !important;
     }
-    
-    .result-subtitle {
-        font-size: 0.8em !important;
-    }
-    .result-input::placeholder {
-        font-size: 0.82em !important;
-        color: #999 !important;
-        font-family: 'Noto Serif KR', var(--system-font) !important;
-    }    
 }
-
-.subway-6 {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    background-color: #CD7C2F;
-    border-radius: 50%;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0 2px;
-    line-height: 1;
-}
-
-
-
-.notice-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.notice-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 550px;
-    margin: 0 auto;
-}
-
-.notice-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 2001;
-}
-
-.notice-image-container {
-    width: auto;
-    height: auto;
-}
-
-.notice-image {
-    width: auto;
-    height: auto;
-    max-width: none;
-    max-height: none;
-    display: block;
-}
-
-@media (min-width: 769px) {
-    .mobile-only {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .notice-content {
-        width: 85%; 
-        margin: 0 auto;
-    }
-    
-    .pc-only {
-        display: none;
-    }
-
-    .notice-image {
-        width: 100%;
-        height: auto;
-    }
-
-    .notice-image-container {
-         width: 100%;
-    }
-    
-    .notice-close-btn {
-        font-size: 20px;
-        width: 25px;
-        height: 25px;
-    }
-}      
 
         
         
@@ -1758,54 +1356,10 @@
         <p>잠시만 기다려주세요...</p>
     </div>
 
-<div id="notice-modal" class="notice-modal">
-    <div class="notice-content">
-        <button class="notice-close-btn">&times;</button>
-        <div class="notice-image-container">
-            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_pc.png" class="notice-image pc-only">
-            <img src="https://raw.githubusercontent.com/footstep2024/footstep2024.github.io/main/last_notice_mobile.png" class="notice-image mobile-only">
-        </div>
-    </div>
-</div>
+
+
     
 
-        <div class="modal">
-        <div class="modal-content">
-            <button class="close-btn">&times;</button>
-            <h2 class="modal-title">모집 알림 신청</h2>
-            <p class="modal-subtitle">모집 기간이 되면 문자로 알려드립니다.</p>
-            <form class="phone-form" 
-                action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSd7ReHEs6lSxH9BS3skvYVkV8KXYKIhZ3U91JkzFEQt--J8TQ/formResponse" 
-                method="post" 
-                target="hidden_iframe">
-                <input type="tel" 
-                       inputmode="numeric"
-                       name="entry.1871526898" 
-                       class="phone-input" 
-                       placeholder="휴대폰 번호 (- 없이 입력)" 
-                       pattern="010[0-9]{8}"
-                       maxlength="11"
-                       required>
-                <button type="submit" class="submit-btn">알림 신청하기</button>
-            </form>
-        </div>
-    </div>
-
-<div class="result-modal">
-    <div class="result-content">
-        <button class="result-close-btn">&times;</button>
-        <h2 class="result-title">동행 여부 확인</h2>
-        <p class="result-subtitle">지원 시 입력한 휴대폰 번호를 입력해주세요</p>
-        <div class="result-form">
-            <input type="tel" 
-                   class="result-input" 
-                   placeholder="하이픈(-)없이 입력 (예: 01012345678)"
-                   maxlength="11">
-            <button class="result-check-btn">확인</button>
-        </div>
-        <div class="result-message" style="display: none;"></div>
-    </div>
-</div>
     
     <iframe name="hidden_iframe" style="display:none;"></iframe>
     
@@ -1888,11 +1442,11 @@
                 </div>
             </div>
 
-            <div class="cta">
-                <h2>2025년 1학기 신입 부원 모집</h2>
-                <p>발자취의 새로운 동행이 시작됩니다</p>
-                <button class="cta-button modal-btn">동행여부 확인하기</button>
-            </div>
+<div class="cta" style="padding: 30px 20px;">
+    <h2>2025년 1학기 신입 부원 모집</h2>
+    <p style="margin: 20px 0 5px;">02.22 ~ 03.01</p>
+    <button class="cta-button modal-btn">미리 지원하기</button>
+</div>
 
             <div class="contact">
                 <div class="social-links">
@@ -1917,262 +1471,356 @@
         </div>
     </div>
 
-    
+
 
 <script>
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function showLoading() {
-    document.getElementById('loading-spinner').style.display = 'block';
+   document.getElementById('loading-spinner').style.display = 'block';
 }
 
 function hideLoading() {
-    document.getElementById('loading-spinner').style.display = 'none';
+   document.getElementById('loading-spinner').style.display = 'none';
 }
 
 function showNotification(message, type = 'success') {
-    const notification = document.getElementById('notification');
-    const messageElement = notification.querySelector('.notification-message');
-    
-    notification.className = `notification ${type}`;
-    messageElement.textContent = message;
-    notification.style.display = 'block';
-    
-    const duration = isMobile ? 4000 : 3000;
-    
-    if (isMobile) {
-        notification.addEventListener('click', () => {
-            notification.style.display = 'none';
-        });
-    }
-    
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, duration);
+   const notification = document.getElementById('notification');
+   const messageElement = notification.querySelector('.notification-message');
+   
+   notification.className = `notification ${type}`;
+   messageElement.textContent = message;
+   notification.style.display = 'block';
+   
+   const duration = isMobile ? 4000 : 3000;
+   
+   if (isMobile) {
+       notification.addEventListener('click', () => {
+           notification.style.display = 'none';
+       });
+   }
+   
+   setTimeout(() => {
+       notification.style.display = 'none';
+   }, duration);
 }
 
 function escapeHtml(unsafe) {
-    return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+   return unsafe
+       .replace(/&/g, "&amp;")
+       .replace(/</g, "&lt;")
+       .replace(/>/g, "&gt;")
+       .replace(/"/g, "&quot;")
+       .replace(/'/g, "&#039;");
 }
 
 function validateUrl(url) {
-    try {
-        new URL(url);
-        if (url.startsWith('mailto:')) {
-            return url.includes('footstep1024@gmail.com');
-        }
-        return (url.startsWith('https://') || url.startsWith('http://')) && (
-            url.includes('forms.gle') || 
-            url.includes('footstep2024.github.io') ||
-            url.includes('open.kakao.com') ||
-            url.includes('instagram.com') ||
-            url.includes('campuspick.com')
-        );
-    } catch {
-        return false;
-    }
+   try {
+       new URL(url);
+       if (url.startsWith('mailto:')) {
+           return url.includes('footstep1024@gmail.com');
+       }
+       return (url.startsWith('https://') || url.startsWith('http://')) && (
+           url.includes('forms.gle') || 
+           url.includes('footstep2024.github.io') ||
+           url.includes('open.kakao.com') ||
+           url.includes('instagram.com') ||
+           url.includes('campuspick.com')
+       );
+   } catch {
+       return false;
+   }
 }
 
 function sanitizeInput(input) {
-    let clean = input.replace(/[<>{}]/g, '');
-    if (isMobile) {
-        clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
-    }
-    return clean.trim();
+   let clean = input.replace(/[<>{}]/g, '');
+   if (isMobile) {
+       clean = clean.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+   }
+   return clean.trim();
 }
-
-const messages = {
-accepted: function() {
-    return `<div class="announcement-container animate-fade-in">
-        <div class="announcement-header" style="font-size: 1em;">
-            <div>🎉 최종 합격을 축하드립니다! 👣</div>
-            <div class="announcement-subheader" style="font-size: 0.95em;">발자취의 새로운 동행자가 되어주셔서 감사합니다</div>
-        </div>
-        <div class="announcement-body" style="font-size: 0.85em; padding: 0 50px; word-break: break-all; text-align: left;">인터뷰에서 나눈 대화 속에서 다가왔던 열정이 저희에게도 새로운 자극이 되었습니다. 발자취와 함께 앞으로 펼쳐질 특별한 여정에 동참해주시길 부탁드립니다.
-        </div>
-
-        <div class="detail-section">
-            <div class="detail-title" style="font-size: 0.85em;">📅 OT 안내</div>
-            <div class="detail-content" style="font-size: 0.8em;">
-                <div class="detail-item">• 일시: 1월 25일(토) ~ 26일(일)</div>
-                <div class="detail-item">• 장소: 대성리</div>
-                <div class="detail-item">• OT 참가비: 46,000원</div>
-                <div class="detail-item">• 카카오뱅크 79420648084 / 이소연</div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <div class="detail-title" style="font-size: 0.85em;">✉️ 확인 요청</div>
-            <div class="detail-content" style="font-size: 0.8em;">
-                <div class="detail-item">아래 번호로 <span class="detail-highlight">본인 성함</span>과 함께 <span class="detail-highlight">'최종합격 등록'</span> 메시지를 보내주시기 바랍니다.</div>
-            </div>
-        </div>
-
-        <div class="announcement-notice" style="font-size: 0.75em;">
-            오늘(21일) 오후 1시까지 참가비 미입금 시 합격이 취소되며, 예비 합격자에게 순서가 양도됩니다.
-        </div>
-
-        <div class="announcement-contact" style="font-size: 0.9em;">
-            <span class="detail-highlight">010-5397-1581</span> (회장 강현서)
-        </div>
-    </div>`;
-},
-  
-  waiting: function() {
-      return `<div class="announcement-container animate-fade-in">
-          <div class="announcement-header" style="font-size: 1em;">
-              <div>⌛️ 조금만 더……</div>
-              <div class="announcement-subheader2" style="font-size: 0.95em;">기다려 주실 수 있으신가요?</div>
-          </div>
-          <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">면접에서의 진솔한 대화가 아직도 기억에 남습니다. 다른 동행자 분들의 등록 상황에 따라 합류하실 수 있음을 알려드립니다.
-          </div>
-          <div class="announcement-notice" style="font-size: 0.75em; text-align: left;">
-             오후 6시까지 순번에 따라 연락드리겠습니다. 연락을 받지 못하신 경우 앞 순번의 등록이 완료된 것으로 양해 부탁드립니다.
-          </div>
-      </div>`;
-  },
-  
-  rejected: function() {
-      return `<div class="announcement-container animate-fade-in">
-          <div class="announcement-header" style="font-size: 1em;">
-              <div>안녕하세요 👋</div>
-              <div class="announcement-subheader" style="font-size: 0.95em;">발자취에 보내주신 관심에 진심으로 감사드립니다</div>
-          </div>
-          <div class="announcement-body" style="font-size: 0.85em; padding: 0 55px; word-break: break-all; text-align: left;">함께하지 못하여 아쉬움 뿐입니다. 하지만 면접에서 보여주신 진정성과 열정은 저희에게 큰 감동이었습니다.
-          
-              앞으로의 여정에서 더욱 아름다운 발자취를 남기시길 진심으로 응원하겠습니다.
-          </div>
-          <div class="announcement-footer">감사합니다 🙏</div>
-      </div>`;
-  },
-  
-  notFound: function() {
-      return `<div class="announcement-container">
-          <div class="announcement-error">
-              ⚠️ 지원 내역을 찾을 수 없습니다
-          </div>
-      </div>`;
-  }
-};
-
-const passedApplicants = {
-    '01022274399': { status: "accepted" }, 
-    '01025079042': { status: "accepted" }, 
-    '01041700843': { status: "accepted" },
-    '01091205583': { status: "accepted" },
-    '01062924532': { status: "accepted" }, 
-    '01064319326': { status: "accepted" }, 
-    '01089856458': { status: "accepted" }, 
-    '01054552617': { status: "accepted" }, 
-    '01025700760': { status: "accepted" },
-    '01075017034': { status: "accepted" }, 
-    '01044202616': { status: "accepted" }, 
-    '01088041159': { status: "accepted" }, 
-    '01025537729': { status: "accepted" },
-    '01063269385': { status: "accepted" },
-    '01089021953': { status: "accepted" },
-    '01086942070': { status: "accepted" },
-    '01058790262': { status: "accepted" }, 
-    '01096865800': { status: "accepted" },
-    '01040755109': { status: "accepted" },
-    '01096573710': { status: "waiting" }, 
-    '01050346059': { status: "waiting" }, 
-    '01099744982': { status: "waiting" },  
-    '01039512310': { status: "waiting" },
-    '01046026249': { status: "waiting" },  
-    '01051991766': { status: "rejected" }, 
-    '01083663643': { status: "rejected" },
-    '01064412110': { status: "rejected" }, 
-    '01058012713': { status: "rejected" },  
-    '01093457621': { status: "rejected" },   
-    '01067912591': { status: "rejected" }
-};
-    
-
-function showResultMessage(message, type) {
-    const resultDiv = document.querySelector('.result-message');
-    resultDiv.innerHTML = typeof message === 'function' ? message() : message;
-    resultDiv.className = `result-message ${type}`;
-    resultDiv.style.display = 'block';
-}
-
-
-function checkResult() {
-    const resultInput = document.querySelector('.result-input');
-    const phone = resultInput.value.replace(/-/g, '');
-    
-    if (!phone.match(/^010\d{8}$/)) {
-        showNotification('올바른 휴대폰 번호를 입력해주세요.', 'error');
-        return;
-    }
-
-    const applicant = passedApplicants[phone];
-    
-    if (!applicant) {
-        showResultMessage(messages.notFound, 'error');
-    } else {
-        switch(applicant.status) {
-            case "accepted":
-                showResultMessage(messages.accepted, 'success');
-                break;
-            case "waiting":
-                showResultMessage(messages.waiting, 'success');
-                break;
-            case "rejected":
-                showResultMessage(messages.rejected, 'error');
-                break;
-            default:
-                showResultMessage(messages.notFound, 'error');
-        }
-    }
-}
-
-
-
 
 function showCustomAlert(message) {
-    const backdrop = document.createElement('div');
-    backdrop.className = 'custom-alert-backdrop';
-    
-    const alertBox = document.createElement('div');
-    alertBox.className = 'custom-alert';
-    alertBox.innerHTML = `
-        <p>${message}</p>
-        <button onclick="this.parentElement.parentElement.remove()">확인</button>
-    `;
-    
-    backdrop.appendChild(alertBox);
-    document.body.appendChild(backdrop);
-    
-    const removeAlert = () => backdrop.remove();
-    const autoRemoveTimer = setTimeout(removeAlert, 3000);
-    
-    alertBox.querySelector('button').addEventListener('click', () => {
-        clearTimeout(autoRemoveTimer);
-        removeAlert();
-    });
-    
-    backdrop.addEventListener('click', (e) => {
-        if (e.target === backdrop) {
-            clearTimeout(autoRemoveTimer);
-            removeAlert();
-        }
-    });
+   const backdrop = document.createElement('div');
+   backdrop.className = 'custom-alert-backdrop';
+   
+   const alertBox = document.createElement('div');
+   alertBox.className = 'custom-alert';
+   alertBox.innerHTML = `
+       <p>${message}</p>
+       <button onclick="this.parentElement.parentElement.remove()">확인</button>
+   `;
+   
+   backdrop.appendChild(alertBox);
+   document.body.appendChild(backdrop);
+   
+   const removeAlert = () => backdrop.remove();
+   const autoRemoveTimer = setTimeout(removeAlert, 3000);
+   
+   alertBox.querySelector('button').addEventListener('click', () => {
+       clearTimeout(autoRemoveTimer);
+       removeAlert();
+   });
+   
+   backdrop.addEventListener('click', (e) => {
+       if (e.target === backdrop) {
+           clearTimeout(autoRemoveTimer);
+           removeAlert();
+       }
+   });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-   const resultModal = document.querySelector('.result-modal');
-   const resultCloseBtn = document.querySelector('.result-close-btn');
-   const resultCheckBtn = document.querySelector('.result-check-btn');
-   const modalBtn = document.querySelector('.modal-btn');
+   if (window.location.protocol !== 'https:') {
+       showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
+   }
+
+   document.querySelectorAll('a').forEach(link => {
+       link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
+           const href = this.getAttribute('href');
+           if (!validateUrl(href) && !href.startsWith('mailto:')) {
+               e.preventDefault();
+               showNotification('유효하지 않은 링크입니다.', 'error');
+           }
+       });
+   });
+
+const modal = document.querySelector('.modal');
+const closeBtn = document.querySelector('.close-btn');
+const form = document.querySelector('.phone-form');
+const phoneInput = document.querySelector('.phone-input');
+const modalBtn = document.querySelector('.modal-btn');
+
+if (modalBtn) {
+   modalBtn.addEventListener(isMobile ? 'touchstart' : 'click', async function(e) {
+       e.preventDefault();
+       
+       try {
+           showNotification('지원 페이지로 이동합니다', 'success');
+           showLoading();
+           
+           const overlay = document.createElement('div');
+           overlay.style.cssText = `
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               background-color: white;
+               z-index: 9998;
+               opacity: 0;
+               transition: opacity 0.5s ease;
+           `;
+           document.body.appendChild(overlay);
+           
+           setTimeout(() => {
+               overlay.style.opacity = '1';
+               setTimeout(() => {
+                   window.location.href = 'https://footstep2024.github.io/apply.html';
+               }, 500);
+           }, 1000);
+           
+       } catch (error) {
+           hideLoading();
+           showNotification('오류가 발생했습니다. 다시 시도해주세요.', 'error');
+           console.error('Error:', error);
+       }
+   });
+}
+
+form.addEventListener('submit', (e) => {
+   e.preventDefault();
    
+   if (!phoneInput.value.startsWith('010') || phoneInput.value.length !== 11) {
+       showCustomAlert('올바른 휴대폰 번호를 입력해주세요.');
+       return;
+   }
+
+   showNotification('알림 신청을 처리 중입니다', 'success');
+   showLoading();
+   
+   const formData = new FormData(form);
+   const phoneNumber = phoneInput.value;
+   
+   setTimeout(() => {
+       form.submit();
+       
+       setTimeout(() => {
+           hideLoading();
+           modal.style.display = 'none';
+           showCustomAlert('알림 신청이 완료되었습니다.');
+           phoneInput.value = '';
+       }, 500);
+   }, 1000);
+});
+
+closeBtn.addEventListener('click', () => {
+   modal.style.display = 'none';
+   phoneInput.value = '';
+});
+
+modal.addEventListener('click', (e) => {
+   if (e.target === modal) {
+       modal.style.display = 'none';
+       phoneInput.value = '';
+   }
+});
+
+if (isMobile) {
+   document.addEventListener('touchstart', function(event) {
+       if (event.touches.length > 1) {
+           event.preventDefault();
+       }
+   }, { passive: false });
+}
+
+document.addEventListener('contextmenu', function(e) {
+   e.preventDefault();
+});
+
+const cards = document.querySelectorAll('.feature-card');
+cards.forEach(card => {
+    ['click', 'touchend'].forEach(eventType => {
+        card.addEventListener(eventType, function(e) {
+            e.preventDefault();
+            const wasActive = this.classList.contains('active');
+            cards.forEach(c => c.classList.remove('active'));
+            if (!wasActive) {
+                this.classList.add('active');
+            }
+        }, { passive: false });
+    });
+});
+
+document.querySelector('.instagram').addEventListener('click', function(e) {
+   e.preventDefault();
+   const username = 'footstep2024_official';
+   const appUrl = `instagram://user?username=${username}`;
+   const webUrl = `https://www.instagram.com/${username}`;
+   
+   if ('standalone' in navigator || 'matchMedia' in window && window.matchMedia('(display-mode: standalone)').matches) {
+       const startTime = Date.now();
+       window.location.href = appUrl;
+       window.onblur = function() {
+           window.onblur = null;
+       };
+       setTimeout(function() {
+           if (!document.hidden && (Date.now() - startTime < 2000)) {
+               window.location.href = webUrl;
+           }
+       }, 1000);
+   } else {
+       window.open(webUrl, '_blank');
+   }
+});
+});
+</script>
+
+<script>
+function animateValue(element, start, end, duration, suffix = '') {
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   
+   const frameRate = isMobile ? 30 : 60;
+   const frameInterval = 1000 / frameRate;
+   
+   const decimals = end.toString().includes('.') ? end.toString().split('.')[1].length : 0;
+   
+   let current = start;
+   const range = end - start;
+   const increment = range / (duration / frameInterval);
+   const startTime = performance.now();
+   let lastFrameTime = startTime;
+   
+   let isPaused = false;
+   document.addEventListener('visibilitychange', () => {
+       isPaused = document.hidden;
+   });
+   
+   function updateNumber(currentTime) {
+       if (isPaused) {
+           requestAnimationFrame(updateNumber);
+           return;
+       }
+
+       if (currentTime - lastFrameTime < frameInterval) {
+           requestAnimationFrame(updateNumber);
+           return;
+       }
+       
+       const elapsed = currentTime - startTime;
+       lastFrameTime = currentTime;
+       
+       if (elapsed < duration) {
+           const progress = elapsed / duration;
+           const easedProgress = 1 - Math.pow(1 - progress, 3);
+           current = start + (range * easedProgress);
+           
+           if (decimals > 0) {
+               element.textContent = current.toFixed(decimals) + suffix;
+           } else {
+               element.textContent = Math.floor(current) + suffix;
+           }
+           
+           requestAnimationFrame(updateNumber);
+       } else {
+           element.textContent = end + suffix;
+       }
+   }
+   
+   const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+           if (entry.isIntersecting) {
+               requestAnimationFrame(updateNumber);
+               observer.disconnect();
+           }
+       });
+   }, { threshold: 0.1 });
+   
+   observer.observe(element);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   const durationModifier = isMobile ? 0.8 : 1;
+   
+   const stats = [
+       {
+           element: document.querySelector('.stat-item:nth-child(1) .stat-value'),
+           start: 1,
+           end: 3,
+           duration: 1700 * durationModifier,
+           suffix: '개월+'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(2) .stat-value'),
+           start: 1,
+           end: 100,
+           duration: 2000 * durationModifier,
+           suffix: '%'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(3) .stat-value'),
+           start: 1,
+           end: 80,
+           duration: 2200 * durationModifier,
+           suffix: '%+'
+       },
+       {
+           element: document.querySelector('.stat-item:nth-child(4) .stat-value'),
+           start: 1,
+           end: 3,
+           duration: 2500 * durationModifier,
+           suffix: '+'
+       }
+   ];
+   
+   stats.forEach(stat => {
+       animateValue(stat.element, stat.start, stat.end, stat.duration, stat.suffix);
+   });
+
+   // 카드 터치 이벤트 처리
    const cards = document.querySelectorAll('.feature-card');
-   
+    
    if (isMobile) {
        cards.forEach(card => {
            card.addEventListener('touchstart', handleTouch, { passive: false });
@@ -2202,135 +1850,10 @@ document.addEventListener('DOMContentLoaded', function() {
            card.classList.add('active');
        }
    }
-   
-   // 모달 열기
-   if (modalBtn) {
-       modalBtn.addEventListener('click', function(e) {
-           e.preventDefault();
-           e.stopPropagation();
-           showLoading();
-           
-           setTimeout(() => {
-               hideLoading();
-               if (resultModal) {
-                   resultModal.style.display = 'flex';
-                   document.querySelector('.result-input').value = '';
-                   document.querySelector('.result-message').style.display = 'none';
-               }
-           }, 500);
-       });
-   }
-   // 결과 확인
-   if (resultCheckBtn) {
-       resultCheckBtn.addEventListener('click', checkResult);
-   }
-   // 모달 닫기 함수
-   function closeModal() {
-       if (resultModal) {
-           resultModal.style.display = 'none';
-           document.querySelector('.result-input').value = '';
-           document.querySelector('.result-message').style.display = 'none';
-       }
-   }
-   // 닫기 버튼
-   if (resultCloseBtn) {
-       resultCloseBtn.addEventListener('click', closeModal);
-   }
-   // 모달 외부 클릭
-   if (resultModal) {
-       resultModal.addEventListener('click', function(e) {
-           if (e.target === resultModal) {
-               closeModal();
-           }
-       });
-   }
-   // ESC 키 처리
-   document.addEventListener('keydown', function(e) {
-       if (e.key === 'Escape' && resultModal.style.display === 'flex') {
-           closeModal();
-       }
-   });
-   // HTTPS 체크
-   if (window.location.protocol !== 'https:') {
-       showNotification('보안 연결(HTTPS)이 권장됩니다.', 'error');
-   }
-   // 링크 검증
-   document.querySelectorAll('a').forEach(link => {
-       link.addEventListener(isMobile ? 'touchstart' : 'click', function(e) {
-           const href = this.getAttribute('href');
-           if (!validateUrl(href) && !href.startsWith('mailto:')) {
-               e.preventDefault();
-               showNotification('유효하지 않은 링크입니다.', 'error');
-           }
-       });
-   });
-   // 모바일 터치 이벤트
-   if (isMobile) {
-       document.addEventListener('touchstart', function(event) {
-           if (event.touches.length > 1) {
-               event.preventDefault();
-           }
-       }, { passive: false });
-   }
-});
-// Disable right-click context menu
-document.addEventListener('contextmenu', function(e) {
-   e.preventDefault();
-});
-// Prevent copy/paste and other context menu actions
-document.addEventListener('copy', function(e) {
-   e.preventDefault();
-});
-document.addEventListener('cut', function(e) {
-   e.preventDefault();
-});
-document.addEventListener('paste', function(e) {
-   e.preventDefault();
-});
-// For mobile devices, prevent text selection
-if (isMobile) {
-   document.addEventListener('selectstart', function(e) {
-       e.preventDefault();
-   });
-}
-// Close modal and cleanup when clicking outside
-if (resultModal) {
-   window.addEventListener('click', function(e) {
-       if (e.target === resultModal) {
-           resultModal.style.display = 'none';
-           document.querySelector('.result-input').value = '';
-           document.querySelector('.result-message').style.display = 'none';
-       }
-   });
-}
-</script>
-
-<script>
-// 페이지 로드 시 모달 표시
-document.addEventListener('DOMContentLoaded', function() {
-    const noticeModal = document.getElementById('notice-modal');
-    const closeBtn = document.querySelector('.notice-close-btn');
-    
-    // 모달 표시
-    setTimeout(() => {
-        noticeModal.style.display = 'block';
-    }, 500);
-    
-    // 닫기 버튼 클릭
-    closeBtn.addEventListener('click', () => {
-        noticeModal.style.display = 'none';
-    });
-    
-    // 모달 외부 클릭
-    noticeModal.addEventListener('click', (e) => {
-        if (e.target === noticeModal) {
-            noticeModal.style.display = 'none';
-        }
-    });
 });
 </script>
-
-
+        
+    
     
 </body>
 </html>
